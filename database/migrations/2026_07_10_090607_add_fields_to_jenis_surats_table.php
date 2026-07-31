@@ -12,19 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jenis_surats', function (Blueprint $table) {
-
-            $table->unsignedInteger('nomor_urut')
-                ->default(0)
-                ->after('template');
-
-            $table->string('icon')
-                ->nullable()
-                ->after('nomor_urut');
-
-            $table->text('persyaratan')
-                ->nullable()
-                ->after('icon');
-
+            if (!Schema::hasColumn('jenis_surats', 'nomor_urut')) {
+                $table->unsignedInteger('nomor_urut')
+                    ->default(0);
+            }
+            if (!Schema::hasColumn('jenis_surats', 'icon')) {
+                $table->string('icon')
+                    ->nullable();
+            }
+            if (!Schema::hasColumn('jenis_surats', 'persyaratan')) {
+                $table->text('persyaratan')
+                    ->nullable();
+            }
         });
     }
 

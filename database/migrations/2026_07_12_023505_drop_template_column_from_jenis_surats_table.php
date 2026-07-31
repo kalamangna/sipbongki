@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jenis_surats', function (Blueprint $table) {
-
             if (Schema::hasColumn('jenis_surats', 'template')) {
                 $table->dropColumn('template');
             }
-
+            if (!Schema::hasColumn('jenis_surats', 'template_view')) {
+                $table->string('template_view')->nullable()->after('kode_nomor');
+            }
         });
     }
 
