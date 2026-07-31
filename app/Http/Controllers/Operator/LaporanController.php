@@ -1,0 +1,837 @@
+<?php
+
+namespace App\Http\Controllers\Operator;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\JenisSurat;
+use App\Models\KartuKeluarga;
+use App\Models\Lingkungan;
+use App\Models\Penduduk;
+use App\Models\PermohonanSurat;
+use App\Models\Perangkat;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PendudukExport;
+use App\Exports\KartuKeluargaExport;
+use App\Exports\PermohonanSuratExport;
+
+class LaporanController extends Controller
+{
+    /**
+ * Redirect ke Laporan Penduduk
+ */
+public function index()
+{
+    return redirect()->route('operator.laporan.penduduk');
+}
+
+    /**
+ * Laporan Penduduk
+ */
+public function penduduk(Request $request)
+{
+    $query = Penduduk::with([
+    'kartuKeluarga',
+    'lingkungan'
+]);
+
+/*
+|--------------------------------------------------------------------------
+| Filter Nama / NIK
+|--------------------------------------------------------------------------
+*/
+
+if ($request->filled('keyword')) {
+
+    $query->where(function ($q) use ($request) {
+
+        $q->where(
+            'nama_lengkap',
+            'like',
+            '%' . $request->keyword . '%'
+        )
+
+        ->orWhere(
+            'nik',
+            'like',
+            '%' . $request->keyword . '%'
+        );
+
+    });
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Filter Lingkungan
+|--------------------------------------------------------------------------
+*/
+
+if ($request->filled('lingkungan')) {
+
+    $query->where(
+        'lingkungan_id',
+        $request->lingkungan
+    );
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Filter Jenis Kelamin
+|--------------------------------------------------------------------------
+*/
+
+if ($request->filled('jk')) {
+
+    $query->where(
+        'jenis_kelamin',
+        $request->jk
+    );
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| Filter Agama
+|--------------------------------------------------------------------------
+*/
+
+if ($request->filled('agama')) {
+
+    $query->where(
+        'agama',
+        $request->agama
+    );
+
+}
+
+    if ($request->filled('lingkungan')) {
+
+        $query->where(
+            'lingkungan_id',
+            $request->lingkungan
+        );
+
+    }
+
+    $penduduks = $query
+        ->orderBy('nama_lengkap')
+        ->paginate(20);
+
+    $statistik = [
+
+    'total' => Penduduk::count(),
+
+    'laki_laki' => Penduduk::where(
+        'jenis_kelamin',
+        'L'
+    )->count(),
+
+    'perempuan' => Penduduk::where(
+        'jenis_kelamin',
+        'P'
+    )->count(),
+
+];
+
+    $rekapLingkungan = Lingkungan::withCount('penduduk')
+        ->orderBy('nama')
+        ->get();
+
+    $lingkungans = Lingkungan::orderBy('nama')
+        ->get();
+    $agamaList = Penduduk::select('agama')
+    ->whereNotNull('agama')
+    ->where('agama', '!=', '')
+    ->distinct()
+    ->orderBy('agama')
+    ->pluck('agama');
+    /*
+|--------------------------------------------------------------------------
+| Rekap Agama
+|--------------------------------------------------------------------------
+*/
+
+$rekapAgama = Penduduk::selectRaw('agama, COUNT(*) as total')
+    ->groupBy('agama')
+    ->orderBy('agama')
+    ->get();
+
+
+/*
+|--------------------------------------------------------------------------
+| Rekap Pendidikan
+|--------------------------------------------------------------------------
+*/
+
+$rekapPendidikan = Penduduk::selectRaw('pendidikan, COUNT(*) as total')
+    ->groupBy('pendidikan')
+    ->orderBy('pendidikan')
+    ->get();
+
+
+/*
+|--------------------------------------------------------------------------
+| Rekap Pekerjaan
+|--------------------------------------------------------------------------
+*/
+
+$rekapPekerjaan = Penduduk::selectRaw('pekerjaan, COUNT(*) as total')
+    ->groupBy('pekerjaan')
+    ->orderBy('pekerjaan')
+    ->get();
+
+    return view(
+    'operator.laporan.penduduk',
+    compact(
+        'penduduks',
+        'statistik',
+        'rekapLingkungan',
+        'rekapAgama',
+        'rekapPendidikan',
+        'rekapPekerjaan',
+        'lingkungans',
+        'agamaList'
+    )
+);
+}
+
+    /**
+ * Laporan Kartu Keluarga
+ */
+public function kartuKeluarga(Request $request)
+{
+    $query = KartuKeluarga::with([
+        'kepalaKeluarga',
+        'lingkungan',
+    ])
+    ->withCount('anggota');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Nomor KK / Kepala Keluarga
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('keyword')) {
+
+        $keyword = $request->keyword;
+
+        $query->where(function ($q) use ($keyword) {
+
+            $q->where('no_kk', 'like', "%{$keyword}%")
+
+            ->orWhereHas('kepalaKeluarga', function ($qq) use ($keyword) {
+
+                $qq->where(
+                    'nama_lengkap',
+                    'like',
+                    "%{$keyword}%"
+                );
+
+            });
+
+        });
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Lingkungan
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('lingkungan')) {
+
+        $query->where(
+            'lingkungan_id',
+            $request->lingkungan
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter RT
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('rt')) {
+
+        $query->where(
+            'rt',
+            $request->rt
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter RW
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('rw')) {
+
+        $query->where(
+            'rw',
+            $request->rw
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('status')) {
+
+        $query->where(
+            'aktif',
+            $request->status
+        );
+
+    }
+
+    $kartuKeluargas = $query
+        ->orderBy('no_kk')
+        ->paginate(20)
+        ->withQueryString();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Statistik
+    |--------------------------------------------------------------------------
+    */
+
+    $statistik = [
+
+        'total_kk' => KartuKeluarga::count(),
+
+        'total_anggota' => Penduduk::count(),
+
+        'kk_aktif' => KartuKeluarga::where(
+            'aktif',
+            true
+        )->count(),
+
+        'rata_anggota' => round(
+            Penduduk::count() /
+            max(KartuKeluarga::count(), 1),
+            2
+        ),
+
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Rekap Lingkungan
+    |--------------------------------------------------------------------------
+    */
+
+    $rekapLingkungan = Lingkungan::withCount([
+        'kartuKeluargas',
+        'penduduk',
+    ])
+    ->orderBy('nama')
+    ->get();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Data Filter
+    |--------------------------------------------------------------------------
+    */
+
+    $lingkungans = Lingkungan::orderBy('nama')->get();
+
+    return view(
+        'operator.laporan.kartu-keluarga',
+        compact(
+            'kartuKeluargas',
+            'statistik',
+            'rekapLingkungan',
+            'lingkungans'
+        )
+    );
+}
+
+public function persuratan(Request $request)
+{
+    $query = PermohonanSurat::with([
+        'penduduk',
+        'jenisSurat',
+        'penandatangan.jabatan'
+    ]);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Keyword
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('keyword')) {
+
+        $keyword = $request->keyword;
+
+        $query->where(function ($q) use ($keyword) {
+
+            $q->where('nomor_permohonan', 'like', "%{$keyword}%")
+              ->orWhere('nomor_surat', 'like', "%{$keyword}%")
+              ->orWhereHas('penduduk', function ($qq) use ($keyword) {
+
+                    $qq->where('nama_lengkap', 'like', "%{$keyword}%")
+                       ->orWhere('nik', 'like', "%{$keyword}%");
+
+              });
+
+        });
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Jenis Surat
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('jenis_surat')) {
+
+        $query->where(
+            'jenis_surat_id',
+            $request->jenis_surat
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('status')) {
+
+        $query->where(
+            'status',
+            $request->status
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Tanggal
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('tanggal_awal')) {
+
+        $query->whereDate(
+            'tanggal_permohonan',
+            '>=',
+            $request->tanggal_awal
+        );
+
+    }
+
+    if ($request->filled('tanggal_akhir')) {
+
+        $query->whereDate(
+            'tanggal_permohonan',
+            '<=',
+            $request->tanggal_akhir
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Data
+    |--------------------------------------------------------------------------
+    */
+
+    $permohonans = $query
+        ->latest('tanggal_permohonan')
+        ->paginate(20)
+        ->withQueryString();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Statistik
+    |--------------------------------------------------------------------------
+    */
+
+    $statistik = [
+
+        'total' => PermohonanSurat::count(),
+
+        'menunggu' => PermohonanSurat::where(
+            'status',
+            'Menunggu'
+        )->count(),
+
+        'diproses' => PermohonanSurat::where(
+            'status',
+            'Diproses'
+        )->count(),
+
+        'selesai' => PermohonanSurat::where(
+            'status',
+            'Selesai'
+        )->count(),
+
+        'ditolak' => PermohonanSurat::where(
+            'status',
+            'Ditolak'
+        )->count(),
+
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Jenis Surat
+    |--------------------------------------------------------------------------
+    */
+
+    $jenisSurats = JenisSurat::where(
+        'aktif',
+        true
+    )
+    ->orderBy('nama')
+    ->get();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Rekap Jenis Surat
+    |--------------------------------------------------------------------------
+    */
+
+    $rekapJenis = JenisSurat::withCount('permohonanSurats')
+        ->where('aktif', true)
+        ->orderBy('nama')
+        ->get();
+
+    return view(
+        'operator.laporan.persuratan',
+        compact(
+            'permohonans',
+            'statistik',
+            'jenisSurats',
+            'rekapJenis'
+        )
+    );
+}
+    /**
+ * Export Penduduk Excel
+ */
+public function exportPenduduk()
+{
+    return Excel::download(
+        new PendudukExport,
+        'laporan-penduduk.xlsx'
+    );
+}
+public function printPenduduk(Request $request)
+{
+    $query = Penduduk::with([
+        'kartuKeluarga',
+        'lingkungan'
+    ]);
+
+
+    if ($request->filled('keyword')) {
+
+        $query->where(function($q) use ($request){
+
+            $q->where(
+                'nama_lengkap',
+                'like',
+                '%' . $request->keyword . '%'
+            )
+            ->orWhere(
+                'nik',
+                'like',
+                '%' . $request->keyword . '%'
+            );
+
+        });
+
+    }
+
+
+    if ($request->filled('lingkungan')) {
+
+        $query->where(
+            'lingkungan_id',
+            $request->lingkungan
+        );
+
+    }
+
+
+    if ($request->filled('jk')) {
+
+        $query->where(
+            'jenis_kelamin',
+            $request->jk
+        );
+
+    }
+
+
+    if ($request->filled('agama')) {
+
+        $query->where(
+            'agama',
+            $request->agama
+        );
+
+    }
+
+
+    $penduduks = $query
+        ->orderBy('nama_lengkap')
+        ->get();
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pejabat Penandatangan Laporan
+    |--------------------------------------------------------------------------
+    */
+
+
+    $pltLurah = Perangkat::with('jabatan')
+        ->where('aktif', true)
+        ->whereHas('jabatan', function($q){
+
+            $q->where(
+                'nama',
+                'like',
+                '%Lurah%'
+            );
+
+        })
+        ->first();
+
+
+
+    $kasiPemerintahan = Perangkat::with('jabatan')
+        ->where('aktif', true)
+        ->whereHas('jabatan', function($q){
+
+            $q->where(
+                'nama',
+                'like',
+                '%Kasi Pemerintahan%'
+            );
+
+        })
+        ->first();
+
+
+
+    return view(
+        'operator.laporan.print-penduduk',
+        compact(
+            'penduduks',
+            'pltLurah',
+            'kasiPemerintahan'
+        )
+    );
+}
+
+
+
+/**
+ * Print Laporan Kartu Keluarga
+ */
+public function printKartuKeluarga(Request $request)
+{
+    $query = KartuKeluarga::with([
+        'kepalaKeluarga',
+        'lingkungan',
+    ])->withCount('anggota');
+
+    if ($request->filled('keyword')) {
+
+        $keyword = $request->keyword;
+
+        $query->where(function ($q) use ($keyword) {
+
+            $q->where('no_kk', 'like', "%{$keyword}%")
+              ->orWhereHas('kepalaKeluarga', function ($qq) use ($keyword) {
+
+                  $qq->where(
+                      'nama_lengkap',
+                      'like',
+                      "%{$keyword}%"
+                  );
+
+              });
+
+        });
+
+    }
+
+    if ($request->filled('lingkungan')) {
+        $query->where('lingkungan_id', $request->lingkungan);
+    }
+
+    if ($request->filled('rt')) {
+        $query->where('rt', $request->rt);
+    }
+
+    if ($request->filled('rw')) {
+        $query->where('rw', $request->rw);
+    }
+
+    if ($request->filled('status')) {
+        $query->where('aktif', $request->status);
+    }
+
+    $kartuKeluargas = $query
+        ->orderBy('no_kk')
+        ->get();
+
+    return view(
+        'operator.laporan.print-kartu-keluarga',
+        compact('kartuKeluargas')
+    );
+}
+/**
+ * Print Laporan Persuratan
+ */
+public function printPersuratan(Request $request)
+{
+    $query = PermohonanSurat::with([
+        'penduduk',
+        'jenisSurat',
+        'penandatangan.jabatan',
+    ]);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Keyword
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('keyword')) {
+
+        $keyword = $request->keyword;
+
+        $query->where(function ($q) use ($keyword) {
+
+            $q->where('nomor_permohonan', 'like', "%{$keyword}%")
+              ->orWhere('nomor_surat', 'like', "%{$keyword}%")
+              ->orWhereHas('penduduk', function ($qq) use ($keyword) {
+
+                    $qq->where(
+                        'nama_lengkap',
+                        'like',
+                        "%{$keyword}%"
+                    )
+                    ->orWhere(
+                        'nik',
+                        'like',
+                        "%{$keyword}%"
+                    );
+
+              });
+
+        });
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Jenis Surat
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('jenis_surat')) {
+
+        $query->where(
+            'jenis_surat_id',
+            $request->jenis_surat
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Status
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('status')) {
+
+        $query->where(
+            'status',
+            $request->status
+        );
+
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filter Tanggal
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->filled('tanggal_awal')) {
+
+        $query->whereDate(
+            'tanggal_permohonan',
+            '>=',
+            $request->tanggal_awal
+        );
+
+    }
+
+    if ($request->filled('tanggal_akhir')) {
+
+        $query->whereDate(
+            'tanggal_permohonan',
+            '<=',
+            $request->tanggal_akhir
+        );
+
+    }
+
+    $permohonans = $query
+        ->latest('tanggal_permohonan')
+        ->get();
+
+    return view(
+        'operator.laporan.print-persuratan',
+        compact('permohonans')
+    );
+}
+/**
+ * Export Kartu Keluarga Excel
+ */
+public function exportKartuKeluarga()
+{
+    return Excel::download(
+        new KartuKeluargaExport,
+        'laporan-kartu-keluarga.xlsx'
+    );
+}
+
+
+/**
+ * Export Permohonan Surat Excel
+ */
+public function exportPersuratan()
+{
+    return Excel::download(
+        new PermohonanSuratExport,
+        'laporan-persuratan.xlsx'
+    );
+}
+}
