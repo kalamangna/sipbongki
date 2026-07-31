@@ -12,6 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jenis_surats', function (Blueprint $table) {
+            if (!Schema::hasColumn('jenis_surats', 'kode_surat')) {
+                $table->string('kode_surat', 20)->nullable();
+            }
+            if (!Schema::hasColumn('jenis_surats', 'kode_nomor')) {
+                $table->string('kode_nomor', 20)->nullable();
+            }
             if (!Schema::hasColumn('jenis_surats', 'nomor_urut')) {
                 $table->unsignedInteger('nomor_urut')
                     ->default(0);
