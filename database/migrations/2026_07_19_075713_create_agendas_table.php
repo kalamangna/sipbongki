@@ -54,7 +54,7 @@ return new class extends Migration
             */
 
 
-            $table->string('tempat')
+            $table->string('lokasi')
                 ->nullable();
 
 
