@@ -9,19 +9,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permohonan_surats', function (Blueprint $table) {
+            if (!Schema::hasColumn('permohonan_surats', 'hari_meninggal')) {
+                $table->string('hari_meninggal')->nullable();
+                $table->date('tanggal_meninggal')->nullable();
+                $table->string('tempat_meninggal')->nullable();
+                $table->string('sebab_meninggal')->nullable();
 
-            $table->string('hari_meninggal')->nullable();
-            $table->date('tanggal_meninggal')->nullable();
-            $table->string('tempat_meninggal')->nullable();
-            $table->string('sebab_meninggal')->nullable();
-
-            $table->string('nama_pelapor')->nullable();
-            $table->string('nik_pelapor')->nullable();
-            $table->string('umur_pelapor')->nullable();
-            $table->string('pekerjaan_pelapor')->nullable();
-            $table->text('alamat_pelapor')->nullable();
-            $table->string('hubungan_pelapor')->nullable();
-
+                $table->string('nama_pelapor')->nullable();
+                $table->string('nik_pelapor')->nullable();
+                $table->string('umur_pelapor')->nullable();
+                $table->string('pekerjaan_pelapor')->nullable();
+                $table->text('alamat_pelapor')->nullable();
+                $table->string('hubungan_pelapor')->nullable();
+            }
         });
     }
 

@@ -9,11 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permohonan_surats', function (Blueprint $table) {
-
-            $table->json('data_surat')
-                ->nullable()
-                ->after('keperluan');
-
+            if (!Schema::hasColumn('permohonan_surats', 'data_surat')) {
+                $table->json('data_surat')
+                    ->nullable()
+                    ->after('keperluan');
+            }
         });
     }
 
