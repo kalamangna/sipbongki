@@ -56,6 +56,9 @@ return new class extends Migration
             $table->boolean('aktif')
                   ->default(true);
 
+            $table->boolean('dapat_menandatangani')
+                  ->default(false);
+
             $table->text('keterangan')
                   ->nullable();
 
