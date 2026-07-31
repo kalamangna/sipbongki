@@ -9,21 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permohonan_surats', function (Blueprint $table) {
-
-            $table->foreign('penandatangan_id')
-                ->references('id')
-                ->on('perangkats')
-                ->nullOnDelete();
-
+            // Foreign key penandatangan_id sudah dibuat di create_permohonan_surats_table
         });
     }
 
     public function down(): void
     {
         Schema::table('permohonan_surats', function (Blueprint $table) {
-
-            $table->dropForeign(['penandatangan_id']);
-
+            // No action required
         });
     }
 };
