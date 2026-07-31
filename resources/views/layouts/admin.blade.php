@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'Administrator') | SIPBongki</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
