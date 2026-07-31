@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
 
             JenisSuratSeeder::class,
 
+            InitialDataSeeder::class,
+
         ]);
     }
 }
