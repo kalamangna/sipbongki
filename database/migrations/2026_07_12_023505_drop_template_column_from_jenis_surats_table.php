@@ -16,7 +16,7 @@ return new class extends Migration
                 $table->dropColumn('template');
             }
             if (!Schema::hasColumn('jenis_surats', 'template_view')) {
-                $table->string('template_view')->nullable()->after('kode_nomor');
+                $table->string('template_view')->nullable();
             }
         });
     }
