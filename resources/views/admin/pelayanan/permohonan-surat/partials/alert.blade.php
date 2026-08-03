@@ -2,7 +2,7 @@
 
 <div class="alert alert-success alert-dismissible fade show shadow-sm">
 
-    <i class="bi bi-check-circle-fill me-2"></i>
+    <i class="fa-solid fa-circle-check me-2"></i>
 
     {{ session('success') }}
 
@@ -19,7 +19,7 @@
 
 <div class="alert alert-danger alert-dismissible fade show shadow-sm">
 
-    <i class="bi bi-exclamation-circle-fill me-2"></i>
+    <i class="fa-solid fa-circle-exclamation me-2"></i>
 
     {{ session('error') }}
 

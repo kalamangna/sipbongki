@@ -1,25 +1,4 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
-@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "tailwindcss";
+@source "../views";
+@source "../views/**/*.blade.php";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-
-/* ==========================================================
-   CORE
-========================================================== */
-@import "./variables.css";
-@import "./components.css";
-
-/* ==========================================================
-   PUBLIC WEBSITE
-========================================================== */
-@import "./public.css";
-@import "./struktur.css";
-
-/* ==========================================================
-   ADMIN PANEL
-========================================================== */
-@import "./admin.css";
-
-/* ==========================================================
-   AUTH
-========================================================== */
-@import "./auth.css";

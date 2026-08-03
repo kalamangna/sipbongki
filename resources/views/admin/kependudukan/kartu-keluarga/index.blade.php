@@ -16,7 +16,7 @@
 
         <a href="{{ route('admin.kartu-keluarga.create') }}"
            class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i>
+            <i class="fa-solid fa-circle-plus"></i>
             Kartu Keluarga
         </a>
 
@@ -101,7 +101,7 @@
                                        class="btn btn-info"
                                        title="Detail">
 
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fa-solid fa-eye"></i>
 
                                     </a>
 
@@ -109,7 +109,7 @@
                                        class="btn btn-warning"
                                        title="Edit">
 
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="fa-solid fa-pen"></i>
 
                                     </a>
 
@@ -124,7 +124,7 @@
                                             class="btn btn-danger"
                                             onclick="return confirm('Hapus data kartu keluarga?')">
 
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fa-solid fa-trash"></i>
 
                                         </button>
 

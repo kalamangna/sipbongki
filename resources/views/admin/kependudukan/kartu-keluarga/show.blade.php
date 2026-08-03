@@ -19,7 +19,7 @@
             href="{{ route('admin.kartu-keluarga.index') }}"
             class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             Kembali
         </a>
 

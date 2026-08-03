@@ -332,7 +332,7 @@
         <a href="{{ route('admin.perangkat.index') }}"
            class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
 
             Kembali
 
@@ -342,7 +342,7 @@
         <a href="{{ route('admin.perangkat.edit',$perangkat) }}"
            class="btn btn-warning">
 
-            <i class="bi bi-pencil"></i>
+            <i class="fa-solid fa-pen"></i>
 
             Edit
 

@@ -38,7 +38,7 @@
                class="btn btn-warning me-2">
 
 
-                <i class="bi bi-pencil me-1"></i>
+                <i class="fa-solid fa-pen me-1"></i>
 
                 Edit
 
@@ -51,7 +51,7 @@
                class="btn btn-secondary">
 
 
-                <i class="bi bi-arrow-left me-1"></i>
+                <i class="fa-solid fa-arrow-left me-1"></i>
 
                 Kembali
 
@@ -188,7 +188,7 @@
 
                         <small class="text-muted d-block">
 
-                            <i class="bi bi-calendar-event me-2"></i>
+                            <i class="fa-solid fa-calendar-days me-2"></i>
 
                             Tanggal
 
@@ -221,7 +221,7 @@
                         <small class="text-muted d-block">
 
 
-                            <i class="bi bi-clock me-2"></i>
+                            <i class="fa-regular fa-clock me-2"></i>
 
                             Waktu
 
@@ -253,7 +253,7 @@
                         <small class="text-muted d-block">
 
 
-                            <i class="bi bi-geo-alt me-2"></i>
+                            <i class="fa-solid fa-location-dot me-2"></i>
 
                             Lokasi
 
@@ -283,7 +283,7 @@
                         <small class="text-muted d-block">
 
 
-                            <i class="bi bi-clock-history me-2"></i>
+                            <i class="fa-solid fa-clock-rotate-left me-2"></i>
 
                             Dibuat
 

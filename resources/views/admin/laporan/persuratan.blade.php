@@ -16,7 +16,7 @@
 
             <h3 class="fw-bold mb-1">
 
-                <i class="bi bi-envelope-paper-fill text-primary me-2"></i>
+                <i class="fa-solid fa-envelope-open-text text-primary me-2"></i>
 
                 Laporan Persuratan
 
@@ -33,14 +33,14 @@
         <div class="d-flex gap-2 mt-3 mt-lg-0">
         
          <a href="{{ url()->previous() }}" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i> Kembali
+        <i class="fa-solid fa-arrow-left"></i> Kembali
         </a>
         <a
                 href="{{ route('admin.laporan.print-persuratan', request()->query()) }}"
                 target="_blank"
                 class="btn btn-danger">
 
-                <i class="bi bi-printer me-1"></i>
+                <i class="fa-solid fa-print me-1"></i>
 
                 Cetak
 
@@ -50,7 +50,7 @@
                 href="{{ route('admin.laporan.export-persuratan') }}"
                 class="btn btn-success">
 
-                <i class="bi bi-file-earmark-excel me-1"></i>
+                <i class="fa-solid fa-file-excel me-1"></i>
 
                 Export Excel
 
@@ -94,7 +94,7 @@
                                     d-flex align-items-center justify-content-center"
                              style="width:60px;height:60px;">
 
-                            <i class="bi bi-envelope-paper-fill fs-3 text-primary"></i>
+                            <i class="fa-solid fa-envelope-open-text fs-3 text-primary"></i>
 
                         </div>
 
@@ -136,7 +136,7 @@
                                     d-flex align-items-center justify-content-center"
                              style="width:60px;height:60px;">
 
-                            <i class="bi bi-hourglass-split fs-3 text-warning"></i>
+                            <i class="fa-solid fa-hourglass-half fs-3 text-warning"></i>
 
                         </div>
 
@@ -178,7 +178,7 @@
                                     d-flex align-items-center justify-content-center"
                              style="width:60px;height:60px;">
 
-                            <i class="bi bi-gear-fill fs-3 text-info"></i>
+                            <i class="fa-solid fa-gear fs-3 text-info"></i>
 
                         </div>
 
@@ -220,7 +220,7 @@
                                     d-flex align-items-center justify-content-center"
                              style="width:60px;height:60px;">
 
-                            <i class="bi bi-check-circle-fill fs-3 text-success"></i>
+                            <i class="fa-solid fa-circle-check fs-3 text-success"></i>
 
                         </div>
 
@@ -319,7 +319,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-funnel me-2"></i>
+                <i class="fa-solid fa-filter me-2"></i>
 
                 Filter Laporan Persuratan
 
@@ -490,7 +490,7 @@
                     <button
                         class="btn btn-primary">
 
-                        <i class="bi bi-search"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
 
                         Tampilkan
 
@@ -500,7 +500,7 @@
                         href="{{ route('admin.laporan.persuratan') }}"
                         class="btn btn-outline-secondary">
 
-                        <i class="bi bi-arrow-clockwise"></i>
+                        <i class="fa-solid fa-rotate-right"></i>
 
                         Reset
 
@@ -523,7 +523,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-bar-chart-line me-1"></i>
+                <i class="fa-solid fa-chart-line me-1"></i>
 
                 Rekap Permohonan Berdasarkan Jenis Surat
 
@@ -592,7 +592,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-table me-0"></i>
+                <i class="fa-solid fa-table me-0"></i>
 
                 Data Permohonan Surat
 
@@ -766,7 +766,7 @@
                                         href="{{ route('admin.permohonan-surat.show',$item->id) }}"
                                         class="btn btn-sm btn-outline-primary">
 
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fa-solid fa-eye"></i>
 
                                     </a>
 
@@ -775,7 +775,7 @@
                                         target="_blank"
                                         class="btn btn-sm btn-outline-success">
 
-                                        <i class="bi bi-file-earmark-text"></i>
+                                        <i class="fa-solid fa-file-lines"></i>
 
                                     </a>
 
@@ -793,7 +793,7 @@
 
                                 <div class="text-muted">
 
-                                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                    <i class="fa-solid fa-inbox fs-1 d-block mb-3"></i>
 
                                     <h6>
 

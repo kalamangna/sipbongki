@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-info-circle text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-circle-info text-primary fs-4 me-2"></i>
 
         <div>
 
@@ -34,7 +34,7 @@
 
             </div>
 
-            <i class="bi bi-hash text-primary fs-4"></i>
+            <i class="fa-solid fa-hashtag text-primary fs-4"></i>
 
         </div>
 
@@ -62,7 +62,7 @@
 
             </div>
 
-            <i class="bi bi-calendar-plus text-success fs-4"></i>
+            <i class="fa-solid fa-calendar-plus text-success fs-4"></i>
 
         </div>
 
@@ -90,7 +90,7 @@
 
             </div>
 
-            <i class="bi bi-clock-history text-warning fs-4"></i>
+            <i class="fa-solid fa-clock-rotate-left text-warning fs-4"></i>
 
         </div>
 
@@ -112,7 +112,7 @@
 
             </div>
 
-            <i class="bi bi-check-circle-fill text-success fs-4"></i>
+            <i class="fa-solid fa-circle-check text-success fs-4"></i>
 
         </div>
 

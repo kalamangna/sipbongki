@@ -9,7 +9,7 @@ class Pengumuman extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengumumen';
+    protected $table = 'pengumuman';
 
     protected $fillable = [
 

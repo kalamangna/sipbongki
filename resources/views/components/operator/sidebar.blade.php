@@ -14,7 +14,7 @@
             <a href="{{ route('operator.dashboard') }}"
                class="{{ request()->routeIs('operator.dashboard') ? 'active' : '' }}">
 
-                <i class="bi bi-grid-fill"></i>
+                <i class="fa-solid fa-gauge-high"></i>
 
                 <span>Dashboard</span>
 
@@ -36,7 +36,7 @@
             <a href="{{ route('operator.penduduk.index') }}"
                class="{{ request()->routeIs('operator.penduduk.*') ? 'active' : '' }}">
 
-                <i class="bi bi-people-fill"></i>
+                <i class="fa-solid fa-users"></i>
 
                 <span>Data Penduduk</span>
 
@@ -45,7 +45,7 @@
             <a href="{{ route('operator.kartu-keluarga.index') }}"
                class="{{ request()->routeIs('operator.kartu-keluarga.*') ? 'active' : '' }}">
 
-                <i class="bi bi-house-door-fill"></i>
+                <i class="fa-solid fa-house"></i>
 
                 <span>Kartu Keluarga</span>
 
@@ -67,7 +67,7 @@
             <a href="{{ route('operator.permohonan-surat.index') }}"
                class="{{ request()->routeIs('operator.permohonan-surat.*') ? 'active' : '' }}">
 
-                <i class="bi bi-envelope-paper-fill"></i>
+                <i class="fa-solid fa-envelope-open-text"></i>
 
                 <span>Permohonan Surat</span>
 
@@ -76,7 +76,7 @@
             <a href="{{ route('operator.riwayat-pelayanan.index') }}"
                class="{{ request()->routeIs('operator.riwayat-pelayanan.*') ? 'active' : '' }}">
 
-                <i class="bi bi-clock-history"></i>
+                <i class="fa-solid fa-clock-rotate-left"></i>
 
                 <span>Riwayat Pelayanan</span>
 
@@ -97,7 +97,7 @@
     <a href="{{ route('operator.laporan.penduduk') }}"
        class="{{ request()->routeIs('operator.laporan.penduduk') ? 'active' : '' }}">
 
-        <i class="bi bi-people-fill"></i>
+        <i class="fa-solid fa-users"></i>
 
         <span>Laporan Penduduk</span>
 
@@ -106,7 +106,7 @@
     <a href="{{ route('operator.laporan.kartu-keluarga') }}"
        class="{{ request()->routeIs('operator.laporan.kartu-keluarga') ? 'active' : '' }}">
 
-        <i class="bi bi-house-door-fill"></i>
+        <i class="fa-solid fa-house"></i>
 
         <span>Laporan KK</span>
 
@@ -115,7 +115,7 @@
     <a href="{{ route('operator.laporan.persuratan') }}"
        class="{{ request()->routeIs('operator.laporan.persuratan') ? 'active' : '' }}">
 
-        <i class="bi bi-file-earmark-text-fill"></i>
+        <i class="fa-solid fa-file-lines"></i>
 
         <span>Laporan Persuratan</span>
 
@@ -136,7 +136,7 @@
 
             <a href="{{ route('profile.edit') }}">
 
-                <i class="bi bi-person-circle"></i>
+                <i class="fa-solid fa-circle-user"></i>
 
                 <span>Profil Saya</span>
 
@@ -170,7 +170,7 @@
             <button type="submit"
                     class="sidebar-logout">
 
-                <i class="bi bi-box-arrow-right"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
 
                 <span>Keluar</span>
 

@@ -8,22 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- **Modul Pengumuman**: Model `Pengumuman`, controller admin (`PengumumanController`), migrasi tabel, CRUD view admin (`index`, `show`), dan halaman publik `pengumuman-detail`.
-- **Modul Pengaduan Masyarakat**: Model `Pengaduan`, controller admin (`PengaduanController`) + controller publik (`PublicPengaduanController`), migrasi tabel, CRUD view admin (`index`, `show`, `create`, `edit`), dan halaman publik `pengaduan`.
-- Halaman detail berita untuk publik (`berita-detail.blade.php`).
-- Route baru: `/berita/{berita}`, `/pengumuman/{slug}`, `/pengaduan` (GET + POST) di sisi publik.
-- Route resource baru untuk admin: `pengaduan` dan `website.pengumuman`.
-- Aset gambar baru: `kantorsatu.png` dan folder `ilustrations/` di `public/images/`.
-- Sidebar & navbar admin diperbarui dengan link ke menu Pengaduan dan Pengumuman.
-- Navbar & footer publik diperbarui.
-- Section-section halaman publik diperbarui (hero, profil, berita, agenda, galeri, pengumuman, workflow, services, statistics, struktur, location).
+- **Fitur Otentikasi Login Username / Email**: Mendukung login dengan username (`bongki`) atau email.
+- **Favicon & Logo Resmi**: Integrasi `images/sinjai.png` sebagai logo & favicon di seluruh halaman public, login, dan admin.
+- **Seeder Data Riil**: Integrasi 13 data Penduduk, Kartu Keluarga, Pejabat Kelurahan, dan CMS dari `sipbongki.sql` ke `InitialDataSeeder.php`.
 
 ### Changed
-- Update `DatabaseSeeder` dan `JenisSuratSeeder`.
-- Update migrasi `add_data_kematian_to_permohonan_surats_table` dan `add_jabatan_struktur_id_to_perangkats_table`.
-- Update CSS: `app.css`, `admin.css`, `public.css`, `struktur.css`.
-- Update layout `admin.blade.php` dan `public.blade.php`.
-- Update view index pada admin website (Berita, Agenda, Galeri, Halaman).
+- **Pembersihan CSS Kustom Admin & Auth**: Menghapus `admin.css` & `auth.css` lama dan mengonversi 100% tampilan admin, login, navbar, dan sidebar menggunakan **murni kelas Bootstrap 5.3**.
+- **Perapihan Dashboard Admin**: Redesain Hero card, Stat card, Quick Access card, dan tabel statistik lingkungan.
+- **Standarisasi Singkatan Sistem**: Menyelaraskan seluruh teks publik dan admin menjadi **SIP = Sistem Informasi dan Pelayanan Kelurahan Bongki**.
 
 ## [0.1.0] — 2026-07-26
 

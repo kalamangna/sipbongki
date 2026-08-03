@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-clock-history text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-clock-rotate-left text-primary fs-4 me-2"></i>
 
         <div>
 
@@ -30,7 +30,7 @@
                     <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
                         style="width:42px;height:42px;">
 
-                        <i class="bi bi-file-earmark-plus"></i>
+                        <i class="fa-solid fa-file-circle-plus"></i>
 
                     </div>
 
@@ -71,7 +71,7 @@
                     <div class="rounded-circle bg-info text-white d-flex align-items-center justify-content-center"
                         style="width:42px;height:42px;">
 
-                        <i class="bi bi-arrow-repeat"></i>
+                        <i class="fa-solid fa-rotate"></i>
 
                     </div>
 
@@ -106,7 +106,7 @@
                     <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center"
                         style="width:42px;height:42px;">
 
-                        <i class="bi bi-x-circle"></i>
+                        <i class="fa-solid fa-circle-xmark"></i>
 
                     </div>
 
@@ -141,7 +141,7 @@
                     <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center"
                         style="width:42px;height:42px;">
 
-                        <i class="bi bi-check-circle"></i>
+                        <i class="fa-solid fa-circle-check"></i>
 
                     </div>
 

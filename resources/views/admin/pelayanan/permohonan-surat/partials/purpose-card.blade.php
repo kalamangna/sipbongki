@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-chat-left-text text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-comment text-primary fs-4 me-2"></i>
 
         <div>
 
@@ -36,7 +36,7 @@
 
             <div class="text-center py-5">
 
-                <i class="bi bi-file-earmark-text fs-1 text-secondary"></i>
+                <i class="fa-solid fa-file-lines fs-1 text-secondary"></i>
 
                 <h6 class="mt-3 mb-2">
                     Belum Ada Keperluan

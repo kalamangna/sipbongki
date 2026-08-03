@@ -94,7 +94,7 @@
     class="btn btn-info btn-sm"
     title="Preview Surat">
 
-    <i class="bi bi-eye"></i>
+    <i class="fa-solid fa-eye"></i>
 
 </a>
 
@@ -105,7 +105,7 @@
                                             target="_blank"
                                             title="Cetak Surat">
 
-                                            <i class="bi bi-printer"></i>
+                                            <i class="fa-solid fa-print"></i>
 
                                         </a>
 
@@ -121,7 +121,7 @@
 
                                 <td colspan="7" class="text-center py-5">
 
-                                    <i class="bi bi-clock-history fs-1 text-muted d-block mb-3"></i>
+                                    <i class="fa-solid fa-clock-rotate-left fs-1 text-muted d-block mb-3"></i>
 
                                     <span class="text-muted">
 

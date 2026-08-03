@@ -15,34 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*
-        |--------------------------------------------------------------------------
-        | User Default
-        |--------------------------------------------------------------------------
-        */
-
-        User::firstOrCreate(
-            ['email' => 'test@example.com'],
-            [
-                'name' => 'Test User',
-                'password' => bcrypt('password'),
-            ]
-        );
-
-        /*
-        |--------------------------------------------------------------------------
-        | Master Data
-        |--------------------------------------------------------------------------
-        */
-
         $this->call([
-
-            LingkunganSeeder::class,
-
-            JabatanSeeder::class,
-
-            JenisSuratSeeder::class,
-
+            InitialDataSeeder::class,
         ]);
     }
 }

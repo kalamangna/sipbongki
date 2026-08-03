@@ -36,7 +36,7 @@
            class="btn btn-primary">
 
 
-            <i class="bi bi-pencil-square me-2"></i>
+            <i class="fa-solid fa-pen-square me-2"></i>
 
             Edit Pengaturan
 
@@ -102,7 +102,7 @@
                         <div class="text-muted py-5">
 
 
-                            <i class="bi bi-image fs-1"></i>
+                            <i class="fa-solid fa-image fs-1"></i>
 
 
                             <p class="mt-2">

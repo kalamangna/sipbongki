@@ -28,7 +28,7 @@
     <a href="{{ route('admin.website.halaman.create') }}"
        class="btn btn-primary">
 
-        <i class="bi bi-plus-circle me-2"></i>
+        <i class="fa-solid fa-circle-plus me-2"></i>
 
         Tambah Halaman
 
@@ -170,7 +170,7 @@ Draft
            class="btn btn-info btn-sm"
            title="Detail">
 
-            <i class="bi bi-eye"></i>
+            <i class="fa-solid fa-eye"></i>
 
         </a>
 
@@ -179,7 +179,7 @@ Draft
            class="btn btn-warning btn-sm"
            title="Edit">
 
-            <i class="bi bi-pencil"></i>
+            <i class="fa-solid fa-pen"></i>
 
         </a>
 
@@ -196,7 +196,7 @@ Draft
                     title="Hapus"
                     onclick="return confirm('Hapus halaman ini?')">
 
-                <i class="bi bi-trash"></i>
+                <i class="fa-solid fa-trash"></i>
 
             </button>
 

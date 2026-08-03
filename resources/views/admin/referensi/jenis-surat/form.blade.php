@@ -223,7 +223,7 @@
             type="submit"
             class="btn btn-primary">
 
-            <i class="bi bi-check-circle"></i>
+            <i class="fa-solid fa-circle-check"></i>
 
             Simpan
 

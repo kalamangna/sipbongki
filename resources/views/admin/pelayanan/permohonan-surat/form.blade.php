@@ -649,7 +649,7 @@
         href="{{ route('admin.permohonan-surat.index') }}"
         class="btn btn-secondary me-2">
 
-        <i class="bi bi-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left"></i>
         Kembali
 
     </a>
@@ -658,7 +658,7 @@
         type="submit"
         class="btn btn-primary">
 
-        <i class="bi bi-check-circle"></i>
+        <i class="fa-solid fa-circle-check"></i>
         Simpan
 
     </button>

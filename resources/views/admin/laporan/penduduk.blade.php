@@ -23,7 +23,7 @@
 
         <div>
     <a href="{{ url()->previous() }}" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i> Kembali
+        <i class="fa-solid fa-arrow-left"></i> Kembali
     </a>
         
     <a
@@ -31,7 +31,7 @@
                 target="_blank"
                 class="btn btn-danger">
 
-                <i class="bi bi-printer me-1"></i>
+                <i class="fa-solid fa-print me-1"></i>
 
                 Cetak
 
@@ -39,7 +39,7 @@
                 href="{{ route('admin.laporan.export-penduduk') }}"
                 class="btn btn-success">
 
-                <i class="bi bi-file-earmark-excel me-1"></i>
+                <i class="fa-solid fa-file-excel me-1"></i>
 
                 Export Excel
 
@@ -287,7 +287,7 @@
                     type="submit"
                     class="btn btn-primary">
 
-                    <i class="bi bi-search"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
 
                     Tampilkan
 
@@ -298,7 +298,7 @@
                 <a href="{{ route('admin.laporan.penduduk') }}"
                    class="btn btn-outline-secondary">
 
-                    <i class="bi bi-arrow-clockwise"></i>
+                    <i class="fa-solid fa-rotate-right"></i>
 
                     Reset
 

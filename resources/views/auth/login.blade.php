@@ -4,178 +4,84 @@
 
 @section('content')
 
-<div class="login-container">
+<div class="text-center mb-3">
+    <h5 class="fw-bold text-slate-900 mb-1">Selamat Datang</h5>
+    <p class="text-slate-500 small mb-0">Silakan masukkan akun Anda untuk melanjutkan</p>
+</div>
 
-    <div class="login-header">
+@if(session('status'))
+    <div class="alert alert-emerald alert-dismissible fade show text-start py-2.5 px-3 mb-3 small border-0 bg-emerald-50 text-emerald-800 rounded-3" role="alert">
+        <i class="fa-solid fa-circle-check me-2 text-emerald-600"></i> {{ session('status') }}
+        <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
-        <h2 class="login-title">
-            Masuk
-        </h2>
+@if($errors->any())
+    <div class="alert alert-rose alert-dismissible fade show text-start py-2.5 px-3 mb-3 small border-0 bg-rose-50 text-rose-800 rounded-3" role="alert">
+        <i class="fa-solid fa-circle-exclamation me-2 text-rose-600"></i> Email atau password yang Anda masukkan tidak sesuai.
+        <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
-        <p class="login-subtitle">
-            Silakan masuk menggunakan akun Anda untuk mengakses layanan SIPBongki.
-        </p>
+<form method="POST" action="{{ $loginRoute }}">
+    @csrf
 
+    {{-- Login Field (Username / Email) --}}
+    <div class="mb-3 text-start">
+        <label for="login" class="form-label small fw-bold text-slate-700 mb-1">Username / Email</label>
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-slate-400">
+                <i class="fa-solid fa-user text-sm"></i>
+            </span>
+            <input id="login" type="text" name="login" value="{{ old('login') }}" class="form-control border-start-0 shadow-none focus-ring focus-ring-emerald @error('login') is-invalid @enderror" placeholder="Masukkan username atau email" required autofocus>
+        </div>
+        @error('login')
+            <div class="invalid-feedback d-block small mt-1 text-rose-600">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
-    @if(session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    @if($errors->any())
-        <div class="alert alert-danger">
-            Email atau password yang Anda masukkan tidak sesuai.
-        </div>
-    @endif
-
-    <form
-        method="POST"
-        action="{{ $loginRoute }}"
-        class="login-form">
-
-        @csrf
-
-        {{-- Email --}}
-        <div class="mb-4">
-
-            <label
-                for="email"
-                class="form-label">
-
-                Email
-
-            </label>
-
-            <div class="login-input">
-
-                <i class="fa-solid fa-envelope"></i>
-
-                <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    placeholder="Masukkan email Anda"
-                    required
-                    autofocus>
-
-            </div>
-
-            @error('email')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-            @enderror
-
-        </div>
-
-        {{-- Password --}}
-        <div class="mb-4">
-
-            <label
-                for="password"
-                class="form-label">
-
-                Password
-
-            </label>
-
-            <div class="login-input password-input">
-
-                <i class="fa-solid fa-lock"></i>
-
-                <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    placeholder="Masukkan password Anda"
-                    required>
-
-                <button
-                    type="button"
-                    class="password-toggle"
-                    id="togglePassword">
-
-                    <i
-                        class="fa-regular fa-eye"
-                        id="toggleIcon"></i>
-
-                </button>
-
-            </div>
-
-            @error('password')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-            @enderror
-
-        </div>
-
-        <div class="login-option mb-4">
-
-            <div class="form-check">
-
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="remember"
-                    id="remember">
-
-                <label
-                    class="form-check-label"
-                    for="remember">
-
-                    Ingat Saya
-
-                </label>
-
-            </div>
-
+    {{-- Password Field --}}
+    <div class="mb-3 text-start">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label for="password" class="form-label small fw-bold text-slate-700 mb-0">Password</label>
             @if(Route::has('password.request'))
-
-                <a href="{{ route('password.request') }}">
-
-                    Lupa Password?
-
+                <a href="{{ route('password.request') }}" class="text-emerald-600 hover:text-emerald-700 text-decoration-none small fw-semibold transition">
+                    Lupa password?
                 </a>
-
             @endif
-
         </div>
-
-        <button
-            type="submit"
-            class="btn-login">
-
-            <i class="fa-solid fa-right-to-bracket me-2"></i>
-
-            Masuk
-
-        </button>
-
-    </form>
-
-    @if(Route::has('register'))
-
-        <div class="register-box">
-
-            <span>
-                Belum memiliki akun?
+        <div class="input-group">
+            <span class="input-group-text bg-white border-end-0 text-slate-400">
+                <i class="fa-solid fa-lock text-sm"></i>
             </span>
-
-            <a href="{{ route('register') }}">
-
-                Daftar Sekarang
-
-            </a>
-
+            <input id="password" type="password" name="password" class="form-control border-start-0 border-end-0 shadow-none focus-ring focus-ring-emerald @error('password') is-invalid @enderror" placeholder="••••••••" required>
+            <button class="btn btn-outline-secondary border-start-0 text-slate-400 hover:text-slate-600 shadow-none" type="button" id="togglePassword">
+                <i class="fa-regular fa-eye" id="toggleIcon"></i>
+            </button>
         </div>
+        @error('password')
+            <div class="invalid-feedback d-block small mt-1 text-rose-600">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
 
-    @endif
+    {{-- Remember Me --}}
+    <div class="mb-3 form-check text-start">
+        <input class="form-check-input shadow-none" type="checkbox" name="remember" id="remember">
+        <label class="form-check-label small text-slate-600" for="remember">
+            Ingat Sesi Saya
+        </label>
+    </div>
 
-</div>
+    {{-- Submit Button (Bootstrap 5.3 Clean Button) --}}
+    <button type="submit" class="btn btn-success w-100 fw-bold py-2.5 shadow-sm rounded-3 d-inline-flex align-items-center justify-content-center gap-2">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Masuk Sekarang</span>
+    </button>
+
+</form>
 
 @endsection

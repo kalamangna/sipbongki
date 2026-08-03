@@ -38,7 +38,7 @@ Detail informasi halaman website.
 class="btn btn-warning">
 
 
-<i class="bi bi-pencil me-2"></i>
+<i class="fa-solid fa-pen me-2"></i>
 
 Edit
 

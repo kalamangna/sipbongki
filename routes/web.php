@@ -46,20 +46,8 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
     ->name('berita.show');
 
-    Route::get('/pengumuman/{slug}', 
-    [HomeController::class, 'showPengumuman']
-)->name('pengumuman.detail');
-
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home');
-
-Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
-    ->name('berita.show');
-
-Route::get(
-    '/pengumuman/{slug}',
-    [HomeController::class, 'showPengumuman']
-)->name('pengumuman.detail');
+Route::get('/pengumuman/{slug}', [HomeController::class, 'showPengumuman'])
+    ->name('pengumuman.detail');
 
 /*
 |--------------------------------------------------------------------------

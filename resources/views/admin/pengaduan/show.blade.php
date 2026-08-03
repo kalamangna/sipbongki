@@ -24,7 +24,7 @@
         <a href="{{ route('admin.pengaduan.index') }}"
            class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             Kembali
 
         </a>
@@ -154,7 +154,7 @@
 
                         <div class="text-muted py-5">
 
-                            <i class="bi bi-image fs-1 d-block mb-3"></i>
+                            <i class="fa-solid fa-image fs-1 d-block mb-3"></i>
 
                             Tidak ada foto.
 
@@ -246,7 +246,7 @@
                         <button
                             class="btn btn-success w-100">
 
-                            <i class="bi bi-check-circle"></i>
+                            <i class="fa-solid fa-circle-check"></i>
 
                             Simpan Perubahan
 

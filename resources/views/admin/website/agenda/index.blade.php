@@ -28,7 +28,7 @@
         <a href="{{ route('admin.website.agenda.create') }}"
            class="btn btn-primary">
 
-            <i class="bi bi-plus-circle me-2"></i>
+            <i class="fa-solid fa-circle-plus me-2"></i>
 
             Tambah Agenda
 
@@ -173,7 +173,7 @@
                             <td>
 
 
-                                <i class="bi bi-geo-alt text-primary me-1"></i>
+                                <i class="fa-solid fa-location-dot text-primary me-1"></i>
 
 
                                 {{ $agenda->lokasi ?? '-' }}
@@ -228,7 +228,7 @@
            class="btn btn-info btn-sm"
            title="Detail">
 
-            <i class="bi bi-eye"></i>
+            <i class="fa-solid fa-eye"></i>
 
         </a>
 
@@ -237,7 +237,7 @@
            class="btn btn-warning btn-sm"
            title="Edit">
 
-            <i class="bi bi-pencil"></i>
+            <i class="fa-solid fa-pen"></i>
 
         </a>
 
@@ -255,7 +255,7 @@
                 title="Hapus"
                 onclick="return confirm('Hapus agenda ini?')">
 
-                <i class="bi bi-trash"></i>
+                <i class="fa-solid fa-trash"></i>
 
             </button>
 

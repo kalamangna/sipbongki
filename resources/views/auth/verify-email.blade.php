@@ -41,7 +41,7 @@
             type="submit"
             class="btn btn-primary">
 
-            <i class="bi bi-envelope-check me-2"></i>
+            <i class="fa-solid fa-envelope-circle-check me-2"></i>
 
             Kirim Ulang Email Verifikasi
 
@@ -62,7 +62,7 @@
             type="submit"
             class="btn btn-outline-secondary">
 
-            <i class="bi bi-box-arrow-right me-2"></i>
+            <i class="fa-solid fa-right-from-bracket me-2"></i>
 
             Keluar
 

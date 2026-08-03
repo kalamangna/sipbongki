@@ -18,7 +18,7 @@
         <a href="{{ route('admin.jenis-surat.create') }}"
            class="btn btn-primary">
 
-            <i class="bi bi-plus-circle"></i>
+            <i class="fa-solid fa-circle-plus"></i>
             Tambah Jenis Surat
 
         </a>
@@ -48,7 +48,7 @@
 
                         <button class="btn btn-primary">
 
-                            <i class="bi bi-search"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
 
                             Cari
 
@@ -164,7 +164,7 @@
             class="btn btn-warning btn-sm"
             title="Edit">
 
-            <i class="bi bi-pencil"></i>
+            <i class="fa-solid fa-pen"></i>
 
         </a>
 
@@ -176,7 +176,7 @@
             data-bs-toggle="modal"
             data-bs-target="#hapusModal{{ $jenisSurat->id }}">
 
-            <i class="bi bi-trash"></i>
+            <i class="fa-solid fa-trash"></i>
 
         </button>
 
@@ -246,7 +246,7 @@
                                         <button
                                             class="btn btn-danger">
 
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fa-solid fa-trash"></i>
 
                                             Hapus
 
@@ -268,7 +268,7 @@
 
                         <td colspan="5" class="text-center py-5">
 
-                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                            <i class="fa-solid fa-inbox fs-1 d-block mb-3"></i>
 
                             <span class="text-muted">
 

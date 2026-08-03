@@ -24,7 +24,7 @@
         <a href="{{ route('admin.website.pengumuman.index') }}"
            class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left me-2"></i>
+            <i class="fa-solid fa-arrow-left me-2"></i>
             Kembali
 
         </a>
@@ -116,7 +116,7 @@
                 <a href="{{ route('admin.website.pengumuman.edit', $pengumuman) }}"
                    class="btn btn-warning">
 
-                    <i class="bi bi-pencil me-2"></i>
+                    <i class="fa-solid fa-pen me-2"></i>
 
                     Edit
 

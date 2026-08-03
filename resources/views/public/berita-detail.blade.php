@@ -4,98 +4,50 @@
 
 @section('content')
 
-<section class="py-5 bg-light border-bottom">
-    <div class="container">
+<div class="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div class="container mx-auto px-4 max-w-4xl space-y-8">
 
-        <nav aria-label="breadcrumb" class="mb-3">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                    <a href="{{ route('home') }}">Beranda</a>
-                </li>
-                <li class="breadcrumb-item active">
-                    Detail Berita
-                </li>
-            </ol>
-        </nav>
-
-        <h1 class="detail-judul-berita fw-bold mb-3">
-    {{ $berita->judul }}
-</h1>
-
-        <div class="d-flex flex-wrap gap-3 text-muted">
-
-            <span>
-                <i class="bi bi-calendar-event me-1"></i>
-
-                {{ optional($berita->tanggal_publish)->translatedFormat('d F Y')
-                    ?? $berita->created_at->translatedFormat('d F Y') }}
-            </span>
-
-            <span>
-                <i class="bi bi-person-circle me-1"></i>
-                Pemerintah Kelurahan Bongki
-            </span>
-
+        {{-- TOMBOL KEMBALI --}}
+        <div>
+            <a href="{{ url('/#berita') }}" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-semibold text-xs rounded-xl shadow-sm hover:bg-slate-100 transition">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Kembali ke Berita</span>
+            </a>
         </div>
 
-    </div>
-</section>
+        {{-- CARD UTAMA --}}
+        <article class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-xl space-y-6">
 
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="row">
-
-            {{-- ISI BERITA --}}
-            <div class="col-lg-10 mx-auto">
-
-                <div class="card border-0 shadow-sm">
-
-                    @if($berita->gambar)
-
-<img
-    src="{{ asset('storage/'.$berita->gambar) }}"
-    class="detail-gambar-berita"
-    alt="{{ $berita->judul }}">
-
-@endif
-
-                    <div class="card-body p-4">
-
-                        <div class="content-berita">
-
-    {!! $berita->isi !!}
-
-</div>
-
-                    </div>
-
-                </div>
-
-                <div class="mt-4">
-
-                    <a href="{{ route('home') }}#berita"
-                       class="btn btn-outline-primary">
-
-                        <i class="bi bi-arrow-left"></i>
-
-                        Kembali ke Beranda
-
-                    </a>
-
-                </div>
-
+            {{-- TANGGAL & KATEGORI --}}
+            <div class="flex items-center gap-3 text-xs font-semibold text-emerald-600">
+                <span class="px-3 py-1 bg-emerald-50 rounded-full">Berita Kelurahan</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-slate-500">
+                    <i class="fa-regular fa-clock mr-1"></i>
+                    {{ \Carbon\Carbon::parse($berita->tanggal_publish)->translatedFormat('d F Y') }}
+                </span>
             </div>
 
+            {{-- JUDUL BERITA --}}
+            <h1 class="text-2xl sm:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                {{ $berita->judul }}
+            </h1>
 
-         
+            {{-- GAMBAR UTAMA --}}
+            @if($berita->gambar)
+                <div class="rounded-2xl overflow-hidden shadow-md bg-slate-100 max-h-96">
+                    <img src="{{ asset('storage/'.$berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-full object-cover">
+                </div>
+            @endif
 
-        </div>
+            {{-- ISI BERITA --}}
+            <div class="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed pt-4 border-t border-slate-100">
+                {!! nl2br(e($berita->isi)) !!}
+            </div>
+
+        </article>
 
     </div>
-
-</section>
+</div>
 
 @endsection

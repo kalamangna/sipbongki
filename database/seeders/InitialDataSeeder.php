@@ -36,17 +36,10 @@ class InitialDataSeeder extends Seeder
         User::create([
             'id' => 1,
             'name' => 'Administrator',
+            'username' => 'bongki',
             'email' => 'admin@sipbongki.go.id',
             'role' => 'admin',
-            'password' => Hash::make('password'),
-        ]);
-
-        User::create([
-            'id' => 2,
-            'name' => 'Operator Pelayanan',
-            'email' => 'operator@sipbongki.go.id',
-            'role' => 'operator',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('Bongki@7307'),
         ]);
 
         /*
@@ -171,26 +164,77 @@ class InitialDataSeeder extends Seeder
 
         /*
         |--------------------------------------------------------------------------
-        | 7. Agendas, Beritas, Galeris
+        | 7. Kartu Keluarga (Real Data Dump)
+        |--------------------------------------------------------------------------
+        */
+        KartuKeluarga::truncate();
+        $kartuKeluargas = [
+            ['id' => 5, 'no_kk' => '7307050112080001', 'kepala_keluarga_id' => 2, 'alamat' => 'Jl. Gunung Latimojong', 'rt' => NULL, 'rw' => '001', 'lingkungan_id' => 1, 'aktif' => 1],
+            ['id' => 6, 'no_kk' => '7307050505250003', 'kepala_keluarga_id' => 7, 'alamat' => 'Btn. Tangka Mas Blok E No.39', 'rt' => '001', 'rw' => '001', 'lingkungan_id' => 1, 'aktif' => 1],
+            ['id' => 7, 'no_kk' => '7307052901053400', 'kepala_keluarga_id' => 11, 'alamat' => 'Jl. Bulu Bicara', 'rt' => '004', 'rw' => '002', 'lingkungan_id' => 1, 'aktif' => 1],
+        ];
+        foreach ($kartuKeluargas as $kk) {
+            KartuKeluarga::create($kk);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | 8. Penduduk (Real Data Dump)
+        |--------------------------------------------------------------------------
+        */
+        Penduduk::truncate();
+        $penduduks = [
+            ['id' => 2, 'nik' => '7307050112750007', 'nama_lengkap' => 'Pahri', 'jenis_kelamin' => 'L', 'tempat_lahir' => 'Matumpu', 'tanggal_lahir' => '1975-12-01', 'agama' => 'Islam', 'status_perkawinan' => 'Kawin', 'pendidikan' => 'SMP/Sederajat', 'pekerjaan' => 'Wiraswasta', 'alamat' => 'Jl. Gunung Latimojong', 'rt' => '004', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 5, 'hubungan_keluarga' => 'Kepala Keluarga', 'telepon' => '085242212456', 'aktif' => 1],
+            ['id' => 3, 'nik' => '7307057112830006', 'nama_lengkap' => 'Saleha', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Bone', 'tanggal_lahir' => '1983-02-09', 'agama' => 'Islam', 'status_perkawinan' => 'Kawin', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Mengurus Rumah Tangga', 'alamat' => 'Jl. Gunung Latimojong', 'rt' => '004', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 5, 'hubungan_keluarga' => 'Istri', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 4, 'nik' => '7307055101050001', 'nama_lengkap' => 'Sahra', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '2005-01-11', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'SD/Sederajat', 'pekerjaan' => 'Pelajar/Mahasiswa', 'alamat' => 'Jl. Gunung Latimojong', 'rt' => '004', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 5, 'hubungan_keluarga' => 'Anak', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 5, 'nik' => '7307055909180001', 'nama_lengkap' => 'Rezki Mutahharah', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '2022-06-07', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'Tidak/Belum Sekolah', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Jl. Gunung Latimojong', 'rt' => '004', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 5, 'hubungan_keluarga' => 'Anak', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 6, 'nik' => '7307054708200001', 'nama_lengkap' => 'Fara Syakira Alifia', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '2020-06-09', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'Tidak/Belum Sekolah', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Jl. Gunung Latimojong', 'rt' => '004', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 5, 'hubungan_keluarga' => 'Anak', 'telepon' => 's00790f', 'aktif' => 1],
+            ['id' => 7, 'nik' => '7401185911740001', 'nama_lengkap' => 'Rosdiana', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '1974-11-19', 'agama' => 'Islam', 'status_perkawinan' => 'Cerai Hidup', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Btn. Tangka Mas Blok E No. 39', 'rt' => '001', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 6, 'hubungan_keluarga' => 'Kepala Keluarga', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 8, 'nik' => '7401181701120001', 'nama_lengkap' => 'Hasram Saputra', 'jenis_kelamin' => 'L', 'tempat_lahir' => 'Lalonggolosua', 'tanggal_lahir' => '2012-01-17', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Btn. Tangka Mas Blok E No.39', 'rt' => '001', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 6, 'hubungan_keluarga' => 'Anak', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 9, 'nik' => '7401184702030002', 'nama_lengkap' => 'Ita Yusnita', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Oko-Oko', 'tanggal_lahir' => '2003-02-07', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'SD/Sederajat', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Btn. Tangka Mas Blok E No.39', 'rt' => '001', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 6, 'hubungan_keluarga' => 'Anak', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 10, 'nik' => '7401184103020002', 'nama_lengkap' => 'Nirmayanti', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Putemata', 'tanggal_lahir' => '2002-03-01', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'Tidak/Belum Sekolah', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Btn. Tangka Mas Blok E No.39', 'rt' => '001', 'rw' => '001', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 6, 'hubungan_keluarga' => 'Anak', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 11, 'nik' => '7307053112700053', 'nama_lengkap' => 'Shabaruddin', 'jenis_kelamin' => 'L', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '1970-12-31', 'agama' => 'Islam', 'status_perkawinan' => 'Kawin', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Perdagangan', 'alamat' => 'Jl. Bulu Bicara', 'rt' => '004', 'rw' => '002', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => 7, 'hubungan_keluarga' => 'Kepala Keluarga', 'telepon' => NULL, 'aktif' => 1],
+            ['id' => 12, 'nik' => '7307050109030001', 'nama_lengkap' => 'Muhammad Fahri', 'jenis_kelamin' => 'L', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '2003-09-01', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Belum/Tidak Bekerja', 'alamat' => 'Bumi Benteng Mas (Jl. Petta Ponggawae)', 'rt' => '002', 'rw' => '002', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 3, 'kartu_keluarga_id' => NULL, 'hubungan_keluarga' => 'Anak', 'telepon' => '089 532 149 3193', 'aktif' => 1],
+            ['id' => 13, 'nik' => '7307055211810001', 'nama_lengkap' => 'Nurlita', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '1981-11-12', 'agama' => 'Islam', 'status_perkawinan' => 'Cerai Hidup', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Mengurus Rumah Tangga', 'alamat' => 'Jl. Petta Ponggawae', 'rt' => '001', 'rw' => '002', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 4, 'kartu_keluarga_id' => NULL, 'hubungan_keluarga' => NULL, 'telepon' => '085 754 378 256', 'aktif' => 1],
+            ['id' => 14, 'nik' => '7307054906080002', 'nama_lengkap' => 'Musyarrifa. F', 'jenis_kelamin' => 'P', 'tempat_lahir' => 'Sinjai', 'tanggal_lahir' => '2013-06-02', 'agama' => 'Islam', 'status_perkawinan' => 'Belum Kawin', 'pendidikan' => 'SMA/Sederajat', 'pekerjaan' => 'Pelajar/Mahasiswa', 'alamat' => 'JL. Bulu Saraung', 'rt' => '001', 'rw' => '002', 'status_validasi_alamat' => 'Valid', 'lingkungan_id' => 1, 'kartu_keluarga_id' => NULL, 'hubungan_keluarga' => NULL, 'telepon' => NULL, 'aktif' => 1],
+        ];
+        foreach ($penduduks as $p) {
+            Penduduk::create($p);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | 9. Agendas, Beritas, Galeris (Real Data Dump)
         |--------------------------------------------------------------------------
         */
         Agenda::truncate();
-        Agenda::create([
-            'judul' => 'Kegiatan Sosialisasi terkait Prilaku Hidup Bersih dan Sehat',
-            'deskripsi' => 'Kegiatan sosialisasi mengenai pentingnya Perilaku Hidup Bersih dan Sehat (PHBS) sebagai upaya menciptakan lingkungan yang sehat, bersih, dan nyaman bagi masyarakat Kelurahan Bongki',
-            'tanggal' => '2026-07-29',
-            'lokasi' => 'Aula Kantor Kelurahan Bongki',
-            'status' => 'aktif',
-        ]);
+        $agendas = [
+            ['id' => 4, 'judul' => 'Kegiatan Sosialisasi terkait Prilaku Hidup Bersih dan Sehat', 'deskripsi' => 'Kegiatan sosialisasi mengenai pentingnya Perilaku Hidup Bersih dan Sehat (PHBS) sebagai upaya menciptakan lingkungan yang sehat, bersih, dan nyaman bagi masyarakat Kelurahan Bongki', 'tanggal' => '2026-07-29', 'waktu' => NULL, 'lokasi' => 'Aula Kantor Kelurahan Bongki', 'status' => 'aktif'],
+            ['id' => 5, 'judul' => 'Posyandu', 'deskripsi' => NULL, 'tanggal' => '2026-08-06', 'waktu' => '08:00', 'lokasi' => 'Posyandu Kartini', 'status' => 'aktif'],
+            ['id' => 6, 'judul' => 'Posyandu', 'deskripsi' => NULL, 'tanggal' => '2026-08-07', 'waktu' => '08:00', 'lokasi' => 'Posyandu Asoka', 'status' => 'aktif'],
+        ];
+        foreach ($agendas as $a) {
+            Agenda::create($a);
+        }
 
         Berita::truncate();
         Berita::create([
+            'id' => 1,
             'judul' => 'Pelayanan Administrasi Digital Kelurahan Bongki',
             'slug' => 'pelayanan-administrasi-digital-kelurahan-bongki',
             'isi' => 'Sistem Informasi Pelayanan Publik Kelurahan Bongki (SIPBONGKI) resmi hadir untuk mempermudah permohonan surat kependudukan masyarakat.',
             'status' => 'publish',
             'tanggal_publish' => now(),
         ]);
+
+        Galeri::truncate();
+        $galeris = [
+            ['id' => 2, 'judul' => 'Kegiatan Kemasyarakatan 1', 'deskripsi' => 'Dokumentasi kegiatan di Kelurahan Bongki', 'gambar' => 'galeri/CfoGMXilfwRREQORXxKbf2vd01vtsn3IlXdkvWgV.jpg', 'status' => 'aktif'],
+            ['id' => 3, 'judul' => 'Kegiatan Kemasyarakatan 2', 'deskripsi' => 'Dokumentasi kegiatan di Kelurahan Bongki', 'gambar' => 'galeri/8kchDpCRzAOa40MJSg56YEX2KFoqTfw3WU4dV6t6.jpg', 'status' => 'aktif'],
+        ];
+        foreach ($galeris as $g) {
+            Galeri::create($g);
+        }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

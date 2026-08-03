@@ -16,7 +16,7 @@
     <div>
 
         <h3 class="fw-bold mb-1">
-            <i class="bi bi-people-fill text-primary me-2"></i>
+            <i class="fa-solid fa-users text-primary me-2"></i>
             Laporan Penduduk
         </h3>
 
@@ -35,7 +35,7 @@
             href="{{ route('operator.laporan.export-penduduk') }}"
             class="btn btn-success">
 
-            <i class="bi bi-file-earmark-excel me-1"></i>
+            <i class="fa-solid fa-file-excel me-1"></i>
 
             Export Excel
 
@@ -49,7 +49,7 @@
             target="_blank"
             class="btn btn-danger">
 
-            <i class="bi bi-printer me-1"></i>
+            <i class="fa-solid fa-print me-1"></i>
 
             Cetak
 
@@ -61,7 +61,7 @@
         <a href="{{ route('operator.laporan.penduduk') }}"
    class="btn btn-light border shadow-sm">
 
-    <i class="bi bi-arrow-clockwise me-1"></i>
+    <i class="fa-solid fa-rotate-right me-1"></i>
 
     Refresh
 
@@ -359,7 +359,7 @@ Semua Agama
 class="btn btn-primary">
 
 
-<i class="bi bi-search"></i>
+<i class="fa-solid fa-magnifying-glass"></i>
 
 Tampilkan
 
@@ -372,7 +372,7 @@ Tampilkan
 class="btn btn-outline-secondary">
 
 
-<i class="bi bi-arrow-clockwise"></i>
+<i class="fa-solid fa-rotate-right"></i>
 
 Reset
 

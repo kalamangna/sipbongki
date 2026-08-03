@@ -33,7 +33,7 @@
            class="btn btn-primary">
 
 
-            <i class="bi bi-plus-circle me-2"></i>
+            <i class="fa-solid fa-circle-plus me-2"></i>
 
             Tambah Berita
 
@@ -211,7 +211,7 @@
 
                                     <span class="badge bg-success">
 
-                                        <i class="bi bi-check-circle me-1"></i>
+                                        <i class="fa-solid fa-circle-check me-1"></i>
 
                                         Publish
 
@@ -223,7 +223,7 @@
 
                                     <span class="badge bg-secondary">
 
-                                        <i class="bi bi-pencil me-1"></i>
+                                        <i class="fa-solid fa-pen me-1"></i>
 
                                         Draft
 
@@ -272,7 +272,7 @@
            class="btn btn-info btn-sm"
            title="Lihat Detail">
 
-            <i class="bi bi-eye"></i>
+            <i class="fa-solid fa-eye"></i>
 
         </a>
 
@@ -281,7 +281,7 @@
            class="btn btn-warning btn-sm"
            title="Edit Berita">
 
-            <i class="bi bi-pencil"></i>
+            <i class="fa-solid fa-pen"></i>
 
         </a>
 
@@ -299,7 +299,7 @@
                 title="Hapus Berita"
                 onclick="return confirm('Yakin hapus berita ini?')">
 
-                <i class="bi bi-trash"></i>
+                <i class="fa-solid fa-trash"></i>
 
             </button>
 
@@ -329,7 +329,7 @@
                                 class="text-center text-muted py-4">
 
 
-                                <i class="bi bi-newspaper fs-3 d-block mb-2"></i>
+                                <i class="fa-solid fa-newspaper fs-3 d-block mb-2"></i>
 
                                 Belum ada berita.
 

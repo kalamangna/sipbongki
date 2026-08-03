@@ -54,7 +54,7 @@
             type="submit"
             class="btn btn-primary">
 
-            <i class="bi bi-shield-lock-fill me-2"></i>
+            <i class="fa-solid fa-shield-halved me-2"></i>
 
             Konfirmasi Password
 

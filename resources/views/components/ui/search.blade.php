@@ -4,7 +4,7 @@
 
         <span class="input-group-text">
 
-            <i class="bi bi-search"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
         </span>
 

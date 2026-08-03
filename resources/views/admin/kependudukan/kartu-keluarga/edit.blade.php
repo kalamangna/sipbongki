@@ -18,7 +18,7 @@
             href="{{ route('admin.kartu-keluarga.index') }}"
             class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             Kembali
         </a>
     </div>
@@ -54,7 +54,7 @@
                         type="submit"
                         class="btn btn-primary">
 
-                        <i class="bi bi-save"></i>
+                        <i class="fa-solid fa-floppy-disk"></i>
                         Perbarui
                     </button>
 

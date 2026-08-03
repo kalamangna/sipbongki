@@ -1,184 +1,35 @@
-<section id="struktur-organisasi" class="struktur-organisasi home-zone zone-primary">
+<section id="struktur-organisasi" class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-7xl space-y-12">
 
-    <div class="container">
-
-        @php
-            $halaman = $halamanProfil['struktur-organisasi'] ?? null;
-        @endphp
-
-        {{-- HEADER --}}
-        <div class="section-title text-center mb-5">
-
-            <span class="section-badge">
-                Pemerintah Kelurahan Bongki
+        {{-- HEADER SECTION --}}
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+            <span class="inline-block px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs tracking-wider uppercase">
+                Struktur Organisasi
             </span>
-
-            <p class="section-subtitle">
-                Struktur Organisasi Pemerintah Kelurahan Bongki 
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Aparatur Kelurahan Bongki
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Struktur susunan organisasi dan tata kerja Pemerintah Kelurahan Bongki.
             </p>
-
-            @if($halaman?->ringkasan)
-                <p>{{ $halaman->ringkasan }}</p>
-            @endif
-
         </div>
 
-        {{-- TREE ORGANISASI --}}
-        <div class="org-tree">
+        {{-- CARD STRUKTUR --}}
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-xl text-center space-y-6">
+            <div class="max-w-2xl mx-auto space-y-2">
+                <h4 class="font-bold text-xl text-slate-900">Struktur Kepemimpinan & Pelayanan</h4>
+                <p class="text-slate-500 text-xs leading-relaxed">
+                    Aparatur kelurahan siap melayani masyarakat dalam bidang pemerintahan, ketentraman dan ketertiban umum, serta pemberdayaan masyarakat.
+                </p>
+            </div>
 
-            @foreach($struktur as $jabatanRoot)
-
-                @php
-                    $lurah = $jabatanRoot->perangkatStruktur;
-
-                    $sekretaris = $jabatanRoot->children
-    ->whereIn('slug', [
-        'sekretaris',
-        'sekretaris-lurah'
-    ])
-    ->first();
-
-                    $kepalaLingkungan = $jabatanRoot->children
-                        ->filter(fn ($item) => str_starts_with($item->slug, 'kepala-lingkungan'));
-                @endphp
-
-                <div class="org-tree-container">
-
-                    {{-- =========================
-                        LURAH
-                    ========================== --}}
-                    <div class="org-lurah">
-
-                        @foreach($lurah as $perangkat)
-
-                            <x-public.person-card
-                                :perangkat="$perangkat"
-                            />
-
-                        @endforeach
-
-                    </div>
-
-                    <div class="org-connector-lurah"></div>
-
-                    {{-- =========================
-                        CABANG LURAH
-                    ========================== --}}
-                    <div class="org-main">
-
-                        {{-- =========================
-                            KEPALA LINGKUNGAN
-                        ========================== --}}
-                        <div class="org-kepling">
-
-                            @foreach($kepalaLingkungan as $lingkungan)
-
-                                @foreach($lingkungan->perangkatStruktur as $perangkat)
-
-                                    <div class="kepling-card">
-
-                                        <x-public.person-card
-                                            :perangkat="$perangkat"
-                                        />
-
-                                    </div>
-
-                                @endforeach
-
-                            @endforeach
-
-                        </div>
-
-                        {{-- =========================
-                            SEKRETARIS
-                        ========================== --}}
-                        <div class="org-center">
-
-                            <div class="org-sekretaris">
-
-                                @if($sekretaris)
-
-                                    @foreach($sekretaris->perangkatStruktur as $perangkat)
-
-                                        <x-public.person-card
-                                            :perangkat="$perangkat"
-                                        />
-
-                                    @endforeach
-
-                                @endif
-
-                            </div>
-
-                            <div class="org-connector-sekretaris"></div>
-
-                            {{-- =========================
-                                KASI
-                            ========================== --}}
-                            <div class="org-kasi-wrapper">
-
-                                @if($sekretaris)
-
-                                    @foreach($sekretaris->children as $kasi)
-
-                                        <div class="org-kasi-column">
-
-                                            {{-- CARD KASI --}}
-                                            @foreach($kasi->perangkatStruktur as $perangkat)
-
-                                                <div class="kasi-card">
-
-                                                    <x-public.person-card
-                                                        :perangkat="$perangkat"
-                                                    />
-
-                                                </div>
-
-                                            @endforeach
-
-                                            {{-- STAFF --}}
-                                            @if($kasi->children->isNotEmpty())
-
-                                                <div class="org-staff">
-
-                                                    @foreach($kasi->children as $staf)
-
-                                                        @foreach($staf->perangkatStruktur as $pegawai)
-
-                                                            <div class="staff-card">
-
-                                                                <x-public.person-card
-                                                                    :perangkat="$pegawai"
-                                                                />
-
-                                                            </div>
-
-                                                        @endforeach
-
-                                                    @endforeach
-
-                                                </div>
-
-                                            @endif
-
-                                        </div>
-
-                                    @endforeach
-
-                                @endif
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            @endforeach
-
+            <div class="pt-4 flex justify-center">
+                <a href="{{ url('/#profil') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-md hover:bg-emerald-700 transition">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Lihat Daftar Perangkat Kelurahan</span>
+                </a>
+            </div>
         </div>
 
     </div>
-
 </section>

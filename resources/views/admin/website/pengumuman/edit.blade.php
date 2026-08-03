@@ -24,7 +24,7 @@
         <a href="{{ route('admin.website.pengumuman.index') }}"
            class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left me-2"></i>
+            <i class="fa-solid fa-arrow-left me-2"></i>
 
             Kembali
 
@@ -175,7 +175,7 @@
                         type="submit"
                         class="btn btn-primary">
 
-                        <i class="bi bi-save me-2"></i>
+                        <i class="fa-solid fa-floppy-disk me-2"></i>
 
                         Update Pengumuman
 

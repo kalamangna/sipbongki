@@ -9,7 +9,7 @@
     subtitle="Menambahkan data lingkungan baru">
 
     <a href="{{ route('admin.lingkungan.index') }}" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left"></i>
         Kembali
     </a>
 
@@ -27,7 +27,7 @@
 
     <button type="submit" class="btn btn-primary">
 
-        <i class="bi bi-save"></i>
+        <i class="fa-solid fa-floppy-disk"></i>
 
         Simpan
 

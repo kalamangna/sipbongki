@@ -4,68 +4,37 @@
 
 @section('content')
 
-{{-- =====================================================
-    HERO
-===================================================== --}}
+{{-- HERO --}}
 @include('public.sections.hero')
 
+{{-- STATISTIK --}}
+@include('public.sections.statistics')
 
-{{-- =====================================================
-    ZONA PELAYANAN
-===================================================== --}}
-<section class="home-zone zone-primary">
+{{-- LAYANAN ADMINISTRASI --}}
+@include('public.sections.services')
 
-    @include('public.sections.statistics')
+{{-- ALUR PELAYANAN --}}
+@include('public.sections.workflow')
 
-    @include('public.sections.services')
+{{-- PENGUMUMAN RESMI --}}
+@include('public.sections.pengumuman')
 
-    @include('public.sections.workflow')
+{{-- AGENDA --}}
+@include('public.sections.agenda')
 
-</section>
+{{-- BERITA --}}
+@include('public.sections.news')
 
+{{-- PROFIL KELURAHAN --}}
+@include('public.sections.profil')
 
-{{-- =====================================================
-    ZONA INFORMASI
-===================================================== --}}
+{{-- STRUKTUR ORGANISASI --}}
+@include('public.sections.struktur')
 
+{{-- GALERI FOTO --}}
+@include('public.sections.gallery')
 
-    @include('public.sections.pengumuman')
-
-    @include('public.sections.agenda')
-
-    @include('public.sections.news')
-
-</section>
-
-
-{{-- =====================================================
-    ZONA PROFIL
-===================================================== --}}
-
-
-    @include('public.sections.profil')
-
-    @include('public.sections.struktur')
-
-</section>
-
-
-{{-- =====================================================
-    ZONA DOKUMENTASI
-===================================================== --}}
-
-    @include('public.sections.gallery')
-
-</section>
-
-
-{{-- =====================================================
-    ZONA PENUTUP
-===================================================== --}}
-<section class="home-zone zone-footer">
-
-    @include('public.sections.location')
-
-</section>
+{{-- LOKASI & KONTAK --}}
+@include('public.sections.location')
 
 @endsection

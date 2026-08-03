@@ -20,7 +20,7 @@
             href="{{ route('admin.jabatan.create') }}"
             class="btn btn-primary">
 
-            <i class="bi bi-plus-circle"></i>
+            <i class="fa-solid fa-circle-plus"></i>
 
             Tambah Jabatan
 
@@ -51,7 +51,7 @@
 
                         <button class="btn btn-primary">
 
-                            <i class="bi bi-search"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
 
                             Cari
 
@@ -224,7 +224,7 @@
                                     class="btn btn-warning btn-sm"
                                     title="Edit">
 
-                                    <i class="bi bi-pencil"></i>
+                                    <i class="fa-solid fa-pen"></i>
 
                                 </a>
 
@@ -235,7 +235,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#hapusModal{{ $jabatan->id }}">
 
-                                    <i class="bi bi-trash"></i>
+                                    <i class="fa-solid fa-trash"></i>
 
                                 </button>
 
@@ -303,7 +303,7 @@
                                         <button
                                             class="btn btn-danger">
 
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fa-solid fa-trash"></i>
 
                                             Hapus
 
@@ -327,7 +327,7 @@
                             colspan="6"
                             class="text-center py-5">
 
-                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                            <i class="fa-solid fa-inbox fs-1 d-block mb-3"></i>
 
                             <span class="text-muted">
 

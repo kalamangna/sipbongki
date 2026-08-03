@@ -16,7 +16,7 @@
 
             <h3 class="fw-bold mb-1">
 
-                <i class="bi bi-people-fill text-primary me-2"></i>
+                <i class="fa-solid fa-users text-primary me-2"></i>
 
                 Laporan Kartu Keluarga
 
@@ -31,14 +31,14 @@
         <div class="d-flex gap-2 mt-3 mt-lg-0">
       
         <a href="{{ url()->previous() }}" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i> Kembali
+        <i class="fa-solid fa-arrow-left"></i> Kembali
         </a>
         <a
                 href="{{ route('admin.laporan.print-kartu-keluarga', request()->query()) }}"
                 target="_blank"
                 class="btn btn-danger">
 
-                <i class="bi bi-printer me-1"></i>
+                <i class="fa-solid fa-print me-1"></i>
 
                 Cetak
 
@@ -47,7 +47,7 @@
                 href="{{ route('admin.laporan.export-kartu-keluarga') }}"
                 class="btn btn-success">
 
-                <i class="bi bi-file-earmark-excel me-1"></i>
+                <i class="fa-solid fa-file-excel me-1"></i>
 
                 Export Excel
 
@@ -94,7 +94,7 @@
                                    d-flex align-items-center justify-content-center"
                             style="width:60px;height:60px;">
 
-                            <i class="bi bi-people-fill fs-3 text-primary"></i>
+                            <i class="fa-solid fa-users fs-3 text-primary"></i>
 
                         </div>
 
@@ -137,7 +137,7 @@
                                    d-flex align-items-center justify-content-center"
                             style="width:60px;height:60px;">
 
-                            <i class="bi bi-person-vcard fs-3 text-success"></i>
+                            <i class="fa-solid fa-id-card fs-3 text-success"></i>
 
                         </div>
 
@@ -180,7 +180,7 @@
                                    d-flex align-items-center justify-content-center"
                             style="width:60px;height:60px;">
 
-                            <i class="bi bi-patch-check-fill fs-3 text-warning"></i>
+                            <i class="fa-solid fa-certificate fs-3 text-warning"></i>
 
                         </div>
 
@@ -223,7 +223,7 @@
                                    d-flex align-items-center justify-content-center"
                             style="width:60px;height:60px;">
 
-                            <i class="bi bi-bar-chart-fill fs-3 text-info"></i>
+                            <i class="fa-solid fa-chart-bar fs-3 text-info"></i>
 
                         </div>
 
@@ -249,7 +249,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-funnel me-2"></i>
+                <i class="fa-solid fa-filter me-2"></i>
 
                 Filter Laporan
 
@@ -384,7 +384,7 @@
                         <button
                             class="btn btn-primary">
 
-                            <i class="bi bi-search"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
 
                         </button>
 
@@ -419,7 +419,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-bar-chart-line me-2"></i>
+                <i class="fa-solid fa-chart-line me-2"></i>
 
                 Rekap Kartu Keluarga Per Lingkungan
 
@@ -528,7 +528,7 @@
 
             <h6 class="fw-bold mb-0">
 
-                <i class="bi bi-table me-2"></i>
+                <i class="fa-solid fa-table me-2"></i>
 
                 Data Kartu Keluarga
 
@@ -658,7 +658,7 @@
                                         href="{{ route('admin.kartu-keluarga.show',$kk->id) }}"
                                         class="btn btn-sm btn-outline-primary">
 
-                                        <i class="bi bi-eye"></i>
+                                        <i class="fa-solid fa-eye"></i>
 
                                     </a>
 
@@ -666,7 +666,7 @@
                                         href="{{ route('admin.kartu-keluarga.edit',$kk->id) }}"
                                         class="btn btn-sm btn-outline-warning">
 
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="fa-solid fa-pen"></i>
 
                                     </a>
 
@@ -684,7 +684,7 @@
 
                                 <div class="text-muted">
 
-                                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                    <i class="fa-solid fa-inbox fs-1 d-block mb-3"></i>
 
                                     <h6>
 

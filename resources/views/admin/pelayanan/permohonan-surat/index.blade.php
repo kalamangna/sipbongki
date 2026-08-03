@@ -18,7 +18,7 @@
             href="{{ route('admin.permohonan-surat.create') }}"
             class="btn btn-primary">
 
-            <i class="bi bi-plus-circle"></i>
+            <i class="fa-solid fa-circle-plus"></i>
             Tambah
 
         </a>
@@ -51,7 +51,7 @@
 
                         <button class="btn btn-primary">
 
-                            <i class="bi bi-search"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
                             Cari
 
                         </button>
@@ -173,7 +173,7 @@
     <a href="{{ route('admin.permohonan-surat.show', $permohonan) }}"
        class="btn btn-info btn-sm"
        title="Detail">
-        <i class="bi bi-eye"></i>
+        <i class="fa-solid fa-eye"></i>
     </a>
 
     {{-- Hapus --}}
@@ -188,7 +188,7 @@
         <button type="submit"
                 class="btn btn-danger btn-sm"
                 title="Hapus">
-            <i class="bi bi-trash"></i>
+            <i class="fa-solid fa-trash"></i>
         </button>
 
     </form>
@@ -205,7 +205,7 @@
 
                         <td colspan="7" class="text-center py-5">
 
-                            <i class="bi bi-envelope-paper fs-1 d-block mb-3"></i>
+                            <i class="fa-solid fa-envelope-open-text fs-1 d-block mb-3"></i>
 
                             <span class="text-muted">
 

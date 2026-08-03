@@ -101,7 +101,7 @@
             type="submit"
             class="btn btn-primary">
 
-            <i class="bi bi-key-fill me-2"></i>
+            <i class="fa-solid fa-key me-2"></i>
 
             Simpan Password Baru
 

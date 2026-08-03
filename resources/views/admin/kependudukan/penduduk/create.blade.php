@@ -14,7 +14,7 @@
 
         <a href="{{ route('admin.penduduk.index') }}"
             class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
             Kembali
         </a>
     </div>
@@ -42,7 +42,7 @@
 
                 <div class="mt-3">
                     <button class="btn btn-primary">
-                        <i class="bi bi-save"></i>
+                        <i class="fa-solid fa-floppy-disk"></i>
                         Simpan
                     </button>
                 </div>

@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-chat-square-text text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-message text-primary fs-4 me-2"></i>
 
         <div>
 
@@ -26,7 +26,7 @@
 
                 <div class="d-flex align-items-start">
 
-                    <i class="bi bi-pencil-square fs-4 me-3"></i>
+                    <i class="fa-solid fa-pen-square fs-4 me-3"></i>
 
                     <div>
 
@@ -50,7 +50,7 @@
 
             <div class="text-center py-5">
 
-                <i class="bi bi-chat-left-dots text-secondary"
+                <i class="fa-solid fa-comments text-secondary"
                    style="font-size:48px;"></i>
 
                 <h6 class="mt-3">

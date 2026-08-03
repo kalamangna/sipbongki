@@ -141,7 +141,7 @@
             href="{{ route('admin.pengaduan.show',$pengaduan) }}"
             class="btn btn-primary btn-sm">
 
-            <i class="bi bi-eye me-1"></i>
+            <i class="fa-solid fa-eye me-1"></i>
             Lihat
 
         </a>
@@ -159,7 +159,7 @@
                 type="submit"
                 class="btn btn-danger btn-sm">
 
-                <i class="bi bi-trash me-1"></i>
+                <i class="fa-solid fa-trash me-1"></i>
                 Hapus
 
             </button>
@@ -179,7 +179,7 @@
 
                             <td colspan="8" class="text-center py-5">
 
-                                <i class="bi bi-inbox display-4 d-block mb-3 text-secondary"></i>
+                                <i class="fa-solid fa-inbox display-4 d-block mb-3 text-secondary"></i>
 
                                 <h5 class="mb-2">
                                     Belum Ada Pengaduan

@@ -154,9 +154,23 @@
     padding-right:18px;
 }
 
-.login-input:focus-within{
-    border-color:#2563eb;
-    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+/* INPUT GROUP FOCUS STYLING */
+.input-group:focus-within {
+    border-color: #059669 !important;
+    box-shadow: 0 0 0 0.25rem rgba(5, 150, 105, 0.15) !important;
+    border-radius: 0.5rem;
+}
+
+.input-group:focus-within .input-group-text,
+.input-group:focus-within .form-control,
+.input-group:focus-within .btn {
+    border-color: #059669 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #059669 !important;
+    box-shadow: 0 0 0 0.25rem rgba(5, 150, 105, 0.15) !important;
 }
 
 /* OPTION */

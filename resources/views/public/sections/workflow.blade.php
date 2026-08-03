@@ -1,131 +1,53 @@
-<section id="alur-pelayanan" class="flow-section home-zone zone-primary">
+<section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4 max-w-7xl space-y-16">
 
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <span class="section-badge">
+        {{-- HEADER SECTION --}}
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+            <span class="inline-block px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs tracking-wider uppercase">
                 Alur Pelayanan
             </span>
-
-          
-
-            <p class="section-description">
-               Ikuti tahapan pengajuan layanan administrasi mulai dari persyaratan, proses verifikasi, hingga penerbitan surat.
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Prosedur Pengajuan Surat Online
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Tahapan mudah dalam mengajukan permohonan surat administrasi kependudukan.
             </p>
-
         </div>
 
-        <div class="workflow-wrapper">
-
-            {{-- STEP 1 --}}
-            <div class="workflow-card">
-
-                <div class="workflow-number">01</div>
-
-                <div class="workflow-icon-wrapper">
-
-                    <i class="bi bi-file-earmark-plus-fill workflow-icon"></i>
-
+        {{-- GRID STEPS --}}
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative z-10 space-y-4 text-center hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto shadow-md shadow-emerald-600/20">
+                    1
                 </div>
-
-                <h5>Ajukan Permohonan</h5>
-
-                <p>
-
-                    Pilih layanan administrasi kemudian lengkapi
-                    data dan persyaratan yang dibutuhkan.
-
-                </p>
-
+                <h4 class="font-bold text-base text-slate-900">Pilih Layanan</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Pilih jenis surat keterangan yang Anda perlukan di menu layanan publik.</p>
             </div>
 
-            <div class="workflow-arrow">
-
-                <i class="bi bi-arrow-right"></i>
-
-            </div>
-
-            {{-- STEP 2 --}}
-            <div class="workflow-card">
-
-                <div class="workflow-number">02</div>
-
-                <div class="workflow-icon-wrapper">
-
-                    <i class="bi bi-search workflow-icon"></i>
-
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative z-10 space-y-4 text-center hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto shadow-md shadow-emerald-600/20">
+                    2
                 </div>
-
-                <h5>Verifikasi Data</h5>
-
-                <p>
-
-                    Operator memeriksa kelengkapan data
-                    dan melakukan validasi administrasi.
-
-                </p>
-
+                <h4 class="font-bold text-base text-slate-900">Isi Formulir</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Lengkapi formulir permohonan online dan lampirkan dokumen pendukung.</p>
             </div>
 
-            <div class="workflow-arrow">
-
-                <i class="bi bi-arrow-right"></i>
-
-            </div>
-
-            {{-- STEP 3 --}}
-            <div class="workflow-card">
-
-                <div class="workflow-number">03</div>
-
-                <div class="workflow-icon-wrapper">
-
-                    <i class="bi bi-file-earmark-check-fill workflow-icon"></i>
-
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative z-10 space-y-4 text-center hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto shadow-md shadow-emerald-600/20">
+                    3
                 </div>
-
-                <h5>Proses Surat</h5>
-
-                <p>
-
-                    Surat diproses dan diverifikasi
-                    oleh pejabat yang berwenang.
-
-                </p>
-
+                <h4 class="font-bold text-base text-slate-900">Verifikasi Petugas</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Petugas kelurahan memproses dan memverifikasi kelayakan data berkas Anda.</p>
             </div>
 
-            <div class="workflow-arrow">
-
-                <i class="bi bi-arrow-right"></i>
-
-            </div>
-
-            {{-- STEP 4 --}}
-            <div class="workflow-card">
-
-                <div class="workflow-number">04</div>
-
-                <div class="workflow-icon-wrapper">
-
-                    <i class="bi bi-patch-check-fill workflow-icon"></i>
-
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative z-10 space-y-4 text-center hover:shadow-md transition">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-black text-lg flex items-center justify-center mx-auto shadow-md shadow-emerald-600/20">
+                    4
                 </div>
-
-                <h5>Surat Selesai</h5>
-
-                <p>
-
-                    Surat siap diterima sesuai
-                    prosedur pelayanan Kelurahan.
-
-                </p>
-
+                <h4 class="font-bold text-base text-slate-900">Surat Selesai</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Surat diterbitkan dan dapat diunduh atau diambil langsung di kantor.</p>
             </div>
-
         </div>
 
     </div>
-
 </section>

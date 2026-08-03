@@ -35,7 +35,7 @@
            class="btn btn-secondary">
 
 
-            <i class="bi bi-arrow-left me-2"></i>
+            <i class="fa-solid fa-arrow-left me-2"></i>
 
             Kembali
 
@@ -81,7 +81,7 @@
     <div class="card-header bg-primary text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-building me-2"></i>
+            <i class="fa-solid fa-building me-2"></i>
             Identitas Website
         </h5>
 
@@ -154,7 +154,7 @@
     <div class="card-header bg-success text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-image me-2"></i>
+            <i class="fa-solid fa-image me-2"></i>
             Logo & Favicon
         </h5>
 
@@ -246,7 +246,7 @@
     <div class="card-header bg-warning">
 
         <h5 class="mb-0">
-            <i class="bi bi-stars me-2"></i>
+            <i class="fa-regular fa-stars me-2"></i>
             Hero Landing Page
         </h5>
 
@@ -333,7 +333,7 @@
     <div class="card-header bg-info text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-image me-2"></i>
+            <i class="fa-solid fa-image me-2"></i>
             Gambar Hero
         </h5>
 
@@ -377,7 +377,7 @@
     <div class="card-header bg-secondary text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-cursor-fill me-2"></i>
+            <i class="fa-solid fa-arrow-pointer me-2"></i>
             Tombol Hero
         </h5>
 
@@ -458,7 +458,7 @@
     <div class="card-header bg-success text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-telephone-fill me-2"></i>
+            <i class="fa-solid fa-phone me-2"></i>
             Kontak Website
         </h5>
 
@@ -579,7 +579,7 @@
     <div class="card-header bg-danger text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-share-fill me-2"></i>
+            <i class="fa-solid fa-share-nodes me-2"></i>
             Media Sosial
         </h5>
 
@@ -593,7 +593,7 @@
             <div class="col-md-6">
 
                 <label class="form-label fw-semibold">
-                    <i class="bi bi-facebook text-primary me-1"></i>
+                    <i class="fa-brands fa-facebook text-primary me-1"></i>
                     Facebook
                 </label>
 
@@ -610,7 +610,7 @@
             <div class="col-md-6">
 
                 <label class="form-label fw-semibold">
-                    <i class="bi bi-instagram text-danger me-1"></i>
+                    <i class="fa-brands fa-instagram text-danger me-1"></i>
                     Instagram
                 </label>
 
@@ -627,7 +627,7 @@
             <div class="col-md-6">
 
                 <label class="form-label fw-semibold">
-                    <i class="bi bi-youtube text-danger me-1"></i>
+                    <i class="fa-brands fa-youtube text-danger me-1"></i>
                     YouTube
                 </label>
 
@@ -655,7 +655,7 @@
     <div class="card-header bg-dark text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-layout-text-sidebar-reverse me-2"></i>
+            <i class="fa-solid fa-table-columns me-2"></i>
             Footer Website
         </h5>
 
@@ -708,7 +708,7 @@
     <div class="card-header bg-primary text-white">
 
         <h5 class="mb-0">
-            <i class="bi bi-search me-2"></i>
+            <i class="fa-solid fa-magnifying-glass me-2"></i>
             SEO Website
         </h5>
 
@@ -770,7 +770,7 @@
 
     <button type="submit" class="btn btn-primary btn-lg">
 
-        <i class="bi bi-save me-2"></i>
+        <i class="fa-solid fa-floppy-disk me-2"></i>
 
         Simpan Pengaturan
 

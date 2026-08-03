@@ -70,7 +70,7 @@
             type="submit"
             class="btn btn-primary">
 
-            <i class="bi bi-envelope-paper me-2"></i>
+            <i class="fa-solid fa-envelope-open-text me-2"></i>
 
             Kirim Link Reset Password
 

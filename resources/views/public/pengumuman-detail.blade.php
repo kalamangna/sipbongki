@@ -4,118 +4,50 @@
 
 @section('content')
 
-<section class="py-5 bg-light border-bottom">
-    <div class="container">
+<div class="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div class="container mx-auto px-4 max-w-4xl space-y-8">
 
-        <nav aria-label="breadcrumb" class="mb-3">
-            <ol class="breadcrumb mb-0">
-
-                <li class="breadcrumb-item">
-                    <a href="{{ route('home') }}">
-                        Beranda
-                    </a>
-                </li>
-
-                <li class="breadcrumb-item active">
-                    Detail Pengumuman
-                </li>
-
-            </ol>
-        </nav>
-
-
-        <h1 class="detail-judul-berita fw-bold mb-3">
-            {{ $pengumuman->judul }}
-        </h1>
-
-
-        <div class="d-flex flex-wrap gap-3 text-muted">
-
-            <span>
-                <i class="bi bi-calendar-event me-1"></i>
-
-                {{ optional($pengumuman->tanggal_publish)->translatedFormat('d F Y')
-                    ?? $pengumuman->created_at->translatedFormat('d F Y') }}
-            </span>
-
-
-            <span>
-                <i class="bi bi-person-circle me-1"></i>
-
-                Pemerintah Kelurahan Bongki
-
-            </span>
-
+        {{-- TOMBOL KEMBALI --}}
+        <div>
+            <a href="{{ url('/#pengumuman') }}" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-semibold text-xs rounded-xl shadow-sm hover:bg-slate-100 transition">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Kembali ke Pengumuman</span>
+            </a>
         </div>
 
-    </div>
-</section>
+        {{-- CARD UTAMA --}}
+        <article class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-xl space-y-6">
 
-
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-lg-10 mx-auto">
-
-
-                <div class="card border-0 shadow-sm">
-
-
-                    @if($pengumuman->gambar)
-
-                    <img
-                        src="{{ asset('storage/'.$pengumuman->gambar) }}"
-                        class="detail-gambar-pengumuman"
-                        alt="{{ $pengumuman->judul }}">
-
-                    @endif
-
-
-
-                    <div class="card-body p-4">
-
-
-                        <div class="content-berita">
-
-                            {!! $pengumuman->isi !!}
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="mt-4">
-
-                    <a href="{{ route('home') }}#pengumuman"
-                       class="btn btn-outline-primary">
-
-                        <i class="bi bi-arrow-left"></i>
-
-                        Kembali ke Pengumuman
-
-                    </a>
-
-                </div>
-
-
-
+            {{-- TANGGAL & KATEGORI --}}
+            <div class="flex items-center gap-3 text-xs font-semibold text-amber-600">
+                <span class="px-3 py-1 bg-amber-50 rounded-full border border-amber-200/60">Pengumuman Resmi</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-slate-500">
+                    <i class="fa-regular fa-clock mr-1"></i>
+                    {{ \Carbon\Carbon::parse($pengumuman->tanggal_publish)->translatedFormat('d F Y') }}
+                </span>
             </div>
 
+            {{-- JUDUL PENGUMUMAN --}}
+            <h1 class="text-2xl sm:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                {{ $pengumuman->judul }}
+            </h1>
 
-        </div>
+            {{-- GAMBAR UTAMA (JIKA ADA) --}}
+            @if($pengumuman->gambar)
+                <div class="rounded-2xl overflow-hidden shadow-md bg-slate-100 max-h-96">
+                    <img src="{{ asset('storage/'.$pengumuman->gambar) }}" alt="{{ $pengumuman->judul }}" class="w-full h-full object-cover">
+                </div>
+            @endif
+
+            {{-- ISI PENGUMUMAN --}}
+            <div class="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed pt-4 border-t border-slate-100">
+                {!! nl2br(e($pengumuman->isi)) !!}
+            </div>
+
+        </article>
 
     </div>
-
-</section>
-
+</div>
 
 @endsection

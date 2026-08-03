@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-lightning-charge text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-bolt text-primary fs-4 me-2"></i>
 
         <div>
 
@@ -43,7 +43,7 @@
                         class="btn btn-primary btn-lg w-100"
                         onclick="return confirm('Proses permohonan ini?')">
 
-                        <i class="bi bi-play-circle me-2"></i>
+                        <i class="fa-solid fa-circle-play me-2"></i>
 
                         Proses Permohonan
 
@@ -67,7 +67,7 @@
                         class="btn btn-outline-danger btn-lg w-100"
                         onclick="return confirm('Tolak permohonan ini?')">
 
-                        <i class="bi bi-x-circle me-2"></i>
+                        <i class="fa-solid fa-circle-xmark me-2"></i>
 
                         Tolak Permohonan
 
@@ -91,7 +91,7 @@
                     href="{{ route('admin.permohonan-surat.preview',$permohonanSurat) }}"
                     class="btn btn-info btn-lg">
 
-                    <i class="bi bi-eye me-2"></i>
+                    <i class="fa-solid fa-eye me-2"></i>
 
                     Preview Surat
 
@@ -102,7 +102,7 @@
                     target="_blank"
                     class="btn btn-secondary btn-lg">
 
-                    <i class="bi bi-printer me-2"></i>
+                    <i class="fa-solid fa-print me-2"></i>
 
                     Cetak Surat
 
@@ -124,7 +124,7 @@
                         class="btn btn-success btn-lg w-100"
                         onclick="return confirm('Selesaikan permohonan ini?')">
 
-                        <i class="bi bi-check-circle me-2"></i>
+                        <i class="fa-solid fa-circle-check me-2"></i>
 
                         Selesaikan Permohonan
 
@@ -148,7 +148,7 @@
                     href="{{ route('admin.permohonan-surat.preview',$permohonanSurat) }}"
                     class="btn btn-info btn-lg">
 
-                    <i class="bi bi-eye me-2"></i>
+                    <i class="fa-solid fa-eye me-2"></i>
 
                     Preview Surat
 
@@ -159,7 +159,7 @@
                     target="_blank"
                     class="btn btn-success btn-lg">
 
-                    <i class="bi bi-printer me-2"></i>
+                    <i class="fa-solid fa-print me-2"></i>
 
                     Cetak Surat
 
@@ -180,7 +180,7 @@
             href="{{ route('admin.permohonan-surat.edit',$permohonanSurat) }}"
             class="btn btn-warning w-100">
 
-            <i class="bi bi-pencil-square me-2"></i>
+            <i class="fa-solid fa-pen-square me-2"></i>
 
             Edit Permohonan
 

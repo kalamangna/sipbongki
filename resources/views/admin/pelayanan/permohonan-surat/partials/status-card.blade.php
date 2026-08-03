@@ -2,7 +2,7 @@
 
     <div class="card-header bg-white d-flex align-items-center">
 
-        <i class="bi bi-activity text-primary fs-4 me-2"></i>
+        <i class="fa-solid fa-wave-square text-primary fs-4 me-2"></i>
 
         <div>
 

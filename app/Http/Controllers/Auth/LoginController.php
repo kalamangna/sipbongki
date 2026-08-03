@@ -23,18 +23,25 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
+        $request->validate([
+            'login'    => ['required', 'string'],
+            'password' => ['required', 'string'],
         ]);
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+        $loginInput = $request->input('login');
+        $fieldType  = filter_var($loginInput, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
+        $credentials = [
+            $fieldType => $loginInput,
+            'password'  => $request->input('password'),
+        ];
+
+        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
                 ->withErrors([
-                    'email' => 'Email atau password tidak sesuai.',
+                    'login' => 'Username/Email atau password tidak sesuai.',
                 ])
-                ->onlyInput('email');
+                ->onlyInput('login');
         }
 
         $request->session()->regenerate();
@@ -42,15 +49,10 @@ class LoginController extends Controller
         $user = Auth::user();
 
         return match ($user->role) {
-
             'admin' => redirect()->route('admin.dashboard'),
-
             'operator' => redirect()->route('operator.dashboard'),
-
             'masyarakat' => redirect()->route('dashboard'),
-
             default => $this->logoutWithError($request),
-
         };
     }
 

@@ -27,7 +27,7 @@
                 href="{{ route('admin.penduduk.index') }}"
                 class="btn btn-secondary">
 
-                <i class="bi bi-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left"></i>
                 Kembali
 
             </a>
@@ -36,7 +36,7 @@
                 href="{{ route('admin.penduduk.edit', $penduduk) }}"
                 class="btn btn-warning">
 
-                <i class="bi bi-pencil-square"></i>
+                <i class="fa-solid fa-pen-square"></i>
                 Edit
 
             </a>
@@ -73,7 +73,7 @@
                             style="width:140px;height:140px;">
 
                             <i
-                                class="bi bi-person-fill text-secondary"
+                                class="fa-solid fa-user text-secondary"
                                 style="font-size:70px;">
                             </i>
 
@@ -173,7 +173,7 @@
 
                             <span class="badge bg-success">
 
-                                <i class="bi bi-patch-check-fill"></i>
+                                <i class="fa-solid fa-certificate"></i>
 
                                 Alamat Valid
 
@@ -183,7 +183,7 @@
 
                             <span class="badge bg-warning text-dark">
 
-                                <i class="bi bi-exclamation-circle-fill"></i>
+                                <i class="fa-solid fa-circle-exclamation"></i>
 
                                 Perlu Verifikasi
 
@@ -211,7 +211,7 @@
 
             <h5 class="fw-bold mb-0">
 
-                <i class="bi bi-person-vcard me-1"></i>
+                <i class="fa-solid fa-id-card me-1"></i>
 
                 Informasi Identitas :
 
@@ -358,7 +358,7 @@
 
             <h5 class="fw-bold mb-0">
 
-                <i class="bi bi-people me-2"></i>
+                <i class="fa-solid fa-users me-2"></i>
 
                 Informasi Keluarga :
 
@@ -442,7 +442,7 @@
 
             <h5 class="fw-bold mb-0">
 
-                <i class="bi bi-geo-alt me-1"></i>
+                <i class="fa-solid fa-location-dot me-1"></i>
 
                 Informasi Alamat :
 
@@ -555,7 +555,7 @@
 
             <h5 class="fw-bold mb-0">
 
-                <i class="bi bi-telephone me-1"></i>
+                <i class="fa-solid fa-phone me-1"></i>
 
                 Informasi Kontak :
 
@@ -611,7 +611,7 @@
 
             <h5 class="fw-bold mb-0">
 
-                <i class="bi bi-clock-history me-1"></i>
+                <i class="fa-solid fa-clock-rotate-left me-1"></i>
 
                 Informasi Sistem
 
@@ -661,7 +661,7 @@
                 href="{{ route('admin.penduduk.index') }}"
                 class="btn btn-secondary">
 
-                <i class="bi bi-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left"></i>
 
                 Kembali
 
@@ -673,7 +673,7 @@
                     href="{{ route('admin.penduduk.edit', $penduduk) }}"
                     class="btn btn-warning">
 
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="fa-solid fa-pen-square"></i>
 
                     Edit
 
@@ -692,7 +692,7 @@
                         class="btn btn-danger"
                         onclick="return confirm('Yakin ingin menghapus data penduduk ini?')">
 
-                        <i class="bi bi-trash"></i>
+                        <i class="fa-solid fa-trash"></i>
 
                         Hapus
 

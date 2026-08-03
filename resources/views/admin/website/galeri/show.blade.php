@@ -35,7 +35,7 @@
            class="btn btn-secondary">
 
 
-            <i class="bi bi-arrow-left me-2"></i>
+            <i class="fa-solid fa-arrow-left me-2"></i>
 
             Kembali
 
@@ -238,7 +238,7 @@
                        class="btn btn-warning">
 
 
-                        <i class="bi bi-pencil me-2"></i>
+                        <i class="fa-solid fa-pen me-2"></i>
 
                         Edit Galeri
 

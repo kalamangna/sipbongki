@@ -208,7 +208,7 @@
         type="submit"
         class="btn btn-primary">
 
-        <i class="bi bi-check-circle"></i>
+        <i class="fa-solid fa-circle-check"></i>
         Simpan
 
     </button>
@@ -217,7 +217,7 @@
         href="{{ route('admin.jabatan.index') }}"
         class="btn btn-secondary">
 
-        <i class="bi bi-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left"></i>
         Kembali
 
     </a>

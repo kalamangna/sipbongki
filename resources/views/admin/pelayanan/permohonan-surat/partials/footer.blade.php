@@ -8,7 +8,7 @@
                 href="{{ route('admin.permohonan-surat.index') }}"
                 class="btn btn-secondary">
 
-                <i class="bi bi-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left"></i>
 
                 Kembali
 
@@ -20,7 +20,7 @@
                     href="{{ route('admin.permohonan-surat.edit',$permohonanSurat) }}"
                     class="btn btn-warning">
 
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="fa-solid fa-pen-square"></i>
 
                     Edit
 
@@ -33,7 +33,7 @@
                         class="btn btn-success"
                         disabled>
 
-                        <i class="bi bi-printer"></i>
+                        <i class="fa-solid fa-print"></i>
 
                         Cetak Surat
 

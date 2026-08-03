@@ -30,7 +30,7 @@
         <a href="{{ route('admin.website.berita.index') }}"
            class="btn btn-outline-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
 
             Kembali
 
@@ -254,7 +254,7 @@
                         class="btn btn-primary">
 
 
-                    <i class="bi bi-save"></i>
+                    <i class="fa-solid fa-floppy-disk"></i>
 
                     Simpan Perubahan
 

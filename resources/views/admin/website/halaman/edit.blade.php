@@ -237,7 +237,7 @@ Draft
 
 <button class="btn btn-primary">
 
-<i class="bi bi-save me-2"></i>
+<i class="fa-solid fa-floppy-disk me-2"></i>
 
 Update Halaman
 

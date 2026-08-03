@@ -16,7 +16,7 @@
 
         <h2 class="fw-bold mb-1">
 
-            <i class="bi bi-envelope-paper-fill text-primary me-2"></i>
+            <i class="fa-solid fa-envelope-open-text text-primary me-2"></i>
 
             Laporan Persuratan
 
@@ -36,7 +36,7 @@
         <a href="{{ route('operator.laporan.export-persuratan') }}"
            class="btn btn-success">
 
-            <i class="bi bi-file-earmark-excel me-1"></i>
+            <i class="fa-solid fa-file-excel me-1"></i>
 
             Export Excel
 
@@ -47,7 +47,7 @@
            target="_blank"
            class="btn btn-danger">
 
-            <i class="bi bi-printer me-1"></i>
+            <i class="fa-solid fa-print me-1"></i>
 
             Cetak
 
@@ -57,7 +57,7 @@
         <a href="{{ route('operator.laporan.persuratan') }}"
            class="btn btn-light border">
 
-            <i class="bi bi-arrow-clockwise me-1"></i>
+            <i class="fa-solid fa-rotate-right me-1"></i>
 
             Refresh
 
@@ -133,7 +133,7 @@
 
         <div class="card-header">
             <strong>
-                <i class="bi bi-funnel"></i>
+                <i class="fa-solid fa-filter"></i>
                 Filter Laporan
             </strong>
         </div>
@@ -268,7 +268,7 @@
 
                     <button class="btn btn-primary">
 
-                        <i class="bi bi-search"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
                         Tampilkan
 
                     </button>
@@ -277,7 +277,7 @@
                     <a href="{{ route('operator.laporan.persuratan') }}"
                        class="btn btn-secondary">
 
-                        <i class="bi bi-arrow-repeat"></i>
+                        <i class="fa-solid fa-rotate"></i>
                         Reset
 
                     </a>
@@ -471,7 +471,7 @@
                             <a href="#"
                                class="btn btn-sm btn-info">
 
-                                <i class="bi bi-eye"></i>
+                                <i class="fa-solid fa-eye"></i>
 
                             </a>
 

@@ -34,7 +34,7 @@
                class="btn btn-warning">
 
 
-                <i class="bi bi-pencil-square"></i>
+                <i class="fa-solid fa-pen-square"></i>
 
                 Edit
 
@@ -47,7 +47,7 @@
                class="btn btn-outline-secondary">
 
 
-                <i class="bi bi-arrow-left"></i>
+                <i class="fa-solid fa-arrow-left"></i>
 
                 Kembali
 
@@ -96,7 +96,7 @@
 
                         <span>
 
-                            <i class="bi bi-calendar-event"></i>
+                            <i class="fa-solid fa-calendar-days"></i>
 
                             {{ optional($berita->tanggal_publish)->format('d M Y') ?? '-' }}
 
@@ -106,7 +106,7 @@
 
                         <span>
 
-                            <i class="bi bi-circle-fill small"></i>
+                            <i class="fa-solid fa-circle small"></i>
 
                             {{ ucfirst($berita->status) }}
 
