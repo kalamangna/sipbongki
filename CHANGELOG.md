@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Autoloader Composer**: Menggenerasi dan meregenerasi autoloader `vendor/composer` lengkap agar server cPanel yang mengandalkan folder `vendor` dari repositori Git dapat menjalankan Artisan tanpa error classmap.
 - **FontAwesome CDN**: Mengonversi pustaka FontAwesome ke CDN untuk menghindari error 404 font `.woff2` pada penempatan subfolder server cPanel.
 - **Pelacakan Git Aset Build**: Menghapus `/public/build` dari `.gitignore` agar folder `public/build` beserta isinya ikut ter-commit & ter-push ke GitHub untuk kemudahan deployment cPanel.
+- **Seeder Data Persuratan**: Menambahkan data 8 permohonan surat riil dan riwayat pelayanannya dari `sipbongki.sql` ke dalam `InitialDataSeeder.php`.
 
 ### Added
 - **Fitur Otentikasi Login Username / Email**: Mendukung login dengan username (`bongki`) atau email.

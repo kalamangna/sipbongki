@@ -13,6 +13,8 @@ use App\Models\WebsiteSetting;
 use App\Models\Agenda;
 use App\Models\Berita;
 use App\Models\Galeri;
+use App\Models\PermohonanSurat;
+use App\Models\PermohonanSuratHistory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -234,6 +236,80 @@ class InitialDataSeeder extends Seeder
         ];
         foreach ($galeris as $g) {
             Galeri::create($g);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | 10. Permohonan Surat & Histories (Real Data Dump)
+        |--------------------------------------------------------------------------
+        */
+        PermohonanSurat::truncate();
+        $permohonanSurats = [
+            [
+                'id' => 68, 'nomor_permohonan' => 'PMH-20260730051855', 'nomor_surat' => '145/001/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 6, 'pelapor_id' => NULL, 'jenis_surat_id' => 3, 'penandatangan_id' => 5,
+                'keperluan' => 'pengurusan kredit  kendaraan bermotor', 'data_surat' => [], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 21:18:55', 'updated_at' => '2026-07-29 21:19:10'
+            ],
+            [
+                'id' => 69, 'nomor_permohonan' => 'PMH-20260730052544', 'nomor_surat' => '145/002/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 8, 'pelapor_id' => NULL, 'jenis_surat_id' => 6, 'penandatangan_id' => 6,
+                'keperluan' => 'untuk pengurusan kelengkapan berkas pendukung kredit perumahan', 'data_surat' => [], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 21:25:44', 'updated_at' => '2026-07-29 21:25:57'
+            ],
+            [
+                'id' => 70, 'nomor_permohonan' => 'PMH-20260730052732', 'nomor_surat' => '581/001/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 13, 'pelapor_id' => NULL, 'jenis_surat_id' => 7, 'penandatangan_id' => 7,
+                'keperluan' => 'pengajuan kredit tambahan usaha', 'data_surat' => ['nama_usaha' => 'Lita elektronik', 'jenis_usaha' => 'Elektronik', 'alamat_usaha' => 'Jl. Petta Ponggawae', 'lama_usaha' => '2 Tahun'], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 21:27:32', 'updated_at' => '2026-07-29 21:27:42'
+            ],
+            [
+                'id' => 71, 'nomor_permohonan' => 'PMH-20260730052815', 'nomor_surat' => '451.6/001/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 5, 'pelapor_id' => NULL, 'jenis_surat_id' => 5, 'penandatangan_id' => 3,
+                'keperluan' => 'pengurusan beasiswa pendidikan', 'data_surat' => [], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 21:28:15', 'updated_at' => '2026-07-29 21:28:25'
+            ],
+            [
+                'id' => 72, 'nomor_permohonan' => 'PMH-20260730052913', 'nomor_surat' => '474.3/001/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 13, 'pelapor_id' => 2, 'jenis_surat_id' => 1, 'penandatangan_id' => 5,
+                'keperluan' => 'pengurusan akta kematian', 'data_surat' => ['hari_meninggal' => 'Selasa', 'tanggal_meninggal' => '2026-07-14', 'jam_meninggal' => '10:10', 'tempat_meninggal' => 'Rumah Sakit', 'penyebab_kematian' => 'Sakit', 'hubungan_pelapor' => 'Keluarga'], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 21:29:13', 'updated_at' => '2026-07-29 21:29:23'
+            ],
+            [
+                'id' => 74, 'nomor_permohonan' => 'PMH-20260730060528', 'nomor_surat' => '145/003/Bk-Sut', 'tanggal_permohonan' => '2026-07-30',
+                'penduduk_id' => 10, 'pelapor_id' => NULL, 'jenis_surat_id' => 8, 'penandatangan_id' => 3,
+                'keperluan' => 'pengurusan di pertanahan', 'data_surat' => ['nama_lain' => 'Nirmayati', 'jenis_dokumen' => 'Sertifikat Hak Milik', 'nomor_dokumen' => 'SHM No. 123', 'keterangan_perbedaan' => 'Perbedaan penulisan nama'], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-30', 'catatan' => NULL, 'created_at' => '2026-07-29 22:05:28', 'updated_at' => '2026-07-29 22:05:39'
+            ],
+            [
+                'id' => 75, 'nomor_permohonan' => 'PMH-20260731013005', 'nomor_surat' => '145/004/Bk-Sut', 'tanggal_permohonan' => '2026-07-31',
+                'penduduk_id' => 2, 'pelapor_id' => NULL, 'jenis_surat_id' => 3, 'penandatangan_id' => 7,
+                'keperluan' => 'pengurusan administrasi', 'data_surat' => [], 'status' => 'Selesai',
+                'operator_id' => NULL, 'tanggal_selesai' => '2026-07-31', 'catatan' => NULL, 'created_at' => '2026-07-30 17:30:05', 'updated_at' => '2026-07-30 17:30:43'
+            ],
+            [
+                'id' => 76, 'nomor_permohonan' => 'PMH-20260731031330', 'nomor_surat' => NULL, 'tanggal_permohonan' => '2026-07-31',
+                'penduduk_id' => 9, 'pelapor_id' => NULL, 'jenis_surat_id' => 3, 'penandatangan_id' => 4,
+                'keperluan' => 'persyaratan berkas', 'data_surat' => [], 'status' => 'Menunggu',
+                'operator_id' => NULL, 'tanggal_selesai' => NULL, 'catatan' => NULL, 'created_at' => '2026-07-30 19:13:30', 'updated_at' => '2026-07-30 19:13:30'
+            ],
+        ];
+        foreach ($permohonanSurats as $ps) {
+            PermohonanSurat::create($ps);
+        }
+
+        PermohonanSuratHistory::truncate();
+        $histories = [
+            ['permohonan_surat_id' => 68, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 21:19:10'],
+            ['permohonan_surat_id' => 69, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 21:25:57'],
+            ['permohonan_surat_id' => 70, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 21:27:42'],
+            ['permohonan_surat_id' => 71, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 21:28:25'],
+            ['permohonan_surat_id' => 72, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 21:29:23'],
+            ['permohonan_surat_id' => 74, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-29 22:05:39'],
+            ['permohonan_surat_id' => 75, 'status_lama' => 'Menunggu', 'status_baru' => 'Selesai', 'catatan' => 'Surat selesai diterbitkan', 'user_id' => 1, 'created_at' => '2026-07-30 17:30:43'],
+        ];
+        foreach ($histories as $h) {
+            PermohonanSuratHistory::create($h);
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
