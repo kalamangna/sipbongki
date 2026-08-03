@@ -24,6 +24,9 @@
     <meta name="twitter:description" content="{{ $website?->meta_description ?? 'Sistem Informasi dan Pelayanan Kelurahan Bongki' }}">
     <meta name="twitter:image" content="{{ asset('images/meta.png') }}">
 
+    {{-- FONT AWESOME CDN --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     {{-- VITE ASSET --}}
     @vite([
         'resources/css/app.css',

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - **Model JenisSurat**: Menambahkan mutator `setTemplateAttribute` pada model `JenisSurat` untuk mencegah error perkuerian kolom `template` yang telah dihapus di basis data saat mengeksekusi `updateOrCreate` / `create`.
 - **Autoloader Composer**: Menggenerasi dan meregenerasi autoloader `vendor/composer` lengkap agar server cPanel yang mengandalkan folder `vendor` dari repositori Git dapat menjalankan Artisan tanpa error classmap.
+- **FontAwesome CDN**: Mengonversi pustaka FontAwesome ke CDN untuk menghindari error 404 font `.woff2` pada penempatan subfolder server cPanel.
 - **Kompilasi Asset CSS & JS**: Membangun aset produksi Vite terbaru (`npm run build`) untuk diperbarui di server.
 
 ### Added
