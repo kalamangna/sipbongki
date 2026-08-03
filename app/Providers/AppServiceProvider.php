@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\WebsiteSetting;
+use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -72,5 +73,22 @@ class AppServiceProvider extends ServiceProvider
             );
 
         });
-    }
-}
+
+        /*
+|--------------------------------------------------------------------------
+| Notifikasi Pengaduan Admin
+|--------------------------------------------------------------------------
+*/
+
+View::composer('layouts.admin', function ($view) {
+
+    $view->with(
+        'jumlahPengaduanBaru',
+        Pengaduan::where('status', 'Baru')->count()
+    );
+
+});
+    
+}   // penutup boot()
+
+} 

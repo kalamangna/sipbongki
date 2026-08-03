@@ -1,4 +1,4 @@
-<section id="alur-pelayanan" class="workflow-section py-5 fade-up">
+<section id="alur-pelayanan" class="flow-section home-zone zone-primary">
 
     <div class="container">
 

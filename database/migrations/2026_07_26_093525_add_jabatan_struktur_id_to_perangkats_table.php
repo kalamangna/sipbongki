@@ -9,13 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('perangkats', function (Blueprint $table) {
-            if (!Schema::hasColumn('perangkats', 'jabatan_struktur_id')) {
-                $table->foreignId('jabatan_struktur_id')
-                    ->nullable()
-                    ->after('jabatan_id')
-                    ->constrained('jabatans')
-                    ->nullOnDelete();
-            }
+
+            $table->foreignId('jabatan_struktur_id')
+                ->nullable()
+                ->after('jabatan_id')
+                ->constrained('jabatans')
+                ->nullOnDelete();
+
         });
     }
 

@@ -1,4 +1,4 @@
-<section id="lokasi" class="location-section py-5 fade-up">
+<section class="location-section home-zone zone-primary">
 
     <div class="container">
 
@@ -111,15 +111,15 @@
                     </div>
 
                     <a
-                        href="{{ $website?->google_maps ?? '#' }}"
-                        target="_blank"
-                        class="btn btn-primary btn-lg w-100 rounded-4 mt-4">
+    href="https://www.google.com/maps/search/?api=1&query=-5.123390,120.253400"
+    target="_blank"
+    class="btn btn-primary btn-lg w-100 rounded-4 mt-4">
 
-                        <i class="bi bi-map-fill me-2"></i>
+    <i class="bi bi-map-fill me-2"></i>
 
-                        Buka Google Maps
+    Buka Google Maps
 
-                    </a>
+</a>
 
                 </div>
 
@@ -131,13 +131,14 @@
                 <div class="map-card">
 
                     <iframe
-                        src="{{ $website?->google_maps ?? 'https://www.google.com/maps?q=Kelurahan+Bongki&output=embed' }}"
-                        loading="lazy"
-                        allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-
-                </div>
+    src="{{ $website?->google_maps }}"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
 
             </div>
 

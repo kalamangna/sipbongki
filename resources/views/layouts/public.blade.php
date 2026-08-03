@@ -22,20 +22,13 @@
         name="keywords"
         content="{{ $website->meta_keyword }}">
 
-    @if($website?->favicon)
+ @if($website?->favicon)
 
         <link 
             rel="icon"
             href="{{ asset('storage/'.$website->favicon) }}">
-    @else
-        <link 
-            rel="icon"
-            href="{{ asset('favicon.ico') }}">
+
     @endif
-@else
-    <link 
-        rel="icon"
-        href="{{ asset('favicon.ico') }}">
 @endif
 
 

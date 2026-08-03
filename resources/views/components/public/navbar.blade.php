@@ -95,102 +95,61 @@
 
 
 
+<ul class="navbar-nav">
 
-            <ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ url('/') }}">
+            Beranda
+        </a>
+    </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#profil') }}">
+            Profil
+        </a>
+    </li>
 
-                <li class="nav-item">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#struktur-organisasi') }}">
+            Organisasi
+        </a>
+    </li>
 
-                    <a class="nav-link active"
-                       href="{{ url('/') }}">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#layanan') }}">
+            Layanan
+        </a>
+    </li>
 
-                        Beranda
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#berita') }}">
+            Berita
+        </a>
+    </li>
 
-                    </a>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#galeri') }}">
+            Galeri
+        </a>
+    </li>
 
-                </li>
+    {{-- Menu Baru --}}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('pengaduan') }}">
+            Pengaduan
+        </a>
+    </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/#kontak') }}">
+            Kontak
+        </a>
+    </li>
 
+</ul>
+            
 
-
-                <li class="nav-item">
-
-    <a class="nav-link"
-       href="#profil">
-
-        Profil
-
-    </a>
-
-</li>
-
-<li class="nav-item">
-
-    <a class="nav-link"
-       href="#struktur-organisasi">
-
-        Organisasi
-
-    </a>
-
-</li>
-
-<li class="nav-item">
-
-    <a class="nav-link"
-       href="#layanan">
-
-        Layanan
-
-    </a>
-
-</li>
-
-
-
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="#berita">
-
-                        Berita
-
-                    </a>
-
-                </li>
-
-
-
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="#galeri">
-
-                        Galeri
-
-                    </a>
-
-                </li>
-
-
-
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="#kontak">
-
-                        Kontak
-
-                    </a>
-
-                </li>
-
-
-
-            </ul>
+              
 
 
 

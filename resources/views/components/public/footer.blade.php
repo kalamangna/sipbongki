@@ -44,7 +44,11 @@
 
                     <li><a href="#">Beranda</a></li>
                     <li><a href="#profil">Profil</a></li>
-                    <li><a href="#layanan">Layanan</a></li>
+                    <li>
+    <a href="{{ route('home') }}#layanan">
+        Layanan
+    </a>
+</li>
                     <li><a href="#berita">Berita</a></li>
                     <li><a href="#galeri">Galeri</a></li>
                     <li><a href="#kontak">Kontak</a></li>
@@ -60,10 +64,12 @@
 
                 <ul class="footer-menu">
 
-                    <li>Surat Domisili</li>
-                    <li>Surat Usaha</li>
-                    <li>Surat Kelahiran</li>
-                    <li>Surat Kematian</li>
+                    <li>Surat Ket. Usaha</li>
+                    <li>Surat Ket. Belum Menikah</li>
+                    <li>Surat Ket. Domisili</li>
+                    <li>Surat Ket. Kematian</li>
+                    <li>Surat Ket. Orang Yang Sama</li>
+                    <li>Surat Ket. Kurang Mampu</li>
 
                 </ul>
 

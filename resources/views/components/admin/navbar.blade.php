@@ -28,17 +28,23 @@
     ========================================================== --}}
     <div class="navbar-right">
 
-        {{-- Notification --}}
-        <button
-            type="button"
-            class="btn-icon"
-            title="Notifikasi">
+    {{-- Notification --}}
+<a
+    href="{{ route('admin.pengaduan.index') }}"
+    class="btn-icon position-relative"
+    title="Pengaduan Baru">
 
-            <i class="fa-regular fa-bell"></i>
+    <i class="fa-regular fa-bell"></i>
 
-            <span class="notification-dot"></span>
+    @if(isset($jumlahPengaduanBaru) && $jumlahPengaduanBaru > 0)
 
-        </button>
+        <span class="notification-badge">
+            {{ $jumlahPengaduanBaru }}
+        </span>
+
+    @endif
+
+</a>   
 
         {{-- Message --}}
         <button

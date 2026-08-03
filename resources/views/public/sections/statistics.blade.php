@@ -1,4 +1,4 @@
-<section class="statistics-section py-5 fade-up">
+<section class="statistics-section home-zone zone-primary">
 
     <div class="container">
 

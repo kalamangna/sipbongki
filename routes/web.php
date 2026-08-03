@@ -14,6 +14,10 @@ use App\Http\Controllers\Admin\PermohonanSuratController;
 use App\Http\Controllers\Admin\SuratController;
 use App\Http\Controllers\Admin\RiwayatPelayananController;
 use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\Website\PengumumanController;
+use App\Http\Controllers\Admin\PengaduanController;
+
+use App\Http\Controllers\PublicPengaduanController;
 
 use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\Operator\PendudukController as OperatorPendudukController;
@@ -39,7 +43,36 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
+    ->name('berita.show');
 
+    Route::get('/pengumuman/{slug}', 
+    [HomeController::class, 'showPengumuman']
+)->name('pengumuman.detail');
+
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
+
+Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
+    ->name('berita.show');
+
+Route::get(
+    '/pengumuman/{slug}',
+    [HomeController::class, 'showPengumuman']
+)->name('pengumuman.detail');
+
+/*
+|--------------------------------------------------------------------------
+| Pengaduan
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/pengaduan', [HomeController::class, 'pengaduan'])
+    ->name('pengaduan');
+
+Route::post('/pengaduan',
+    [PublicPengaduanController::class, 'store']
+)->name('pengaduan.store');
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +165,16 @@ Route::prefix('admin')
             PermohonanSuratController::class
         );
 
+        /*
+|--------------------------------------------------------------------------
+| Pengaduan Masyarakat
+|--------------------------------------------------------------------------
+*/
+
+Route::resource(
+    'pengaduan',
+    PengaduanController::class
+);
 
         /*
         |--------------------------------------------------------------------------
@@ -249,11 +292,15 @@ Route::get(
             ->parameters([
              'berita' => 'berita'
         ]);
+        Route::resource('pengumuman', PengumumanController::class)
+            ->parameters([
+            'pengumuman' => 'pengumuman'
+        ]);
 
                 Route::resource('agenda', AgendaController::class)
-    ->parameters([
-        'agenda' => 'agenda'
-    ]);
+        ->parameters([
+            'agenda' => 'agenda'
+        ]);
                 Route::resource('galeri', GaleriController::class);
 
                 Route::resource('halaman', HalamanController::class);

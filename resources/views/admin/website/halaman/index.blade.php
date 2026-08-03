@@ -15,9 +15,7 @@
 
     <div>
 
-        <h5 class="fw-bold mb-1">
-            Halaman Website
-        </h5>
+      
 
         <p class="text-muted mb-0">
             Kelola halaman informasi publik SiPBongki.

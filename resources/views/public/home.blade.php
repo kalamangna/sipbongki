@@ -1,131 +1,71 @@
 @extends('layouts.public')
 
-
 @section('title', 'Beranda | SiPBongki')
 
-
-
 @section('content')
-
-
 
 {{-- =====================================================
     HERO
 ===================================================== --}}
-
 @include('public.sections.hero')
 
 
+{{-- =====================================================
+    ZONA PELAYANAN
+===================================================== --}}
+<section class="home-zone zone-primary">
 
+    @include('public.sections.statistics')
+
+    @include('public.sections.services')
+
+    @include('public.sections.workflow')
+
+</section>
 
 
 {{-- =====================================================
-    STATISTIK KELURAHAN
+    ZONA INFORMASI
 ===================================================== --}}
 
-@include('public.sections.statistics')
 
+    @include('public.sections.pengumuman')
 
+    @include('public.sections.agenda')
 
+    @include('public.sections.news')
+
+</section>
 
 
 {{-- =====================================================
-    LAYANAN PUBLIK
+    ZONA PROFIL
 ===================================================== --}}
 
-@include('public.sections.services')
 
+    @include('public.sections.profil')
 
+    @include('public.sections.struktur')
 
+</section>
 
 
 {{-- =====================================================
-    ALUR PELAYANAN
+    ZONA DOKUMENTASI
 ===================================================== --}}
 
-@include('public.sections.workflow')
+    @include('public.sections.gallery')
 
-
-
+</section>
 
 
 {{-- =====================================================
-    PROFIL KELURAHAN
-    Data dari CMS Halaman
+    ZONA PENUTUP
 ===================================================== --}}
+<section class="home-zone zone-footer">
 
-@include('public.sections.profil')
+    @include('public.sections.location')
 
-
-
-
-
-{{-- =====================================================
-    STRUKTUR ORGANISASI
-    Data dari Master Perangkat
-===================================================== --}}
-
-@include('public.sections.struktur')
-
-
-
-{{-- =====================================================
-    PENGUMUMAN TERBARU
-    Data dari CMS Pengumuman
-===================================================== --}}
-
-@include('public.sections.pengumuman')
-
-
-{{-- =====================================================
-    BERITA TERBARU
-    Data dari CMS Berita
-===================================================== --}}
-
-@include('public.sections.news')
-
-
-
-
-
-{{-- =====================================================
-    AGENDA KEGIATAN
-    Data dari CMS Agenda
-===================================================== --}}
-
-@include('public.sections.agenda')
-
-
-
-
-
-{{-- =====================================================
-    GALERI KEGIATAN
-    Data dari CMS Galeri
-===================================================== --}}
-
-@include('public.sections.gallery')
-
-
-
-
-
-{{-- =====================================================
-    CALL TO ACTION
-===================================================== --}}
-
-@include('public.sections.cta')
-
-
-
-
-
-{{-- =====================================================
-    LOKASI & KONTAK
-===================================================== --}}
-
-@include('public.sections.location')
-
-
+</section>
 
 @endsection

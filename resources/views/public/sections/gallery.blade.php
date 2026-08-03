@@ -1,4 +1,4 @@
-<section id="galeri" class="gallery-section py-5 fade-up">
+<section id="galeri" class="gallery-section home-zone zone-primary">
 
     <div class="container">
 

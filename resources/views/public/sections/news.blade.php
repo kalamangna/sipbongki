@@ -1,4 +1,4 @@
-<section id="berita" class="news-section py-5 fade-up">
+<section id="berita" class="news-section home-zone zone-primary">
 
     <div class="container">
 
@@ -10,7 +10,7 @@
 
 
             <p class="section-description">
-               Informasi terbaru mengenai kegiatan, program, pengumuman, dan perkembangan Pemerintah Kelurahan Bongki.
+               Informasi terbaru mengenai kegiatan, program dan perkembangan Pemerintah Kelurahan Bongki.
             </p>
 
         </div>
@@ -62,12 +62,9 @@
 
                             </p>
 
-                            <a href="#" class="news-link">
-
-                                Baca Selengkapnya
-
-                                <i class="bi bi-arrow-right"></i>
-
+                            <a href="{{ route('berita.show', $berita) }}" class="news-link">
+                                    Baca Selengkapnya
+                                    <i class="bi bi-arrow-right"></i>
                             </a>
 
                         </div>

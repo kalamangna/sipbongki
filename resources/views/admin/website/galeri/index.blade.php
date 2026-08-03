@@ -16,9 +16,7 @@
 
         <div>
 
-            <h5 class="fw-bold mb-1">
-                Galeri Kegiatan
-            </h5>
+           
 
             <p class="text-muted mb-0">
                 Kelola dokumentasi kegiatan Kelurahan Bongki.

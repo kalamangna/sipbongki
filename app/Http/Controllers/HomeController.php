@@ -14,6 +14,7 @@ use App\Models\Jabatan;
 use App\Models\Agenda;
 use App\Models\Galeri;
 use App\Models\Berita;
+use App\Models\Pengumuman;
 use App\Models\WebsiteSetting;
 use App\Models\Halaman;
 
@@ -79,13 +80,16 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-
+        $pengumumen = Pengumuman::where('status', 'publish')
+        ->orderByDesc('tanggal_publish')
+        ->take(6)
+        ->get();
 
 
 
         $agendas = Agenda::where('status','aktif')
             ->orderBy('tanggal')
-            ->take(6)
+            ->take(9)
             ->get();
 
 
@@ -110,10 +114,9 @@ class HomeController extends Controller
 
         $profil = WebsiteSetting::first();
 
+    
 
-
-
-
+     
 
         /*
         |--------------------------------------------------------------------------
@@ -212,6 +215,8 @@ $lingkungans = Lingkungan::withCount('penduduk')
 
                 'beritas',
 
+                'pengumumen',
+
                 'agendas',
 
                 'galeris',
@@ -232,6 +237,49 @@ $lingkungans = Lingkungan::withCount('penduduk')
 
 
     }
+
+public function showBerita(Berita $berita)
+{
+    $profil = WebsiteSetting::first();
+
+    $beritaTerbaru = Berita::where('status', 'publish')
+        ->where('id', '!=', $berita->id)
+        ->latest('tanggal_publish')
+        ->take(5)
+        ->get();
+
+    return view('public.berita-detail', compact(
+        'profil',
+        'berita',
+        'beritaTerbaru'
+    ));
+}
+public function showPengumuman($slug)
+{
+    $profil = WebsiteSetting::first();
+
+    $pengumuman = Pengumuman::where('slug', $slug)
+        ->where('status', 'publish')
+        ->firstOrFail();
+
+    $pengumumanTerbaru = Pengumuman::where('status', 'publish')
+        ->where('id', '!=', $pengumuman->id)
+        ->orderByDesc('tanggal_publish')
+        ->take(5)
+        ->get();
+
+    return view('public.pengumuman-detail', compact(
+        'profil',
+        'pengumuman',
+        'pengumumanTerbaru'
+    ));
+}
+public function pengaduan()
+{
+    $profil = WebsiteSetting::first();
+
+    return view('public.pengaduan', compact('profil'));
+}
 
 /*
 |--------------------------------------------------------------------------

@@ -2873,7 +2873,35 @@ PAGE HEADER
     white-space:nowrap;
 
 }
+.notification-badge{
 
+    position:absolute;
+
+    top:-6px;
+    right:-6px;
+
+    min-width:20px;
+    height:20px;
+
+    padding:0 5px;
+
+    background:#dc2626;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
 /*==========================================================
 END OF FILE
 SIPBONGKI ADMIN CSS V4

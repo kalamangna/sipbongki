@@ -1,4 +1,4 @@
-<section id="agenda" class="agenda-section py-5 fade-up">
+<section id="agenda" class="agenda-section home-zone zone-primary">
 
 
     <div class="container">
@@ -18,7 +18,7 @@
 
             <p class="section-description">
 
-                Jadwal kegiatan dan pelayanan Kelurahan Bongki
+                Jadwal kegiatan terkait pemberdayaan masyarakat dan pelayanan Kelurahan Bongki
                 yang akan dilaksanakan.
 
             </p>

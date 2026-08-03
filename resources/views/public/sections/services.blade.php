@@ -1,4 +1,4 @@
-<section id="layanan" class="services-section py-5 fade-up">
+<section id="layanan" class="services-section home-zone zone-primary">
 
     <div class="container">
 

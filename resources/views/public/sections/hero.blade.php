@@ -1,17 +1,17 @@
-<section class="hero-section fade-up">
+<section class="hero-section home-zone zone-primary">
 
     <div class="container">
 
-        <div class="row align-items-center min-vh-100 gy-5">
+        <div class="row align-items-center hero-row gy-5">
 
             {{-- =========================
                 HERO CONTENT
             ========================== --}}
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-center text-lg-start">
 
                 <span class="hero-badge">
                     <i class="bi bi-shield-check"></i>
-                    Sistem Informasi & Pelayanan
+                    Sistem Informasi dan Layanan Masyarakat 
                 </span>
 
                 <h1 class="hero-title">
@@ -25,13 +25,13 @@
                 </h1>
 
                 <h4 class="fw-semibold text-dark mb-4">
-                    Melayani dengan Transparan, Cepat dan Profesional
+                    Membangun Pelayanan Publik yang Cepat, Modern, dan Terpercaya
                 </h4>
 
                 <p class="hero-description">
 
                     {{ $website?->deskripsi_hero ??
-                    'SIP Bongki merupakan sistem pelayanan digital Kelurahan Bongki yang memberikan kemudahan kepada masyarakat dalam memperoleh informasi, mengajukan pelayanan administrasi, serta memantau proses permohonan surat secara cepat, transparan, dan profesional.' }}
+                    'Selamat datang di Sistem Informasi dan Layanan Masyarakat Kelurahan Bongki. Kami berkomitmen menghadirkan pelayanan publik berbasis digital yang memudahkan masyarakat dalam memperoleh informasi, mengakses layanan administrasi, serta memantau setiap proses permohonan secara real-time.' }}
 
                 </p>
 

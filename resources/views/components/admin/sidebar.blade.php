@@ -117,7 +117,17 @@
         </span>
 
     </a>
+    
+<a href="{{ route('admin.pengaduan.index') }}"
+   class="{{ request()->routeIs('admin.pengaduan.*') ? 'active' : '' }}">
 
+    <i class="bi bi-chat-left-dots-fill"></i>
+
+    <span>
+        Pengaduan
+    </span>
+
+</a>
 
 
 
@@ -243,18 +253,17 @@
 
 
 
-    <a href="#">
+    
+        <a href="{{ route('admin.website.pengumuman.index') }}"
+   class="{{ request()->routeIs('admin.website.pengumuman.*') ? 'active' : '' }}">
 
-        <i class="bi bi-megaphone-fill"></i>
+    <i class="bi bi-megaphone-fill"></i>
 
-        <span>
-            Pengumuman
-        </span>
+    <span>
+        Pengumuman
+    </span>
 
-
-    </a>
-
-
+</a>
 
 
 

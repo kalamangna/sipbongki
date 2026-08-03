@@ -1,4 +1,4 @@
-<section id="struktur-organisasi" class="struktur-organisasi">
+<section id="struktur-organisasi" class="struktur-organisasi home-zone zone-primary">
 
     <div class="container">
 
@@ -14,7 +14,7 @@
             </span>
 
             <p class="section-subtitle">
-                Susunan organisasi Pemerintah Kelurahan Bongki beserta perangkat kelurahan yang bertugas memberikan pelayanan kepada masyarakat.
+                Struktur Organisasi Pemerintah Kelurahan Bongki 
             </p>
 
             @if($halaman?->ringkasan)
@@ -59,7 +59,7 @@
 
                     </div>
 
-                    <div class="org-connector"></div>
+                    <div class="org-connector-lurah"></div>
 
                     {{-- =========================
                         CABANG LURAH
@@ -110,7 +110,7 @@
 
                             </div>
 
-                            <div class="org-connector"></div>
+                            <div class="org-connector-sekretaris"></div>
 
                             {{-- =========================
                                 KASI
