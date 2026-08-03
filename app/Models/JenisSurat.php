@@ -79,4 +79,12 @@ public function getTemplateAttribute(): string
 
     return $this->template_view;
 }
+
+    /**
+     * Mutator mutator/setter untuk atribut template agar tidak dicoba disimpan ke DB
+     */
+    public function setTemplateAttribute($value): void
+    {
+        $this->attributes['template_view'] = $value;
+    }
 }

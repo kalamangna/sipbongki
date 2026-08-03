@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- **Model JenisSurat**: Menambahkan mutator `setTemplateAttribute` pada model `JenisSurat` untuk mencegah error perkuerian kolom `template` yang telah dihapus di basis data saat mengeksekusi `updateOrCreate` / `create`.
+
 ### Added
 - **Fitur Otentikasi Login Username / Email**: Mendukung login dengan username (`bongki`) atau email.
 - **Favicon & Logo Resmi**: Integrasi `images/sinjai.png` sebagai logo & favicon di seluruh halaman public, login, dan admin.
