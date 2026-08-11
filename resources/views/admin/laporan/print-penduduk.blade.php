@@ -12,11 +12,11 @@ JUDUL LAPORAN
 
 <div class="judul-surat">
 
-    <h3>
-        <strong>
-            LAPORAN DATA PENDUDUK
-        </strong>
-    </h3>
+ <h3>
+ <strong>
+ LAPORAN DATA PENDUDUK
+ </strong>
+ </h3>
 
 </div>
 
@@ -34,36 +34,36 @@ TABEL DATA PENDUDUK
 <table style="width:100%;border-collapse:collapse;">
 
 
-<thead>
+<thead class="px-4 py-3 font-medium text-slate-700">
 
 <tr>
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 No.
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 NIK
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Nama Lengkap
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Jenis Kelamin
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Lingkungan
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Alamat
 </th>
 
@@ -82,7 +82,7 @@ Alamat
 <tr>
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $loop->iteration }}
 
@@ -90,7 +90,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $penduduk->nik }}
 
@@ -98,7 +98,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $penduduk->nama_lengkap }}
 
@@ -106,7 +106,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $penduduk->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
 
@@ -114,7 +114,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ optional($penduduk->lingkungan)->nama ?? '-' }}
 
@@ -122,7 +122,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $penduduk->alamat }}
 
@@ -150,52 +150,52 @@ TANDA TANGAN
 
 <tr>
 <br>
-    {{-- KIRI --}}
-    <td style="width:50%; text-align:left; padding-left:18px; vertical-align:top;">
-        
-            Mengetahui :
-        
-        <br>
+ {{-- KIRI --}}
+ <td style="width:50%; text-align:left; padding-left:18px; vertical-align:top;" class="px-4 py-3 border-b border-slate-100">
+ 
+ Mengetahui :
+ 
+ <br>
 
-        <strong>
-            Plt. Lurah Bongki,
-        </strong>
+ <strong>
+ Plt. Lurah Bongki,
+ </strong>
 
-        <br><br><br>
+ <br><br><br>
 
-        <strong style="text-decoration: underline;">
-            ASHARI, S.Sos.,MM.
-        </strong>
+ <strong style="text-decoration: underline;">
+ ASHARI, S.Sos.,MM.
+ </strong>
 
-        <br>
+ <br>
 
-        NIP. 19760822 200804 1 001
+ NIP. 19760822 200804 1 001
 
-    </td>
+ </td>
 
 
-    {{-- KANAN --}}
-    <td style="width:50%; text-align:left; padding-left:120px; vertical-align:top;">
+ {{-- KANAN --}}
+ <td style="width:50%; text-align:left; padding-left:120px; vertical-align:top;" class="px-4 py-3 border-b border-slate-100">
 
-        <p style="margin:0;">
-            Bongki, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
-        </p>
+ <p style="margin:0;">
+ Bongki, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
+ </p>
 
-        <strong>
-            Kasi Pemerintahan,
-        </strong>
+ <strong>
+ Kasi Pemerintahan,
+ </strong>
 
-        <br><br><br>
+ <br><br><br>
 
-        <strong style="text-decoration: underline;">
-            FIRMAN, S.E
-        </strong>
+ <strong style="text-decoration: underline;">
+ FIRMAN, S.E
+ </strong>
 
-        <br>
+ <br>
 
-        NIP. 19800313 200901 1 007
+ NIP. 19800313 200901 1 007
 
-    </td>
+ </td>
 
 </tr>
 

@@ -5,182 +5,182 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
-                Edit Berita
-            </h3>
+ <h3 class="font-bold mb-1">
+ Edit Berita
+ </h3>
 
 
-            <p class="text-slate-500 mb-0">
-                Perbarui informasi berita Kelurahan Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Perbarui informasi berita Kelurahan Bongki.
+ </p>
 
-        </div>
+ </div>
 
 
 
-        <a href="{{ route('admin.website.berita.index') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-outline-secondary">
+ <a href="{{ route('admin.website.berita.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+ <i class="fa-solid fa-arrow-left"></i>
 
-            Kembali
+ Kembali
 
-        </a>
+ </a>
 
 
-    </div>
+ </div>
 
 
 
 
 
-    {{-- FORM --}}
+ {{-- FORM --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-        <div class="p-6">
+ <div class="p-6">
 
 
-            <form action="{{ route('admin.website.berita.update', $berita->id) }}"
-                  method="POST"
-                  enctype="multipart/form-data">
+ <form action="{{ route('admin.website.berita.update', $berita->id) }}"
+ method="POST"
+ enctype="multipart/form-data">
 
 
-                @csrf
+ @csrf
 
-                @method('PUT')
+ @method('PUT')
 
 
 
-                {{-- JUDUL --}}
+ {{-- JUDUL --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
-                    <label class="form-label fw-semibold">
-                        Judul Berita
-                    </label>
+ <label class="form-label font-semibold">
+ Judul Berita
+ </label>
 
 
-                    <input type="text"
-                           name="judul"
-                           class="form-control @error('judul') is-invalid @enderror"
-                           value="{{ old('judul', $berita->judul) }}">
+ <input type="text"
+ name="judul"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('judul') is-invalid @enderror"
+ value="{{ old('judul', $berita->judul) }}">
 
 
-                    @error('judul')
+ @error('judul')
 
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
 
-                    @enderror
+ @enderror
 
 
-                </div>
+ </div>
 
 
 
 
 
-                {{-- ISI --}}
+ {{-- ISI --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
-                    <label class="form-label fw-semibold">
-                        Isi Berita
-                    </label>
+ <label class="form-label font-semibold">
+ Isi Berita
+ </label>
 
 
-                    <textarea
-                        name="isi"
-                        rows="8"
-                        class="form-control @error('isi') is-invalid @enderror">{{ old('isi', $berita->isi) }}</textarea>
+ <textarea
+ name="isi"
+ rows="8"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('isi') is-invalid @enderror">{{ old('isi', $berita->isi) }}</textarea>
 
 
 
-                    @error('isi')
+ @error('isi')
 
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
 
-                    @enderror
+ @enderror
 
 
-                </div>
+ </div>
 
 
 
 
 
-                {{-- GAMBAR LAMA --}}
+ {{-- GAMBAR LAMA --}}
 
-                @if($berita->gambar)
+ @if($berita->gambar)
 
-                <div class="mb-4">
+ <div class="mb-4">
 
-                    <label class="form-label fw-semibold">
-                        Gambar Saat Ini
-                    </label>
+ <label class="form-label font-semibold">
+ Gambar Saat Ini
+ </label>
 
 
-                    <br>
+ <br>
 
 
-                    <img src="{{ asset('storage/'.$berita->gambar) }}"
-                         width="220"
-                         class="rounded shadow-sm">
+ <img src="{{ asset('storage/'.$berita->gambar) }}"
+ width="220"
+ class="rounded shadow-sm">
 
 
-                </div>
+ </div>
 
-                @endif
+ @endif
 
 
 
 
 
 
-                {{-- GAMBAR BARU --}}
+ {{-- GAMBAR BARU --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
-                    <label class="form-label fw-semibold">
-                        Ganti Gambar
-                    </label>
+ <label class="form-label font-semibold">
+ Ganti Gambar
+ </label>
 
 
-                    <input type="file"
-                           name="gambar"
-                           class="form-control @error('gambar') is-invalid @enderror">
+ <input type="file"
+ name="gambar"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('gambar') is-invalid @enderror">
 
 
-                    <small class="text-slate-500">
-                        Kosongkan jika tidak ingin mengganti gambar.
-                    </small>
+ <small class="text-slate-500">
+ Kosongkan jika tidak ingin mengganti gambar.
+ </small>
 
 
 
-                    @error('gambar')
+ @error('gambar')
 
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
 
-                    @enderror
+ @enderror
 
 
-                </div>
+ </div>
 
 
 
@@ -188,35 +188,35 @@
 
 
 
-                {{-- STATUS --}}
+ {{-- STATUS --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
-                    <label class="form-label fw-semibold">
-                        Status Publikasi
-                    </label>
+ <label class="form-label font-semibold">
+ Status Publikasi
+ </label>
 
 
-                    <select name="status"
-                            class="form-select">
+ <select name="status"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
-                        <option value="draft"
-                            {{ $berita->status == 'draft' ? 'selected' : '' }}>
-                            Draft
-                        </option>
+ <option value="draft"
+ {{ $berita->status == 'draft' ? 'selected' : '' }}>
+ Draft
+ </option>
 
 
-                        <option value="publish"
-                            {{ $berita->status == 'publish' ? 'selected' : '' }}>
-                            Publish
-                        </option>
+ <option value="publish"
+ {{ $berita->status == 'publish' ? 'selected' : '' }}>
+ Publish
+ </option>
 
 
-                    </select>
+ </select>
 
 
-                </div>
+ </div>
 
 
 
@@ -224,25 +224,25 @@
 
 
 
-                {{-- TANGGAL --}}
+ {{-- TANGGAL --}}
 
-                <div class="mb-6">
+ <div class="mb-6">
 
-                    <label class="form-label fw-semibold">
-                        Tanggal Publish
-                    </label>
+ <label class="form-label font-semibold">
+ Tanggal Publish
+ </label>
 
 
-                    <input type="date"
-                           name="tanggal_publish"
-                           class="form-control"
-                           value="{{ old(
-                               'tanggal_publish',
-                               optional($berita->tanggal_publish)->format('Y-m-d')
-                           ) }}">
+ <input type="date"
+ name="tanggal_publish"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old(
+ 'tanggal_publish',
+ optional($berita->tanggal_publish)->format('Y-m-d')
+ ) }}">
 
 
-                </div>
+ </div>
 
 
 
@@ -250,26 +250,26 @@
 
 
 
-                <button type="submit"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-                    <i class="bi bi-save"></i>
+ <i class="fa-solid fa-save"></i>
 
-                    Simpan Perubahan
+ Simpan Perubahan
 
 
-                </button>
+ </button>
 
 
 
-            </form>
+ </form>
 
 
-        </div>
+ </div>
 
 
-    </div>
+ </div>
 
 
 </div>

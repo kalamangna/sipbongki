@@ -8,49 +8,49 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
+ <h3 class="font-bold mb-1">
 
-                Tambah Berita
+ Tambah Berita
 
-            </h3>
+ </h3>
 
 
-            <p class="text-slate-500 mb-0">
+ <p class="text-slate-500 mb-0">
 
-                Tambahkan informasi terbaru Kelurahan Bongki.
+ Tambahkan informasi terbaru Kelurahan Bongki.
 
-            </p>
+ </p>
 
 
-        </div>
+ </div>
 
 
 
 
-        <a href="{{ route('admin.website.berita.index') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a href="{{ route('admin.website.berita.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
 
-            <i class="bi bi-arrow-left mr-2"></i>
+ <i class="fa-solid fa-arrow-left mr-2"></i>
 
-            Kembali
+ Kembali
 
 
-        </a>
+ </a>
 
 
 
-    </div>
+ </div>
 
 
 
@@ -58,32 +58,32 @@
 
 
 
-    {{-- VALIDATION ERROR --}}
-    @if($errors->any())
+ {{-- VALIDATION ERROR --}}
+ @if($errors->any())
 
 
-        <div class="alert alert-danger">
+ <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
 
 
-            <ul class="mb-0">
+ <ul class="mb-0">
 
 
-                @foreach($errors->all() as $error)
+ @foreach($errors->all() as $error)
 
-                    <li>
-                        {{ $error }}
-                    </li>
+ <li>
+ {{ $error }}
+ </li>
 
-                @endforeach
+ @endforeach
 
 
-            </ul>
+ </ul>
 
 
-        </div>
+ </div>
 
 
-    @endif
+ @endif
 
 
 
@@ -92,46 +92,46 @@
 
 
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-        <div class="p-6">
+ <div class="p-6">
 
 
 
-            <form action="{{ route('admin.website.berita.store') }}"
-                  method="POST"
-                  enctype="multipart/form-data">
+ <form action="{{ route('admin.website.berita.store') }}"
+ method="POST"
+ enctype="multipart/form-data">
 
 
-                @csrf
+ @csrf
 
 
 
 
 
 
-                {{-- JUDUL --}}
-                <div class="mb-4">
+ {{-- JUDUL --}}
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Judul Berita
+ Judul Berita
 
-                    </label>
+ </label>
 
 
 
-                    <input type="text"
-                           name="judul"
-                           class="form-control"
-                           value="{{ old('judul') }}"
-                           placeholder="Masukkan judul berita">
+ <input type="text"
+ name="judul"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('judul') }}"
+ placeholder="Masukkan judul berita">
 
 
 
-                </div>
+ </div>
 
 
 
@@ -139,27 +139,27 @@
 
 
 
-                {{-- ISI --}}
-                <div class="mb-4">
+ {{-- ISI --}}
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Isi Berita
+ Isi Berita
 
-                    </label>
+ </label>
 
 
 
-                    <textarea
-                        name="isi"
-                        rows="8"
-                        class="form-control"
-                        placeholder="Tuliskan isi berita">{{ old('isi') }}</textarea>
+ <textarea
+ name="isi"
+ rows="8"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ placeholder="Tuliskan isi berita">{{ old('isi') }}</textarea>
 
 
 
-                </div>
+ </div>
 
 
 
@@ -168,78 +168,78 @@
 
 
 
-                <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
 
 
-                    {{-- GAMBAR --}}
-                    <div class="w-full md:w-1/2 px-3 mb-4">
+ {{-- GAMBAR --}}
+ <div class="w-full md:w-1/2 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Gambar Berita
+ Gambar Berita
 
-                        </label>
+ </label>
 
 
 
-                        <input type="file"
-                               name="gambar"
-                               class="form-control">
+ <input type="file"
+ name="gambar"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 
-                        <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                            Format JPG, PNG maksimal 2MB.
+ Format JPG, PNG maksimal 2MB.
 
-                        </small>
+ </small>
 
 
-                    </div>
+ </div>
 
 
 
 
 
 
-                    {{-- STATUS --}}
-                    <div class="col-md-3 mb-4">
+ {{-- STATUS --}}
+ <div class="w-full md:w-1/4 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Status
+ Status
 
-                        </label>
+ </label>
 
 
 
-                        <select name="status"
-                                class="form-select">
+ <select name="status"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
-                            <option value="draft">
+ <option value="draft">
 
-                                Draft
+ Draft
 
-                            </option>
+ </option>
 
 
 
-                            <option value="publish">
+ <option value="publish">
 
-                                Publish
+ Publish
 
-                            </option>
+ </option>
 
 
-                        </select>
+ </select>
 
 
 
-                    </div>
+ </div>
 
 
 
@@ -247,30 +247,30 @@
 
 
 
-                    {{-- TANGGAL --}}
-                    <div class="col-md-3 mb-4">
+ {{-- TANGGAL --}}
+ <div class="w-full md:w-1/4 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Tanggal Publish
+ Tanggal Publish
 
-                        </label>
+ </label>
 
 
 
-                        <input type="date"
-                               name="tanggal_publish"
-                               class="form-control"
-                               value="{{ old('tanggal_publish') }}">
+ <input type="date"
+ name="tanggal_publish"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('tanggal_publish') }}">
 
 
 
-                    </div>
+ </div>
 
 
 
-                </div>
+ </div>
 
 
 
@@ -280,49 +280,49 @@
 
 
 
-                {{-- BUTTON --}}
-                <div class="mt-6">
+ {{-- BUTTON --}}
+ <div class="mt-6">
 
 
-                    <button type="submit"
-                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-                        <i class="bi bi-save mr-2"></i>
+ <i class="fa-solid fa-save mr-2"></i>
 
-                        Simpan Berita
+ Simpan Berita
 
 
-                    </button>
+ </button>
 
 
 
 
-                    <a href="{{ route('admin.website.berita.index') }}"
-                       class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm">
+ <a href="{{ route('admin.website.berita.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm">
 
 
-                        Batal
+ Batal
 
 
-                    </a>
+ </a>
 
 
-                </div>
+ </div>
 
 
 
 
 
 
-            </form>
+ </form>
 
 
 
-        </div>
+ </div>
 
 
-    </div>
+ </div>
 
 
 

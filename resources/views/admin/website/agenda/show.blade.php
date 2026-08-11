@@ -7,63 +7,63 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
-                Detail Agenda
-            </h3>
+ <h3 class="font-bold mb-1">
+ Detail Agenda
+ </h3>
 
 
-            <p class="text-slate-500 mb-0">
-                Informasi lengkap kegiatan Kelurahan Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Informasi lengkap kegiatan Kelurahan Bongki.
+ </p>
 
 
-        </div>
+ </div>
 
 
 
 
-        <div>
+ <div>
 
 
-            <a href="{{ route('admin.website.agenda.edit',$agenda->id) }}"
-               class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm mr-2">
+ <a href="{{ route('admin.website.agenda.edit',$agenda->id) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm mr-2">
 
 
-                <i class="bi bi-pencil mr-1"></i>
+ <i class="fa-solid fa-pen-to-square mr-1"></i>
 
-                Edit
+ Edit
 
 
-            </a>
+ </a>
 
 
 
-            <a href="{{ route('admin.website.agenda.index') }}"
-               class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a href="{{ route('admin.website.agenda.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
 
-                <i class="bi bi-arrow-left mr-1"></i>
+ <i class="fa-solid fa-arrow-left mr-1"></i>
 
-                Kembali
+ Kembali
 
 
-            </a>
+ </a>
 
 
-        </div>
+ </div>
 
 
 
-    </div>
+ </div>
 
 
 
@@ -72,58 +72,58 @@
 
 
 
-    <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
 
 
-        {{-- INFORMASI UTAMA --}}
-        <div class="w-full lg:w-2/3 px-3">
+ {{-- INFORMASI UTAMA --}}
+ <div class="w-full lg:w-2/3 px-3">
 
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-                <div class="p-6">
+ <div class="p-6">
 
 
 
-                    <h4 class="font-bold mb-4">
+ <h4 class="font-bold mb-4">
 
-                        {{ $agenda->judul }}
+ {{ $agenda->judul }}
 
-                    </h4>
+ </h4>
 
 
 
 
 
-                    <div class="mb-6">
+ <div class="mb-6">
 
 
-                        @if($agenda->status == 'aktif')
+ @if($agenda->status == 'aktif')
 
 
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
 
-                                Aktif
+ Aktif
 
-                            </span>
+ </span>
 
 
-                        @else
+ @else
 
 
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
 
-                                Nonaktif
+ Nonaktif
 
-                            </span>
+ </span>
 
 
-                        @endif
+ @endif
 
 
-                    </div>
+ </div>
 
 
 
@@ -131,30 +131,30 @@
 
 
 
-                    <h6 class="font-bold">
+ <h6 class="font-bold">
 
-                        Deskripsi Kegiatan
+ Deskripsi Kegiatan
 
-                    </h6>
+ </h6>
 
 
 
-                    <p class="text-slate-500" style="text-align: justify; text-justify: inter-word;">
+ <p class="text-slate-500" style="text-align: justify; text-justify: inter-word;">
 
-                        {{ $agenda->deskripsi ?: 'Tidak ada deskripsi kegiatan.' }}
+ {{ $agenda->deskripsi ?: 'Tidak ada deskripsi kegiatan.' }}
 
-                    </p>
+ </p>
 
 
 
 
-                </div>
+ </div>
 
 
-            </div>
+ </div>
 
 
-        </div>
+ </div>
 
 
 
@@ -162,51 +162,51 @@
 
 
 
-        {{-- DETAIL WAKTU --}}
-        <div class="w-full lg:w-1/3 px-3">
+ {{-- DETAIL WAKTU --}}
+ <div class="w-full lg:w-1/3 px-3">
 
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-                <div class="p-6">
+ <div class="p-6">
 
 
 
-                    <h5 class="font-bold mb-6">
+ <h5 class="font-bold mb-6">
 
-                        Informasi Agenda
+ Informasi Agenda
 
-                    </h5>
+ </h5>
 
 
 
 
 
-                    <div class="mb-4">
+ <div class="mb-4">
 
 
-                        <small class="text-slate-500 d-block">
+ <small class="text-slate-500 block">
 
-                            <i class="bi bi-calendar-event mr-2"></i>
+ <i class="fa-solid fa-calendar-event mr-2"></i>
 
-                            Tanggal
+ Tanggal
 
-                        </small>
+ </small>
 
 
-                        <strong>
+ <strong>
 
-                            {{ 
-                                $agenda->tanggal
-                                ? $agenda->tanggal->format('d F Y')
-                                : '-'
-                            }}
+ {{ 
+ $agenda->tanggal
+ ? $agenda->tanggal->format('d F Y')
+ : '-'
+ }}
 
-                        </strong>
+ </strong>
 
 
-                    </div>
+ </div>
 
 
 
@@ -215,31 +215,31 @@
 
 
 
-                    <div class="mb-4">
+ <div class="mb-4">
 
 
-                        <small class="text-slate-500 d-block">
+ <small class="text-slate-500 block">
 
 
-                            <i class="bi bi-clock mr-2"></i>
+ <i class="fa-solid fa-clock mr-2"></i>
 
-                            Waktu
+ Waktu
 
 
-                        </small>
+ </small>
 
 
 
-                        <strong>
+ <strong>
 
-                            {{ $agenda->waktu ?? '-' }}
+ {{ $agenda->waktu ?? '-' }}
 
-                            WITA
+ WITA
 
-                        </strong>
+ </strong>
 
 
-                    </div>
+ </div>
 
 
 
@@ -247,29 +247,29 @@
 
 
 
-                    <div class="mb-4">
+ <div class="mb-4">
 
 
-                        <small class="text-slate-500 d-block">
+ <small class="text-slate-500 block">
 
 
-                            <i class="bi bi-geo-alt mr-2"></i>
+ <i class="fa-solid fa-geo-alt mr-2"></i>
 
-                            Lokasi
+ Lokasi
 
 
-                        </small>
+ </small>
 
 
 
-                        <strong>
+ <strong>
 
-                            {{ $agenda->lokasi ?? '-' }}
+ {{ $agenda->lokasi ?? '-' }}
 
-                        </strong>
+ </strong>
 
 
-                    </div>
+ </div>
 
 
 
@@ -277,45 +277,45 @@
 
 
 
-                    <div>
+ <div>
 
 
-                        <small class="text-slate-500 d-block">
+ <small class="text-slate-500 block">
 
 
-                            <i class="bi bi-clock-history mr-2"></i>
+ <i class="fa-solid fa-clock-history mr-2"></i>
 
-                            Dibuat
+ Dibuat
 
 
-                        </small>
+ </small>
 
 
-                        <strong>
+ <strong>
 
-                            {{ $agenda->created_at->format('d M Y H:i') }}
+ {{ $agenda->created_at->format('d M Y H:i') }}
 
-                        </strong>
+ </strong>
 
 
-                    </div>
+ </div>
 
 
 
 
-                </div>
+ </div>
 
 
-            </div>
+ </div>
 
 
 
-        </div>
+ </div>
 
 
 
 
-    </div>
+ </div>
 
 
 

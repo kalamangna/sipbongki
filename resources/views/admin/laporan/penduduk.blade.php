@@ -4,658 +4,658 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    {{-- ==========================================================
-        HEADER
-    =========================================================== --}}
+ {{-- ==========================================================
+ HEADER
+ =========================================================== --}}
 
-    <div class="flex justify-between items-center mb-6">
+ <div class="flex justify-between items-center mb-6">
 
-        <div>
+ <div>
 
-            
-            <p class="text-slate-500 mb-0">
-                Statistik dan rekapitulasi data penduduk Kelurahan Bongki.
-            </p>
+ 
+ <p class="text-slate-500 mb-0">
+ Statistik dan rekapitulasi data penduduk Kelurahan Bongki.
+ </p>
 
-        </div>
+ </div>
 
-        <div class="flex gap-2 mt-3 mt-lg-0">
+ <div class="flex gap-2 mt-3 mt-lg-0">
 
-            <a href="{{ url()->previous() }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
-                <i class="bi bi-arrow-left"></i> Kembali
-            </a>
+ <a href="{{ url()->previous() }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
+ <i class="fa-solid fa-arrow-left"></i> Kembali
+ </a>
 
-            <a
-                href="{{ route('admin.laporan.print-penduduk', array_merge(request()->query(), ['from' => 'penduduk'])) }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
+ <a
+ href="{{ route('admin.laporan.print-penduduk', array_merge(request()->query(), ['from' => 'penduduk'])) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
 
-                <i class="bi bi-printer mr-1"></i>
+ <i class="fa-solid fa-print mr-1"></i>
 
-                Cetak
+ Cetak
 
-            </a>
+ </a>
 
-            <a
-                href="{{ route('admin.laporan.export-penduduk') }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
+ <a
+ href="{{ route('admin.laporan.export-penduduk') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
 
-                <i class="bi bi-file-earmark-excel mr-1"></i>
+ <i class="fa-solid fa-file-earmark-excel mr-1"></i>
 
-                Export Excel
+ Export Excel
 
-            </a>
+ </a>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 
 
-    {{-- ==========================================================
-        STATISTIK
-    =========================================================== --}}
+ {{-- ==========================================================
+ STATISTIK
+ =========================================================== --}}
 
-    <div class="flex flex-wrap -mx-3 mb-4">
+ <div class="flex flex-wrap -mx-3 mb-4">
 
-        <div class="w-full lg:w-1/3 px-3">
+ <div class="w-full lg:w-1/3 px-3">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <small class="text-slate-500 d-block">
-                        Total Penduduk
-                    </small>
+ <small class="text-slate-500 block">
+ Total Penduduk
+ </small>
 
-                    <h2 class="font-bold mt-2">
-                        {{ number_format($statistik['total']) }}
-                    </h2>
+ <h2 class="font-bold mt-2">
+ {{ number_format($statistik['total']) }}
+ </h2>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-        <div class="w-full lg:w-1/3 px-3">
+ <div class="w-full lg:w-1/3 px-3">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <small class="text-slate-500 d-block">
-                        Laki-laki
-                    </small>
+ <small class="text-slate-500 block">
+ Laki-laki
+ </small>
 
-                    <h2 class="font-bold text-primary mt-2">
-                        {{ number_format($statistik['laki']) }}
-                    </h2>
+ <h2 class="font-bold text-primary mt-2">
+ {{ number_format($statistik['laki']) }}
+ </h2>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-        <div class="w-full lg:w-1/3 px-3">
+ <div class="w-full lg:w-1/3 px-3">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <small class="text-slate-500 d-block">
-                        Perempuan
-                    </small>
+ <small class="text-slate-500 block">
+ Perempuan
+ </small>
 
-                    <h2 class="font-bold text-danger mt-2">
-                        {{ number_format($statistik['perempuan']) }}
-                    </h2>
+ <h2 class="font-bold text-danger mt-2">
+ {{ number_format($statistik['perempuan']) }}
+ </h2>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 
 
 {{-- ==========================================================
-    FILTER DATA
+ FILTER DATA
 ========================================================== --}}
 
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4">
 
-    <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-            <h6 class="font-bold mb-0 fs-5">
+ <h6 class="font-bold mb-0 ">
 
-                Filter Data Penduduk
+ Filter Data Penduduk
 
-            </h6>
+ </h6>
 
-    </div>
+ </div>
 
-    <div class="p-6">
+ <div class="p-6">
 
-        <form method="GET"
-              action="{{ route('admin.laporan.penduduk') }}">
+ <form method="GET"
+ action="{{ route('admin.laporan.penduduk') }}">
 
-            <div class="flex flex-wrap -mx-3 g-3">
+ <div class="flex flex-wrap -mx-3 gap-4">
 
-                {{-- Nama / NIK --}}
-                <div class="w-full lg:w-1/3 px-3 text-center">
+ {{-- Nama / NIK --}}
+ <div class="w-full lg:w-1/3 px-3 text-center">
 
-                    <label class="form-label d-block">
+ <label class="form-label block">
 
-                        Nama / NIK
+ Nama / NIK
 
-                    </label>
+ </label>
 
-                    <input
-                        type="text"
-                        name="keyword"
-                        class="form-control text-center"
-                        placeholder="Cari Nama atau NIK"
-                        value="{{ request('keyword') }}">
+ <input
+ type="text"
+ name="keyword"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ placeholder="Cari Nama atau NIK"
+ value="{{ request('keyword') }}">
 
-                </div>
+ </div>
 
 
 
-                {{-- Lingkungan --}}
-                <div class="w-full lg:w-1/4 px-3 text-center">
+ {{-- Lingkungan --}}
+ <div class="w-full lg:w-1/4 px-3 text-center">
 
-                    <label class="form-label d-block">
+ <label class="form-label block">
 
-                        Lingkungan
+ Lingkungan
 
-                    </label>
+ </label>
 
-                    <select
-                        name="lingkungan"
-                        class="form-select text-center">
+ <select
+ name="lingkungan"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
-                        <option value="">
+ <option value="">
 
-                            Semua Lingkungan
+ Semua Lingkungan
 
-                        </option>
+ </option>
 
-                        @foreach($lingkungans as $lingkungan)
+ @foreach($lingkungans as $lingkungan)
 
-                            <option
-                                value="{{ $lingkungan->id }}"
-                                @selected(request('lingkungan') == $lingkungan->id)>
+ <option
+ value="{{ $lingkungan->id }}"
+ @selected(request('lingkungan') == $lingkungan->id)>
 
-                                {{ $lingkungan->nama }}
+ {{ $lingkungan->nama }}
 
-                            </option>
+ </option>
 
-                        @endforeach
+ @endforeach
 
-                    </select>
+ </select>
 
-                </div>
+ </div>
 
 
 
-                {{-- Jenis Kelamin --}}
-                <div class="col-lg-2 text-center">
+ {{-- Jenis Kelamin --}}
+ <div class="w-full lg:w-1/6 px-3 text-center">
 
-                    <label class="form-label d-block">
+ <label class="form-label block">
 
-                        Jenis Kelamin
+ Jenis Kelamin
 
-                    </label>
+ </label>
 
-                    <select
-                        name="jk"
-                        class="form-select text-center">
+ <select
+ name="jk"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
-                        <option value="">
+ <option value="">
 
-                            Semua
+ Semua
 
-                        </option>
+ </option>
 
-                        <option
-                            value="L"
-                            @selected(request('jk')=='L')>
+ <option
+ value="L"
+ @selected(request('jk')=='L')>
 
-                            Laki-laki
+ Laki-laki
 
-                        </option>
+ </option>
 
-                        <option
-                            value="P"
-                            @selected(request('jk')=='P')>
+ <option
+ value="P"
+ @selected(request('jk')=='P')>
 
-                            Perempuan
+ Perempuan
 
-                        </option>
+ </option>
 
-                    </select>
+ </select>
 
-                </div>
+ </div>
 
 
 
-                {{-- Agama --}}
-                <div class="w-full lg:w-1/4 px-3 text-center">
+ {{-- Agama --}}
+ <div class="w-full lg:w-1/4 px-3 text-center">
 
-                    <label class="form-label d-block">
+ <label class="form-label block">
 
-                        Agama
+ Agama
 
-                    </label>
+ </label>
 
-                    <select
-                        name="agama"
-                        class="form-select text-center">
+ <select
+ name="agama"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
-                        <option value="">
+ <option value="">
 
-                            Semua Agama
+ Semua Agama
 
-                        </option>
+ </option>
 
-                        @foreach($agamaList as $agama)
+ @foreach($agamaList as $agama)
 
-                            <option
-                                value="{{ $agama }}"
-                                @selected(request('agama') == $agama)>
+ <option
+ value="{{ $agama }}"
+ @selected(request('agama') == $agama)>
 
-                                {{ $agama }}
+ {{ $agama }}
 
-                            </option>
+ </option>
 
-                        @endforeach
+ @endforeach
 
-                    </select>
+ </select>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
 
 
-            <div class="mt-6 flex gap-2">
+ <div class="mt-6 flex gap-2">
 
-                <button
-                    type="submit"
-                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button
+ type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-                    <i class="bi bi-search"></i>
+ <i class="fa-solid fa-magnifying-glass"></i>
 
-                    Tampilkan
+ Tampilkan
 
-                </button>
+ </button>
 
 
 
-                <a href="{{ route('admin.laporan.penduduk') }}"
-                   class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-outline-secondary">
+ <a href="{{ route('admin.laporan.penduduk') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
 
-                    <i class="bi bi-arrow-clockwise"></i>
+ <i class="fa-solid fa-arrow-clockwise"></i>
 
-                    Reset
+ Reset
 
-                </a>
+ </a>
 
-            </div>
+ </div>
 
-        </form>
+ </form>
 
-    </div>
+ </div>
 
 </div> 
 
-    {{-- ==========================================================
-        REKAP LINGKUNGAN
-    =========================================================== --}}
+ {{-- ==========================================================
+ REKAP LINGKUNGAN
+ =========================================================== --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-            <h6 class="mb-0 font-bold fs-5">
+ <h6 class="mb-0 font-bold ">
 
-                Rekap Penduduk per Lingkungan
+ Rekap Penduduk per Lingkungan
 
-            </h6>
+ </h6>
 
-        </div>
+ </div>
 
-        <div class="p-6">
+ <div class="p-6">
 
-            <div class="flex flex-wrap -mx-3 g-3">
+ <div class="flex flex-wrap -mx-3 gap-4">
 
-                @foreach($rekapLingkungan as $item)
+ @foreach($rekapLingkungan as $item)
 
-                    <div class="w-full lg:w-1/4 px-3 md:w-1/2">
+ <div class="w-full lg:w-1/4 px-3 md:w-1/2">
 
-                        <div class="border rounded-3 p-3 h-100 text-center">
+ <div class="border rounded-3 p-3 h-100 text-center">
 
-                            <div class="small text-slate-500 mb-1">
+ <div class="small text-slate-500 mb-1">
 
-                                {{ $item->nama }}
+ {{ $item->nama }}
 
-                            </div>
+ </div>
 
-                            <h2 class="font-bold text-primary mt-2">
+ <h2 class="font-bold text-primary mt-2">
 
-                                {{ number_format($item->penduduk_count) }}
+ {{ number_format($item->penduduk_count) }}
 
-                            </h2>
+ </h2>
 
-                            <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                                Penduduk
+ Penduduk
 
-                            </small>
+ </small>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                @endforeach
+ @endforeach
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 {{-- ==========================================================
-    ANALISIS DATA
+ ANALISIS DATA
 ========================================================== --}}
 
 <div class="flex flex-wrap -mx-3 mb-4">
 
-    {{-- Agama --}}
-    <div class="w-full lg:w-1/3 px-3">
+ {{-- Agama --}}
+ <div class="w-full lg:w-1/3 px-3">
 
-        <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-            <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
 
-                <h6 class="font-bold mb-0">
-                    Berdasarkan Agama
-                </h6>
+ <h6 class="font-bold mb-0">
+ Berdasarkan Agama
+ </h6>
 
-            </div>
+ </div>
 
-            <div class="p-6">
+ <div class="p-6">
 
-                @forelse($rekapAgama as $item)
+ @forelse($rekapAgama as $item)
 
-                    <div class="flex justify-between mb-2">
+ <div class="flex justify-between mb-2">
 
-                        <span>{{ $item->agama ?: '-' }}</span>
+ <span>{{ $item->agama ?: '-' }}</span>
 
-                        <strong>{{ $item->total }}</strong>
+ <strong>{{ $item->total }}</strong>
 
-                    </div>
+ </div>
 
-                @empty
+ @empty
 
-                    <p class="text-slate-500 mb-0">
-                        Tidak ada data.
-                    </p>
+ <p class="text-slate-500 mb-0">
+ Tidak ada data.
+ </p>
 
-                @endforelse
+ @endforelse
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
-
-
-
-    {{-- Pendidikan --}}
-    <div class="w-full lg:w-1/3 px-3">
-
-        <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
-            <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
-
-                <h6 class="font-bold mb-0">
-                    Berdasarkan Pendidikan
-                </h6>
-
-            </div>
-
-            <div class="p-6">
-
-                @forelse($rekapPendidikan as $item)
-
-                    <div class="flex justify-between mb-2">
-
-                        <span>{{ $item->pendidikan ?: '-' }}</span>
-
-                        <strong>{{ $item->total }}</strong>
-
-                    </div>
-
-                @empty
-
-                    <p class="text-slate-500 mb-0">
-                        Tidak ada data.
-                    </p>
-
-                @endforelse
-
-            </div>
-
-        </div>
-
-    </div>
+ </div>
 
 
 
-    {{-- Pekerjaan --}}
-    <div class="w-full lg:w-1/3 px-3">
+ {{-- Pendidikan --}}
+ <div class="w-full lg:w-1/3 px-3">
 
-        <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-            <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
 
-                <h6 class="font-bold mb-0">
-                    Berdasarkan Pekerjaan
-                </h6>
+ <h6 class="font-bold mb-0">
+ Berdasarkan Pendidikan
+ </h6>
 
-            </div>
+ </div>
 
-            <div class="p-6">
+ <div class="p-6">
 
-                @forelse($rekapPekerjaan as $item)
+ @forelse($rekapPendidikan as $item)
 
-                    <div class="flex justify-between mb-2">
+ <div class="flex justify-between mb-2">
 
-                        <span>{{ $item->pekerjaan ?: '-' }}</span>
+ <span>{{ $item->pendidikan ?: '-' }}</span>
 
-                        <strong>{{ $item->total }}</strong>
+ <strong>{{ $item->total }}</strong>
 
-                    </div>
+ </div>
 
-                @empty
+ @empty
 
-                    <p class="text-slate-500 mb-0">
-                        Tidak ada data.
-                    </p>
+ <p class="text-slate-500 mb-0">
+ Tidak ada data.
+ </p>
 
-                @endforelse
+ @endforelse
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
+
+
+
+ {{-- Pekerjaan --}}
+ <div class="w-full lg:w-1/3 px-3">
+
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+
+ <div class="px-6 py-4 border-b border-slate-200 bg-white justify-center text-center">
+
+ <h6 class="font-bold mb-0">
+ Berdasarkan Pekerjaan
+ </h6>
+
+ </div>
+
+ <div class="p-6">
+
+ @forelse($rekapPekerjaan as $item)
+
+ <div class="flex justify-between mb-2">
+
+ <span>{{ $item->pekerjaan ?: '-' }}</span>
+
+ <strong>{{ $item->total }}</strong>
+
+ </div>
+
+ @empty
+
+ <p class="text-slate-500 mb-0">
+ Tidak ada data.
+ </p>
+
+ @endforelse
+
+ </div>
+
+ </div>
+
+ </div>
 
 </div>
 
-    {{-- ==========================================================
-        TABEL DATA PENDUDUK
-    =========================================================== --}}
+ {{-- ==========================================================
+ TABEL DATA PENDUDUK
+ =========================================================== --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
 
-            <h6 class="mb-0 font-bold fs-5">
+ <h6 class="mb-0 font-bold ">
 
-                Data Penduduk
+ Data Penduduk
 
-            </h6>
+ </h6>
 
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
 
-                {{ $penduduks->total() }} Data
+ {{ $penduduks->total() }} Data
 
-            </span>
+ </span>
 
-        </div>
+ </div>
 
-        <div class="p-6 p-0">
+ <div class="p-6 p-0">
 
-            <div class="overflow-x-auto w-full">
+ <div class="overflow-x-auto w-full">
 
-                <table class="w-full text-left border-collapse text-sm table-hover align-middle mb-0 text-center table-soft-border">
+ <table class="w-full text-sm text-left text-slate-500">
 
-                    <thead class="table-light text-center">
+ <thead class=\"w-full text-sm text-left text-slate-600 px-4 py-3 font-medium text-slate-700\">
 
-                        <tr>
+ <tr>
 
-                            <th width="60" class="text-center">
-                                No
-                            </th>
+ <th width="60" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ No
+ </th>
 
-                            <th class="text-center">
-                                NIK
-                            </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ NIK
+ </th>
 
-                            <th class="text-center">
-                                Nama Lengkap
-                            </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Nama Lengkap
+ </th>
 
-                            <th class="text-center">
-                                Jenis Kelamin
-                            </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Jenis Kelamin
+ </th>
 
-                            
+ 
 
-                            <th class="text-center">
-                                Lingkungan
-                            </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Lingkungan
+ </th>
 
-                            <th class="text-center">
-                                Alamat
-                            </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Alamat
+ </th>
 
-                        </tr>
+ </tr>
 
-                    </thead>
+ </thead>
 
-                    <tbody>
+ <tbody>
 
-                        @forelse($penduduks as $penduduk)
+ @forelse($penduduks as $penduduk)
 
-                            <tr>
+ <tr>
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    {{ $loop->iteration + (($penduduks->currentPage()-1) * $penduduks->perPage()) }}
+ {{ $loop->iteration + (($penduduks->currentPage()-1) * $penduduks->perPage()) }}
 
-                                </td>
+ </td>
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    {{ $penduduk->nik }}
+ {{ $penduduk->nik }}
 
-                                </td>
+ </td>
 
-                                <td class="name-cell">
+ <td class=\"name-cell px-4 py-3 border-b border-slate-100\">
 
-                                    <span class="name-tooltip" title="No. KK: {{ optional($penduduk->kartuKeluarga)->nomor_kk ?? '-' }}">
+ <span class="name-tooltip" title="No. KK: {{ optional($penduduk->kartuKeluarga)->nomor_kk ?? '-' }}">
 
-                                        {{ $penduduk->nama_lengkap }}
+ {{ $penduduk->nama_lengkap }}
 
-                                    </span>
+ </span>
 
-                                </td>
+ </td>
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    @if($penduduk->jenis_kelamin == 'L')
+ @if($penduduk->jenis_kelamin == 'L')
 
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
 
-                                            Laki-laki
+ Laki-laki
 
-                                        </span>
+ </span>
 
-                                    @else
+ @else
 
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
 
-                                            Perempuan
+ Perempuan
 
-                                        </span>
+ </span>
 
-                                    @endif
+ @endif
 
-                                </td>
+ </td>
 
-                                
+ 
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    {{ optional($penduduk->lingkungan)->nama ?? '-' }}
+ {{ optional($penduduk->lingkungan)->nama ?? '-' }}
 
-                                </td>
+ </td>
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    {{ $penduduk->alamat }}
+ {{ $penduduk->alamat }}
 
-                                </td>
+ </td>
 
-                            </tr>
+ </tr>
 
-                        @empty
+ @empty
 
-                            <tr>
+ <tr>
 
-                                <td colspan="6" class="text-center py-8 text-slate-500">
+ <td colspan="6" class=\"text-center py-8 text-slate-500 px-4 py-3 border-b border-slate-100\">
 
-                                    Belum ada data penduduk.
+ Belum ada data penduduk.
 
-                                </td>
+ </td>
 
-                            </tr>
+ </tr>
 
-                        @endforelse
+ @endforelse
 
-                    </tbody>
+ </tbody>
 
-                </table>
+ </table>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-        <div class="px-6 py-4 border-t border-slate-200 bg-white">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white">
 
-            {{ $penduduks->withQueryString()->links() }}
+ {{ $penduduks->withQueryString()->links() }}
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>
 

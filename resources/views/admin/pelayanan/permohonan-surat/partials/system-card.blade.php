@@ -1,117 +1,117 @@
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-    <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
 
-        <div>
+ <div>
 
-            <h5 class="mb-0 request-detail-card-title">
-                Informasi Sistem
-            </h5>
+ <h5 class="mb-0 request-detail-card-title">
+ Informasi Sistem
+ </h5>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
-    <div class="p-6">
+ <div class="p-6">
 
-        <div class="flex justify-between items-center py-2 border-bottom">
+ <div class="flex justify-between items-center py-2 border-bottom">
 
-            <div>
+ <div>
 
-                <small class="text-slate-500 d-block">
-                    ID Permohonan
-                </small>
+ <small class="text-slate-500 block">
+ ID Permohonan
+ </small>
 
-                <strong>
-                    #{{ $permohonanSurat->id }}
-                </strong>
+ <strong>
+ #{{ $permohonanSurat->id }}
+ </strong>
 
-            </div>
+ </div>
 
-            <i class="bi bi-hash text-primary fs-4"></i>
+ <i class="fa-solid fa-hash text-primary "></i>
 
-        </div>
+ </div>
 
-        <div class="flex justify-between items-center py-3 border-bottom">
+ <div class="flex justify-between items-center py-3 border-bottom">
 
-            <div>
+ <div>
 
-                <small class="text-slate-500 d-block">
-                    Dibuat
-                </small>
+ <small class="text-slate-500 block">
+ Dibuat
+ </small>
 
-                <strong>
+ <strong>
 
-                    {{ $permohonanSurat->created_at->translatedFormat('d F Y') }}
+ {{ $permohonanSurat->created_at->translatedFormat('d F Y') }}
 
-                </strong>
+ </strong>
 
-                <br>
+ <br>
 
-                <small class="text-secondary">
+ <small class="text-secondary">
 
-                    {{ $permohonanSurat->created_at->format('H:i') }} WITA
+ {{ $permohonanSurat->created_at->format('H:i') }} WITA
 
-                </small>
+ </small>
 
-            </div>
+ </div>
 
-            <i class="bi bi-calendar-plus text-success fs-4"></i>
+ <i class="fa-solid fa-calendar-plus text-success "></i>
 
-        </div>
+ </div>
 
-        <div class="flex justify-between items-center py-3 border-bottom">
+ <div class="flex justify-between items-center py-3 border-bottom">
 
-            <div>
+ <div>
 
-                <small class="text-slate-500 d-block">
-                    Terakhir Diubah
-                </small>
+ <small class="text-slate-500 block">
+ Terakhir Diubah
+ </small>
 
-                <strong>
+ <strong>
 
-                    {{ $permohonanSurat->updated_at->translatedFormat('d F Y') }}
+ {{ $permohonanSurat->updated_at->translatedFormat('d F Y') }}
 
-                </strong>
+ </strong>
 
-                <br>
+ <br>
 
-                <small class="text-secondary">
+ <small class="text-secondary">
 
-                    {{ $permohonanSurat->updated_at->format('H:i') }} WITA
+ {{ $permohonanSurat->updated_at->format('H:i') }} WITA
 
-                </small>
+ </small>
 
-            </div>
+ </div>
 
-            <i class="bi bi-clock-history text-warning fs-4"></i>
+ <i class="fa-solid fa-clock-history text-warning "></i>
 
-        </div>
+ </div>
 
-        @if($permohonanSurat->tanggal_selesai)
+ @if($permohonanSurat->tanggal_selesai)
 
-        <div class="flex justify-between items-center pt-3">
+ <div class="flex justify-between items-center pt-3">
 
-            <div>
+ <div>
 
-                <small class="text-slate-500 d-block">
-                    Tanggal Selesai
-                </small>
+ <small class="text-slate-500 block">
+ Tanggal Selesai
+ </small>
 
-                <strong>
+ <strong>
 
-                    {{ $permohonanSurat->tanggal_selesai->translatedFormat('d F Y') }}
+ {{ $permohonanSurat->tanggal_selesai->translatedFormat('d F Y') }}
 
-                </strong>
+ </strong>
 
-            </div>
+ </div>
 
-            <i class="bi bi-check-circle-fill text-success fs-4"></i>
+ <i class="fa-solid fa-circle-check-fill text-success "></i>
 
-        </div>
+ </div>
 
-        @endif
+ @endif
 
-    </div>
+ </div>
 
 </div>

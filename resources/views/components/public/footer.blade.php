@@ -35,18 +35,13 @@
                 <ul class="flex flex-col gap-2.5">
                     @php
                         $footerLinks = [
-                            ['href' => url('/'),                     'label' => 'Beranda'],
-                            ['href' => url('/#profil'),              'label' => 'Profil'],
-                            ['href' => url('/#struktur-organisasi'), 'label' => 'Organisasi'],
+                            ['href' => url('/'),            'label' => 'Beranda'],
+                            ['href' => url('/#profil'),     'label' => 'Profil'],
                         ];
                         if($website->tampilkan_layanan ?? true)
-                            $footerLinks[] = ['href' => url('/#layanan'),   'label' => 'Layanan'];
-                        if($website->tampilkan_berita ?? true)
-                            $footerLinks[] = ['href' => url('/#berita'),    'label' => 'Berita'];
-                        if($website->tampilkan_galeri ?? true)
-                            $footerLinks[] = ['href' => url('/#galeri'),    'label' => 'Galeri'];
-                        $footerLinks[] = ['href' => route('pengaduan'),  'label' => 'Pengaduan'];
+                            $footerLinks[] = ['href' => url('/#layanan'), 'label' => 'Layanan'];
                         $footerLinks[] = ['href' => url('/#kontak'),     'label' => 'Kontak'];
+                        $footerLinks[] = ['href' => route('pengaduan'),  'label' => 'Pengaduan'];
                     @endphp
 
                     @foreach($footerLinks as $link)
@@ -65,11 +60,21 @@
             <div>
                 <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white/60">Layanan</h5>
                 <ul class="flex flex-col gap-2.5">
-                    @foreach(['Surat Ket. Usaha','Surat Ket. Belum Menikah','Surat Ket. Domisili','Surat Ket. Kematian','Surat Ket. Orang Yang Sama','Surat Ket. Kurang Mampu'] as $item)
-                        <li class="text-sm text-white/60">{{ $item }}</li>
-                    @endforeach
+                    @php
+                        $jenisSurats = \App\Models\JenisSurat::where('aktif', true)->orderBy('nomor_urut')->take(6)->get();
+                    @endphp
+                    @forelse($jenisSurats as $jenisSurat)
+                        <li>
+                            <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}" class="text-sm text-white/60 hover:text-white transition-colors">
+                                {{ $jenisSurat->nama }}
+                            </a>
+                        </li>
+                    @empty
+                        <li class="text-sm text-white/60">Belum ada layanan</li>
+                    @endforelse
                 </ul>
             </div>
+
 
             {{-- ── KONTAK ────────────────────────── --}}
             <div>
@@ -114,9 +119,7 @@
     <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <p class="text-center text-xs text-white/40">
-                Sistem Informasi dan Pelayanan Kelurahan Bongki (SIP Bongki)
-                &nbsp;|&nbsp;
-                {{ $website?->copyright ?? '© '.date('Y').' Kelurahan Bongki' }}
+                {{ $website?->copyright ?? '© '.date('Y').' Kelurahan Bongki. All rights reserved.' }}
             </p>
         </div>
     </div>

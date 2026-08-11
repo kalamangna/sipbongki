@@ -1,120 +1,120 @@
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-    <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
-        <i class="bi bi-person-vcard text-primary fs-4 mr-2"></i>
+ <i class="fa-solid fa-user-vcard text-primary mr-2"></i>
 
-        <div>
+ <div>
 
-            <h5 class="mb-0 fw-semibold">
-                Data Pemohon
-            </h5>
+ <h5 class="mb-0 font-semibold">
+ Data Pemohon
+ </h5>
 
-            <small class="text-slate-500">
-                Informasi identitas pemohon surat
-            </small>
+ <small class="text-slate-500">
+ Informasi identitas pemohon surat
+ </small>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
-    <div class="p-6">
+ <div class="p-6">
 
-        @php
-        $pemohon = $permohonanSurat->penduduk;
-        $dataSurat = $permohonanSurat->data_surat ?? [];
-    @endphp
+ @php
+ $pemohon = $permohonanSurat->penduduk;
+ $dataSurat = $permohonanSurat->data_surat ?? [];
+ @endphp
 
-    <div class="flex flex-wrap -mx-3 gy-3">
+ <div class="flex flex-wrap -mx-3 gy-3">
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Nama Lengkap
-                </small>
+ <small class="text-slate-500 block">
+ Nama Lengkap
+ </small>
 
-                <div class="fw-semibold fs-6">
-                    {{ optional($pemohon)->nama_lengkap ?? data_get($dataSurat, 'nama_lengkap') ?? '-' }}
-                </div>
+ <div class="font-semibold ">
+ {{ optional($pemohon)->nama_lengkap ?? data_get($dataSurat, 'nama_lengkap') ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    NIK
-                </small>
+ <small class="text-slate-500 block">
+ NIK
+ </small>
 
-                <div class="fw-semibold">
-                    {{ optional($pemohon)->nik ?? data_get($dataSurat, 'nik') ?? '-' }}
-                </div>
+ <div class="font-semibold">
+ {{ optional($pemohon)->nik ?? data_get($dataSurat, 'nik') ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Nomor KK
-                </small>
+ <small class="text-slate-500 block">
+ Nomor KK
+ </small>
 
-                <div class="fw-semibold">
-                    {{ optional($pemohon)->no_kk ?? '-' }}
-                </div>
+ <div class="font-semibold">
+ {{ optional($pemohon)->no_kk ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Jenis Kelamin
-                </small>
+ <small class="text-slate-500 block">
+ Jenis Kelamin
+ </small>
 
-                <div>
-                    @gender(optional($pemohon)->jenis_kelamin ?? data_get($dataSurat, 'jenis_kelamin'))
-                </div>
+ <div>
+ @gender(optional($pemohon)->jenis_kelamin ?? data_get($dataSurat, 'jenis_kelamin'))
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Tempat Lahir
-                </small>
+ <small class="text-slate-500 block">
+ Tempat Lahir
+ </small>
 
-                <div>
-                    {{ optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir') ?? '-' }}
-                </div>
+ <div>
+ {{ optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir') ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Tanggal Lahir
-                </small>
+ <small class="text-slate-500 block">
+ Tanggal Lahir
+ </small>
 
-                <div>
-                    {{ optional($pemohon)->tanggal_lahir?->translatedFormat('d F Y') ?? data_get($dataSurat, 'tanggal_lahir') ?? '-' }}
-                </div>
+ <div>
+ {{ optional($pemohon)->tanggal_lahir?->translatedFormat('d F Y') ?? data_get($dataSurat, 'tanggal_lahir') ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full px-3">
+ <div class="w-full px-3">
 
-                <small class="text-slate-500 d-block">
-                    Alamat
-                </small>
+ <small class="text-slate-500 block">
+ Alamat
+ </small>
 
-                <div class="border rounded-3 p-3 bg-light">
+ <div class="border rounded-3 p-3 bg-light">
 
-                    {{ optional($pemohon)->alamat ?? data_get($dataSurat, 'alamat') ?? '-' }}
+ {{ optional($pemohon)->alamat ?? data_get($dataSurat, 'alamat') ?? '-' }}
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>

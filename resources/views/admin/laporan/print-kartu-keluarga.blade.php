@@ -9,11 +9,11 @@ JUDUL LAPORAN
 
 <div class="judul-surat">
 
-    <h3>
-        <strong>
-            LAPORAN DATA KARTU KELUARGA
-        </strong>
-    </h3>
+ <h3>
+ <strong>
+ LAPORAN DATA KARTU KELUARGA
+ </strong>
+ </h3>
 
 </div>
 
@@ -29,36 +29,36 @@ TABEL DATA KARTU KELUARGA
 <table style="width:100%;border-collapse:collapse;">
 
 
-<thead>
+<thead class="px-4 py-3 font-medium text-slate-700">
 
 <tr>
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 No.
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Nomor KK
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Kepala Keluarga
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Jumlah Anggota
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Lingkungan
 </th>
 
 
-<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;">
+<th style="text-align:center; vertical-align:middle; border:1px solid #000; padding:6px;" class="px-4 py-3 font-medium text-slate-700">
 Alamat
 </th>
 
@@ -78,7 +78,7 @@ Alamat
 <tr>
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $loop->iteration }}
 
@@ -86,7 +86,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $kk->no_kk }}
 
@@ -94,7 +94,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ optional($kk->kepalaKeluarga)->nama_lengkap ?? '-' }}
 
@@ -102,7 +102,7 @@ Alamat
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $kk->anggota_count ?? 0 }}
 
@@ -112,7 +112,7 @@ Orang
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ optional($kk->lingkungan)->nama ?? '-' }}
 
@@ -120,7 +120,7 @@ Orang
 
 
 
-<td style="border:1px solid #000;padding:6px;text-align:center;">
+<td style="border:1px solid #000;padding:6px;text-align:center;" class="px-4 py-3 border-b border-slate-100">
 
 {{ $kk->alamat ?? '-' }}
 
@@ -156,7 +156,7 @@ TANDA TANGAN
 
 {{-- KIRI --}}
 
-<td style="width:50%; text-align:left; padding-left:18px; vertical-align:top;">
+<td style="width:50%; text-align:left; padding-left:18px; vertical-align:top;" class="px-4 py-3 border-b border-slate-100">
 
 
 Mengetahui :
@@ -190,7 +190,7 @@ NIP. 19760822 200804 1 001
 
 {{-- KANAN --}}
 
-<td style="width:50%; text-align:left; padding-left:120px; vertical-align:top;">
+<td style="width:50%; text-align:left; padding-left:120px; vertical-align:top;" class="px-4 py-3 border-b border-slate-100">
 
 
 <p style="margin:0;">

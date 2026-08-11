@@ -8,9 +8,9 @@
 title="Edit Lingkungan"
 subtitle="Memperbarui data lingkungan">
 
-<a href="{{ route('admin.lingkungan.show', $lingkungan) }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+<a href="{{ route('admin.lingkungan.show', $lingkungan) }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-<i class="bi bi-arrow-left"></i>
+<i class="fa-solid fa-arrow-left"></i>
 
 Kembali
 
@@ -23,21 +23,21 @@ Kembali
 <x-ui.card>
 
 <form
-    action="{{ route('admin.lingkungan.update', $lingkungan) }}"
-    method="POST">
+ action="{{ route('admin.lingkungan.update', $lingkungan) }}"
+ method="POST">
 
-    @csrf
-    @method('PUT')
+ @csrf
+ @method('PUT')
 
-    @include('admin.referensi.lingkungan.form')
+ @include('admin.referensi.lingkungan.form')
 
-    <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-        <i class="bi bi-save"></i>
+ <i class="fa-solid fa-save"></i>
 
-        Update
+ Update
 
-    </button>
+ </button>
 
 </form>
 

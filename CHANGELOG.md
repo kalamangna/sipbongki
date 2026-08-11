@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **UI/UX (Admin Dashboard)**: Merombak tata letak Dasbor Admin menjadi gaya premium Tailwind v4 dengan bayangan halus, panel melengkung besar, dan jarak putih (whitespace) yang lebih bersih.
+- **UI/UX (Navbar)**: Menyederhanakan teks Navbar admin agar tidak terlalu ramai dan terlihat lebih profesional.
+- **UI/UX (Paginasi)**: Merombak komponen paginasi bawaan Tailwind Laravel (`vendor/pagination`) agar selaras dengan tema UI baru serta menerjemahkan label bahasa Inggris ("Previous/Next") ke dalam bahasa Indonesia ("Sebelumnya/Selanjutnya").
+- **UI/UX (Kependudukan)**: Merombak total seluruh antarmuka (Index, Create, Edit, Show) pada modul **Penduduk**, **Kartu Keluarga**, dan **Perangkat Kelurahan** menjadi form bertata letak Grid responsif yang bersih, tombol aksi sejajar di kanan, dan elemen visual modern.
+- **UI/UX**: Menambahkan teks bayangan panduan (*placeholder*) yang informatif pada setiap kotak isian di form Penduduk, KK, dan Perangkat.
 - **UI/UX**: Mengganti font bawaan dari "Plus Jakarta Sans" menjadi "Inter" untuk seluruh antarmuka (publik & admin).
 - **UI/UX**: Menyederhanakan tampilan halaman beranda dengan menghapus teks deskripsi paragraf yang berlebihan di bagian Hero, Alur Pelayanan, dan setiap judul section.
 - **Icons**: Migrasi penuh dari Heroicons ke Font Awesome 6 di seluruh aplikasi (Navbar, Sidebar, Public Layout, dll).

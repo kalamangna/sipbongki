@@ -3,55 +3,50 @@
 @section('title', 'Edit Penduduk')
 
 @section('content')
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="flex justify-between items-center mb-6">
+    {{-- Header Section --}}
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            
-            <p class="text-slate-500 mb-0">
-                Update data penduduk.
-            </p>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Penduduk</h2>
+            <p class="text-sm text-slate-500 mt-1">Perbarui informasi kependudukan atas nama <span class="font-semibold text-slate-700">{{ $penduduk->nama_lengkap }}</span>.</p>
         </div>
-
-        <a href="{{ route('admin.penduduk.show', $penduduk) }}"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
-            <i class="bi bi-arrow-left"></i>
-            Kembali
+        <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+            <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
         </a>
     </div>
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
-        <div class="p-6">
+    {{-- Main Form Card --}}
+    <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+        <form action="{{ route('admin.penduduk.update', $penduduk) }}" method="POST" class="p-6 md:p-8">
+            @csrf
+            @method('PUT')
+            
             @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Error Validasi</strong>
-
-        <ul class="mb-0 mt-2">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-            <form
-                action="{{ route('admin.penduduk.update', $penduduk) }}"
-                method="POST">
-
-                @csrf
-                @method('PUT')
-
-                @include('admin.kependudukan.penduduk.form')
-
-                <div class="mt-3">
-                    <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-                        <i class="bi bi-save"></i>
-                        Update
-                    </button>
+                <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">
+                    <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
+                    <div>
+                        <h4 class="text-sm font-bold text-red-800">Mohon periksa kembali input Anda:</h4>
+                        <ul class="text-sm text-red-600 mt-1 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
+            @endif
 
-            </form>
+            @include('admin.kependudukan.penduduk.form')
 
-        </div>
+            <div class="mt-8 pt-6 border-t border-slate-100 flex justify-end gap-3">
+                <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm">
+                    Batal
+                </a>
+                <button type="submit" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:-translate-y-0.5 shadow-primary-500/20">
+                    <i class="fa-solid fa-save"></i> Perbarui Data
+                </button>
+            </div>
+        </form>
     </div>
 
 </div>

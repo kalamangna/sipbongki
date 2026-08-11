@@ -7,45 +7,45 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
-                Tambah Agenda
-            </h3>
+ <h3 class="font-bold mb-1">
+ Tambah Agenda
+ </h3>
 
 
-            <p class="text-slate-500 mb-0">
-                Tambahkan jadwal kegiatan Kelurahan Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Tambahkan jadwal kegiatan Kelurahan Bongki.
+ </p>
 
 
-        </div>
+ </div>
 
 
 
 
 
-        <a href="{{ route('admin.website.agenda.index') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-outline-secondary">
+ <a href="{{ route('admin.website.agenda.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
 
 
-            <i class="bi bi-arrow-left mr-2"></i>
+ <i class="fa-solid fa-arrow-left mr-2"></i>
 
-            Kembali
+ Kembali
 
 
-        </a>
+ </a>
 
 
-    </div>
+ </div>
 
 
 
@@ -53,34 +53,34 @@
 
 
 
-    {{-- VALIDATION ERROR --}}
+ {{-- VALIDATION ERROR --}}
 
-    @if($errors->any())
+ @if($errors->any())
 
-        <div class="alert alert-danger">
+ <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
 
 
-            <strong>
-                Terjadi kesalahan:
-            </strong>
+ <strong>
+ Terjadi kesalahan:
+ </strong>
 
 
-            <ul class="mb-0 mt-2">
+ <ul class="mb-0 mt-2">
 
-                @foreach($errors->all() as $error)
+ @foreach($errors->all() as $error)
 
-                    <li>
-                        {{ $error }}
-                    </li>
+ <li>
+ {{ $error }}
+ </li>
 
-                @endforeach
+ @endforeach
 
-            </ul>
+ </ul>
 
 
-        </div>
+ </div>
 
-    @endif
+ @endif
 
 
 
@@ -88,46 +88,46 @@
 
 
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-        <div class="p-6">
+ <div class="p-6">
 
 
 
-            <form action="{{ route('admin.website.agenda.store') }}"
-                  method="POST">
+ <form action="{{ route('admin.website.agenda.store') }}"
+ method="POST">
 
 
-                @csrf
+ @csrf
 
 
 
 
 
 
-                {{-- JUDUL --}}
+ {{-- JUDUL --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Judul Agenda
+ Judul Agenda
 
-                    </label>
+ </label>
 
 
 
-                    <input type="text"
-                           name="judul"
-                           class="form-control"
-                           value="{{ old('judul') }}"
-                           placeholder="Contoh: Musyawarah Kelurahan">
+ <input type="text"
+ name="judul"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('judul') }}"
+ placeholder="Contoh: Musyawarah Kelurahan">
 
 
 
-                </div>
+ </div>
 
 
 
@@ -137,28 +137,28 @@
 
 
 
-                {{-- DESKRIPSI --}}
+ {{-- DESKRIPSI --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Deskripsi Kegiatan
+ Deskripsi Kegiatan
 
-                    </label>
+ </label>
 
 
 
-                    <textarea
-                        name="deskripsi"
-                        rows="5"
-                        class="form-control"
-                        placeholder="Jelaskan kegiatan agenda">{{ old('deskripsi') }}</textarea>
+ <textarea
+ name="deskripsi"
+ rows="5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ placeholder="Jelaskan kegiatan agenda">{{ old('deskripsi') }}</textarea>
 
 
 
-                </div>
+ </div>
 
 
 
@@ -168,31 +168,31 @@
 
 
 
-                <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
 
 
-                    {{-- TANGGAL --}}
+ {{-- TANGGAL --}}
 
-                    <div class="w-full md:w-1/2 px-3 mb-4">
+ <div class="w-full md:w-1/2 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Tanggal
+ Tanggal
 
-                        </label>
+ </label>
 
 
 
-                        <input type="date"
-                               name="tanggal"
-                               class="form-control"
-                               value="{{ old('tanggal') }}">
+ <input type="date"
+ name="tanggal"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('tanggal') }}">
 
 
 
-                    </div>
+ </div>
 
 
 
@@ -201,31 +201,31 @@
 
 
 
-                    {{-- WAKTU --}}
+ {{-- WAKTU --}}
 
-                    <div class="w-full md:w-1/2 px-3 mb-4">
+ <div class="w-full md:w-1/2 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Waktu
+ Waktu
 
-                        </label>
+ </label>
 
 
 
-                        <input type="time"
-                               name="waktu"
-                               class="form-control"
-                               value="{{ old('waktu') }}">
+ <input type="time"
+ name="waktu"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('waktu') }}">
 
 
 
-                    </div>
+ </div>
 
 
 
-                </div>
+ </div>
 
 
 
@@ -235,28 +235,28 @@
 
 
 
-                {{-- TEMPAT --}}
+ {{-- TEMPAT --}}
 
-                <div class="mb-4">
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Tempat Kegiatan
+ Lokasi Kegiatan
 
-                    </label>
+ </label>
 
 
 
-                    <input type="text"
-                           name="lokasi"
-                           class="form-control"
-                           value="{{ old('tempat') }}"
-                           placeholder="Contoh: Aula Kelurahan Bongki">
+ <input type="text"
+ name="lokasi"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('lokasi') }}"
+ placeholder="Contoh: Aula Kelurahan Bongki">
 
 
 
-                </div>
+ </div>
 
 
 
@@ -266,48 +266,48 @@
 
 
 
-                {{-- STATUS --}}
+ {{-- STATUS --}}
 
-                <div class="mb-6">
+ <div class="mb-6">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Status Publikasi
+ Status Publikasi
 
-                    </label>
+ </label>
 
 
 
-                    <select name="status"
-                            class="form-select">
+ <select name="status"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 
-                        <option value="aktif"
-                            {{ old('status') == 'aktif' ? 'selected' : '' }}>
+ <option value="aktif"
+ {{ old('status') == 'aktif' ? 'selected' : '' }}>
 
-                            Aktif
+ Aktif
 
-                        </option>
+ </option>
 
 
 
 
-                        <option value="nonaktif"
-                            {{ old('status') == 'nonaktif' ? 'selected' : '' }}>
+ <option value="nonaktif"
+ {{ old('status') == 'nonaktif' ? 'selected' : '' }}>
 
-                            Nonaktif
+ Nonaktif
 
-                        </option>
+ </option>
 
 
 
-                    </select>
+ </select>
 
 
 
-                </div>
+ </div>
 
 
 
@@ -317,27 +317,27 @@
 
 
 
-                <button type="submit"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-                    <i class="bi bi-save mr-2"></i>
+ <i class="fa-solid fa-save mr-2"></i>
 
-                    Simpan Agenda
+ Simpan Agenda
 
 
-                </button>
+ </button>
 
 
 
-            </form>
+ </form>
 
 
 
-        </div>
+ </div>
 
 
-    </div>
+ </div>
 
 
 

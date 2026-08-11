@@ -1,135 +1,135 @@
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-    <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
-        <i class="bi bi-envelope-paper text-primary fs-4 mr-2"></i>
+ <i class="fa-solid fa-file-lines text-primary mr-2"></i>
 
-        <div>
+ <div>
 
-            <h5 class="mb-0 fw-semibold">
-                Informasi Permohonan
-            </h5>
+ <h5 class="mb-0 font-semibold">
+ Informasi Permohonan
+ </h5>
 
-            <small class="text-slate-500">
-                Informasi administrasi permohonan surat
-            </small>
+ <small class="text-slate-500">
+ Informasi administrasi permohonan surat
+ </small>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
-    <div class="p-6">
+ <div class="p-6">
 
-        <div class="flex flex-wrap -mx-3 gy-4">
+ <div class="flex flex-wrap -mx-3 gy-4">
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Nomor Permohonan
-                </small>
+ <small class="text-slate-500 block">
+ Nomor Permohonan
+ </small>
 
-                <div class="fw-semibold fs-6">
-                    {{ $permohonanSurat->nomor_permohonan }}
-                </div>
+ <div class="font-semibold ">
+ {{ $permohonanSurat->nomor_permohonan }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Nomor Surat
-                </small>
+ <small class="text-slate-500 block">
+ Nomor Surat
+ </small>
 
-                <div class="fw-semibold">
+ <div class="font-semibold">
 
-                    @if($permohonanSurat->nomor_surat)
+ @if($permohonanSurat->nomor_surat)
 
-                        {{ $permohonanSurat->nomor_surat }}
+ {{ $permohonanSurat->nomor_surat }}
 
-                    @else
+ @else
 
-                        <span class="text-slate-500">
-                            Belum diterbitkan
-                        </span>
+ <span class="text-slate-500">
+ Belum diterbitkan
+ </span>
 
-                    @endif
+ @endif
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Jenis Surat
-                </small>
+ <small class="text-slate-500 block">
+ Jenis Surat
+ </small>
 
-                <div>
-                    {{ $permohonanSurat->jenisSurat->nama }}
-                </div>
+ <div>
+ {{ optional($permohonanSurat->jenisSurat)->nama ?? '-' }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Tanggal Permohonan
-                </small>
+ <small class="text-slate-500 block">
+ Tanggal Permohonan
+ </small>
 
-                <div>
-                    {{ $permohonanSurat->tanggal_permohonan->translatedFormat('d F Y') }}
-                </div>
+ <div>
+ {{ $permohonanSurat->tanggal_permohonan->translatedFormat('d F Y') }}
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Pejabat Penandatangan
-                </small>
+ <small class="text-slate-500 block">
+ Pejabat Penandatangan
+ </small>
 
-                <div>
+ <div>
 
-                    @if($permohonanSurat->penandatangan)
+ @if($permohonanSurat->penandatangan)
 
-                        <strong>
-                            {{ $permohonanSurat->penandatangan->nama_lengkap }}
-                        </strong>
+ <strong>
+ {{ $permohonanSurat->penandatangan->nama_lengkap }}
+ </strong>
 
-                        <br>
+ <br>
 
-                        <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                            {{ $permohonanSurat->penandatangan->jabatan->nama }}
+ {{ $permohonanSurat->penandatangan->jabatan->nama }}
 
-                        </small>
+ </small>
 
-                    @else
+ @else
 
-                        <span class="text-danger">
-                            Belum dipilih
-                        </span>
+ <span class="text-danger">
+ Belum dipilih
+ </span>
 
-                    @endif
+ @endif
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-            <div class="w-full md:w-1/2 px-3">
+ <div class="w-full md:w-1/2 px-3">
 
-                <small class="text-slate-500 d-block">
-                    Status Permohonan
-                </small>
+ <small class="text-slate-500 block">
+ Status Permohonan
+ </small>
 
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-3 py-2 bg-{{ $permohonanSurat->status_badge_class }}">
-                    {{ strtoupper($permohonanSurat->status) }}
-                </span>
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-3 py-2 bg-{{ $permohonanSurat->status_badge_class }}">
+ {{ strtoupper($permohonanSurat->status) }}
+ </span>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>

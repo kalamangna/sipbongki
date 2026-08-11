@@ -236,11 +236,11 @@ CREATE TABLE `jenis_surats` (
 
 INSERT INTO `jenis_surats` (`id`, `kode`, `nama`, `kode_surat`, `kode_nomor`, `template_view`, `deskripsi`, `nomor_urut`, `icon`, `persyaratan`, `aktif`, `created_at`, `updated_at`) VALUES
 (1, 'KEMATIAN', 'Surat Keterangan Kematian', NULL, NULL, NULL, 'Persyaratan : KTP pelapor, KK almarhum, dan surat keterangan kematian dari rumah sakit atau pihak berwenang', 0, NULL, NULL, 1, '2026-07-11 04:11:15', '2026-07-27 04:32:03'),
-(3, 'DOMISILI', 'Surat Keterangan Domisili', NULL, NULL, 'surat.templates.keterangan-domisili', 'Persyaratan : KTP, KK, dan surat pengantar RT/RW/Kepling', 10, 'bi-house', 'Fotokopi KTP\nFotokopi KK', 1, '2026-07-11 04:59:29', '2026-07-27 04:30:39'),
+(3, 'DOMISILI', 'Surat Keterangan Domisili', NULL, NULL, 'surat.templates.keterangan-domisili', 'Persyaratan : KTP, KK, dan surat pengantar RT/RW/Kepling', 10, 'fa-solid fa-house', 'Fotokopi KTP\nFotokopi KK', 1, '2026-07-11 04:59:29', '2026-07-27 04:30:39'),
 (5, 'SKTM', 'Surat Keterangan Tidak Mampu', NULL, NULL, 'surat.templates.surat-keterangan-tidak-mampu', 'Persyaratan : KTP, KK, dan surat pengantar RT/RW/Kepling atau dokumen pendukung sesuai keperluan', 0, NULL, NULL, 1, '2026-07-20 07:53:04', '2026-07-27 04:31:28'),
 (6, 'SKBM', 'Surat Keterangan Belum Menikah', NULL, NULL, 'surat.templates.surat-keterangan-belum-menikah', 'Persyaratan : KTP, KK, dan surat pengantar RT/RW/Kepling', 0, NULL, NULL, 1, '2026-07-20 08:18:21', '2026-07-27 04:29:04'),
 (7, 'USAHA', 'Keterangan Usaha', NULL, NULL, NULL, 'Persyaratan : KTP, KK, dan surat pengantar RT/RW /Kepling', 0, NULL, NULL, 1, '2026-07-21 04:00:28', '2026-07-27 04:28:11'),
-(8, 'ORANG-SAMA', 'Surat Keterangan Orang Yang Sama', NULL, '145', 'surat.templates.orang-sama', 'Surat keterangan orang yang sama.', 6, 'bi-person-check', NULL, 1, '2026-07-29 06:25:06', '2026-07-29 06:25:06');
+(8, 'ORANG-SAMA', 'Surat Keterangan Orang Yang Sama', NULL, '145', 'surat.templates.orang-sama', 'Surat keterangan orang yang sama.', 6, 'fa-solid fa-user-check', NULL, 1, '2026-07-29 06:25:06', '2026-07-29 06:25:06');
 
 -- --------------------------------------------------------
 

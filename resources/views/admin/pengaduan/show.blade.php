@@ -4,360 +4,360 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    {{-- Header --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- Header --}}
+ <div class="flex justify-between items-center mb-6">
 
-        <div>
+ <div>
 
-            <h4 class="mb-1 complaint-detail-page-title">
-                Detail Pengaduan
-            </h4>
+ <h4 class="mb-1 complaint-detail-page-title">
+ Detail Pengaduan
+ </h4>
 
-            <p class="text-slate-500 mb-0">
-                Informasi lengkap laporan masyarakat.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Informasi lengkap laporan masyarakat.
+ </p>
 
-        </div>
+ </div>
 
-        <a href="{{ route('admin.pengaduan.index') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a href="{{ route('admin.pengaduan.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-            <i class="bi bi-arrow-left"></i>
-            Kembali
+ <i class="fa-solid fa-arrow-left"></i>
+ Kembali
 
-        </a>
+ </a>
 
-    </div>
+ </div>
 
-    <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
-        {{-- Informasi Pengaduan --}}
-        <div class="w-full lg:w-2/3 px-3">
+ {{-- Informasi Pengaduan --}}
+ <div class="w-full lg:w-2/3 px-3">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-                <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
 
-                    <h5 class="mb-0 complaint-detail-card-title">
-                        Informasi Pengaduan
-                    </h5>
+ <h5 class="mb-0 complaint-detail-card-title">
+ Informasi Pengaduan
+ </h5>
 
-                </div>
+ </div>
 
-                <div class="p-6">
+ <div class="p-6">
 
-                    <table class="w-full text-left border-collapse text-sm table-borderless complaint-detail-table">
+ <table class="w-full text-sm text-left text-slate-600">
 
-                        <tr>
-                            <th width="220">Kode Pengaduan</th>
-                            <td>{{ $pengaduan->kode }}</td>
-                        </tr>
+ <tr>
+ <th width="220" class="px-4 py-3 font-medium text-slate-700">Kode Pengaduan</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->kode }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Nama Pelapor</th>
-                            <td>{{ $pengaduan->nama }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Nama Pelapor</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->nama }}</td>
+ </tr>
 
-                        <tr>
-                            <th>NIK Pelapor</th>
-                            <td>{{ $pengaduan->nik_pelapor ?? '-' }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">NIK Pelapor</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->nik_pelapor ?? '-' }}</td>
+ </tr>
 
-                        <tr>
-                            <th>No. WhatsApp</th>
-                            <td>{{ $pengaduan->telepon }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">No. WhatsApp</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->telepon }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Alamat</th>
-                            <td>{{ $pengaduan->alamat }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Alamat</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->alamat }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Catatan Petugas</th>
-                            <td>{{ $pengaduan->catatan ?? '-' }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Catatan Petugas</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->catatan ?? '-' }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Kategori</th>
-                            <td>{{ $pengaduan->kategori }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Kategori</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->kategori }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Lokasi Kejadian</th>
-                            <td>{{ $pengaduan->lokasi }}</td>
-                        </tr>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Lokasi Kejadian</th>
+ <td class="px-4 py-3 border-b border-slate-100">{{ $pengaduan->lokasi }}</td>
+ </tr>
 
-                        <tr>
-                            <th>Tanggal Laporan</th>
-                            <td>
+ <tr>
+ <th class="px-4 py-3 font-medium text-slate-700">Tanggal Laporan</th>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $pengaduan->created_at->timezone('Asia/Makassar')->format('d F Y H:i') }} WITA
+ {{ $pengaduan->created_at->timezone('Asia/Makassar')->format('d F Y H:i') }} WITA
 
-                                <br>
+ <br>
 
-                                <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                                    {{ $pengaduan->created_at->format('H:i') }} WITA
+ {{ $pengaduan->created_at->format('H:i') }} WITA
 
-                                </small>
+ </small>
 
-                            </td>
-                        </tr>
+ </td>
+ </tr>
 
-                    </table>
+ </table>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-            {{-- Uraian --}}
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ {{-- Uraian --}}
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-                <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
 
-                    <h5 class="mb-0 complaint-detail-card-title">
+ <h5 class="mb-0 complaint-detail-card-title">
 
-                        Uraian Pengaduan
+ Uraian Pengaduan
 
-                    </h5>
+ </h5>
 
-                </div>
+ </div>
 
-                <div class="p-6">
+ <div class="p-6">
 
-                    {!! nl2br(e($pengaduan->uraian)) !!}
+ {!! nl2br(e($pengaduan->uraian)) !!}
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-        {{-- Sidebar --}}
-        <div class="w-full lg:w-1/3 px-3">
+ {{-- Sidebar --}}
+ <div class="w-full lg:w-1/3 px-3">
 
-            {{-- Foto --}}
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ {{-- Foto --}}
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-                <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
 
-                    <h5 class="mb-0 complaint-detail-card-title">
+ <h5 class="mb-0 complaint-detail-card-title">
 
-                        Foto Bukti
+ Foto Bukti
 
-                    </h5>
+ </h5>
 
-                </div>
+ </div>
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    @if($pengaduan->foto)
+ @if($pengaduan->foto)
 
-                        <img
-                            src="{{ asset('storage/'.$pengaduan->foto) }}"
-                            class="img-fluid rounded shadow-sm">
+ <img
+ src="{{ asset('storage/'.$pengaduan->foto) }}"
+ class="img-fluid rounded shadow-sm">
 
-                    @else
+ @else
 
-                        <div class="text-slate-500 py-8">
+ <div class="text-slate-500 py-8">
 
-                            <i class="bi bi-image fs-1 d-block mb-4"></i>
+ <i class="fa-solid fa-image block mb-4"></i>
 
-                            Tidak ada foto.
+ Tidak ada foto.
 
-                        </div>
+ </div>
 
-                    @endif
+ @endif
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-            {{-- Aksi Penanganan --}}
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ {{-- Aksi Penanganan --}}
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-                <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header complaint-detail-action-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header complaint-detail-action-header">
 
-                    <h5 class="mb-0 complaint-detail-card-title">
+ <h5 class="mb-0 complaint-detail-card-title">
 
-                        Aksi Pengaduan
+ Aksi Pengaduan
 
-                    </h5>
+ </h5>
 
-                </div>
+ </div>
 
-                <div class="p-6">
+ <div class="p-6">
 
-                    @if($pengaduan->status == 'Baru')
+ @if($pengaduan->status == 'Baru')
 
-                        <div class="d-grid gap-3 mb-6">
+ <div class="d-grid gap-3 mb-6">
 
-                            <form
-                                action="{{ route('admin.pengaduan.update',$pengaduan) }}"
-                                method="POST">
+ <form
+ action="{{ route('admin.pengaduan.update',$pengaduan) }}"
+ method="POST">
 
-                                @csrf
-                                @method('PATCH')
+ @csrf
+ @method('PATCH')
 
-                                <input type="hidden" name="status" value="Diproses">
+ <input type="hidden" name="status" value="Diproses">
 
-                                <button
-                                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm btn-lg w-100"
-                                    onclick="return confirm('Proses pengaduan ini?')">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm px-5 py-3 text-base w-100"
+ onclick="return confirm('Proses pengaduan ini?')">
 
-                                    <i class="bi bi-play-circle mr-2"></i>
+ <i class="fa-solid fa-play-circle mr-2"></i>
 
-                                    Proses Pengaduan
+ Proses Pengaduan
 
-                                </button>
+ </button>
 
-                            </form>
+ </form>
 
-                            <form
-                                action="{{ route('admin.pengaduan.update',$pengaduan) }}"
-                                method="POST">
+ <form
+ action="{{ route('admin.pengaduan.update',$pengaduan) }}"
+ method="POST">
 
-                                @csrf
-                                @method('PATCH')
+ @csrf
+ @method('PATCH')
 
-                                <input type="hidden" name="status" value="Selesai">
+ <input type="hidden" name="status" value="Selesai">
 
-                                <button
-                                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm btn-lg w-100"
-                                    onclick="return confirm('Tandai pengaduan ini sebagai selesai?')">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100"
+ onclick="return confirm('Tandai pengaduan ini sebagai selesai?')">
 
-                                    <i class="bi bi-check-circle mr-2"></i>
+ <i class="fa-solid fa-circle-check mr-2"></i>
 
-                                    Selesaikan Pengaduan
+ Selesaikan Pengaduan
 
-                                </button>
+ </button>
 
-                            </form>
+ </form>
 
-                        </div>
+ </div>
 
-                    @elseif($pengaduan->status == 'Diproses')
+ @elseif($pengaduan->status == 'Diproses')
 
-                        <div class="d-grid gap-3 mb-6">
+ <div class="d-grid gap-3 mb-6">
 
-                            <form
-                                action="{{ route('admin.pengaduan.update',$pengaduan) }}"
-                                method="POST">
+ <form
+ action="{{ route('admin.pengaduan.update',$pengaduan) }}"
+ method="POST">
 
-                                @csrf
-                                @method('PATCH')
+ @csrf
+ @method('PATCH')
 
-                                <input type="hidden" name="status" value="Selesai">
+ <input type="hidden" name="status" value="Selesai">
 
-                                <button
-                                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm btn-lg w-100"
-                                    onclick="return confirm('Selesaikan pengaduan ini?')">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100"
+ onclick="return confirm('Selesaikan pengaduan ini?')">
 
-                                    <i class="bi bi-check-circle mr-2"></i>
+ <i class="fa-solid fa-circle-check mr-2"></i>
 
-                                    Selesaikan Pengaduan
+ Selesaikan Pengaduan
 
-                                </button>
+ </button>
 
-                            </form>
+ </form>
 
-                        </div>
+ </div>
 
-                    @endif
+ @endif
 
-                    <a
-                        href="{{ route('admin.pengaduan.edit',$pengaduan) }}"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm btn-lg w-100 mb-6">
+ <a
+ href="{{ route('admin.pengaduan.edit',$pengaduan) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm px-5 py-3 text-base w-100 mb-6">
 
-                        <i class="bi bi-pencil mr-2"></i>
+ <i class="fa-solid fa-pen-to-square mr-2"></i>
 
-                        Edit Pengaduan
+ Edit Pengaduan
 
-                    </a>
+ </a>
 
-                    <form
-                        action="{{ route('admin.pengaduan.update',$pengaduan) }}"
-                        method="POST">
+ <form
+ action="{{ route('admin.pengaduan.update',$pengaduan) }}"
+ method="POST">
 
-                        @csrf
-                        @method('PUT')
+ @csrf
+ @method('PUT')
 
-                        <div class="mb-4">
+ <div class="mb-4">
 
-                            <label class="form-label">
+ <label class="form-label">
 
-                                Status
+ Status
 
-                            </label>
+ </label>
 
-                            <select
-                                name="status"
-                                class="form-select">
+ <select
+ name="status"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
-                                <option
-                                    value="Baru"
-                                    @selected($pengaduan->status=='Baru')>
+ <option
+ value="Baru"
+ @selected($pengaduan->status=='Baru')>
 
-                                    Baru
+ Baru
 
-                                </option>
+ </option>
 
-                                <option
-                                    value="Diproses"
-                                    @selected($pengaduan->status=='Diproses')>
+ <option
+ value="Diproses"
+ @selected($pengaduan->status=='Diproses')>
 
-                                    Diproses
+ Diproses
 
-                                </option>
+ </option>
 
-                                <option
-                                    value="Selesai"
-                                    @selected($pengaduan->status=='Selesai')>
+ <option
+ value="Selesai"
+ @selected($pengaduan->status=='Selesai')>
 
-                                    Selesai
+ Selesai
 
-                                </option>
+ </option>
 
-                            </select>
+ </select>
 
-                        </div>
+ </div>
 
-                        <div class="mb-4">
+ <div class="mb-4">
 
-                            <label class="form-label">
+ <label class="form-label">
 
-                                Catatan Petugas
+ Catatan Petugas
 
-                            </label>
+ </label>
 
-                            <textarea
-                                name="catatan"
-                                rows="5"
-                                class="form-control">{{ old('catatan',$pengaduan->catatan) }}</textarea>
+ <textarea
+ name="catatan"
+ rows="5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('catatan',$pengaduan->catatan) }}</textarea>
 
-                        </div>
+ </div>
 
-                        <button
-                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm btn-lg w-100">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100">
 
-                            <i class="bi bi-check-circle mr-2"></i>
+ <i class="fa-solid fa-circle-check mr-2"></i>
 
-                            Simpan Perubahan
+ Simpan Perubahan
 
-                        </button>
+ </button>
 
-                    </form>
+ </form>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>
 

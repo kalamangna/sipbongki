@@ -7,106 +7,106 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
-                Edit Agenda
-            </h3>
+ <h3 class="font-bold mb-1">
+ Edit Agenda
+ </h3>
 
-            <p class="text-slate-500 mb-0">
-                Perbarui informasi kegiatan Kelurahan Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Perbarui informasi kegiatan Kelurahan Bongki.
+ </p>
 
-        </div>
+ </div>
 
 
 
-        <a href="{{ route('admin.website.agenda.index') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a href="{{ route('admin.website.agenda.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-            <i class="bi bi-arrow-left mr-2"></i>
+ <i class="fa-solid fa-arrow-left mr-2"></i>
 
-            Kembali
+ Kembali
 
-        </a>
+ </a>
 
 
-    </div>
+ </div>
 
 
 
 
 
-    {{-- VALIDATION ERROR --}}
-    @if($errors->any())
+ {{-- VALIDATION ERROR --}}
+ @if($errors->any())
 
-        <div class="alert alert-danger">
+ <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
 
-            <ul class="mb-0">
+ <ul class="mb-0">
 
-                @foreach($errors->all() as $error)
+ @foreach($errors->all() as $error)
 
-                    <li>
-                        {{ $error }}
-                    </li>
+ <li>
+ {{ $error }}
+ </li>
 
-                @endforeach
+ @endforeach
 
-            </ul>
+ </ul>
 
-        </div>
+ </div>
 
-    @endif
+ @endif
 
 
 
 
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-        <div class="p-6">
+ <div class="p-6">
 
 
 
-            <form action="{{ route('admin.website.agenda.update',$agenda->id) }}"
-                  method="POST">
+ <form action="{{ route('admin.website.agenda.update',$agenda->id) }}"
+ method="POST">
 
 
-                @csrf
+ @csrf
 
-                @method('PUT')
+ @method('PUT')
 
 
 
 
 
-                {{-- JUDUL --}}
-                <div class="mb-4">
+ {{-- JUDUL --}}
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Judul Kegiatan
+ Judul Kegiatan
 
-                    </label>
+ </label>
 
 
-                    <input type="text"
-                           name="judul"
-                           class="form-control"
-                           value="{{ old('judul',$agenda->judul) }}"
-                           required>
+ <input type="text"
+ name="judul"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('judul',$agenda->judul) }}"
+ required>
 
 
-                </div>
+ </div>
 
 
 
@@ -114,24 +114,24 @@
 
 
 
-                {{-- DESKRIPSI --}}
-                <div class="mb-4">
+ {{-- DESKRIPSI --}}
+ <div class="mb-4">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Deskripsi
+ Deskripsi
 
-                    </label>
+ </label>
 
 
-                    <textarea
-                        name="deskripsi"
-                        rows="5"
-                        class="form-control">{{ old('deskripsi',$agenda->deskripsi) }}</textarea>
+ <textarea
+ name="deskripsi"
+ rows="5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('deskripsi',$agenda->deskripsi) }}</textarea>
 
 
-                </div>
+ </div>
 
 
 
@@ -139,78 +139,78 @@
 
 
 
-                <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
 
-                    {{-- TANGGAL --}}
-                    <div class="col-md-4 mb-4">
+ {{-- TANGGAL --}}
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Tanggal
+ Tanggal
 
-                        </label>
+ </label>
 
 
-                        <input type="date"
-                               name="tanggal"
-                               class="form-control"
-                               value="{{ old('tanggal',$agenda->tanggal?->format('Y-m-d')) }}"
-                               required>
+ <input type="date"
+ name="tanggal"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('tanggal',$agenda->tanggal?->format('Y-m-d')) }}"
+ required>
 
 
-                    </div>
+ </div>
 
 
 
 
 
-                    {{-- WAKTU --}}
-                    <div class="col-md-4 mb-4">
+ {{-- WAKTU --}}
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Waktu
+ Waktu
 
-                        </label>
+ </label>
 
 
-                        <input type="time"
-                               name="waktu"
-                               class="form-control"
-                               value="{{ old('waktu',$agenda->waktu) }}">
+ <input type="time"
+ name="waktu"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('waktu',$agenda->waktu) }}">
 
 
-                    </div>
+ </div>
 
 
 
 
 
 
-                    {{-- LOKASI --}}
-                    <div class="col-md-4 mb-4">
+ {{-- LOKASI --}}
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                        <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                            Lokasi Kegiatan
+ Lokasi Kegiatan
 
-                        </label>
+ </label>
 
 
-                        <input type="text"
-                               name="lokasi"
-                               class="form-control"
-                               value="{{ old('lokasi',$agenda->lokasi) }}">
+ <input type="text"
+ name="lokasi"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ value="{{ old('lokasi',$agenda->lokasi) }}">
 
 
-                    </div>
+ </div>
 
 
-                </div>
+ </div>
 
 
 
@@ -219,42 +219,42 @@
 
 
 
-                {{-- STATUS --}}
-                <div class="mb-6">
+ {{-- STATUS --}}
+ <div class="mb-6">
 
 
-                    <label class="form-label fw-semibold">
+ <label class="form-label font-semibold">
 
-                        Status
+ Status
 
-                    </label>
+ </label>
 
 
 
-                    <select name="status"
-                            class="form-select">
+ <select name="status"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
-                        <option value="aktif"
-                            {{ old('status',$agenda->status)=='aktif' ? 'selected':'' }}>
+ <option value="aktif"
+ {{ old('status',$agenda->status)=='aktif' ? 'selected':'' }}>
 
-                            Aktif
+ Aktif
 
-                        </option>
+ </option>
 
 
-                        <option value="nonaktif"
-                            {{ old('status',$agenda->status)=='nonaktif' ? 'selected':'' }}>
+ <option value="nonaktif"
+ {{ old('status',$agenda->status)=='nonaktif' ? 'selected':'' }}>
 
-                            Nonaktif
+ Nonaktif
 
-                        </option>
+ </option>
 
 
-                    </select>
+ </select>
 
 
-                </div>
+ </div>
 
 
 
@@ -262,43 +262,43 @@
 
 
 
-                {{-- BUTTON --}}
-                <div class="text-end">
+ {{-- BUTTON --}}
+ <div class="text-right">
 
 
-                    <a href="{{ route('admin.website.agenda.index') }}"
-                       class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm mr-2">
+ <a href="{{ route('admin.website.agenda.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm mr-2">
 
-                        Batal
+ Batal
 
-                    </a>
+ </a>
 
 
 
-                    <button type="submit"
-                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-                        <i class="bi bi-save mr-2"></i>
+ <i class="fa-solid fa-save mr-2"></i>
 
-                        Simpan Perubahan
+ Simpan Perubahan
 
 
-                    </button>
+ </button>
 
 
-                </div>
+ </div>
 
 
 
-            </form>
+ </form>
 
 
 
-        </div>
+ </div>
 
 
-    </div>
+ </div>
 
 
 

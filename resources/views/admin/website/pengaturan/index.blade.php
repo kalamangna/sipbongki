@@ -7,51 +7,39 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            <p class="text-slate-500 mb-0">
-                Kelola identitas dan informasi utama website
-            </p>
-
-
-        </div>
+ <p class="text-slate-500 mb-0">
+ Kelola identitas dan informasi utama website
+ </p>
 
 
-
-
-
-        <a href="{{ route('admin.website.pengaturan.edit') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
-
-            <i class="bi bi-pencil-square mr-2"></i>
-
-            Edit Pengaturan
-
-
-        </a>
-
-
-    </div>
+ </div>
 
 
 
 
 
+ <a href="{{ route('admin.website.pengaturan.edit') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-   
+ <i class="fa-solid fa-pen-to-square-square mr-2"></i>
+
+ Edit Pengaturan
 
 
+ </a>
 
-    <div class="flex flex-wrap -mx-3">
+
+ </div>
 
 
 
@@ -59,89 +47,101 @@
 
 
 
-        {{-- LOGO --}}
+ 
+
+
+
+ <div class="flex flex-wrap -mx-3">
+
+
+
+
+
+
+
+ {{-- LOGO --}}
 <div class="w-full lg:w-1/3 px-3">
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-        <div class="p-6 flex flex-column">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="p-6 flex flex-column">
 
-            <h5 class="font-bold text-center mb-6">
-                Logo Website
-            </h5>
+ <h5 class="font-bold text-center mb-6">
+ Logo Website
+ </h5>
 
-            <div class="flex-grow-1 flex justify-center items-center">
-                @if($setting && $setting->logo)
+ <div class="flex-grow-1 flex justify-center items-center">
+ @if($setting && $setting->logo)
 
-                    <img
-                        src="{{ asset('storage/'.$setting->logo) }}"
-                        alt="Logo Website"
-                        class="img-fluid"
-                        style="
-                            max-width:220px;
-                            max-height:220px;
-                            object-fit:contain;
-                            display:block;
-                        ">
+ <img
+ src="{{ asset('storage/'.$setting->logo) }}"
+ alt="Logo Website"
+ class="img-fluid"
+ style="
+ max-width:220px;
+ max-height:220px;
+ object-fit:contain;
+ display:block;
+ ">
 
-                @else
+ @else
 
-                    <div class="text-center text-slate-500">
-                        <i class="bi bi-image fs-1"></i>
-                        <p class="mt-2 mb-0">
-                            Logo belum tersedia
-                        </p>
-                    </div>
+ <div class="text-center text-slate-500">
+ <i class="fa-solid fa-image "></i>
+ <p class="mt-2 mb-0">
+ Logo belum tersedia
+ </p>
+ </div>
 
-                @endif
-            </div>
+ @endif
+ </div>
 
-        </div>
-    </div>
+ </div>
+ </div>
 </div>
 
 
 
-        {{-- INFORMASI WEBSITE --}}
+ {{-- INFORMASI WEBSITE --}}
 
-        <div class="w-full lg:w-2/3 px-3">
+ <div class="w-full lg:w-2/3 px-3">
 
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-                <div class="p-6">
+ <div class="p-6">
 
 
 
-                    <h5 class="font-bold mb-6">
+ <h5 class="font-bold mb-6">
 
-                        Informasi Website
+ Informasi Website
 
-                    </h5>
+ </h5>
 
 
 
 
 
 
-                    <table class="w-full text-left border-collapse text-sm table-borderless">
+ <table class="w-full text-sm text-left text-slate-600">
 
 
 
-                        <tr>
+ <tr>
 
-                            <th width="220">
-                                Nama Website
-                            </th>
+ <th width="220" class="px-4 py-3 font-medium text-slate-700">
+ Nama Website
+ </th>
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $setting->nama_website ?? '-' }}
+ {{ $setting->nama_website ?? '-' }}
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
@@ -149,21 +149,21 @@
 
 
 
-                        <tr>
+ <tr>
 
-                            <th>
-                                Nama Kelurahan
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Nama Kelurahan
+ </th>
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $setting->nama_kelurahan ?? '-' }}
+ {{ $setting->nama_kelurahan ?? '-' }}
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
@@ -171,21 +171,21 @@
 
 
 
-                        <tr>
+ <tr>
 
-                            <th>
-                                Telepon
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Telepon
+ </th>
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $setting->telepon ?? '-' }}
+ {{ $setting->telepon ?? '-' }}
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
@@ -193,21 +193,21 @@
 
 
 
-                        <tr>
+ <tr>
 
-                            <th>
-                                Email
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Email
+ </th>
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $setting->email ?? '-' }}
+ {{ $setting->email ?? '-' }}
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
@@ -215,39 +215,39 @@
 
 
 
-                        <tr>
+ <tr>
 
-                            <th>
-                                Alamat
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Alamat
+ </th>
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $setting->alamat ?? '-' }}
+ {{ $setting->alamat ?? '-' }}
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
 
 
-                    </table>
+ </table>
 
 
 
 
-                </div>
+ </div>
 
 
-            </div>
+ </div>
 
 
 
-        </div>
+ </div>
 
 
 
@@ -257,71 +257,71 @@
 
 
 
-        {{-- SOSIAL MEDIA --}}
+ {{-- SOSIAL MEDIA --}}
 
-        <div class="w-full px-3">
+ <div class="w-full px-3">
 
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-                <div class="p-6">
+ <div class="p-6">
 
 
 
-                    <h5 class="font-bold mb-6">
+ <h5 class="font-bold mb-6">
 
-                        Sosial Media
+ Sosial Media
 
-                    </h5>
+ </h5>
 
 
 
 
 
 
-                    <div class="flex flex-wrap -mx-3">
+ <div class="flex flex-wrap -mx-3">
 
 
 
-                        <div class="col-md-4 mb-4">
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                            <strong>
-                                Facebook
-                            </strong>
+ <strong>
+ Facebook
+ </strong>
 
 
-                            <p class="text-slate-500 mb-0">
+ <p class="text-slate-500 mb-0">
 
-                                {{ $setting->facebook ?? '-' }}
+ {{ $setting->facebook ?? '-' }}
 
-                            </p>
+ </p>
 
 
-                        </div>
+ </div>
 
 
 
 
 
 
-                        <div class="col-md-4 mb-4">
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                            <strong>
-                                Instagram
-                            </strong>
+ <strong>
+ Instagram
+ </strong>
 
 
-                            <p class="text-slate-500 mb-0">
+ <p class="text-slate-500 mb-0">
 
-                                {{ $setting->instagram ?? '-' }}
+ {{ $setting->instagram ?? '-' }}
 
-                            </p>
+ </p>
 
 
-                        </div>
+ </div>
 
 
 
@@ -329,38 +329,38 @@
 
 
 
-                        <div class="col-md-4 mb-4">
+ <div class="w-full md:w-1/3 px-3 mb-4">
 
 
-                            <strong>
-                                Youtube
-                            </strong>
+ <strong>
+ Youtube
+ </strong>
 
 
-                            <p class="text-slate-500 mb-0">
+ <p class="text-slate-500 mb-0">
 
-                                {{ $setting->youtube ?? '-' }}
+ {{ $setting->youtube ?? '-' }}
 
-                            </p>
+ </p>
 
 
-                        </div>
+ </div>
 
 
 
 
-                    </div>
+ </div>
 
 
 
 
-                </div>
+ </div>
 
 
-            </div>
+ </div>
 
 
-        </div>
+ </div>
 
 
 
@@ -370,47 +370,47 @@
 
 
 
-        {{-- DESKRIPSI --}}
+ {{-- DESKRIPSI --}}
 
-        <div class="w-full px-3">
+ <div class="w-full px-3">
 
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-                <div class="p-6">
+ <div class="p-6">
 
 
-                    <h5 class="font-bold mb-4">
+ <h5 class="font-bold mb-4">
 
-                        Deskripsi Website
+ Deskripsi Website
 
-                    </h5>
+ </h5>
 
 
 
-                    <p class="text-slate-500">
+ <p class="text-slate-500">
 
-                        {{ $setting->deskripsi ?? 'Belum ada deskripsi.' }}
+ {{ $setting->deskripsi ?? 'Belum ada deskripsi.' }}
 
-                    </p>
+ </p>
 
 
 
-                </div>
+ </div>
 
 
-            </div>
+ </div>
 
 
-        </div>
+ </div>
 
 
 
 
 
 
-    </div>
+ </div>
 
 
 </div>

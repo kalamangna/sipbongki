@@ -7,7 +7,7 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
 
@@ -38,7 +38,7 @@ Detail informasi halaman website.
 class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm">
 
 
-<i class="bi bi-pencil mr-2"></i>
+<i class="fa-solid fa-pen-to-square mr-2"></i>
 
 Edit
 

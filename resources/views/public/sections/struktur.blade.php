@@ -8,9 +8,9 @@
         @php $halaman = $halamanProfil['struktur-organisasi'] ?? null; @endphp
 
         {{-- Header --}}
-        <div class="section-header">
-            <span class="section-badge">Pemerintah Kelurahan Bongki</span>
-            <h2 class="section-title">Struktur Organisasi</h2>
+        <div class="text-center mb-14">
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Pemerintah Kelurahan Bongki</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Struktur Organisasi</h2>
         </div>
 
         {{-- Struktur --}}
@@ -34,7 +34,7 @@
                         <span class="flex items-center gap-3">
                             <span class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                                   :class="open ? 'bg-primary text-white' : 'bg-primary-light'">
-                                <i class="fa-solid fa-id-card"></i>
+                                <i class="fa-solid fa-id-badge"></i>
                             </span>
                             <span class="font-semibold text-sm md:text-base transition-colors duration-300"
                                   :class="open ? 'text-primary' : 'text-slate-800'">Lurah</span>

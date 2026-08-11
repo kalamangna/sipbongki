@@ -7,41 +7,41 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
 
-    {{-- HEADER --}}
-    <div class="flex justify-between items-center mb-6">
+ {{-- HEADER --}}
+ <div class="flex justify-between items-center mb-6">
 
 
-        <div>
+ <div>
 
-            
+ 
 
-            <p class="text-slate-500 mb-0">
-                Kelola informasi dan berita publik SIP Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Kelola informasi dan berita publik SIP Bongki.
+ </p>
 
 
-        </div>
+ </div>
 
 
 
 
-        <a href="{{ route('admin.website.berita.create') }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <a href="{{ route('admin.website.berita.create') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
 
-            <i class="bi bi-plus-circle mr-2"></i>
+ <i class="fa-solid fa-circle-plus mr-2"></i>
 
-            Tambah Berita
+ Tambah Berita
 
 
-        </a>
+ </a>
 
 
-    </div>
+ </div>
 
 
 
@@ -49,85 +49,85 @@
 
 
 
-    
+ 
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
 
-        <div class="p-6">
+ <div class="p-6">
 
 
 
-            <div class="overflow-x-auto w-full">
+ <div class="overflow-x-auto w-full">
 
 
-                <table class="w-full text-left border-collapse text-sm table-hover align-middle">
+ <table class="w-full text-sm text-left text-slate-500">
 
 
 
-                    <thead>
+ <thead class="px-4 py-3 font-medium text-slate-700">
 
 
-                        <tr>
+ <tr>
 
 
-                            <th width="70">
-                                No
-                            </th>
+ <th width="70" class="px-4 py-3 font-medium text-slate-700">
+ No
+ </th>
 
 
-                            <th width="120">
-                                Gambar
-                            </th>
+ <th width="120" class="px-4 py-3 font-medium text-slate-700">
+ Gambar
+ </th>
 
 
-                            <th>
-                                Judul
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Judul
+ </th>
 
 
-                            <th>
-                                Status
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Status
+ </th>
 
 
-                            <th>
-                                Tanggal
-                            </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Tanggal
+ </th>
 
 
-                            <th width="190">
-                                Aksi
-                            </th>
+ <th width="190" class="px-4 py-3 font-medium text-slate-700">
+ Aksi
+ </th>
 
 
-                        </tr>
+ </tr>
 
 
-                    </thead>
+ </thead>
 
 
 
 
 
 
-                    <tbody>
+ <tbody>
 
 
 
-                    @forelse($beritas as $index => $berita)
+ @forelse($beritas as $index => $berita)
 
 
 
-                        <tr>
+ <tr>
 
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $beritas->firstItem() + $index }}
+ {{ $beritas->firstItem() + $index }}
 
-                            </td>
+ </td>
 
 
 
@@ -135,35 +135,35 @@
 
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
 
-                                @if($berita->gambar)
+ @if($berita->gambar)
 
 
-                                    <img
-                                        src="{{ asset('storage/'.$berita->gambar) }}"
-                                        width="90"
-                                        height="60"
-                                        class="rounded object-fit-cover"
-                                        alt="{{ $berita->judul }}"
-                                    >
+ <img
+ src="{{ asset('storage/'.$berita->gambar) }}"
+ width="90"
+ height="60"
+ class="rounded object-fit-cover"
+ alt="{{ $berita->judul }}"
+ >
 
 
-                                @else
+ @else
 
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
 
-                                        Tidak ada
+ Tidak ada
 
-                                    </span>
+ </span>
 
 
-                                @endif
+ @endif
 
 
-                            </td>
+ </td>
 
 
 
@@ -172,28 +172,28 @@
 
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
 
-                                <strong>
+ <strong>
 
-                                    {{ $berita->judul }}
+ {{ $berita->judul }}
 
-                                </strong>
+ </strong>
 
 
 
-                                <br>
+ <br>
 
 
-                                <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                                    {{ Str::limit(strip_tags($berita->isi),70) }}
+ {{ Str::limit(strip_tags($berita->isi),70) }}
 
-                                </small>
+ </small>
 
 
-                            </td>
+ </td>
 
 
 
@@ -203,37 +203,37 @@
 
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
 
-                                @if($berita->status === 'publish')
+ @if($berita->status === 'publish')
 
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
 
-                                        <i class="bi bi-check-circle mr-1"></i>
+ <i class="fa-solid fa-circle-check mr-1"></i>
 
-                                        Publish
+ Publish
 
-                                    </span>
+ </span>
 
 
-                                @else
+ @else
 
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
 
-                                        <i class="bi bi-pencil mr-1"></i>
+ <i class="fa-solid fa-pen-to-square mr-1"></i>
 
-                                        Draft
+ Draft
 
-                                    </span>
+ </span>
 
 
-                                @endif
+ @endif
 
 
-                            </td>
+ </td>
 
 
 
@@ -243,17 +243,17 @@
 
 
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
 
-                                {{ 
-                                    $berita->tanggal_publish
-                                    ? $berita->tanggal_publish->format('d M Y')
-                                    : '-'
-                                }}
+ {{ 
+ $berita->tanggal_publish
+ ? $berita->tanggal_publish->format('d M Y')
+ : '-'
+ }}
 
 
-                            </td>
+ </td>
 
 
 
@@ -263,109 +263,109 @@
 
 
 
- <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-    <div class="action-buttons">
+ <div class="action-buttons">
 
-        {{-- Detail --}}
-        <a href="{{ route('admin.website.berita.show',$berita) }}"
-           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
-           title="Lihat Detail">
+ {{-- Detail --}}
+ <a href="{{ route('admin.website.berita.show',$berita) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ title="Lihat Detail">
 
-            <i class="bi bi-eye"></i>
+ <i class="fa-solid fa-eye"></i>
 
-        </a>
+ </a>
 
-        {{-- Hapus --}}
-        <form action="{{ route('admin.website.berita.destroy',$berita) }}"
-              method="POST"
-              class="d-inline m-0">
+ {{-- Hapus --}}
+ <form action="{{ route('admin.website.berita.destroy',$berita) }}"
+ method="POST"
+ class="inline m-0">
 
-            @csrf
-            @method('DELETE')
+ @csrf
+ @method('DELETE')
 
-            <button
-                type="submit"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
-                title="Hapus Berita"
-                onclick="return confirm('Yakin hapus berita ini?')">
+ <button
+ type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ title="Hapus Berita"
+ onclick="return confirm('Yakin hapus berita ini?')">
 
-                <i class="bi bi-trash"></i>
+ <i class="fa-solid fa-trash"></i>
 
-            </button>
+ </button>
 
-        </form>
+ </form>
 
-    </div>
+ </div>
 
-</td>                          
+</td> 
 
 
 
 
 
-                        </tr>
+ </tr>
 
 
 
 
-                    @empty
+ @empty
 
 
 
-                        <tr>
+ <tr>
 
 
-                            <td colspan="6"
-                                class="text-center text-slate-500 py-4">
+ <td colspan="6"
+ class=\"text-center text-slate-500 py-4 px-4 py-3 border-b border-slate-100\">
 
 
-                                <i class="bi bi-newspaper fs-3 d-block mb-2"></i>
+ <i class="fa-solid fa-newspaper block mb-2"></i>
 
-                                Belum ada berita.
+ Belum ada berita.
 
 
 
-                            </td>
+ </td>
 
 
-                        </tr>
+ </tr>
 
 
 
-                    @endforelse
+ @endforelse
 
 
 
 
-                    </tbody>
+ </tbody>
 
 
 
-                </table>
+ </table>
 
 
-            </div>
+ </div>
 
 
 
 
 
 
-            <div class="mt-3">
+ <div class="mt-3">
 
-                {{ $beritas->links() }}
+ {{ $beritas->links() }}
 
-            </div>
+ </div>
 
 
 
 
 
-        </div>
+ </div>
 
 
-    </div>
+ </div>
 
 
 

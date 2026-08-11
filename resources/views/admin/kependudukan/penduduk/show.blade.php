@@ -2,496 +2,193 @@
 
 @section('title', 'Detail Penduduk')
 
-@push('styles')
-<style>
-.penduduk-detail .fw-bold,
-.penduduk-detail .fw-semibold,
-.penduduk-detail strong,
-.penduduk-detail h3,
-.penduduk-detail h5 {
-    font-weight:600 !important;
-}
-
-.penduduk-detail .card-header h5,
-.penduduk-detail .card-body h5.fw-bold {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-}
-
-.penduduk-detail .card-header i,
-.penduduk-detail .card-body h5.fw-bold .bi {
-    font-size: 0.9rem;
-}
-
-.penduduk-detail .card-header .bi,
-.penduduk-detail .card-body h5.fw-bold .bi {
-    vertical-align: -0.15em;
-}
-
-.penduduk-detail .card-body .row > * {
-    display: block;
-}
-
-.penduduk-detail .card-body .row > * > label,
-.penduduk-detail .card-body .row > * > .form-label {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.25rem;
-    white-space: normal;
-    font-size: 0.95rem;
-    color: #212529;
-}
-
-.penduduk-detail .card-body .row > * .fw-semibold,
-.penduduk-detail .card-body .row > * .text-muted,
-.penduduk-detail .card-body .row > * .badge {
-    display: block;
-    color: #212529;
-    font-weight: 600 !important;
-    margin-bottom: 1rem;
-}
-
-.penduduk-detail .btn,
-.penduduk-detail .btn.btn-secondary,
-.penduduk-detail .btn.btn-warning,
-.penduduk-detail .btn.btn-danger {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.75rem;
-}
-
-.penduduk-detail .btn i {
-    margin-right: 0.25rem;
-    font-size: 0.85rem;
-}
-
-@media (max-width: 767.98px) {
-    .penduduk-detail .card-body .row > [class*="col-"] {
-        display: block;
-    }
-
-    .penduduk-detail .card-body label {
-        display: block;
-        width: 100%;
-        white-space: normal;
-        margin-bottom: 0.25rem;
-    }
-}
-</style>
-@endpush
-
 @section('content')
+<div class="w-full">
 
-<div class="container-fluid penduduk-detail">
-
-    {{-- ==========================================================
-        PAGE HEADER
-    ========================================================== --}}
-
-    <div class="flex justify-between items-center mb-4">
-
+    {{-- Header Section --}}
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-
-            <p class="text-slate-500 mb-0">
-                Informasi Detail Penduduk
-            </p>
-
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Penduduk</h2>
+            <p class="text-sm text-slate-500 mt-1">Informasi lengkap kependudukan atas nama <span class="font-semibold text-slate-700">{{ $penduduk->nama_lengkap }}</span></p>
         </div>
-
-        <div class="flex gap-2">
-
-            <a
-                href="{{ route('admin.penduduk.index') }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
-
-                <i class="bi bi-arrow-left"></i>
-                Kembali
-
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+                <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-
-            <a
-                href="{{ route('admin.penduduk.edit', $penduduk) }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm">
-
-                <i class="bi bi-pencil-square"></i>
-                Edit
-
+            <a href="{{ route('admin.penduduk.edit', $penduduk) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5">
+                <i class="fa-solid fa-pen-to-square"></i> Edit
             </a>
-
-            <form
-                action="{{ route('admin.penduduk.destroy', $penduduk) }}"
-                method="POST"
-                class="d-inline">
-
-                @csrf
-                @method('DELETE')
-
-                <button
-                    type="submit"
-                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm"
-                    onclick="return confirm('Yakin ingin menghapus data penduduk ini?')">
-
-                    <i class="bi bi-trash"></i>
-                    Hapus
-
+            <form action="{{ route('admin.penduduk.destroy', $penduduk) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus data penduduk ini?')">
+                @csrf @method('DELETE')
+                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20">
+                    <i class="fa-solid fa-trash"></i> Hapus
                 </button>
-
             </form>
-
         </div>
-
     </div>
 
-    {{-- ==========================================================
-        IDENTITAS
-    ========================================================== --}}
-
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-2">
-
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
-
-            <h5 class="font-bold mb-0">
-
-Identitas Penduduk :
-
-        <div class="p-6">
-
-            <div class="flex flex-wrap -mx-3">
-
-                <div class="col-md-12 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Nomor Induk Kependudukan :
-                    </label>
-
-                    <div class="fw-semibold">
-                        {{ $penduduk->nik }}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {{-- Left Column: Identitas Utama --}}
+        <div class="lg:col-span-2 space-y-6">
+            
+            {{-- Data Pribadi --}}
+            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
+                        <i class="fa-solid fa-user"></i>
                     </div>
-
+                    <h3 class="font-bold text-slate-800">Identitas Pribadi</h3>
                 </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Nama Lengkap :
-                    </label>
-
-                    <div class="fw-semibold">
-                        {{ $penduduk->nama_lengkap }}
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Jenis Kelamin :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        @gender($penduduk->jenis_kelamin)
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Tempat Lahir :
-                    </label>
-
-                    <div class="fw-semibold">
-                        {{ $penduduk->tempat_lahir }}
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Tanggal Lahir :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        {{ $penduduk->tanggal_lahir->locale('id')->translatedFormat('d F Y') }}
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Agama :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        {{ $penduduk->agama ?: '-' }}
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Status Perkawinan :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        {{ $penduduk->status_perkawinan ?: '-' }}
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Pendidikan :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        {{ $penduduk->pendidikan ?: '-' }}
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 mb-2">
-
-                    <label class="form-label text-slate-500">
-                        Pekerjaan :
-                    </label>
-
-                    <div class="fw-semibold">
-
-                        {{ $penduduk->pekerjaan ?: '-' }}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <hr class="my-4">
-
-            <div class="mb-6">
-                <div class="flex flex-wrap -mx-3">
-
-                    <div class="col-md-4 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Nomor Kartu Keluarga :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->kartuKeluarga->no_kk ?? '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Kepala Keluarga :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->kartuKeluarga->kepalaKeluarga->nama_lengkap ?? '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Hubungan Dalam Keluarga :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->hubungan_keluarga ?: '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-12 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Anggota Keluarga :
-                        </label>
-
-                        <div class="fw-semibold">
-
-                            @if($penduduk->kartuKeluarga)
-
-                                @php
-                                    $anggota = $penduduk->kartuKeluarga->penduduks
-                                        ->reject(fn ($item) => $item->id == $penduduk->id);
-                                @endphp
-
-                                @if($anggota->count())
-
-                                    <ul class="list-unstyled mb-0 ps-0">
-
-                                        @foreach($anggota as $item)
-
-                                            <li>
-                                                {{ $item->nama_lengkap }}
-                                                <small class="text-slate-500">
-                                                    ({{ $item->hubungan_keluarga }})
-                                                </small>
-                                            </li>
-
-                                        @endforeach
-
-                                    </ul>
-
-                                @else
-
-                                    <span class="text-slate-500">
-                                        Belum ada anggota keluarga.
-                                    </span>
-
-                                @endif
-
-                            @else
-
-                                -
-
-                            @endif
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <hr class="my-4">
-
-            <div class="mb-6">
-                <div class="flex flex-wrap -mx-3 justify-end">
-
-                    <div class="col-md-3 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Alamat :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->alamat ?: '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Lingkungan :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->lingkungan->nama ?? '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            RT :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->rt ?: '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            RW :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->rw ?: '-' }}
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-12 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Status Validasi Alamat
-                        </label>
-
+                <div class="p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
                         <div>
-
-                            @if($penduduk->status_validasi_alamat == 'Valid')
-
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
-                                    Valid
-                                </span>
-
-                            @else
-
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 text-dark">
-                                    Perlu Verifikasi
-                                </span>
-
-                            @endif
-
+                            <p class="text-xs font-semibold text-slate-500 mb-1">NIK</p>
+                            <p class="font-mono font-medium text-slate-900 text-base">{{ $penduduk->nik }}</p>
                         </div>
-
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Lengkap</p>
+                            <p class="font-bold text-slate-900 text-base">{{ $penduduk->nama_lengkap }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Jenis Kelamin</p>
+                            <p class="font-medium text-slate-900 text-base">@gender($penduduk->jenis_kelamin)</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Tempat, Tanggal Lahir</p>
+                            <p class="font-medium text-slate-900 text-base">
+                                {{ $penduduk->tempat_lahir }}, {{ $penduduk->tanggal_lahir ? $penduduk->tanggal_lahir->translatedFormat('d F Y') : '-' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Agama</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->agama ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Golongan Darah</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->golongan_darah ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Pendidikan</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->pendidikan ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Pekerjaan</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->pekerjaan ?? '-' }}</p>
+                        </div>
                     </div>
-
                 </div>
             </div>
 
-            <hr class="my-4">
-
-            <div class="mb-0">
-                <div class="flex flex-wrap -mx-3">
-
-                    <div class="col-md-4 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Nomor Telepon :
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->telepon ?: '-' }}
-                        </div>
-
+            {{-- Status Perkawinan & Keluarga --}}
+            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+                        <i class="fa-solid fa-people-roof"></i>
                     </div>
-
-                    <div class="col-md-4 mb-2">
-
-                        <label class="form-label text-slate-500">
-                            Email
-                        </label>
-
-                        <div class="fw-semibold">
-                            {{ $penduduk->email ?: '-' }}
+                    <h3 class="font-bold text-slate-800">Status & Keluarga</h3>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Status Perkawinan</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->status_perkawinan ?? '-' }}</p>
                         </div>
-
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Hubungan dalam Keluarga</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->hubungan_keluarga ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nomor Kartu Keluarga (KK)</p>
+                            @if($penduduk->kartuKeluarga)
+                                <a href="{{ route('admin.kartu-keluarga.show', $penduduk->kartuKeluarga) }}" class="inline-flex items-center gap-1 font-mono font-semibold text-primary-600 hover:text-primary-700 transition-colors">
+                                    {{ $penduduk->kartuKeluarga->no_kk }}
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            @else
+                                <p class="font-medium text-slate-900 text-base">-</p>
+                            @endif
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Kepala Keluarga</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->kartuKeluarga->kepalaKeluarga->nama_lengkap ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Ayah</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->nama_ayah ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Ibu</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->nama_ibu ?? '-' }}</p>
+                        </div>
                     </div>
+                </div>
+            </div>
 
+        </div>
+
+        {{-- Right Column: Alamat & Sistem --}}
+        <div class="space-y-6">
+            
+            {{-- Alamat & Lingkungan --}}
+            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800">Alamat</h3>
+                </div>
+                <div class="p-6">
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Lingkungan / Dusun</p>
+                            <p class="font-bold text-slate-900 text-base">{{ $penduduk->lingkungan->nama ?? '-' }}</p>
+                        </div>
+                        <div class="flex gap-8">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 mb-1">RT</p>
+                                <p class="font-medium text-slate-900 text-base">{{ $penduduk->rt ?? '-' }}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 mb-1">RW</p>
+                                <p class="font-medium text-slate-900 text-base">{{ $penduduk->rw ?? '-' }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Alamat Lengkap</p>
+                            <p class="font-medium text-slate-900 text-base leading-relaxed">{{ $penduduk->alamat ?? '-' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Sistem --}}
+            <div class="bg-slate-50 rounded-3xl ring-1 ring-slate-200/60 shadow-inner overflow-hidden">
+                <div class="p-6">
+                    <div class="flex flex-col gap-5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-500">Status Data</span>
+                            @if($penduduk->aktif)
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">AKTIF</span>
+                            @else
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700 tracking-wide">TIDAK AKTIF</span>
+                            @endif
+                        </div>
+                        <div class="h-px w-full bg-slate-200"></div>
+                        <div>
+                            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Dibuat Pada</p>
+                            <p class="text-sm font-medium text-slate-800">{{ $penduduk->created_at ? $penduduk->created_at->translatedFormat('d M Y, H:i') : '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Terakhir Diperbarui</p>
+                            <p class="text-sm font-medium text-slate-800">{{ $penduduk->updated_at ? $penduduk->updated_at->translatedFormat('d M Y, H:i') : '-' }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
     </div>
-
-
 </div>
-
 @endsection

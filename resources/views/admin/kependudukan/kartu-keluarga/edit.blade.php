@@ -3,74 +3,48 @@
 @section('title', 'Edit Kartu Keluarga')
 
 @section('content')
+<div class="w-full">
 
-<div class="container-fluid">
-
-    <div class="flex justify-between items-center mb-6">
+    {{-- Header Section --}}
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            
-            <p class="text-slate-500 mb-0">
-                Perbarui Data Kartu Keluarga
-            </p>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Kartu Keluarga</h2>
+            <p class="text-sm text-slate-500 mt-1">Perbarui data Kartu Keluarga dengan No. KK <span class="font-semibold text-slate-700">{{ $kartuKeluarga->no_kk }}</span>.</p>
         </div>
-
-        <a
-            href="{{ route('admin.kartu-keluarga.show', $kartuKeluarga->id) }}"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
-
-            <i class="bi bi-arrow-left"></i>
-            Kembali
+        <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+            <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
         </a>
     </div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Terdapat kesalahan:</strong>
-
-            <ul class="mb-0 mt-2">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
-        <div class="p-6">
-
-            <form
-                action="{{ route('admin.kartu-keluarga.update', $kartuKeluarga->id) }}"
-                method="POST">
-
-                @csrf
-                @method('PUT')
-
-                @include(
-                    'admin.kependudukan.kartu-keluarga.form'
-                )
-
-                <div class="mt-6">
-                    <button
-                        type="submit"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
-                        <i class="bi bi-save"></i>
-                        Perbarui
-                    </button>
-
-                    <a
-                        href="{{ route('admin.kartu-keluarga.show', $kartuKeluarga->id) }}"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm">
-
-                        Cancel
-                    </a>
+    <form action="{{ route('admin.kartu-keluarga.update', $kartuKeluarga->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        @csrf
+        @method('PUT')
+        
+        @if ($errors->any())
+            <div class="p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start shadow-sm">
+                <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
+                <div>
+                    <h4 class="text-sm font-bold text-red-800">Mohon periksa kembali input Anda:</h4>
+                    <ul class="text-sm text-red-600 mt-1 list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
+            </div>
+        @endif
 
-            </form>
+        @include('admin.kependudukan.kartu-keluarga.form')
 
+        <div class="bg-white p-6 rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] flex justify-end gap-3 items-center">
+            <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm">
+                Batal
+            </a>
+            <button type="submit" class="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:-translate-y-0.5 shadow-primary-500/20">
+                <i class="fa-solid fa-save"></i> Perbarui Data KK
+            </button>
         </div>
-    </div>
+    </form>
 
 </div>
-
 @endsection

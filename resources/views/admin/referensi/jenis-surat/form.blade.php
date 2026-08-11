@@ -2,233 +2,233 @@
 
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
-    <div class="p-6">
+ <div class="p-6">
 
-        <div class="flex flex-wrap -mx-3 g-3">
+ <div class="flex flex-wrap -mx-3 gap-4">
 
-            {{-- =========================
-                 KODE SURAT
-            ========================== --}}
-            <div class="col-md-4">
+ {{-- =========================
+ KODE SURAT
+ ========================== --}}
+ <div class="w-full md:w-1/3 px-3">
 
-                <label class="form-label">
-                    Kode Surat <span class="text-danger">*</span>
-                </label>
+ <label class="form-label">
+ Kode Surat <span class="text-danger">*</span>
+ </label>
 
-                <input
-                    type="text"
-                    name="kode"
-                    class="form-control @error('kode') is-invalid @enderror"
-                    value="{{ old('kode', $jenisSurat->kode ?? '') }}"
-                    placeholder="Contoh : SKTM">
+ <input
+ type="text"
+ name="kode"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
+ value="{{ old('kode', $jenisSurat->kode ?? '') }}"
+ placeholder="Contoh : SKTM">
 
-                @error('kode')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+ @error('kode')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
-            </div>
+ </div>
 
-            {{-- =========================
-                 KODE NOMOR
-            ========================== --}}
-            <div class="col-md-4">
+ {{-- =========================
+ KODE NOMOR
+ ========================== --}}
+ <div class="w-full md:w-1/3 px-3">
 
-                <label class="form-label">
-                    Kode Nomor Surat
-                </label>
+ <label class="form-label">
+ Kode Nomor Surat
+ </label>
 
-                <input
-                    type="text"
-                    name="kode_nomor"
-                    class="form-control @error('kode_nomor') is-invalid @enderror"
-                    value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}"
-                    placeholder="Contoh : 470">
+ <input
+ type="text"
+ name="kode_nomor"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode_nomor') is-invalid @enderror"
+ value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}"
+ placeholder="Contoh : 470">
 
-                <div class="form-text">
+ <div class="form-text">
 
-                    Digunakan pada nomor surat.
-                    Contoh:
-                    470/001/KLB/VII/2026
+ Digunakan pada nomor surat.
+ Contoh:
+ 470/001/KLB/VII/2026
 
-                </div>
+ </div>
 
-                @error('kode_nomor')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+ @error('kode_nomor')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
-            </div>
+ </div>
 
-            {{-- =========================
-                 NOMOR URUT
-            ========================== --}}
-            <div class="col-md-4">
+ {{-- =========================
+ NOMOR URUT
+ ========================== --}}
+ <div class="w-full md:w-1/3 px-3">
 
-                <label class="form-label">
-                    Nomor Urut Awal
-                </label>
+ <label class="form-label">
+ Nomor Urut Awal
+ </label>
 
-                <input
-                    type="number"
-                    min="0"
-                    name="nomor_urut"
-                    class="form-control @error('nomor_urut') is-invalid @enderror"
-                    value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}">
+ <input
+ type="number"
+ min="0"
+ name="nomor_urut"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nomor_urut') is-invalid @enderror"
+ value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}">
 
-                <div class="form-text">
+ <div class="form-text">
 
-                    Nomor terakhir yang telah digunakan.
+ Nomor terakhir yang telah digunakan.
 
-                </div>
+ </div>
 
-                @error('nomor_urut')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+ @error('nomor_urut')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
-            </div>
+ </div>
 
-            {{-- =========================
-                 NAMA SURAT
-            ========================== --}}
-            <div class="w-full px-3">
+ {{-- =========================
+ NAMA SURAT
+ ========================== --}}
+ <div class="w-full px-3">
 
-                <label class="form-label">
-                    Nama Surat <span class="text-danger">*</span>
-                </label>
+ <label class="form-label">
+ Nama Surat <span class="text-danger">*</span>
+ </label>
 
-                <input
-                    type="text"
-                    name="nama"
-                    class="form-control @error('nama') is-invalid @enderror"
-                    value="{{ old('nama', $jenisSurat->nama ?? '') }}"
-                    placeholder="Masukkan nama surat">
+ <input
+ type="text"
+ name="nama"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
+ value="{{ old('nama', $jenisSurat->nama ?? '') }}"
+ placeholder="Masukkan nama surat">
 
-                @error('nama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+ @error('nama')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
-            </div>
+ </div>
 
 {{-- =========================
-     PERSYARATAN LAYANAN
-     (Ditampilkan pada card layanan di website)
+ PERSYARATAN LAYANAN
+ (Ditampilkan pada card layanan di website)
 ========================== --}}
 <div class="w-full px-3">
 
-    <label class="form-label">
-        Persyaratan Layanan
-    </label>
+ <label class="form-label">
+ Persyaratan Layanan
+ </label>
 
-    <textarea
-        rows="4"
-        name="deskripsi"
-        class="form-control @error('deskripsi') is-invalid @enderror"
-        placeholder="Contoh: KTP, KK, dan surat pengantar RT/RW.">{{ old('deskripsi', $jenisSurat->deskripsi ?? '') }}</textarea>
+ <textarea
+ rows="4"
+ name="deskripsi"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
+ placeholder="Contoh: KTP, KK, dan surat pengantar RT/RW.">{{ old('deskripsi', $jenisSurat->deskripsi ?? '') }}</textarea>
 
-    <div class="form-text">
-        Masukkan persyaratan singkat yang akan ditampilkan pada kartu layanan di halaman utama website.
-    </div>
+ <div class="form-text">
+ Masukkan persyaratan singkat yang akan ditampilkan pada kartu layanan di halaman utama website.
+ </div>
 
-    @error('deskripsi')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+ @error('deskripsi')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
 </div>
 
-            {{-- =========================
-                 TEMPLATE VIEW
-            ========================== --}}
-            <div class="w-full px-3">
+ {{-- =========================
+ TEMPLATE VIEW
+ ========================== --}}
+ <div class="w-full px-3">
 
-                <label class="form-label">
-                    Template View
-                </label>
+ <label class="form-label">
+ Template View
+ </label>
 
-                <input
-                    type="text"
-                    name="template_view"
-                    class="form-control @error('template_view') is-invalid @enderror"
-                    value="{{ old('template_view', $jenisSurat->template_view ?? '') }}"
-                    placeholder="admin.pelayanan.surat.domisili">
+ <input
+ type="text"
+ name="template_view"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('template_view') is-invalid @enderror"
+ value="{{ old('template_view', $jenisSurat->template_view ?? '') }}"
+ placeholder="admin.pelayanan.surat.domisili">
 
-                <div class="form-text">
+ <div class="form-text">
 
-                    Gunakan nama Blade Laravel.
+ Gunakan nama Blade Laravel.
 
-                    Contoh:
+ Contoh:
 
-                    <strong>admin.pelayanan.surat.domisili</strong>
+ <strong>admin.pelayanan.surat.domisili</strong>
 
-                </div>
+ </div>
 
-                @error('template_view')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+ @error('template_view')
+ <div class="invalid-feedback">
+ {{ $message }}
+ </div>
+ @enderror
 
-            </div>
+ </div>
 
-            {{-- =========================
-                 STATUS
-            ========================== --}}
-            <div class="w-full px-3">
+ {{-- =========================
+ STATUS
+ ========================== --}}
+ <div class="w-full px-3">
 
-                <div class="form-check">
+ <div class="form-check">
 
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="aktif"
-                        name="aktif"
-                        value="1"
-                        {{ old('aktif', $jenisSurat->aktif ?? true) ? 'checked' : '' }}>
+ <input
+ class="form-check-input"
+ type="checkbox"
+ id="aktif"
+ name="aktif"
+ value="1"
+ {{ old('aktif', $jenisSurat->aktif ?? true) ? 'checked' : '' }}>
 
-                    <label
-                        class="form-check-label"
-                        for="aktif">
+ <label
+ class="form-check-label"
+ for="aktif">
 
-                        Aktif
+ Aktif
 
-                    </label>
+ </label>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
-    <div class="px-6 py-4 border-t border-slate-200 bg-white flex justify-end gap-2">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white flex justify-end gap-2">
 
-        <a
-            href="{{ route('admin.jenis-surat.index') }}"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a
+ href="{{ route('admin.jenis-surat.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-            Kembali
+ Kembali
 
-        </a>
+ </a>
 
-        <button
-            type="submit"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button
+ type="submit"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-            <i class="bi bi-check-circle"></i>
+ <i class="fa-solid fa-circle-check"></i>
 
-            Simpan
+ Simpan
 
-        </button>
+ </button>
 
-    </div>
+ </div>
 
 </div>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 /* ==========================================================
    FRONTEND — Tailwind CSS v4
    Design System sesuai DESIGN.md
@@ -33,6 +34,7 @@
 
     /* Typography */
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -45,72 +47,8 @@ body  {
     @apply antialiased text-slate-700 bg-white;
 }
 
-/* ═══════════════════════════════════════════════════════
-   REUSABLE SECTION HELPERS
-═══════════════════════════════════════════════════════ */
-.section-badge {
-    @apply inline-block px-4 py-1.5 rounded-full text-xs font-semibold
-           tracking-widest uppercase bg-primary-light text-primary mb-4;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply tracking-tight text-slate-900;
 }
 
-.section-title {
-    @apply text-3xl md:text-4xl font-bold text-slate-800 mb-4;
-}
-
-.section-description {
-    @apply text-slate-500 text-base max-w-2xl mx-auto leading-relaxed;
-}
-
-.section-header {
-    @apply text-center mb-14;
-}
-
-/* ═══════════════════════════════════════════════════════
-   BUTTONS — 6 kondisi sesuai DESIGN.md
-═══════════════════════════════════════════════════════ */
-.btn-primary {
-    @apply inline-flex items-center justify-center gap-2
-           px-6 py-2.5 rounded-xl
-           bg-primary text-white font-semibold text-sm
-           shadow-sm
-           hover:bg-primary-dark
-           focus:outline-none focus:ring-2 focus:ring-primary-ring focus:ring-offset-2
-           active:scale-95
-           disabled:opacity-50 disabled:cursor-not-allowed
-           transition-all duration-200;
-}
-
-.btn-outline {
-    @apply inline-flex items-center justify-center gap-2
-           px-6 py-2.5 rounded-xl
-           border border-primary text-primary font-semibold text-sm
-           hover:bg-primary-light
-           focus:outline-none focus:ring-2 focus:ring-primary-ring focus:ring-offset-2
-           active:scale-95
-           disabled:opacity-50 disabled:cursor-not-allowed
-           transition-all duration-200;
-}
-
-.btn-accent {
-    @apply inline-flex items-center justify-center gap-2
-           px-6 py-2.5 rounded-xl
-           bg-accent text-slate-900 font-bold text-sm
-           shadow-md hover:bg-accent-dark
-           focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2
-           active:scale-95
-           disabled:opacity-50 disabled:cursor-not-allowed
-           transition-all duration-200;
-}
-
-/* ═══════════════════════════════════════════════════════
-   CARDS — hover hanya jika seluruh kotak bisa diklik
-═══════════════════════════════════════════════════════ */
-.card {
-    @apply bg-white border border-slate-200 rounded-2xl shadow-sm;
-}
-
-.card-interactive {
-    @apply bg-white border border-slate-200 rounded-2xl shadow-sm
-           transition-all duration-300
-           hover:shadow-xl hover:-translate-y-1;
-}

@@ -3,232 +3,228 @@
 @section('title', 'Permohonan Surat')
 
 @section('content')
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="flex justify-between items-center mb-6">
+ <div class="flex justify-between items-center mb-6">
 
-        <div>
-            
-            
-            <small class="text-slate-500">
+ <div>
+ 
+ 
+ 
 
-            Daftar pelayanan surat masyarakat
+ </div>
 
-            </small>
+ <a
+ href="{{ route('admin.permohonan-surat.create') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-            </div>
+ <i class="fa-solid fa-circle-plus"></i>
+ Permohonan
 
-        <a
-            href="{{ route('admin.permohonan-surat.create') }}"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ </a>
 
-            <i class="bi bi-plus-circle"></i>
-            Permohonan
+ </div>
 
-        </a>
 
-    </div>
+ 
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-    
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <form method="GET">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="flex flex-col md:flex-flex flex-wrap -mx-3 gap-3">
 
-            <form method="GET">
+ <div class="flex-1">
 
-                <div class="flex flex-wrap -mx-3 g-2">
+ <input
+ type="text"
+ name="search"
+ value="{{ request('search') }}"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ placeholder="Cari Nomor / Nama Pemohon...">
 
-                    <div class="col-md-8">
+ </div>
 
-                        <input
-                            type="text"
-                            name="search"
-                            value="{{ request('search') }}"
-                            class="form-control"
-                            placeholder="Cari Nomor / Nama Pemohon...">
 
-                    </div>
+ <div class="shrink-0">
 
+ <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-                    <div class="col-auto">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ Cari
 
-                        <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ </button>
 
-                            <i class="bi bi-search"></i>
-                            Cari
+ </div>
 
-                        </button>
 
-                    </div>
+ @if(request('search'))
 
+ <div class="shrink-0">
 
-                    @if(request('search'))
+ <a
+ href="{{ route('admin.permohonan-surat.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-                        <div class="col-auto">
+ Reset
 
-                            <a
-                                href="{{ route('admin.permohonan-surat.index') }}"
-                                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ </a>
 
-                                Reset
+ </div>
 
-                            </a>
+ @endif
 
-                        </div>
+ </div>
 
-                    @endif
+ </form>
 
-                </div>
+ </div>
 
-            </form>
 
-        </div>
 
+ <div class="p-6 p-0">
 
+ <table class="w-full text-sm text-left text-slate-500">
 
-        <div class="p-6 p-0">
+ <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
 
-            <table class="w-full text-left border-collapse text-sm table-hover align-middle mb-0 text-center">
+ <tr>
 
-                <thead class="table-light">
+ <th width="70" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ No
+ </th>
 
-                    <tr>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ No. Permohonan
+ </th>
 
-                        <th width="70" class="text-center">
-                            No
-                        </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Tanggal
+ </th>
 
-                        <th class="text-center">
-                            No. Permohonan
-                        </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Pemohon
+ </th>
 
-                        <th class="text-center">
-                            Tanggal
-                        </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Jenis Surat
+ </th>
 
-                        <th class="text-center">
-                            Pemohon
-                        </th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Status
+ </th>
 
-                        <th class="text-center">
-                            Jenis Surat
-                        </th>
+ <th width="230" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Aksi
+ </th>
 
-                        <th class="text-center">
-                            Status
-                        </th>
+ </tr>
 
-                        <th width="230" class="text-center">
-                            Aksi
-                        </th>
+ </thead>
 
-                    </tr>
 
-                </thead>
+ <tbody>
 
+ @forelse($permohonans as $permohonan)
 
-                <tbody>
+ <tr>
 
-                @forelse($permohonans as $permohonan)
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ {{ $permohonans->firstItem() + $loop->index }}
+ </td>
 
-                    <tr>
 
-                        <td class="text-center">
-                            {{ $permohonans->firstItem() + $loop->index }}
-                        </td>
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ {{ $permohonan->nomor_permohonan }}
+ </td>
 
 
-                        <td class="text-center">
-                            {{ $permohonan->nomor_permohonan }}
-                        </td>
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ {{ $permohonan->tanggal_permohonan->format('d-m-Y') }}
+ </td>
 
 
-                        <td class="text-center">
-                            {{ $permohonan->tanggal_permohonan->format('d-m-Y') }}
-                        </td>
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ {{ optional($permohonan->penduduk)->nama_lengkap ?? data_get($permohonan->data_surat, 'nama_lengkap') ?? '-' }}
+ </td>
 
 
-                        <td class="text-center">
-                            {{ optional($permohonan->penduduk)->nama_lengkap ?? data_get($permohonan->data_surat, 'nama_lengkap') ?? '-' }}
-                        </td>
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ {{ optional($permohonan->jenisSurat)->nama ?? '-' }}
+ </td>
 
 
-                        <td class="text-center">
-                            {{ $permohonan->jenisSurat->nama }}
-                        </td>
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-{{ $permohonan->status_badge_class }}">
 
-                        <td class="text-center">
+ {{ $permohonan->status }}
 
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-{{ $permohonan->status_badge_class }}">
+ </span>
 
-                                {{ $permohonan->status }}
+ </td>
 
-                            </span>
+<td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                        </td>
+ <div class="action-buttons">
 
-<td class="text-center">
-
-   <div class="action-buttons">
-
-    {{-- Detail --}}
-    <a href="{{ route('admin.permohonan-surat.show', $permohonan) }}"
-       class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
-       title="Detail">
-        <i class="bi bi-eye"></i>
-    </a>
+ {{-- Detail --}}
+ <a href="{{ route('admin.permohonan-surat.show', $permohonan) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ title="Detail">
+ <i class="fa-solid fa-eye"></i>
+ </a>
 
 </div>
 
 </td>
-      </tr>
+ </tr>
 
 
-                @empty
+ @empty
 
-                    <tr>
+ <tr>
 
-                        <td colspan="7" class="text-center py-8">
+ <td colspan="7" class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
 
-                            <i class="bi bi-envelope-paper fs-1 d-block mb-4"></i>
+ <i class="fa-solid fa-file-lines block mb-4"></i>
 
-                            <span class="text-slate-500">
+ <span class="text-slate-500">
 
-                                Belum ada permohonan surat.
+ Belum ada permohonan surat.
 
-                            </span>
+ </span>
 
-                        </td>
+ </td>
 
-                    </tr>
+ </tr>
 
-                @endforelse
-
-
-                </tbody>
+ @endforelse
 
 
-            </table>
+ </tbody>
 
 
-        </div>
+ </table>
+
+
+ </div>
 
 
 
-        @if($permohonans->hasPages())
+ @if($permohonans->hasPages())
 
-            <div class="px-6 py-4 border-t border-slate-200 bg-white">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white">
 
-                {{ $permohonans->links() }}
+ {{ $permohonans->links() }}
 
-            </div>
+ </div>
 
-        @endif
+ @endif
 
 
-    </div>
+ </div>
 
 </div>
 @endsection

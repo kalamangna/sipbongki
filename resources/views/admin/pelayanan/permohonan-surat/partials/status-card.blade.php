@@ -1,131 +1,131 @@
 <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-    <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
 
-        <div>
+ <div>
 
-            <h5 class="mb-0 request-detail-card-title">
-                Status Pelayanan
-            </h5>
+ <h5 class="mb-0 request-detail-card-title">
+ Status Pelayanan
+ </h5>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
-    <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-        @php
+ @php
 
-            $icon = match($permohonanSurat->status){
+ $icon = match($permohonanSurat->status){
 
-                'Menunggu' => 'bi-hourglass-split',
+ 'Menunggu' => 'bi-hourglass-split',
 
-                'Diproses' => 'bi-arrow-repeat',
+ 'Diproses' => 'bi-arrow-repeat',
 
-                'Selesai' => 'bi-check-circle-fill',
+ 'Selesai' => 'bi-check-circle-fill',
 
-                'Ditolak' => 'bi-x-circle-fill',
+ 'Ditolak' => 'bi-x-circle-fill',
 
-                default => 'bi-question-circle',
+ default => 'bi-question-circle',
 
-            };
+ };
 
-        @endphp
+ @endphp
 
-        <div class="mb-4">
+ <div class="mb-4">
 
-            <i class="bi {{ $icon }} display-4 text-{{ $permohonanSurat->status_badge_class"></i>
+ <i class="bi {{ $icon }} display-4 text-{{ $permohonanSurat->status_badge_class"></i>
 
-        </div>
+ </div>
 
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-4 py-3 fs-6 bg-{{ $permohonanSurat->status_badge_class }}">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-4 py-3 bg-{{ $permohonanSurat->status_badge_class }}">
 
-            {{ strtoupper($permohonanSurat->status) }}
+ {{ strtoupper($permohonanSurat->status) }}
 
-        </span>
+ </span>
 
-        <hr class="my-4">
+ <hr class="my-4">
 
-        @switch($permohonanSurat->status)
+ @switch($permohonanSurat->status)
 
-            @case('Menunggu')
+ @case('Menunggu')
 
-                <div class="text-warning">
+ <div class="text-warning">
 
-                    <h6 class="font-bold">
-                        Menunggu Diproses
-                    </h6>
+ <h6 class="font-bold">
+ Menunggu Diproses
+ </h6>
 
-                    <p class="mb-0 text-slate-500">
+ <p class="mb-0 text-slate-500">
 
-                        Permohonan telah diterima dan sedang
-                        menunggu verifikasi petugas pelayanan.
+ Permohonan telah diterima dan sedang
+ menunggu verifikasi petugas pelayanan.
 
-                    </p>
+ </p>
 
-                </div>
+ </div>
 
-            @break
+ @break
 
-            @case('Diproses')
+ @case('Diproses')
 
-                <div class="text-info">
+ <div class="text-info">
 
-                    <h6 class="font-bold">
-                        Sedang Diproses
-                    </h6>
+ <h6 class="font-bold">
+ Sedang Diproses
+ </h6>
 
-                    <p class="mb-0 text-slate-500">
+ <p class="mb-0 text-slate-500">
 
-                        Surat sedang diproses dan menunggu
-                        penyelesaian administrasi.
+ Surat sedang diproses dan menunggu
+ penyelesaian administrasi.
 
-                    </p>
+ </p>
 
-                </div>
+ </div>
 
-            @break
+ @break
 
-            @case('Selesai')
+ @case('Selesai')
 
-                <div class="text-success">
+ <div class="text-success">
 
-                    <h6 class="font-bold">
-                        Surat Telah Selesai
-                    </h6>
+ <h6 class="font-bold">
+ Surat Telah Selesai
+ </h6>
 
-                    <p class="mb-0 text-slate-500">
+ <p class="mb-0 text-slate-500">
 
-                        Surat sudah selesai diproses dan
-                        siap dicetak maupun diserahkan.
+ Surat sudah selesai diproses dan
+ siap dicetak maupun diserahkan.
 
-                    </p>
+ </p>
 
-                </div>
+ </div>
 
-            @break
+ @break
 
-            @case('Ditolak')
+ @case('Ditolak')
 
-                <div class="text-danger">
+ <div class="text-danger">
 
-                    <h6 class="font-bold">
-                        Permohonan Ditolak
-                    </h6>
+ <h6 class="font-bold">
+ Permohonan Ditolak
+ </h6>
 
-                    <p class="mb-0 text-slate-500">
+ <p class="mb-0 text-slate-500">
 
-                        Permohonan tidak dapat diproses.
-                        Silakan lihat catatan petugas.
+ Permohonan tidak dapat diproses.
+ Silakan lihat catatan petugas.
 
-                    </p>
+ </p>
 
-                </div>
+ </div>
 
-            @break
+ @break
 
-        @endswitch
+ @endswitch
 
-    </div>
+ </div>
 
 </div>

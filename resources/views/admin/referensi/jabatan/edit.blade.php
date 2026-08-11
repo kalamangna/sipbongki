@@ -4,44 +4,44 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="flex flex-wrap -mx-3 justify-center">
+ <div class="flex flex-wrap -mx-3 justify-center">
 
-        <div class="col-lg-6">
+ <div class="w-full lg:w-1/2 px-3">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
-                <div class="px-6 py-4 border-b border-slate-200">
+ <div class="px-6 py-4 border-b border-slate-200">
 
-                    <h5 class="mb-0">
+ <h5 class="mb-0">
 
-                        Edit Jabatan
+ Edit Jabatan
 
-                    </h5>
+ </h5>
 
-                </div>
+ </div>
 
-                <div class="p-6">
+ <div class="p-6">
 
-                    <form
-                        action="{{ route('admin.jabatan.update', $jabatan) }}"
-                        method="POST">
+ <form
+ action="{{ route('admin.jabatan.update', $jabatan) }}"
+ method="POST">
 
-                        @csrf
-                        @method('PUT')
+ @csrf
+ @method('PUT')
 
-                        @include('admin.referensi.jabatan.form')
+ @include('admin.referensi.jabatan.form')
 
-                    </form>
+ </form>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>
 

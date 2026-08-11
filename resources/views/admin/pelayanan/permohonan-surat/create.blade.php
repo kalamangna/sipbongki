@@ -4,32 +4,32 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="flex justify-between items-center mb-6">
+ <div class="flex justify-between items-center mb-6">
 
-        <div>
+ <div>
 
 
-    </div>
+ </div>
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
-        <div class="p-6">
+ <div class="p-6">
 
-            <form
-                action="{{ route('admin.permohonan-surat.store') }}"
-                method="POST">
+ <form
+ action="{{ route('admin.permohonan-surat.store') }}"
+ method="POST">
 
-                @csrf
+ @csrf
 
-                @include('admin.pelayanan.permohonan-surat.form')
+ @include('admin.pelayanan.permohonan-surat.form')
 
-            </form>
+ </form>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 </div>
 

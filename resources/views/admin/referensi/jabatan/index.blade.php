@@ -4,367 +4,367 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="flex justify-between items-center mb-6">
+ <div class="flex justify-between items-center mb-6">
 
-        <div>
+ <div>
 
-            <p class="text-slate-500 mb-0">
-                Master Data Jabatan Kelurahan Bongki
-            </p>
+ <p class="text-slate-500 mb-0">
+ Master Data Jabatan Kelurahan Bongki
+ </p>
 
-        </div>
+ </div>
 
-        <a
-            href="{{ route('admin.jabatan.create') }}"
-            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <a
+ href="{{ route('admin.jabatan.create') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-            <i class="bi bi-plus-circle"></i>
+ <i class="fa-solid fa-circle-plus"></i>
 
-            Tambah Jabatan
+ Tambah Jabatan
 
-        </a>
-    </div>
+ </a>
+ </div>
 
-    <div class="alert alert-warning border-warning shadow-sm mb-6" role="alert" style="text-align: justify; text-justify: inter-word;">
-        <i class="fa-solid fa-triangle-exclamation mr-2"></i>
-        Perhatian: perubahan data jabatan memengaruhi struktur organisasi website. Ubah hanya jika sudah dipastikan jabatan, urutan, dan parent benar, karena perubahan<br>
-        sembarangan dapat mengganggu tampilan dan logika struktur jabatan.
-    </div>
+ <div class="p-4 mb-4 text-sm text-amber-800 rounded-xl bg-amber-50 border border-amber-200 border-warning shadow-sm mb-6" role="p-4 mb-4 text-sm rounded-xl border" style="text-align: justify; text-justify: inter-word;">
+ <i class="fa-solid fa-triangle-exclamation mr-2"></i>
+ Perhatian: perubahan data jabatan memengaruhi struktur organisasi website. Ubah hanya jika sudah dipastikan jabatan, urutan, dan parent benar, karena perubahan<br>
+ sembarangan dapat mengganggu tampilan dan logika struktur jabatan.
+ </div>
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-            <form method="GET">
+ <form method="GET">
 
-                <div class="flex flex-wrap -mx-3 g-2">
+ <div class="flex flex-col md:flex-flex flex-wrap -mx-3 gap-3">
 
-                    <div class="col-md-8">
+ <div class="flex-1">
 
-                        <input
-                            type="text"
-                            name="search"
-                            class="form-control"
-                            placeholder="Cari nama jabatan..."
-                            value="{{ $search }}">
+ <input
+ type="text"
+ name="search"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ placeholder="Cari nama jabatan..."
+ value="{{ $search }}">
 
-                    </div>
+ </div>
 
-                    <div class="col-auto">
+ <div class="shrink-0">
 
-                        <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-                            <i class="bi bi-search"></i>
+ <i class="fa-solid fa-magnifying-glass"></i>
 
-                            Cari
+ Cari
 
-                        </button>
+ </button>
 
-                    </div>
+ </div>
 
-                    @if($search)
+ @if($search)
 
-                        <div class="col-auto">
+ <div class="shrink-0">
 
-                            <a
-                                href="{{ route('admin.jabatan.index') }}"
-                                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+ <a
+ href="{{ route('admin.jabatan.index') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
-                                Reset
+ Reset
 
-                            </a>
+ </a>
 
-                        </div>
+ </div>
 
-                    @endif
+ @endif
 
-                </div>
+ </div>
 
-            </form>
+ </form>
 
-        </div>
+ </div>
 
-        <div class="p-6 p-0">
+ <div class="p-6 p-0">
 
-            <table class="w-full text-left border-collapse text-sm table-hover align-middle mb-0">
+ <table class="w-full text-sm text-left text-slate-500">
 
-                <thead class="table-light">
+ <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
 
-                    <tr>
+ <tr>
 
-                        <th>
-                            Nama Jabatan
-                        </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Nama Jabatan
+ </th>
 
-                        <th>
-                            Parent Jabatan
-                        </th>
+ <th class="px-4 py-3 font-medium text-slate-700">
+ Parent Jabatan
+ </th>
 
-                        <th width="80" class="text-center">
-                            Urutan
-                        </th>
+ <th width="80" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Urutan
+ </th>
 
-                        <th width="150" class="text-center">
-                            Penandatangan
-                        </th>
+ <th width="150" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Penandatangan
+ </th>
 
-                        <th width="110" class="text-center">
-                            Status
-                        </th>
+ <th width="110" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Status
+ </th>
 
-                        <th width="160" class="text-center">
-                            Aksi
-                        </th>
+ <th width="160" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ Aksi
+ </th>
 
-                    </tr>
+ </tr>
 
-                </thead>
+ </thead>
 
-                <tbody>
+ <tbody>
 
-                @forelse($jabatans as $jabatan)
+ @forelse($jabatans as $jabatan)
 
-                    <tr>
+ <tr>
 
-                        <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                            <div class="fw-semibold">
+ <div class="font-semibold">
 
-                                {{ $jabatan->nama }}
+ {{ $jabatan->nama }}
 
-                            </div>
+ </div>
 
-                            @if($jabatan->slug)
+ @if($jabatan->slug)
 
-                                <small class="text-slate-500">
+ <small class="text-slate-500">
 
-                                    {{ $jabatan->slug }}
+ {{ $jabatan->slug }}
 
-                                </small>
+ </small>
 
-                            @endif
+ @endif
 
-                        </td>
+ </td>
 
-                        <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                            @if($jabatan->parent)
+ @if($jabatan->parent)
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-light text-dark border">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-light text-dark border">
 
-                                    {{ $jabatan->parent->nama }}
+ {{ $jabatan->parent->nama }}
 
-                                </span>
+ </span>
 
-                            @else
+ @else
 
-                                <span class="text-slate-500">
+ <span class="text-slate-500">
 
-                                    -
+ -
 
-                                </span>
+ </span>
 
-                            @endif
+ @endif
 
-                        </td>
+ </td>
 
-                        <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                            {{ $jabatan->urutan }}
+ {{ $jabatan->urutan }}
 
-                        </td>
+ </td>
 
-                        <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                            @if($jabatan->is_penandatangan)
+ @if($jabatan->is_penandatangan)
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
 
-                                    Ya
+ Ya
 
-                                </span>
+ </span>
 
-                            @else
+ @else
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
 
-                                    Tidak
+ Tidak
 
-                                </span>
+ </span>
 
-                            @endif
+ @endif
 
-                        </td>
+ </td>
 
-                        <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                            @if($jabatan->aktif)
+ @if($jabatan->aktif)
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
 
-                                    Aktif
+ Aktif
 
-                                </span>
+ </span>
 
-                            @else
+ @else
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
 
-                                    Nonaktif
+ Nonaktif
 
-                                </span>
+ </span>
 
-                            @endif
+ @endif
 
-                        </td>
+ </td>
 
-                        <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                            <div class="action-buttons">
+ <div class="action-buttons">
 
-                                <a
-                                    href="{{ route('admin.jabatan.edit', $jabatan) }}"
-                                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm !px-3 !py-1.5 !text-xs"
-                                    title="Edit">
+ <a
+ href="{{ route('admin.jabatan.edit', $jabatan) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm !px-3 !py-1.5 !text-xs"
+ title="Edit">
 
-                                    <i class="bi bi-pencil"></i>
+ <i class="fa-solid fa-pen-to-square"></i>
 
-                                </a>
+ </a>
 
-                                <button
-                                    type="button"
-                                    class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
-                                    title="Hapus"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#hapusModal{{ $jabatan->id }}">
+ <button
+ type="button"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ title="Hapus"
+ data-bs-toggle="modal"
+ data-bs-target="#hapusModal{{ $jabatan->id }}">
 
-                                    <i class="bi bi-trash"></i>
+ <i class="fa-solid fa-trash"></i>
 
-                                </button>
+ </button>
 
-                            </div>
+ </div>
 
-                        </td>
+ </td>
 
-                    </tr>
+ </tr>
 
-                    <div
-                        class="modal fade"
-                        id="hapusModal{{ $jabatan->id }}"
-                        tabindex="-1">
+ <div
+ class="modal fade"
+ id="hapusModal{{ $jabatan->id }}"
+ tabindex="-1">
 
-                        <div class="modal-dialog">
+ <div class="modal-dialog">
 
-                            <div class="modal-content">
+ <div class="modal-content">
 
-                                <div class="modal-header">
+ <div class="modal-header">
 
-                                    <h5 class="modal-title">
+ <h5 class="modal-title">
 
-                                        Konfirmasi Hapus
+ Konfirmasi Hapus
 
-                                    </h5>
+ </h5>
 
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal">
-                                    </button>
+ <button
+ type="button"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-close"
+ data-bs-dismiss="modal">
+ </button>
 
-                                </div>
+ </div>
 
-                                <div class="modal-body">
+ <div class="modal-body">
 
-                                    Apakah Anda yakin ingin menghapus jabatan
+ Apakah Anda yakin ingin menghapus jabatan
 
-                                    <strong>
+ <strong>
 
-                                        {{ $jabatan->nama }}
+ {{ $jabatan->nama }}
 
-                                    </strong> ?
+ </strong> ?
 
-                                </div>
+ </div>
 
-                                <div class="modal-footer">
+ <div class="modal-footer">
 
-                                    <button
-                                        type="button"
-                                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary"
-                                        data-bs-dismiss="modal">
+ <button
+ type="button"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600"
+ data-bs-dismiss="modal">
 
-                                        Batal
+ Batal
 
-                                    </button>
+ </button>
 
-                                    <form
-                                        action="{{ route('admin.jabatan.destroy', $jabatan) }}"
-                                        method="POST">
+ <form
+ action="{{ route('admin.jabatan.destroy', $jabatan) }}"
+ method="POST">
 
-                                        @csrf
-                                        @method('DELETE')
+ @csrf
+ @method('DELETE')
 
-                                        <button
-                                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
 
-                                            <i class="bi bi-trash"></i>
+ <i class="fa-solid fa-trash"></i>
 
-                                            Hapus
+ Hapus
 
-                                        </button>
+ </button>
 
-                                    </form>
+ </form>
 
-                                </div>
+ </div>
 
-                            </div>
+ </div>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                @empty
+ @empty
 
-                    <tr>
+ <tr>
 
-                        <td
-                            colspan="6"
-                            class="text-center py-8">
+ <td
+ colspan="6"
+ class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
 
-                            <i class="bi bi-inbox fs-1 d-block mb-4"></i>
+ <i class="fa-solid fa-inbox block mb-4"></i>
 
-                            <span class="text-slate-500">
+ <span class="text-slate-500">
 
-                                Tidak ada data jabatan.
+ Tidak ada data jabatan.
 
-                            </span>
+ </span>
 
-                        </td>
+ </td>
 
-                    </tr>
+ </tr>
 
-                @endforelse
+ @endforelse
 
-                </tbody>
+ </tbody>
 
-            </table>
+ </table>
 
-        </div>
+ </div>
 
-        @if($jabatans->hasPages())
+ @if($jabatans->hasPages())
 
-            <div class="px-6 py-4 border-t border-slate-200 bg-white">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white">
 
-                {{ $jabatans->links() }}
+ {{ $jabatans->links() }}
 
-            </div>
+ </div>
 
-        @endif
+ @endif
 
-    </div>
+ </div>
 
 </div>
 

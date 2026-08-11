@@ -4,33 +4,33 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    <div class="mb-6">
+ <div class="mb-6">
 
-        <h3 class="font-bold mb-1">
+ <h3 class="font-bold mb-1">
 
-            Edit Jenis Surat
+ Edit Jenis Surat
 
-        </h3>
+ </h3>
 
-        <p class="text-slate-500">
+ <p class="text-slate-500">
 
-            Perbarui data jenis surat.
+ Perbarui data jenis surat.
 
-        </p>
+ </p>
 
-    </div>
+ </div>
 
-    <form
-        action="{{ route('admin.jenis-surat.update',$jenisSurat) }}"
-        method="POST">
+ <form
+ action="{{ route('admin.jenis-surat.update',$jenisSurat) }}"
+ method="POST">
 
-        @method('PUT')
+ @method('PUT')
 
-        @include('admin.referensi.jenis-surat.form')
+ @include('admin.referensi.jenis-surat.form')
 
-    </form>
+ </form>
 
 </div>
 

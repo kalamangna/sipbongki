@@ -1,9 +1,9 @@
 <section id="statistik" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="section-header">
-            <span class="section-badge">Statistik Kelurahan</span>
-            <h2 class="section-title">Data Penduduk & Wilayah</h2>
+        <div class="text-center mb-14">
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Statistik Kelurahan</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Data Penduduk & Wilayah</h2>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">

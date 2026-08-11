@@ -7,7 +7,7 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="w-full">
 
 
 <div class="flex justify-between items-center mb-6">
@@ -42,7 +42,7 @@ Perbarui informasi halaman SIP Bongki.
 
 @if($errors->any())
 
-<div class="alert alert-danger">
+<div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
 
 <ul class="mb-0">
 
@@ -91,7 +91,7 @@ enctype="multipart/form-data">
 <div class="mb-4">
 
 
-<label class="form-label fw-semibold">
+<label class="form-label font-semibold">
 
 Judul Halaman
 
@@ -100,7 +100,7 @@ Judul Halaman
 
 <input type="text"
 name="judul"
-class="form-control"
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
 value="{{ old('judul',$halaman->judul) }}">
 
 
@@ -115,7 +115,7 @@ value="{{ old('judul',$halaman->judul) }}">
 <div class="mb-4">
 
 
-<label class="form-label fw-semibold">
+<label class="form-label font-semibold">
 
 Isi Halaman
 
@@ -125,7 +125,7 @@ Isi Halaman
 <textarea
 name="isi"
 rows="10"
-class="form-control">{{ old('isi',$halaman->isi) }}</textarea>
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('isi',$halaman->isi) }}</textarea>
 
 
 </div>
@@ -139,7 +139,7 @@ class="form-control">{{ old('isi',$halaman->isi) }}</textarea>
 <div class="mb-4">
 
 
-<label class="form-label fw-semibold">
+<label class="form-label font-semibold">
 
 Gambar Saat Ini
 
@@ -183,7 +183,7 @@ Ganti Gambar
 
 <input type="file"
 name="gambar"
-class="form-control">
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 </div>
@@ -197,7 +197,7 @@ class="form-control">
 <div class="mb-4">
 
 
-<label class="form-label fw-semibold">
+<label class="form-label font-semibold">
 
 Status
 
@@ -205,7 +205,7 @@ Status
 
 
 <select name="status"
-class="form-select">
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 <option value="aktif"
@@ -237,7 +237,7 @@ Draft
 
 <button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-<i class="bi bi-save mr-2"></i>
+<i class="fa-solid fa-save mr-2"></i>
 
 Update Halaman
 
@@ -247,7 +247,7 @@ Update Halaman
 
 
 <a href="{{ route('admin.website.halaman.index') }}"
-class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
+class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
 
 Kembali
 

@@ -4,686 +4,686 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="w-full">
 
-    {{-- ==========================================================
-        PAGE HEADER
-    ========================================================== --}}
+ {{-- ==========================================================
+ PAGE HEADER
+ ========================================================== --}}
 
-    <div class="flex flex-wrap justify-between items-center mb-6">
+ <div class="flex flex-wrap justify-between items-center mb-6">
 
-        <div>
+ <div>
 
-            <h3 class="font-bold mb-1">
+ <h3 class="font-bold mb-1">
 
-                <i class="bi bi-people-fill text-primary mr-2"></i>
+ <i class="fa-solid fa-users-fill text-primary mr-2"></i>
 
-                Laporan Kartu Keluarga
+ Laporan Kartu Keluarga
 
-            </h3>
+ </h3>
 
-            <p class="text-slate-500 mb-0">
-                Rekapitulasi data Kartu Keluarga Kelurahan Bongki.
-            </p>
+ <p class="text-slate-500 mb-0">
+ Rekapitulasi data Kartu Keluarga Kelurahan Bongki.
+ </p>
 
-        </div>
+ </div>
 
-        <div class="flex gap-2 mt-3 mt-lg-0">
-      
-        <a href="{{ route('admin.laporan.index') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-secondary">
-        <i class="bi bi-arrow-left"></i> Kembali
-        </a>
-            <a
-                href="{{ route('admin.laporan.print-kartu-keluarga', request()->query()) }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
+ <div class="flex gap-2 mt-3 mt-lg-0">
+ 
+ <a href="{{ route('admin.laporan.index') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
+ <i class="fa-solid fa-arrow-left"></i> Kembali
+ </a>
+ <a
+ href="{{ route('admin.laporan.print-kartu-keluarga', request()->query()) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
 
-                <i class="bi bi-printer mr-1"></i>
+ <i class="fa-solid fa-print mr-1"></i>
 
-                Cetak
+ Cetak
 
-            </a>
-            <a
-                href="{{ route('admin.laporan.export-kartu-keluarga') }}"
-                class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
+ </a>
+ <a
+ href="{{ route('admin.laporan.export-kartu-keluarga') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
 
-                <i class="bi bi-file-earmark-excel mr-1"></i>
+ <i class="fa-solid fa-file-earmark-excel mr-1"></i>
 
-                Export Excel
+ Export Excel
 
-            </a>
-          
-        </div>
+ </a>
+ 
+ </div>
 
-    </div>
+ </div>
 
 
 
-    {{-- ==========================================================
-        STATISTIK
-    ========================================================== --}}
+ {{-- ==========================================================
+ STATISTIK
+ ========================================================== --}}
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+ <div class="flex flex-wrap -mx-3 mb-6">
 
-        <div class="w-full xl:w-1/4 px-3 md:w-1/2">
+ <div class="w-full xl:w-1/4 px-3 md:w-1/2">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <div>
+ <div>
 
-                        <div class="text-slate-500 small mb-1">
+ <div class="text-slate-500 small mb-1">
 
-                            Total Kartu Keluarga
+ Total Kartu Keluarga
 
-                        </div>
+ </div>
 
-                        <h3 class="font-bold mb-2">
+ <h3 class="font-bold mb-2">
 
-                            {{ number_format($statistik['total_kk']) }}
+ {{ number_format($statistik['total_kk']) }}
 
-                        </h3>
+ </h3>
 
-                        <div
-                            class="mx-auto rounded-circle bg-primary-100 text-primary-700 bg-opacity-10 d-inline-flex items-center justify-center"
-                            style="width:60px;height:60px;">
+ <div
+ class="mx-auto rounded-circle bg-primary-100 text-primary-700 bg-opacity-10 inline-flex items-center justify-center"
+ style="width:60px;height:60px;">
 
-                            <i class="bi bi-people-fill fs-3 text-primary"></i>
+ <i class="fa-solid fa-users-fill text-primary"></i>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
 
 
-        <div class="w-full xl:w-1/4 px-3 md:w-1/2">
+ <div class="w-full xl:w-1/4 px-3 md:w-1/2">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <div>
+ <div>
 
-                        <div class="text-slate-500 small mb-1">
+ <div class="text-slate-500 small mb-1">
 
-                            Total Anggota
+ Total Anggota
 
-                        </div>
+ </div>
 
-                        <h3 class="font-bold mb-2">
+ <h3 class="font-bold mb-2">
 
-                            {{ number_format($statistik['total_anggota']) }}
+ {{ number_format($statistik['total_anggota']) }}
 
-                        </h3>
+ </h3>
 
-                        <div
-                            class="mx-auto rounded-circle bg-emerald-100 text-emerald-700 bg-opacity-10 d-inline-flex items-center justify-center"
-                            style="width:60px;height:60px;">
+ <div
+ class="mx-auto rounded-circle bg-emerald-100 text-emerald-700 bg-opacity-10 inline-flex items-center justify-center"
+ style="width:60px;height:60px;">
 
-                            <i class="bi bi-person-vcard fs-3 text-success"></i>
+ <i class="fa-solid fa-user-vcard text-success"></i>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
 
 
-        <div class="w-full xl:w-1/4 px-3 md:w-1/2">
+ <div class="w-full xl:w-1/4 px-3 md:w-1/2">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <div>
+ <div>
 
-                        <div class="text-slate-500 small mb-1">
+ <div class="text-slate-500 small mb-1">
 
-                            KK Aktif
+ KK Aktif
 
-                        </div>
+ </div>
 
-                        <h3 class="font-bold mb-2">
+ <h3 class="font-bold mb-2">
 
-                            {{ number_format($statistik['kk_aktif']) }}
+ {{ number_format($statistik['kk_aktif']) }}
 
-                        </h3>
+ </h3>
 
-                        <div
-                            class="mx-auto rounded-circle bg-amber-100 text-amber-700 bg-opacity-10 d-inline-flex items-center justify-center"
-                            style="width:60px;height:60px;">
+ <div
+ class="mx-auto rounded-circle bg-amber-100 text-amber-700 bg-opacity-10 inline-flex items-center justify-center"
+ style="width:60px;height:60px;">
 
-                            <i class="bi bi-patch-check-fill fs-3 text-warning"></i>
+ <i class="fa-solid fa-patch-check-fill text-warning"></i>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
 
 
-        <div class="w-full xl:w-1/4 px-3 md:w-1/2">
+ <div class="w-full xl:w-1/4 px-3 md:w-1/2">
 
-            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
 
-                <div class="p-6 text-center">
+ <div class="p-6 text-center">
 
-                    <div>
+ <div>
 
-                        <div class="text-slate-500 small mb-1">
+ <div class="text-slate-500 small mb-1">
 
-                            Rata-rata Anggota / KK
+ Rata-rata Anggota / KK
 
-                        </div>
+ </div>
 
-                        <h3 class="font-bold mb-2">
+ <h3 class="font-bold mb-2">
 
-                            {{ $statistik['rata_anggota'] }}
+ {{ $statistik['rata_anggota'] }}
 
-                        </h3>
+ </h3>
 
-                        <div
-                            class="mx-auto rounded-circle bg-sky-100 text-sky-700 bg-opacity-10 d-inline-flex items-center justify-center"
-                            style="width:60px;height:60px;">
+ <div
+ class="mx-auto rounded-circle bg-sky-100 text-sky-700 bg-opacity-10 inline-flex items-center justify-center"
+ style="width:60px;height:60px;">
 
-                            <i class="bi bi-bar-chart-fill fs-3 text-info"></i>
+ <i class="fa-solid fa-bar-chart-fill text-info"></i>
 
-                        </div>
+ </div>
 
-                    </div>
+ </div>
 
-                </div>
+ </div>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 
 
-    {{-- ==========================================================
-        FILTER
-    ========================================================== --}}
+ {{-- ==========================================================
+ FILTER
+ ========================================================== --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-            <h6 class="font-bold mb-0">
+ <h6 class="font-bold mb-0">
 
-                <i class="bi bi-funnel mr-2"></i>
+ <i class="fa-solid fa-funnel mr-2"></i>
 
-                Filter Laporan
+ Filter Laporan
 
-            </h6>
+ </h6>
 
-        </div>
+ </div>
 
-        <div class="p-6">
+ <div class="p-6">
 
-            <form method="GET"
-                  action="{{ route('admin.laporan.kartu-keluarga') }}">
+ <form method="GET"
+ action="{{ route('admin.laporan.kartu-keluarga') }}">
 
-                <div class="flex flex-wrap -mx-3 g-3">
+ <div class="flex flex-wrap -mx-3 gap-4">
 
-                    <div class="w-full lg:w-1/3 px-3 text-center">
+ <div class="w-full lg:w-1/3 px-3 text-center">
 
-                        <label class="form-label d-block text-center">
+ <label class="form-label block text-center">
 
-                            Nomor KK / Kepala Keluarga
+ Nomor KK / Kepala Keluarga
 
-                        </label>
+ </label>
 
-                        <input
-                            type="text"
-                            class="form-control text-center"
-                            name="keyword"
-                            value="{{ request('keyword') }}"
-                            placeholder="Cari Nomor KK atau Kepala Keluarga">
+ <input
+ type="text"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ name="keyword"
+ value="{{ request('keyword') }}"
+ placeholder="Cari Nomor KK atau Kepala Keluarga">
 
-                    </div>
+ </div>
 
-                    <div class="w-full lg:w-1/4 px-3 text-center">
+ <div class="w-full lg:w-1/4 px-3 text-center">
 
-                        <label class="form-label d-block text-center">
+ <label class="form-label block text-center">
 
-                            Lingkungan
+ Lingkungan
 
-                        </label>
+ </label>
 
-                        <select
-                            class="form-select text-center"
-                            name="lingkungan">
+ <select
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ name="lingkungan">
 
-                            <option value="">
-                                Semua Lingkungan
-                            </option>
+ <option value="">
+ Semua Lingkungan
+ </option>
 
-                            @foreach($lingkungans as $lingkungan)
+ @foreach($lingkungans as $lingkungan)
 
-                                <option
-                                    value="{{ $lingkungan->id }}"
-                                    @selected(request('lingkungan')==$lingkungan->id)>
+ <option
+ value="{{ $lingkungan->id }}"
+ @selected(request('lingkungan')==$lingkungan->id)>
 
-                                    {{ $lingkungan->nama }}
+ {{ $lingkungan->nama }}
 
-                                </option>
+ </option>
 
-                            @endforeach
+ @endforeach
 
-                        </select>
+ </select>
 
-                    </div>
+ </div>
 
-                    <div class="col-lg-1 text-center">
+ <div class="w-full lg:w-1/12 px-3 text-center">
 
-                        <label class="form-label d-block text-center">
-                            RT
-                        </label>
+ <label class="form-label block text-center">
+ RT
+ </label>
 
-                        <input
-                            type="text"
-                            name="rt"
-                            value="{{ request('rt') }}"
-                            class="form-control text-center">
+ <input
+ type="text"
+ name="rt"
+ value="{{ request('rt') }}"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
-                    </div>
+ </div>
 
-                    <div class="col-lg-1 text-center">
+ <div class="w-full lg:w-1/12 px-3 text-center">
 
-                        <label class="form-label d-block text-center">
-                            RW
-                        </label>
+ <label class="form-label block text-center">
+ RW
+ </label>
 
-                        <input
-                            type="text"
-                            name="rw"
-                            value="{{ request('rw') }}"
-                            class="form-control text-center">
+ <input
+ type="text"
+ name="rw"
+ value="{{ request('rw') }}"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
-                    </div>
+ </div>
 
-                    <div class="col-lg-2 text-center">
+ <div class="w-full lg:w-1/6 px-3 text-center">
 
-                        <label class="form-label d-block text-center">
+ <label class="form-label block text-center">
 
-                            Status
+ Status
 
-                        </label>
+ </label>
 
-                        <select
-                            class="form-select text-center"
-                            name="status">
+ <select
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ name="status">
 
-                            <option value="">
-                                Semua
-                            </option>
+ <option value="">
+ Semua
+ </option>
 
-                            <option
-                                value="1"
-                                @selected(request('status')==='1')>
+ <option
+ value="1"
+ @selected(request('status')==='1')>
 
-                                Aktif
+ Aktif
 
-                            </option>
+ </option>
 
-                            <option
-                                value="0"
-                                @selected(request('status')==='0')>
+ <option
+ value="0"
+ @selected(request('status')==='0')>
 
-                                Tidak Aktif
+ Tidak Aktif
 
-                            </option>
+ </option>
 
-                        </select>
+ </select>
 
-                    </div>
+ </div>
 
-                    <div class="col-lg-1 d-grid">
+ <div class="w-full lg:w-1/12 px-3 d-grid">
 
-                        <label class="form-label">&nbsp;</label>
+ <label class="form-label">&nbsp;</label>
 
-                        <button
-                            class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <button
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
 
-                            <i class="bi bi-search"></i>
+ <i class="fa-solid fa-magnifying-glass"></i>
 
-                        </button>
+ </button>
 
-                    </div>
+ </div>
 
-                </div>
+ </div>
 
-                <div class="mt-3">
+ <div class="mt-3">
 
-                    <a
-                        href="{{ route('admin.laporan.kartu-keluarga') }}"
-                        class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all btn-outline-secondary">
+ <a
+ href="{{ route('admin.laporan.kartu-keluarga') }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
 
-                        Reset Filter
+ Reset Filter
 
-                    </a>
+ </a>
 
-                </div>
+ </div>
 
-            </form>
+ </form>
 
-        </div>
+ </div>
 
-    </div>
-    {{-- ==========================================================
-        REKAP PER LINGKUNGAN
-    ========================================================== --}}
+ </div>
+ {{-- ==========================================================
+ REKAP PER LINGKUNGAN
+ ========================================================== --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white">
 
-            <h6 class="font-bold mb-0">
+ <h6 class="font-bold mb-0">
 
-                <i class="bi bi-bar-chart-line mr-2"></i>
+ <i class="fa-solid fa-bar-chart-line mr-2"></i>
 
-                Rekap Kartu Keluarga Per Lingkungan
+ Rekap Kartu Keluarga Per Lingkungan
 
-            </h6>
+ </h6>
 
-        </div>
+ </div>
 
-        <div class="p-6 p-0">
+ <div class="p-6 p-0">
 
-            <div class="overflow-x-auto w-full">
+ <div class="overflow-x-auto w-full">
 
-                <table class="w-full text-left border-collapse text-sm table-hover align-middle mb-0">
+ <table class="w-full text-sm text-left text-slate-500">
 
-                    <thead class="table-light">
+ <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
 
-                        <tr>
+ <tr>
 
-                            <th width="60">No</th>
+ <th width="60" class="px-4 py-3 font-medium text-slate-700">No</th>
 
-                            <th>Lingkungan</th>
+ <th class="px-4 py-3 font-medium text-slate-700">Lingkungan</th>
 
-                            <th class="text-center">Jumlah KK</th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Jumlah KK</th>
 
-                            <th class="text-center">Jumlah Penduduk</th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Jumlah Penduduk</th>
 
-                        </tr>
+ </tr>
 
-                    </thead>
+ </thead>
 
-                    <tbody>
+ <tbody>
 
-                        @forelse($rekapLingkungan as $item)
+ @forelse($rekapLingkungan as $item)
 
-                            <tr>
+ <tr>
 
-                                <td>
-                                    {{ $loop->iteration }}
-                                </td>
+ <td class="px-4 py-3 border-b border-slate-100">
+ {{ $loop->iteration }}
+ </td>
 
-                                <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                    {{ $item->nama }}
+ {{ $item->nama }}
 
-                                </td>
+ </td>
 
-                                <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
 
-                                        {{ number_format($item->kartu_keluargas_count) }} KK
+ {{ number_format($item->kartu_keluargas_count) }} KK
 
-                                    </span>
+ </span>
 
-                                </td>
+ </td>
 
-                                <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
 
-                                        {{ number_format($item->penduduk_count) }} Jiwa
+ {{ number_format($item->penduduk_count) }} Jiwa
 
-                                    </span>
+ </span>
 
-                                </td>
+ </td>
 
-                            </tr>
+ </tr>
 
-                        @empty
+ @empty
 
-                            <tr>
+ <tr>
 
-                                <td colspan="4"
-                                    class="text-center text-slate-500 py-4">
+ <td colspan="4"
+ class=\"text-center text-slate-500 py-4 px-4 py-3 border-b border-slate-100\">
 
-                                    Belum ada data.
+ Belum ada data.
 
-                                </td>
+ </td>
 
-                            </tr>
+ </tr>
 
-                        @endforelse
+ @endforelse
 
-                    </tbody>
+ </tbody>
 
-                </table>
+ </table>
 
-            </div>
+ </div>
 
-        </div>
+ </div>
 
-    </div>
+ </div>
 
 
 
-    {{-- ==========================================================
-        TABEL LAPORAN
-    ========================================================== --}}
+ {{-- ==========================================================
+ TABEL LAPORAN
+ ========================================================== --}}
 
-    <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
 
-        <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
+ <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
 
-            <h6 class="font-bold mb-0">
+ <h6 class="font-bold mb-0">
 
-                <i class="bi bi-table mr-2"></i>
+ <i class="w-full text-sm text-left text-slate-600"></i>
 
-                Data Kartu Keluarga
+ Data Kartu Keluarga
 
-            </h6>
+ </h6>
 
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
 
-                {{ $kartuKeluargas->total() }} Data
+ {{ $kartuKeluargas->total() }} Data
 
-            </span>
+ </span>
 
-        </div>
+ </div>
 
-        <div class="overflow-x-auto w-full">
+ <div class="overflow-x-auto w-full">
 
-            <table class="w-full text-left border-collapse text-sm table-hover align-middle mb-0 text-center">
+ <table class="w-full text-sm text-left text-slate-500">
 
-                <thead class="table-light">
+ <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
 
-                    <tr class="text-center">
+ <tr class="text-center">
 
-                        <th width="60">No</th>
+ <th width="60" class="px-4 py-3 font-medium text-slate-700">No</th>
 
-                        <th>No. Kartu Keluarga</th>
+ <th class="px-4 py-3 font-medium text-slate-700">No. Kartu Keluarga</th>
 
-                        <th>Kepala Keluarga</th>
+ <th class="px-4 py-3 font-medium text-slate-700">Kepala Keluarga</th>
 
-                        <th class="text-center">Anggota</th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Anggota</th>
 
-                        <th>Lingkungan</th>
+ <th class="px-4 py-3 font-medium text-slate-700">Lingkungan</th>
 
-                        <th class="text-center">RT/RW</th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">RT/RW</th>
 
-                        <th class="text-center">Status</th>
+ <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Status</th>
 
-                        <th width="150" class="text-center">
+ <th width="150" class=\"text-center px-4 py-3 font-medium text-slate-700\">
 
-                            Aksi
+ Aksi
 
-                        </th>
+ </th>
 
-                    </tr>
+ </tr>
 
-                </thead>
+ </thead>
 
-                <tbody>
+ <tbody>
 
-                    @forelse($kartuKeluargas as $kk)
+ @forelse($kartuKeluargas as $kk)
 
-                        <tr>
+ <tr>
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $kartuKeluargas->firstItem() + $loop->index }}
+ {{ $kartuKeluargas->firstItem() + $loop->index }}
 
-                            </td>
+ </td>
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ $kk->no_kk }}
+ {{ $kk->no_kk }}
 
-                            </td>
+ </td>
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ optional($kk->kepalaKeluarga)->nama_lengkap ?? '-' }}
+ {{ optional($kk->kepalaKeluarga)->nama_lengkap ?? '-' }}
 
-                            </td>
+ </td>
 
-                            <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-700">
 
-                                    {{ $kk->anggota_count }} Orang
+ {{ $kk->anggota_count }} Orang
 
-                                </span>
+ </span>
 
-                            </td>
+ </td>
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                {{ optional($kk->lingkungan)->nama ?? '-' }}
+ {{ optional($kk->lingkungan)->nama ?? '-' }}
 
-                            </td>
+ </td>
 
-                            <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                                {{ $kk->rt }}
+ {{ $kk->rt }}
 
-                                /
+ /
 
-                                {{ $kk->rw }}
+ {{ $kk->rw }}
 
-                            </td>
+ </td>
 
-                            <td class="text-center">
+ <td class=\"text-center px-4 py-3 border-b border-slate-100\">
 
-                                @if($kk->aktif)
+ @if($kk->aktif)
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
 
-                                        Aktif
+ Aktif
 
-                                    </span>
+ </span>
 
-                                @else
+ @else
 
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
 
-                                        Tidak Aktif
+ Tidak Aktif
 
-                                    </span>
+ </span>
 
-                                @endif
+ @endif
 
-                            </td>
+ </td>
 
-                            <td>
+ <td class="px-4 py-3 border-b border-slate-100">
 
-                                <div class="action-buttons">
+ <div class="action-buttons">
 
-                                    <a href="{{ route('admin.laporan.kartu-keluarga.show',$kk->id) }}"
-                                       class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm"
-                                       title="Detail">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
+ <a href="{{ route('admin.laporan.kartu-keluarga.show',$kk->id) }}"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm"
+ title="Detail">
+ <i class="fa-solid fa-eye"></i>
+ </a>
 
-                                </div>
+ </div>
 
-                            </td>
+ </td>
 
-                        </tr>
+ </tr>
 
-                    @empty
+ @empty
 
-                        <tr>
+ <tr>
 
-                            <td colspan="8" class="text-center py-8">
+ <td colspan="8" class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
 
-                                <div class="text-slate-500">
+ <div class="text-slate-500">
 
-                                    <i class="bi bi-inbox fs-1 d-block mb-4"></i>
+ <i class="fa-solid fa-inbox block mb-4"></i>
 
-                                    <h6>
+ <h6>
 
-                                        Tidak ada data Kartu Keluarga.
+ Tidak ada data Kartu Keluarga.
 
-                                    </h6>
+ </h6>
 
-                                    <p class="mb-0">
+ <p class="mb-0">
 
-                                        Silakan ubah filter atau tambahkan data terlebih dahulu.
+ Silakan ubah filter atau tambahkan data terlebih dahulu.
 
-                                    </p>
+ </p>
 
-                                </div>
+ </div>
 
-                            </td>
+ </td>
 
-                        </tr>
+ </tr>
 
-                    @endforelse
+ @endforelse
 
-                </tbody>
+ </tbody>
 
-            </table>
+ </table>
 
-        </div>
+ </div>
 
-        @if($kartuKeluargas->hasPages())
+ @if($kartuKeluargas->hasPages())
 
-            <div class="px-6 py-4 border-t border-slate-200 bg-white">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white">
 
-                {{ $kartuKeluargas->links() }}
+ {{ $kartuKeluargas->links() }}
 
-            </div>
+ </div>
 
-        @endif
+ @endif
 
-    </div>
+ </div>
 
 </div>
 

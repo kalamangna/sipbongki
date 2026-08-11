@@ -7,8 +7,8 @@
 <div class="container py-5 mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center p-5">
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm shadow-sm border-0">
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm-body text-center p-5">
                     <div class="mb-4">
                         <div class="display-4 text-success">✓</div>
                         <h2 class="fw-bold">Pengaduan Berhasil Dikirim</h2>
@@ -19,7 +19,7 @@
 
                     <div class="row gx-3 gy-3 text-center">
                         <div class="col-12">
-                            <div class="card border rounded-3 p-4 p-md-5">
+                            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm border rounded-3 p-4 p-md-5">
                                 <div class="row g-3 align-items-stretch text-center">
                                     <div class="col-md-6">
                                         <div class="border rounded-3 p-3 h-100 bg-light-subtle d-flex flex-column justify-content-center align-items-center">
