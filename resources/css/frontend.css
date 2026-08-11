@@ -1,0 +1,116 @@
+/* ==========================================================
+   FRONTEND — Tailwind CSS v4
+   Design System sesuai DESIGN.md
+   Digunakan di: resources/views/layouts/public.blade.php
+========================================================== */
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+/* Source untuk Tailwind scan */
+@source "../views/public/**/*.blade.php";
+@source "../views/components/public/**/*.blade.php";
+@source "../views/welcome.blade.php";
+@source "../views/layouts/public.blade.php";
+@source "../views/surat/**/*.blade.php";
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — @theme (Tailwind v4, tanpa tailwind.config.js)
+   Warna primary → skala emerald sesuai DESIGN.md
+═══════════════════════════════════════════════════════ */
+@theme {
+    /* Primary — Emerald */
+    --color-primary:        #059669; /* emerald-600 */
+    --color-primary-dark:   #047857; /* emerald-700 */
+    --color-primary-light:  #ecfdf5; /* emerald-50  */
+    --color-primary-ring:   #6ee7b7; /* emerald-300 (focus ring) */
+
+    /* Accent — Amber (CTA, highlight) */
+    --color-accent:         #f59e0b; /* amber-400 */
+    --color-accent-dark:    #d97706; /* amber-500 */
+
+    /* Neutral Surface */
+    --color-surface:        #f8fafc; /* slate-50 */
+
+    /* Typography */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════════════ */
+html  { scroll-behavior: smooth; }
+
+body  {
+    font-family: var(--font-sans);
+    @apply antialiased text-slate-700 bg-white;
+}
+
+/* ═══════════════════════════════════════════════════════
+   REUSABLE SECTION HELPERS
+═══════════════════════════════════════════════════════ */
+.section-badge {
+    @apply inline-block px-4 py-1.5 rounded-full text-xs font-semibold
+           tracking-widest uppercase bg-primary-light text-primary mb-4;
+}
+
+.section-title {
+    @apply text-3xl md:text-4xl font-bold text-slate-800 mb-4;
+}
+
+.section-description {
+    @apply text-slate-500 text-base max-w-2xl mx-auto leading-relaxed;
+}
+
+.section-header {
+    @apply text-center mb-14;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUTTONS — 6 kondisi sesuai DESIGN.md
+═══════════════════════════════════════════════════════ */
+.btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 rounded-xl
+           bg-primary text-white font-semibold text-sm
+           shadow-sm
+           hover:bg-primary-dark
+           focus:outline-none focus:ring-2 focus:ring-primary-ring focus:ring-offset-2
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed
+           transition-all duration-200;
+}
+
+.btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 rounded-xl
+           border border-primary text-primary font-semibold text-sm
+           hover:bg-primary-light
+           focus:outline-none focus:ring-2 focus:ring-primary-ring focus:ring-offset-2
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed
+           transition-all duration-200;
+}
+
+.btn-accent {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 rounded-xl
+           bg-accent text-slate-900 font-bold text-sm
+           shadow-md hover:bg-accent-dark
+           focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2
+           active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed
+           transition-all duration-200;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CARDS — hover hanya jika seluruh kotak bisa diklik
+═══════════════════════════════════════════════════════ */
+.card {
+    @apply bg-white border border-slate-200 rounded-2xl shadow-sm;
+}
+
+.card-interactive {
+    @apply bg-white border border-slate-200 rounded-2xl shadow-sm
+           transition-all duration-300
+           hover:shadow-xl hover:-translate-y-1;
+}
