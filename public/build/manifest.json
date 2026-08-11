@@ -1,0 +1,29 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BFCE8_4c.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/frontend.css": {
+    "file": "assets/frontend-DXznquxM.css",
+    "src": "resources/css/frontend.css",
+    "isEntry": true,
+    "name": "frontend",
+    "names": [
+      "frontend.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-B6fy2tar.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BFCE8_4c.css"
+    ]
+  }
+}
