@@ -21,6 +21,7 @@
     <title>
         @yield('title', $website?->meta_title ?? 'SIP Bongki | Sistem Informasi dan Pelayanan Kelurahan Bongki')
     </title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
     @if($website)
 
@@ -97,20 +98,7 @@
         @endif
 
 
-        {{-- FAVICON --}}
-        @if($website?->favicon)
-
-            <link
-                rel="icon"
-                href="{{ asset('storage/'.$website->favicon) }}">
-
-        @elseif(file_exists(public_path('images/logo.png')))
-
-            <link
-                rel="icon"
-                href="{{ asset('images/logo.png') }}">
-
-        @endif
+        
 
     @endif
 

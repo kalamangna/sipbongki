@@ -22,7 +22,7 @@
  </div>
 
  <a href="{{ route('admin.pengaduan.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm focus:outline-none active:scale-95 cursor-pointer">
 
  <i class="fa-solid fa-arrow-left"></i>
  Kembali
@@ -31,19 +31,15 @@
 
  </div>
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
  {{-- Informasi Pengaduan --}}
- <div class="w-full lg:w-2/3 px-3">
+ <div class="lg:col-span-2 space-y-6">
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
-
- <h5 class="mb-0 complaint-detail-card-title">
- Informasi Pengaduan
- </h5>
-
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-circle-info text-primary-600 mr-2"></i>Informasi Pengaduan</h3>
  </div>
 
  <div class="p-6">
@@ -114,16 +110,10 @@
  </div>
 
  {{-- Uraian --}}
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
-
- <h5 class="mb-0 complaint-detail-card-title">
-
- Uraian Pengaduan
-
- </h5>
-
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-file-lines text-sky-500 mr-2"></i>Uraian Pengaduan</h3>
  </div>
 
  <div class="p-6">
@@ -137,19 +127,13 @@
  </div>
 
  {{-- Sidebar --}}
- <div class="w-full lg:w-1/3 px-3">
+ <div class="lg:col-span-1 space-y-6">
 
  {{-- Foto --}}
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header">
-
- <h5 class="mb-0 complaint-detail-card-title">
-
- Foto Bukti
-
- </h5>
-
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-image text-emerald-500 mr-2"></i>Foto Bukti</h3>
  </div>
 
  <div class="p-6 text-center">
@@ -177,23 +161,17 @@
  </div>
 
  {{-- Aksi Penanganan --}}
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 complaint-detail-card-header complaint-detail-action-header">
-
- <h5 class="mb-0 complaint-detail-card-title">
-
- Aksi Pengaduan
-
- </h5>
-
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-bolt text-amber-500 mr-2"></i>Aksi Pengaduan</h3>
  </div>
 
  <div class="p-6">
 
  @if($pengaduan->status == 'Baru')
 
- <div class="d-grid gap-3 mb-6">
+ <div class="flex flex-col gap-3 mb-6">
 
  <form
  action="{{ route('admin.pengaduan.update',$pengaduan) }}"
@@ -205,7 +183,7 @@
  <input type="hidden" name="status" value="Diproses">
 
  <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm px-5 py-3 text-base w-100"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm px-4 py-2.5 text-sm w-full active:scale-95 cursor-pointer"
  onclick="return confirm('Proses pengaduan ini?')">
 
  <i class="fa-solid fa-play-circle mr-2"></i>
@@ -226,7 +204,7 @@
  <input type="hidden" name="status" value="Selesai">
 
  <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-4 py-2.5 text-sm w-full active:scale-95 cursor-pointer"
  onclick="return confirm('Tandai pengaduan ini sebagai selesai?')">
 
  <i class="fa-solid fa-circle-check mr-2"></i>
@@ -241,7 +219,7 @@
 
  @elseif($pengaduan->status == 'Diproses')
 
- <div class="d-grid gap-3 mb-6">
+ <div class="flex flex-col gap-3 mb-6">
 
  <form
  action="{{ route('admin.pengaduan.update',$pengaduan) }}"
@@ -253,7 +231,7 @@
  <input type="hidden" name="status" value="Selesai">
 
  <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100"
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-4 py-2.5 text-sm w-full active:scale-95 cursor-pointer"
  onclick="return confirm('Selesaikan pengaduan ini?')">
 
  <i class="fa-solid fa-circle-check mr-2"></i>
@@ -270,13 +248,15 @@
 
  <a
  href="{{ route('admin.pengaduan.edit',$pengaduan) }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm px-5 py-3 text-base w-100 mb-6">
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm px-4 py-2.5 text-sm w-full active:scale-95 cursor-pointer">
 
  <i class="fa-solid fa-pen-to-square mr-2"></i>
 
  Edit Pengaduan
 
  </a>
+
+ <hr class="border-slate-100 my-6">
 
  <form
  action="{{ route('admin.pengaduan.update',$pengaduan) }}"
@@ -287,7 +267,7 @@
 
  <div class="mb-4">
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
 
  Status
 
@@ -295,7 +275,7 @@
 
  <select
  name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option
  value="Baru"
@@ -327,7 +307,7 @@
 
  <div class="mb-4">
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
 
  Catatan Petugas
 
@@ -336,12 +316,12 @@
  <textarea
  name="catatan"
  rows="5"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('catatan',$pengaduan->catatan) }}</textarea>
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('catatan',$pengaduan->catatan) }}</textarea>
 
  </div>
 
  <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-5 py-3 text-base w-100">
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm px-4 py-2.5 text-sm w-full active:scale-95 cursor-pointer">
 
  <i class="fa-solid fa-circle-check mr-2"></i>
 

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title', 'Manajemen Berita')
+@section('title', 'Berita')
 
 
 @section('content')
@@ -352,11 +352,11 @@
 
 
 
- <div class="mt-3">
-
- {{ $beritas->links() }}
-
+ @if($beritas->hasPages())
+ <div class="px-6 py-4 border-t border-slate-100 bg-white">
+    {{ $beritas->links() }}
  </div>
+ @endif
 
 
 

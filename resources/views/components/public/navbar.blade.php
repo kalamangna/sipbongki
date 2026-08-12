@@ -13,7 +13,7 @@
 
             {{-- ── BRAND ─────────────────────────── --}}
             <a href="{{ url('/') }}"
-               class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-primary-ring rounded-lg"
+               class="flex items-center gap-3 focus:outline-none rounded-lg"
                aria-label="Beranda SIP Bongki">
 
                 @if(isset($website) && $website?->logo)
@@ -62,7 +62,7 @@
                     <li>
                         <a href="{{ $link['href'] }}"
                            class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200
-                                  focus:outline-none focus:ring-2 focus:ring-primary-ring text-slate-600 hover:text-primary hover:bg-primary-light">
+                                  focus:outline-none text-slate-600 hover:text-primary hover:bg-primary-light">
                             {{ $link['label'] }}
                         </a>
                     </li>
@@ -72,20 +72,30 @@
             {{-- ── CTA + HAMBURGER ──────────────── --}}
             <div class="flex items-center gap-3">
 
-                <a href="{{ route('login') }}"
-                   class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
-                          transition-all duration-200 active:scale-95
-                          focus:outline-none focus:ring-2 focus:ring-primary-ring focus:ring-offset-2 bg-primary text-white hover:bg-primary-dark shadow-md">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    Masuk
-                </a>
+                @auth
+                    <a href="{{ route('dashboard') }}"
+                       class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                              transition-all duration-200 active:scale-95
+                              focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md">
+                        <i class="fa-solid fa-gauge"></i>
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                              transition-all duration-200 active:scale-95
+                              focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        Masuk
+                    </a>
+                @endauth
 
                 {{-- Hamburger — min h-11 w-11 sesuai touch target DESIGN.md --}}
                 <button @click="open = !open"
                         aria-label="Buka menu"
                         :aria-expanded="open"
                         class="lg:hidden h-11 w-11 flex items-center justify-center rounded-xl transition-colors
-                               focus:outline-none focus:ring-2 focus:ring-primary-ring text-slate-700 hover:bg-slate-100">
+                               focus:outline-none text-slate-700 hover:bg-slate-100">
                     <i class="fa-solid fa-bars"></i>
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -113,18 +123,26 @@
                    @click="open = false"
                    class="px-4 py-3 rounded-xl text-sm font-medium text-slate-700
                           hover:bg-primary-light hover:text-primary
-                          focus:outline-none focus:ring-2 focus:ring-primary-ring
+                          focus:outline-none
                           transition-colors">
                     {{ $link['label'] }}
                 </a>
             @endforeach
 
             <div class="pt-3 mt-2 border-t border-slate-100">
-                <a href="{{ route('login') }}"
-                   class="btn-primary w-full justify-center py-3 rounded-xl">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    Masuk sebagai Admin / Operator
-                </a>
+                @auth
+                    <a href="{{ route('dashboard') }}"
+                       class="btn-primary !bg-emerald-600 hover:!bg-emerald-700 w-full justify-center py-3 rounded-xl">
+                        <i class="fa-solid fa-gauge"></i>
+                        Ke Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="btn-primary w-full justify-center py-3 rounded-xl">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        Masuk sebagai Admin / Operator
+                    </a>
+                @endauth
             </div>
 
         </div>

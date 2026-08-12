@@ -10,7 +10,7 @@
 
  <div>
 
- <h3 class="font-bold mb-1">
+ <h3 class="text-2xl font-bold text-slate-800 mb-1">
  Edit Pengaduan
  </h3>
 
@@ -21,7 +21,7 @@
  </div>
 
  <a href="{{ route('admin.pengaduan.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
+ class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm focus:outline-none active:scale-95 cursor-pointer">
 
  <i class="fa-solid fa-arrow-left"></i>
  Kembali
@@ -30,7 +30,11 @@
 
  </div>
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-pen-to-square text-primary-600 mr-2"></i>Form Edit Pengaduan</h3>
+ </div>
 
  <div class="p-6">
 
@@ -53,8 +57,8 @@
  @method('PUT')
 
  <div class="mb-4">
- <label class="form-label">Status</label>
- <select name="status" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Status</label>
+ <select name="status" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
  <option value="Baru" @selected($pengaduan->status=='Baru')>Baru</option>
  <option value="Diproses" @selected($pengaduan->status=='Diproses')>Diproses</option>
  <option value="Selesai" @selected($pengaduan->status=='Selesai')>Selesai</option>
@@ -62,14 +66,16 @@
  </div>
 
  <div class="mb-4">
- <label class="form-label">Catatan Petugas</label>
- <textarea name="catatan" rows="5" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('catatan', $pengaduan->catatan) }}</textarea>
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Catatan Petugas</label>
+ <textarea name="catatan" rows="5" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('catatan', $pengaduan->catatan) }}</textarea>
  </div>
 
- <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
- <i class="fa-solid fa-save mr-2"></i>
+ <div class="flex justify-end pt-4 border-t border-slate-100 mt-6">
+ <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm active:scale-95 cursor-pointer">
+ <i class="fa-solid fa-circle-check"></i>
  Simpan Perubahan
  </button>
+ </div>
 
  </form>
 

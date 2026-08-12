@@ -72,7 +72,7 @@
  <input
  type="text"
  name="judul"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('judul', $pengumuman->judul) }}"
  placeholder="Masukkan judul pengumuman">
 
@@ -88,7 +88,7 @@
  <textarea
  name="isi"
  rows="8"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  placeholder="Tuliskan isi pengumuman">{{ old('isi', $pengumuman->isi) }}</textarea>
 
  </div>
@@ -105,7 +105,7 @@
  <input
  type="file"
  name="gambar"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
  <small class="text-slate-500">
  Format JPG, PNG maksimal 2MB.
@@ -135,7 +135,7 @@
 
  <select
  name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
  <option value="draft"
  {{ old('status', $pengumuman->status) == 'draft' ? 'selected' : '' }}>
@@ -161,7 +161,7 @@
  <input
  type="date"
  name="tanggal_publish"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('tanggal_publish', optional($pengumuman->tanggal_publish)->format('Y-m-d')) }}">
 
  </div>

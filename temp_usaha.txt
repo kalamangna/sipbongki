@@ -1,0 +1,96 @@
+<div id="usaha-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
+
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-store text-emerald-500 mr-2"></i>Data Usaha</h3>
+ </div>
+
+ <div class="p-6">
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+ <div >
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Nama Usaha <span class="text-red-500">*</span>
+ </label>
+
+ <input
+ type="text"
+ name="nama_usaha"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Warung Kelontong Berkah"
+ value="{{ old('nama_usaha', $permohonanSurat->data_surat['nama_usaha'] ?? '') }}">
+
+ </div>
+
+ <div >
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Jenis Usaha <span class="text-red-500">*</span>
+ </label>
+
+ <input
+ type="text"
+ name="jenis_usaha"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Perdagangan Sembako"
+ value="{{ old('jenis_usaha', $permohonanSurat->data_surat['jenis_usaha'] ?? '') }}">
+
+ </div>
+
+ <div class="md:col-span-2">
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Alamat Usaha
+ </label>
+
+ <textarea
+ name="alamat_usaha"
+ rows="2"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Jl. Merdeka No. 123, RT 01/RW 02">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
+
+ </div>
+
+ <div >
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Lama Usaha
+ </label>
+
+ <input
+ type="text"
+ name="lama_usaha"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : 5 Tahun"
+ value="{{ old('lama_usaha', $permohonanSurat->data_surat['lama_usaha'] ?? '') }}">
+
+ </div>
+
+ <div >
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Keterangan Usaha
+ </label>
+
+ <input
+ type="text"
+ name="keterangan_usaha"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Sedang berjalan / Berkembang"
+ value="{{ old('keterangan_usaha', $permohonanSurat->data_surat['keterangan_usaha'] ?? '') }}">
+
+ </div>
+
+ </div>
+
+ </div>
+
+</div>
+
+{{-- =========================================================
+| DATA KEMATIAN
+| Hanya untuk Surat Keterangan Kematian
+========================================================= --}}
+
+<div id="kematian-fields" class="mb-6" style="display:none;">

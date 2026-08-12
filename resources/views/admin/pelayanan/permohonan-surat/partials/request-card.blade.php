@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
@@ -22,7 +22,7 @@
 
  <div class="flex flex-wrap -mx-3 gy-4">
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Nomor Permohonan
@@ -34,7 +34,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Nomor Surat
@@ -58,7 +58,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Jenis Surat
@@ -70,7 +70,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Tanggal Permohonan
@@ -82,7 +82,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Pejabat Penandatangan
@@ -116,13 +116,13 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Status Permohonan
  </small>
 
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-3 py-2 bg-{{ $permohonanSurat->status_badge_class }}">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-3 py-2 bg-{{ str_replace('text-', 'bg-', $permohonanSurat->status_badge_class) }} text-{{ $permohonanSurat->status_badge_class }} bg-opacity-20">
  {{ strtoupper($permohonanSurat->status) }}
  </span>
 

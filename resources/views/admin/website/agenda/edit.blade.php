@@ -101,7 +101,7 @@
 
  <input type="text"
  name="judul"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('judul',$agenda->judul) }}"
  required>
 
@@ -128,7 +128,7 @@
  <textarea
  name="deskripsi"
  rows="5"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('deskripsi',$agenda->deskripsi) }}</textarea>
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('deskripsi',$agenda->deskripsi) }}</textarea>
 
 
  </div>
@@ -155,7 +155,7 @@
 
  <input type="date"
  name="tanggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('tanggal',$agenda->tanggal?->format('Y-m-d')) }}"
  required>
 
@@ -179,7 +179,7 @@
 
  <input type="time"
  name="waktu"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('waktu',$agenda->waktu) }}">
 
 
@@ -203,7 +203,7 @@
 
  <input type="text"
  name="lokasi"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('lokasi',$agenda->lokasi) }}">
 
 
@@ -232,7 +232,7 @@
 
 
  <select name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
  <option value="aktif"

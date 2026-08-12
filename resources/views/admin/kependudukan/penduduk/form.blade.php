@@ -6,7 +6,7 @@
         <input
             type="text"
             name="nik" placeholder="Contoh: 7371112233445566"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('nik', $penduduk->nik ?? '') }}"
             maxlength="16"
             required>
@@ -18,7 +18,7 @@
         <input
             type="text"
             name="nama_lengkap" placeholder="Masukkan nama lengkap sesuai KTP"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('nama_lengkap', $penduduk->nama_lengkap ?? '') }}"
             required>
     </div>
@@ -27,7 +27,7 @@
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Jenis Kelamin <span class="text-red-500">*</span></label>
 
-        <select name="jenis_kelamin" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" required>
+        <select name="jenis_kelamin" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" required>
             <option value="">Pilih</option>
             <option value="L"
                 {{ old('jenis_kelamin', $penduduk->jenis_kelamin ?? '') == 'L' ? 'selected' : '' }}>
@@ -44,7 +44,7 @@
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Lingkungan</label>
 
-        <select name="lingkungan_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+        <select name="lingkungan_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
             <option value="">Pilih Lingkungan</option>
 
             @foreach($lingkungans as $lingkungan)
@@ -64,7 +64,7 @@
 
     <select
         name="kartu_keluarga_id"
-        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
         <option value="">
             Pilih Kartu Keluarga
@@ -93,7 +93,7 @@
         Hubungan Dalam Keluarga
     </label>
 
-    <select name="hubungan_keluarga" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="hubungan_keluarga" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
         <option value="">Pilih Hubungan</option>
 
@@ -146,7 +146,7 @@
         <input
             type="text"
             name="tempat_lahir" placeholder="Contoh: Makassar"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('tempat_lahir', $penduduk->tempat_lahir ?? '') }}">
     </div>
 
@@ -157,7 +157,7 @@
     <input
         type="date"
         name="tanggal_lahir"
-        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
         value="{{ old('tanggal_lahir', optional($penduduk->tanggal_lahir)->format('Y-m-d')) }}">
 </div>
 
@@ -165,7 +165,7 @@
     <div>
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Agama</label>
 
-    <select name="agama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="agama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
         <option value="">Pilih Agama</option>
 
         <option value="Islam"
@@ -206,7 +206,7 @@
 
     <select
         name="status_perkawinan"
-        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
         <option value="">Pilih Status</option>
 
@@ -236,7 +236,7 @@
     <div>
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pendidikan</label>
 
-    <select name="pendidikan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="pendidikan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
         <option value="">Pilih Pendidikan</option>
 
         @php
@@ -268,7 +268,7 @@
     <div>
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pekerjaan</label>
 
-    <select name="pekerjaan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="pekerjaan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
         <option value="">Pilih Pekerjaan</option>
 
         @foreach(\App\Models\Penduduk::pekerjaanList() as $item)
@@ -286,27 +286,27 @@
         <textarea
             name="alamat" placeholder="Masukkan nama jalan, lorong, atau patokan rumah..."
             rows="3"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('alamat', $penduduk->alamat ?? '') }}</textarea>
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('alamat', $penduduk->alamat ?? '') }}</textarea>
     </div>
 
     {{-- RT --}}
-    <div class="col-md-3">
+    <div  >
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">RT</label>
         <input
             type="text"
             name="rt"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('rt', $penduduk->rt ?? '') }}"
             placeholder="00">
     </div>
 
     {{-- RW --}}
-    <div class="col-md-3">
+    <div  >
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">RW</label>
         <input
             type="text"
             name="rw"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('rw', $penduduk->rw ?? '') }}"
             placeholder="00">
     </div>
@@ -317,25 +317,25 @@
         <input
             type="text"
             name="telepon" placeholder="Contoh: 081234567890"
-            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+            class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
             value="{{ old('telepon', $penduduk->telepon ?? '') }}">
     </div>
 
  {{-- Email --}}
-<div class="col-md-4">
+<div  >
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
     <input
         type="email"
         name="email" placeholder="Contoh: email@domain.com"
-        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
         value="{{ old('email', $penduduk->email ?? '') }}">
 </div>
 
 {{-- Status Validasi --}}
-<div class="col-md-4">
+<div  >
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Status Validasi Alamat</label>
 
-    <select name="status_validasi_alamat" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="status_validasi_alamat" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
         <option value="Valid"
             {{ old('status_validasi_alamat', $penduduk->status_validasi_alamat ?? '') == 'Valid' ? 'selected' : '' }}>
             Valid
@@ -349,10 +349,10 @@
 </div>
 
 {{-- Status Penduduk --}}
-<div class="col-md-4">
+<div  >
     <label class="block text-sm font-semibold text-slate-700 mb-1.5">Status Penduduk</label>
 
-    <select name="aktif" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+    <select name="aktif" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
         <option value="1"
             {{ old('aktif', $penduduk->aktif ?? 1) == 1 ? 'selected' : '' }}>
             Aktif
@@ -363,4 +363,4 @@
             Tidak Aktif
         </option>
     </select>
-</div>
+</div></div>

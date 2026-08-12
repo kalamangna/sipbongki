@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
@@ -22,7 +22,7 @@
 
  @if(!empty($permohonanSurat->keperluan))
 
- <div class="border rounded-3 bg-light p-4">
+ <div class="border rounded-3 bg-slate-50 p-4">
 
  <div class="lh-lg text-dark">
 

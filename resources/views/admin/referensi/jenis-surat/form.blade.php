@@ -18,7 +18,7 @@
  <input
  type="text"
  name="kode"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
  value="{{ old('kode', $jenisSurat->kode ?? '') }}"
  placeholder="Contoh : SKTM">
 
@@ -42,7 +42,7 @@
  <input
  type="text"
  name="kode_nomor"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode_nomor') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode_nomor') is-invalid @enderror"
  value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}"
  placeholder="Contoh : 470">
 
@@ -75,7 +75,7 @@
  type="number"
  min="0"
  name="nomor_urut"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nomor_urut') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nomor_urut') is-invalid @enderror"
  value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}">
 
  <div class="form-text">
@@ -104,7 +104,7 @@
  <input
  type="text"
  name="nama"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
  value="{{ old('nama', $jenisSurat->nama ?? '') }}"
  placeholder="Masukkan nama surat">
 
@@ -129,7 +129,7 @@
  <textarea
  rows="4"
  name="deskripsi"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
  placeholder="Contoh: KTP, KK, dan surat pengantar RT/RW.">{{ old('deskripsi', $jenisSurat->deskripsi ?? '') }}</textarea>
 
  <div class="form-text">
@@ -156,7 +156,7 @@
  <input
  type="text"
  name="template_view"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('template_view') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('template_view') is-invalid @enderror"
  value="{{ old('template_view', $jenisSurat->template_view ?? '') }}"
  placeholder="admin.pelayanan.surat.domisili">
 

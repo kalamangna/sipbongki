@@ -1,6 +1,6 @@
 @if(session('success'))
 
-<div class="p-4 mb-4 text-sm text-emerald-800 rounded-xl bg-emerald-50 border border-emerald-200 p-4 mb-4 text-sm rounded-xl border-dismissible fade show shadow-sm">
+<div class="p-4 mb-6 rounded-xl bg-emerald-50 border border-emerald-100 text-sm text-emerald-800 flex justify-between items-center">
 
  <i class="fa-solid fa-circle-check-fill mr-2"></i>
 
@@ -8,7 +8,7 @@
 
  <button
  class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-close"
- data-bs-dismiss="p-4 mb-4 text-sm rounded-xl border">
+ onclick="this.parentElement.style.display='none'">
  </button>
 
 </div>
@@ -17,7 +17,7 @@
 
 @if(session('error'))
 
-<div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200 p-4 mb-4 text-sm rounded-xl border-dismissible fade show shadow-sm">
+<div class="p-4 mb-6 rounded-xl bg-red-50 border border-red-100 text-sm text-red-800 flex justify-between items-center">
 
  <i class="fa-solid fa-exclamation-circle-fill mr-2"></i>
 
@@ -25,7 +25,7 @@
 
  <button
  class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-close"
- data-bs-dismiss="p-4 mb-4 text-sm rounded-xl border">
+ onclick="this.parentElement.style.display='none'">
  </button>
 
 </div>

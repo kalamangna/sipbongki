@@ -12,15 +12,15 @@
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap aparatur kelurahan</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('admin.perangkat.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.perangkat.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
                 <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-            <a href="{{ route('admin.perangkat.edit', $perangkat) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.perangkat.edit', $perangkat) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
             </a>
             <form action="{{ route('admin.perangkat.destroy', $perangkat) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus data pejabat kelurahan ini?')">
                 @csrf @method('DELETE')
-                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20">
+                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20 focus:outline-none active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-trash"></i> Hapus
                 </button>
             </form>
@@ -31,7 +31,7 @@
 
         {{-- Kolom Kiri: Foto Profil --}}
         <div class="lg:col-span-1">
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col items-center justify-center p-8 text-center h-full">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col items-center justify-center p-8 text-center h-full">
                 <div class="relative w-40 h-40 mb-5">
                     @if($perangkat->foto)
                         <img src="{{ asset('storage/'.$perangkat->foto) }}" class="w-full h-full rounded-full object-cover ring-4 ring-primary-50 shadow-md">
@@ -65,7 +65,7 @@
 
         {{-- Kolom Kanan: Data Profil --}}
         <div class="lg:col-span-2 space-y-6">
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden h-full">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
                 <div class="px-6 py-5 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
                     <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
                         <i class="fa-solid fa-id-card-clip"></i>

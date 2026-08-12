@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mt-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mt-6">
 
  <div class="p-6">
 

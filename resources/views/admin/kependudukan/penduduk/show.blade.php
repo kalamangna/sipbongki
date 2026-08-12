@@ -12,15 +12,15 @@
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap kependudukan atas nama <span class="font-semibold text-slate-700">{{ $penduduk->nama_lengkap }}</span></p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
                 <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-            <a href="{{ route('admin.penduduk.edit', $penduduk) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.penduduk.edit', $penduduk) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
             </a>
             <form action="{{ route('admin.penduduk.destroy', $penduduk) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus data penduduk ini?')">
                 @csrf @method('DELETE')
-                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20">
+                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20 focus:outline-none focus:ring-2 focus:ring-rose-500">
                     <i class="fa-solid fa-trash"></i> Hapus
                 </button>
             </form>
@@ -33,7 +33,7 @@
         <div class="lg:col-span-2 space-y-6">
             
             {{-- Data Pribadi --}}
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
                         <i class="fa-solid fa-user"></i>
@@ -81,7 +81,7 @@
             </div>
 
             {{-- Status Perkawinan & Keluarga --}}
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
                         <i class="fa-solid fa-people-roof"></i>
@@ -131,7 +131,7 @@
         <div class="space-y-6">
             
             {{-- Alamat & Lingkungan --}}
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
                         <i class="fa-solid fa-map-location-dot"></i>
@@ -163,7 +163,7 @@
             </div>
 
             {{-- Sistem --}}
-            <div class="bg-slate-50 rounded-3xl ring-1 ring-slate-200/60 shadow-inner overflow-hidden">
+            <div class="bg-slate-50 rounded-2xl border border-slate-200 shadow-inner overflow-hidden">
                 <div class="p-6">
                     <div class="flex flex-col gap-5">
                         <div class="flex items-center justify-between">

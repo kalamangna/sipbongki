@@ -11,7 +11,7 @@
  <input
  type="text"
  name="nama"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
  value="{{ old('nama', $jabatan->nama ?? '') }}"
  placeholder="Masukkan nama jabatan">
 
@@ -36,7 +36,7 @@
  <input
  type="text"
  name="slug"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('slug') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('slug') is-invalid @enderror"
  value="{{ old('slug', $jabatan->slug ?? '') }}"
  placeholder="contoh: kasi-pemerintahan">
 
@@ -64,7 +64,7 @@
 
  <select
  name="parent_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('parent_id') is-invalid @enderror">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('parent_id') is-invalid @enderror">
 
  <option value="">
  -- Tidak Ada --
@@ -106,7 +106,7 @@
  type="number"
  min="1"
  name="urutan"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('urutan') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('urutan') is-invalid @enderror"
  value="{{ old('urutan', $jabatan->urutan ?? 1) }}"
  placeholder="1">
 

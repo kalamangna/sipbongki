@@ -1,0 +1,277 @@
+183 <div id="kematian-fields" class="mb-6" style="display:none;">
+184 
+185  {{-- =========================================================
+186  | DATA ALMARHUM / ALMARHUMAH
+187  ========================================================= --}}
+188  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+189 
+190  <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+191  <h3 class="font-bold text-slate-800 text-base mb-0">Data Almarhum</h3>
+192  </div>
+193 
+194  <div class="p-6">
+195 
+196  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+197 
+198  <div  class="md:col-span-2">
+199 
+200  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+201  Almarhum 
+202  <span class="text-red-500">*</span>
+203  </label>
+204 
+205  <select
+206  id="penduduk_id_kematian"
+207  name="almarhum_id"
+208  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+209 
+210  <option value="">-- Pilih Penduduk --</option>
+211 
+212  @foreach($penduduks as $penduduk)
+213 
+214  <option
+215  value="{{ $penduduk->id }}"
+216  @selected(old('penduduk_id') == $penduduk->id)>
+217  
+218 
+219  {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
+220 
+221  </option>
+222 
+223  @endforeach
+224 
+225  </select>
+226 
+227  </div>
+228 <div >
+229 
+230  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+231  Hari Meninggal
+232  <span class="text-red-500">*</span>
+233  </label>
+234 
+235  <select
+236  name="hari_meninggal"
+237  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+238 
+239  <option value="">
+240  -- Pilih Hari --
+241  </option>
+242 
+243  <option value="Senin"
+244  @selected(old('hari_meninggal') == 'Senin')>
+245  Senin
+246  </option>
+247 
+248  <option value="Selasa"
+249  @selected(old('hari_meninggal') == 'Selasa')>
+250  Selasa
+251  </option>
+252 
+253  <option value="Rabu"
+254  @selected(old('hari_meninggal') == 'Rabu')>
+255  Rabu
+256  </option>
+257 
+258  <option value="Kamis"
+259  @selected(old('hari_meninggal') == 'Kamis')>
+260  Kamis
+261  </option>
+262 
+263  <option value="Jumat"
+264  @selected(old('hari_meninggal') == 'Jumat')>
+265  Jumat
+266  </option>
+267 
+268  <option value="Sabtu"
+269  @selected(old('hari_meninggal') == 'Sabtu')>
+270  Sabtu
+271  </option>
+272 
+273  <option value="Minggu"
+274  @selected(old('hari_meninggal') == 'Minggu')>
+275  Minggu
+276  </option>
+277 
+278 </select>
+279 
+280 </div>
+281 
+282 <div >
+283 
+284  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+285  Tanggal Meninggal
+286  <span class="text-red-500">*</span>
+287  </label>
+288 
+289  <input
+290  type="date"
+291  name="tanggal_meninggal"
+292  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+293  value="{{ old('tanggal_meninggal') }}">
+294 
+295 </div>
+296 
+297 <div >
+298 
+299  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+300  Jam Meninggal
+301  </label>
+302 
+303  <input
+304  type="time"
+305  name="jam_meninggal"
+306  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+307  value="{{ old('jam_meninggal') }}">
+308 
+309 </div>
+310 
+311 <div >
+312 
+313  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+314  Tempat Meninggal
+315  <span class="text-red-500">*</span>
+316  </label>
+317 
+318  <input
+319  type="text"
+320  name="tempat_meninggal"
+321  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+322  placeholder="Contoh: RSUD / Rumah"
+323  value="{{ old('tempat_meninggal') }}">
+324 
+325 </div>
+326 
+327 <div  class="md:col-span-2">
+328 
+329  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+330  Penyebab Kematian
+331  <span class="text-red-500">*</span>
+332  </label>
+333 
+334  <textarea
+335  name="penyebab_kematian"
+336  rows="3"
+337  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+338  placeholder="Contoh: Sakit / Kecelakaan / Lanjut Usia">{{ old('penyebab_kematian') }}</textarea>
+339 
+340 </div>
+341  </div>
+342 
+343  </div>
+344 
+345  </div>
+346 
+347  
+348 
+349  {{-- =========================================================
+350  | DATA PELAPOR
+351  ========================================================= --}}
+352  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+353 
+354  <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+355  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-user-check text-sky-500 mr-2"></i>Data Pelapor</h3>
+356  </div>
+357 
+358  <div class="p-6">
+359 
+360  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+361 
+362  <div >
+363 
+364  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+365  Pelapor
+366  <span class="text-red-500">*</span>
+367  </label>
+368 
+369  <select
+370  id="pelapor_id"
+371  name="pelapor_id"
+372  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+373 
+374  <option value="">-- Pilih Penduduk --</option>
+375 
+376  @foreach($penduduks as $penduduk)
+377 
+378  <option
+379  value="{{ $penduduk->id }}"
+380  @selected(old('pelapor_id') == $penduduk->id)>
+381 
+382  {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
+383 
+384  </option>
+385 
+386  @endforeach
+387 
+388  </select>
+389 
+390  </div>
+391 
+392  <div >
+393 
+394  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+395  Hubungan dengan Almarhum / Almarhumah
+396  </label>
+397 
+398  <select
+399  name="hubungan_pelapor"
+400  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+401 
+402  <option value="">-- Pilih Hubungan --</option>
+403 
+404  <option value="Suami"
+405  @selected(old('hubungan_pelapor') == 'Suami')>
+406  Suami
+407  </option>
+408 
+409  <option value="Istri"
+410  @selected(old('hubungan_pelapor') == 'Istri')>
+411  Istri
+412  </option>
+413 
+414  <option value="Ayah"
+415  @selected(old('hubungan_pelapor') == 'Ayah')>
+416  Ayah
+417  </option>
+418 
+419  <option value="Ibu"
+420  @selected(old('hubungan_pelapor') == 'Ibu')>
+421  Ibu
+422  </option>
+423  
+424  <option value="Anak"
+425  @selected(old('hubungan_pelapor') == 'Anak')>
+426  Anak
+427  </option>
+428  
+429  <option value="Saudara"
+430  @selected(old('hubungan_pelapor') == 'Saudara')>
+431  Saudara
+432  </option>
+433 
+434  <option value="Keluarga"
+435  @selected(old('hubungan_pelapor') == 'Keluarga')>
+436  keluarga
+437  </option>
+438 
+439  <option value="Tetangga"
+440  @selected(old('hubungan_pelapor') == 'Tetangga')>
+441  Tetangga
+442  </option>
+443 
+444  <option value="Lainnya"
+445  @selected(old('hubungan_pelapor') == 'Lainnya')>
+446  Lainnya
+447  </option>
+448 
+449  </select>
+450 
+451  </div>
+452 
+453  </div>
+454 
+455  </div>
+456 
+457  </div>
+458 
+459 </div>

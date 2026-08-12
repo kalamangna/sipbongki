@@ -143,6 +143,7 @@ if (
         'alamat_usaha' => 'nullable|string|max:255',
 
         'lama_usaha' => 'nullable|string|max:100',
+        'keterangan_usaha' => 'nullable|string|max:255',
 
     ]);
 
@@ -158,6 +159,7 @@ switch (strtoupper($jenisSurat->kode)) {
             'jenis_usaha'  => 'required|string|max:150',
             'alamat_usaha' => 'nullable|string|max:255',
             'lama_usaha'   => 'nullable|string|max:100',
+            'keterangan_usaha' => 'nullable|string|max:255',
         ]);
 
         $dataSurat = [
@@ -165,6 +167,7 @@ switch (strtoupper($jenisSurat->kode)) {
             'jenis_usaha'  => $request->jenis_usaha,
             'alamat_usaha' => $request->alamat_usaha,
             'lama_usaha'   => $request->lama_usaha,
+            'keterangan_usaha' => $request->keterangan_usaha,
         ];
 
         break;
@@ -486,6 +489,7 @@ public function update(
                 'jenis_usaha'  => 'required|string|max:150',
                 'alamat_usaha' => 'nullable|string|max:255',
                 'lama_usaha'   => 'nullable|string|max:100',
+                'keterangan_usaha' => 'nullable|string|max:255',
 
             ]);
 
@@ -495,6 +499,7 @@ public function update(
                 'jenis_usaha'  => $request->jenis_usaha,
                 'alamat_usaha' => $request->alamat_usaha,
                 'lama_usaha'   => $request->lama_usaha,
+                'keterangan_usaha' => $request->keterangan_usaha,
 
             ];
 

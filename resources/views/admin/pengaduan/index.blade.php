@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Pengaduan')
+@section('title', 'Pengaduan')
 
 @section('content')
 
@@ -19,15 +19,15 @@
 
  </div>
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="p-6 p-0">
+ <div class="p-0">
 
  <div class="overflow-x-auto w-full">
 
  <table class="w-full text-sm text-left text-slate-500">
 
- <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
+ <thead class="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
 
  <tr>
 
@@ -35,7 +35,7 @@
 
  <th class="px-4 py-3 font-medium text-slate-700">Kode</th>
 
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Nama Pelapor</th>
+ <th class="text-center px-4 py-3 font-medium text-slate-700">Nama Pelapor</th>
 
  <th class="px-4 py-3 font-medium text-slate-700">Kategori</th>
 
@@ -45,9 +45,9 @@
 
  <th class="px-4 py-3 font-medium text-slate-700">Catatan Petugas</th>
 
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Tanggal</th>
+ <th class="text-center px-4 py-3 font-medium text-slate-700">Tanggal</th>
 
- <th width="180" class=\"text-center px-4 py-3 font-medium text-slate-700\">
+ <th width="120" class="text-center px-4 py-3 font-medium text-slate-700">
  Aksi
  </th>
 
@@ -67,13 +67,13 @@
 
  <td class="px-4 py-3 border-b border-slate-100">
 
- <span class="text-dark">
+ <span class="font-medium text-slate-900">
  {{ $pengaduan->kode }}
  </span>
 
  </td>
 
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ <td class="text-center px-4 py-3 border-b border-slate-100">
 
  <div>
  {{ $pengaduan->nama }}
@@ -87,7 +87,7 @@
 
  <td class="px-4 py-3 border-b border-slate-100">
 
- <span class="text-dark fw-normal">
+ <span class="font-medium text-slate-900">
  {{ $pengaduan->kategori }}
  </span>
 
@@ -109,7 +109,7 @@
 
  @elseif($pengaduan->status == 'Diproses')
 
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 text-dark">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
  Diproses
  </span>
 
@@ -135,7 +135,7 @@
  @endif
  </td>
 
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ <td class="text-center px-4 py-3 border-b border-slate-100">
 
  {{ $pengaduan->created_at->format('d M Y') }}
 
@@ -147,13 +147,13 @@
 
  </td>
 
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
+ <td class="text-center px-4 py-3 border-b border-slate-100">
 
- <div class="action-buttons">
+ <div class="flex justify-center gap-2">
 
  <a
  href="{{ route('admin.pengaduan.show',$pengaduan) }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ class="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm active:scale-95"
  title="Detail">
 
  <i class="fa-solid fa-eye"></i>
@@ -173,7 +173,7 @@
 
  <button
  type="submit"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
+ class="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm active:scale-95"
  title="Hapus">
 
  <i class="fa-solid fa-trash"></i>
@@ -193,11 +193,11 @@
 
  <tr>
 
- <td colspan="8" class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
+ <td colspan="9" class="text-center py-8 px-4 border-b border-slate-100">
 
- <i class="fa-solid fa-inbox display-4 block mb-4 text-secondary"></i>
+ <i class="fa-solid fa-inbox text-5xl text-slate-300 mb-4 block"></i>
 
- <h5 class="mb-2">
+ <h5 class="text-lg font-bold text-slate-700 mb-2">
  Belum Ada Pengaduan
  </h5>
 
@@ -221,7 +221,7 @@
 
  @if($pengaduans->hasPages())
 
- <div class="px-6 py-4 border-t border-slate-200 bg-white border-0">
+ <div class="px-6 py-4 border-t border-slate-200 bg-white">
 
  {{ $pengaduans->links('pagination::tailwind') }}
 

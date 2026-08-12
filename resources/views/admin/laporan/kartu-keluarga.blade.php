@@ -253,7 +253,7 @@
 
  <input
  type="text"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  name="keyword"
  value="{{ request('keyword') }}"
  placeholder="Cari Nomor KK atau Kepala Keluarga">
@@ -269,7 +269,7 @@
  </label>
 
  <select
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  name="lingkungan">
 
  <option value="">
@@ -302,7 +302,7 @@
  type="text"
  name="rt"
  value="{{ request('rt') }}"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
  </div>
 
@@ -316,7 +316,7 @@
  type="text"
  name="rw"
  value="{{ request('rw') }}"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
  </div>
 
@@ -329,7 +329,7 @@
  </label>
 
  <select
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  name="status">
 
  <option value="">
@@ -373,13 +373,9 @@
 
  <div class="mt-3">
 
- <a
- href="{{ route('admin.laporan.kartu-keluarga') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
-
- Reset Filter
-
- </a>
+ <a href="{{ route('admin.laporan.kartu-keluarga') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
+    <i class="fa-solid fa-rotate-left"></i>
+</a>
 
  </div>
 

@@ -80,7 +80,7 @@
 
  <input type="text"
  name="judul"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('judul') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('judul') is-invalid @enderror"
  value="{{ old('judul') }}"
  placeholder="Contoh: Gotong Royong Bersama Warga">
 
@@ -119,7 +119,7 @@
 
  <textarea name="deskripsi"
  rows="4"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
  placeholder="Keterangan dokumentasi">{{ old('deskripsi') }}</textarea>
 
 
@@ -161,7 +161,7 @@
 
  <input type="file"
  name="gambar"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('gambar') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('gambar') is-invalid @enderror"
  accept="image/*"
  onchange="previewImage(event)">
 
@@ -220,7 +220,7 @@
 
 
  <select name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
  <option value="aktif">

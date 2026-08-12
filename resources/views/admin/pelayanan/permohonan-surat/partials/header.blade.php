@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="p-6">
 
@@ -28,7 +28,7 @@
 
  <div class="w-full lg:w-1/3 px-3 text-lg-end mt-3 mt-lg-0">
 
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-{{ $permohonanSurat->status_badge_class }} px-4 py-3 rounded-pill">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-{{ str_replace('text-', 'bg-', $permohonanSurat->status_badge_class) }} text-{{ $permohonanSurat->status_badge_class }} bg-opacity-20 px-4 py-3 rounded-pill">
 
  {{ strtoupper($permohonanSurat->status) }}
 

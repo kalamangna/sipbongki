@@ -1,12 +1,12 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
 
  <div>
 
- <h5 class="mb-0 request-detail-card-title">
+ <h3 class="font-bold text-slate-800 text-base mb-0">
  Status Pelayanan
- </h5>
+ </h3>
 
  </div>
 
@@ -18,15 +18,15 @@
 
  $icon = match($permohonanSurat->status){
 
- 'Menunggu' => 'bi-hourglass-split',
+ 'Menunggu' => 'fa-hourglass-half',
 
- 'Diproses' => 'bi-arrow-repeat',
+ 'Diproses' => 'fa-arrow-rotate-right',
 
- 'Selesai' => 'bi-check-circle-fill',
+ 'Selesai' => 'fa-circle-check',
 
- 'Ditolak' => 'bi-x-circle-fill',
+ 'Ditolak' => 'fa-circle-xmark',
 
- default => 'bi-question-circle',
+ default => 'fa-circle-question',
 
  };
 
@@ -34,11 +34,11 @@
 
  <div class="mb-4">
 
- <i class="bi {{ $icon }} display-4 text-{{ $permohonanSurat->status_badge_class"></i>
+ <i class="fa-solid {{ $icon }} text-5xl mb-2 inline-block text-{{ $permohonanSurat->status_badge_class }}"></i>
 
  </div>
 
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-4 py-3 bg-{{ $permohonanSurat->status_badge_class }}">
+ <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold rounded-pill px-4 py-3 bg-{{ str_replace('text-', 'bg-', $permohonanSurat->status_badge_class) }} text-{{ $permohonanSurat->status_badge_class }} bg-opacity-20">
 
  {{ strtoupper($permohonanSurat->status) }}
 

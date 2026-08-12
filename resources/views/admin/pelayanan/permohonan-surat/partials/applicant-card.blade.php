@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
@@ -25,9 +25,9 @@
  $dataSurat = $permohonanSurat->data_surat ?? [];
  @endphp
 
- <div class="flex flex-wrap -mx-3 gy-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Nama Lengkap
@@ -39,7 +39,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  NIK
@@ -51,7 +51,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Nomor KK
@@ -63,7 +63,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Jenis Kelamin
@@ -75,7 +75,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Tempat Lahir
@@ -87,7 +87,7 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3">
+ <div>
 
  <small class="text-slate-500 block">
  Tanggal Lahir
@@ -99,13 +99,13 @@
 
  </div>
 
- <div class="w-full px-3">
+ <div class="md:col-span-2">
 
  <small class="text-slate-500 block">
  Alamat
  </small>
 
- <div class="border rounded-3 p-3 bg-light">
+ <div class="border rounded-3 p-3 bg-slate-50">
 
  {{ optional($pemohon)->alamat ?? data_get($dataSurat, 'alamat') ?? '-' }}
 

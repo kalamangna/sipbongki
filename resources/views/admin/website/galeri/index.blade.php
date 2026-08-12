@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title', 'Manajemen Galeri')
+@section('title', 'Galeri')
 
 
 @section('content')
@@ -281,18 +281,11 @@
  </table>
 
 
+ @if($galeris->hasPages())
+ <div class="px-6 py-4 border-t border-slate-100 bg-white">
+    {{ $galeris->links() }}
  </div>
-
-
-
-
-
- {{ $galeris->links() }}
-
-
-
-
- </div>
+ @endif
 
 
  </div>

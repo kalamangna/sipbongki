@@ -138,7 +138,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div class="text-center mb-12 text-white">
-            <h2 class="text-3xl font-bold mb-4">Formulir Pengaduan</h2>
+            <h2 class="text-3xl font-bold text-white mb-4">Formulir Pengaduan</h2>
             <p class="text-white/80">Isi formulir berikut untuk menyampaikan laporan kepada Kelurahan Bongki.</p>
         </div>
 

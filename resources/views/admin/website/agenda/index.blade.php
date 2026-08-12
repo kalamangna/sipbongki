@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title', 'Manajemen Agenda')
+@section('title', 'Agenda')
 
 
 @section('content')
@@ -288,16 +288,11 @@
 
  </table>
 
-
+ @if($agendas->hasPages())
+ <div class="px-6 py-4 border-t border-slate-100 bg-white">
+    {{ $agendas->links() }}
  </div>
-
-
-
-
-
- {{ $agendas->links() }}
-
-
+ @endif
 
  </div>
 

@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **UI/UX (Pengaturan)**: Menyelaraskan *style* tabel dan *filter* pencarian pada manajemen Pengguna agar identik dan konsisten dengan modul Kependudukan.
+- **UI/UX (Pengaturan)**: Merombak tata letak form Tambah & Edit Pengguna menjadi lebih bersih, melengkapi label *placeholder*, dan merapikan teks menu peran (role).
+- **UI/UX (Dasbor Admin)**: Menyeragamkan seluruh tombol "Reset Filter" di seluruh halaman dasbor menggunakan satu ikon rotasi tanpa teks yang redundan.
+- **Arsitektur (Akses Dasbor)**: Mengkonsolidasikan seluruh dasbor ke satu *route* (`admin.dashboard`) untuk semua tingkat akses, dan menampilkan/menyembunyikan menu pintasan (*quick links*) secara dinamis berdasarkan otorisasi peran pengguna.
+- **Database (Role Akses)**: Menghapus peran `warga` dan memformalkan peran `pimpinan` pada struktur tipe data ENUM kolom `role` di tabel `users`.
+- **UI/UX (General)**: Menambahkan logo aplikasi sebagai `favicon` global dan menyederhanakan *page title* di *tab browser* agar tidak redundan.
 - **UI/UX (Admin Dashboard)**: Merombak tata letak Dasbor Admin menjadi gaya premium Tailwind v4 dengan bayangan halus, panel melengkung besar, dan jarak putih (whitespace) yang lebih bersih.
 - **UI/UX (Navbar)**: Menyederhanakan teks Navbar admin agar tidak terlalu ramai dan terlihat lebih profesional.
 - **UI/UX (Paginasi)**: Merombak komponen paginasi bawaan Tailwind Laravel (`vendor/pagination`) agar selaras dengan tema UI baru serta menerjemahkan label bahasa Inggris ("Previous/Next") ke dalam bahasa Indonesia ("Sebelumnya/Selanjutnya").

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Jabatan')
+@section('title', 'Jabatan')
 
 @section('content')
 
@@ -48,7 +48,7 @@
  <input
  type="text"
  name="search"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  placeholder="Cari nama jabatan..."
  value="{{ $search }}">
 
@@ -70,13 +70,9 @@
 
  <div class="shrink-0">
 
- <a
- href="{{ route('admin.jabatan.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
-
- Reset
-
- </a>
+ <a href="{{ route('admin.jabatan.index') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
+    <i class="fa-solid fa-rotate-left"></i>
+</a>
 
  </div>
 
@@ -239,8 +235,8 @@
  type="button"
  class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm !px-3 !py-1.5 !text-xs"
  title="Hapus"
- data-bs-toggle="modal"
- data-bs-target="#hapusModal{{ $jabatan->id }}">
+ 
+ data-modal-target="hapusModal{{ $jabatan->id }}" data-modal-toggle="hapusModal{{ $jabatan->id }}">
 
  <i class="fa-solid fa-trash"></i>
 
@@ -252,32 +248,23 @@
 
  </tr>
 
- <div
- class="modal fade"
- id="hapusModal{{ $jabatan->id }}"
- tabindex="-1">
+ <div id="hapusModal{{ $jabatan->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-2xl shadow-sm border border-slate-200">
 
- <div class="modal-dialog">
 
- <div class="modal-content">
-
- <div class="modal-header">
-
- <h5 class="modal-title">
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 text-slate-800 rounded-t-2xl">
+                <h5 class="font-bold text-lg mb-0">
 
  Konfirmasi Hapus
 
  </h5>
+                <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors" data-modal-hide="hapusModal{{ $jabatan->id }}">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
 
- <button
- type="button"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-close"
- data-bs-dismiss="modal">
- </button>
-
- </div>
-
- <div class="modal-body">
+ <div class="p-6">
 
  Apakah Anda yakin ingin menghapus jabatan
 
@@ -289,12 +276,12 @@
 
  </div>
 
- <div class="modal-footer">
+ <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50 rounded-b-2xl">
 
  <button
  type="button"
  class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600"
- data-bs-dismiss="modal">
+ data-modal-hide="hapusModal{{ $jabatan->id }}">
 
  Batal
 
@@ -317,12 +304,9 @@
  </button>
 
  </form>
-
- </div>
-
- </div>
-
- </div>
+        </div>
+    </div>
+</div>
 
  </div>
 

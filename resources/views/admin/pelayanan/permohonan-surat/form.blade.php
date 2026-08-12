@@ -1,61 +1,29 @@
-@csrf
 
-@csrf
 
-@if ($errors->any())
- <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
- <strong>Terjadi kesalahan:</strong>
- <ul class="mb-0 mt-2">
- @foreach ($errors->all() as $error)
- <li>{{ $error }}</li>
- @endforeach
- </ul>
+
+
+
+
+    
+    
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-file-lines text-primary-600 mr-2"></i>Informasi Utama</h3>
  </div>
-@endif
-
-<div class="flex flex-wrap -mx-3">
-
- {{-- Pemohon --}}
- <div id="pemohon-field" class="w-full md:w-1/2 px-3 mb-4">
-
- <label class="form-label">
- Pemohon <span class="text-danger">*</span>
- </label>
-
- <select
- id="penduduk_id"
- name="penduduk_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('penduduk_id') is-invalid @enderror">
-
- <option value="">-- Pilih Penduduk --</option>
-
- @foreach($penduduks as $penduduk)
- <option
- value="{{ $penduduk->id }}"
- @selected(old('penduduk_id', $permohonanSurat->penduduk_id ?? '') == $penduduk->id)>
-
- {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
-
- </option>
- @endforeach
-
- </select>
-
- @error('penduduk_id')
- <div class="invalid-feedback">{{ $message }}</div>
- @enderror
- </div>
+ <div class="p-6">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
  {{-- Jenis Surat --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
- Jenis Surat <span class="text-danger">*</span>
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Jenis Surat <span class="text-red-500">*</span>
  </label>
 
  <select
  name="jenis_surat_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('jenis_surat_id') is-invalid @enderror"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  required>
 
  <option value="">-- Pilih Jenis Surat --</option>
@@ -75,82 +43,129 @@
  </select>
 
  @error('jenis_surat_id')
- <div class="invalid-feedback">{{ $message }}</div>
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
  @enderror
 
  </div>
+
+ {{-- Pemohon --}}
+ <div id="pemohon-field">
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Pemohon <span class="text-red-500">*</span>
+ </label>
+
+ <select
+ id="penduduk_id"
+ name="penduduk_id"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+
+ <option value="">-- Pilih Penduduk --</option>
+
+ @foreach($penduduks as $penduduk)
+ <option
+ value="{{ $penduduk->id }}"
+ @selected(old('penduduk_id', $permohonanSurat->penduduk_id ?? '') == $penduduk->id)>
+
+ {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
+
+ </option>
+ @endforeach
+
+ </select>
+
+ @error('penduduk_id')
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+ @enderror
+ </div>
+ </div>
+</div>
+</div>
  {{-- =========================================================
 | DATA USAHA
 | Hanya untuk Surat Keterangan Usaha
 ========================================================= --}}
-<div id="usaha-fields" class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4" style="display:none;">
+<div id="usaha-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-light">
- <strong>Data Usaha</strong>
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-store text-emerald-500 mr-2"></i>Data Usaha</h3>
  </div>
 
  <div class="p-6">
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
- Nama Usaha <span class="text-danger">*</span>
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Nama Usaha <span class="text-red-500">*</span>
  </label>
 
  <input
  type="text"
  name="nama_usaha"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Warung Kelontong Berkah"
  value="{{ old('nama_usaha', $permohonanSurat->data_surat['nama_usaha'] ?? '') }}">
 
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
- Jenis Usaha <span class="text-danger">*</span>
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Jenis Usaha <span class="text-red-500">*</span>
  </label>
 
  <input
  type="text"
  name="jenis_usaha"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
- placeholder="Contoh : Warung Sembako"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Perdagangan Sembako"
  value="{{ old('jenis_usaha', $permohonanSurat->data_surat['jenis_usaha'] ?? '') }}">
 
  </div>
 
- </div>
+ <div class="md:col-span-2">
 
- <div class="flex flex-wrap -mx-3">
-
- <div class="col-md-8 mb-4">
-
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Alamat Usaha
  </label>
 
  <textarea
  name="alamat_usaha"
  rows="2"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Jl. Merdeka No. 123, RT 01/RW 02">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
 
  </div>
 
- <div class="w-full md:w-1/3 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Lama Usaha
  </label>
 
  <input
  type="text"
  name="lama_usaha"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh : 5 Tahun"
  value="{{ old('lama_usaha', $permohonanSurat->data_surat['lama_usaha'] ?? '') }}">
+
+ </div>
+
+ <div >
+
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+ Keterangan Usaha
+ </label>
+
+ <input
+ type="text"
+ name="keterangan_usaha"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh : Sedang berjalan / Berkembang"
+ value="{{ old('keterangan_usaha', $permohonanSurat->data_surat['keterangan_usaha'] ?? '') }}">
 
  </div>
 
@@ -170,27 +185,27 @@
  {{-- =========================================================
  | DATA ALMARHUM / ALMARHUMAH
  ========================================================= --}}
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-light">
- <strong>Data Almarhum</strong>
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0">Data Almarhum</h3>
  </div>
 
  <div class="p-6">
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-full px-3 mb-4">
+ <div  class="md:col-span-2">
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Almarhum 
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <select
  id="penduduk_id_kematian"
  name="almarhum_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">-- Pilih Penduduk --</option>
 
@@ -210,16 +225,16 @@
  </select>
 
  </div>
-<div class="w-full md:w-1/2 px-3 mb-4">
+<div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Hari Meninggal
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <select
  name="hari_meninggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">
  -- Pilih Hari --
@@ -264,61 +279,63 @@
 
 </div>
 
-<div class="w-full md:w-1/2 px-3 mb-4">
+<div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Tanggal Meninggal
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <input
  type="date"
  name="tanggal_meninggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  value="{{ old('tanggal_meninggal') }}">
 
 </div>
 
-<div class="w-full md:w-1/2 px-3 mb-4">
+<div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Jam Meninggal
  </label>
 
  <input
  type="time"
  name="jam_meninggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  value="{{ old('jam_meninggal') }}">
 
 </div>
 
-<div class="w-full md:w-1/2 px-3 mb-4">
+<div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Tempat Meninggal
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <input
  type="text"
  name="tempat_meninggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: RSUD / Rumah"
  value="{{ old('tempat_meninggal') }}">
 
 </div>
 
-<div class="w-full px-3 mb-4">
+<div  class="md:col-span-2">
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Penyebab Kematian
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <textarea
  name="penyebab_kematian"
  rows="3"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('penyebab_kematian') }}</textarea>
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: Sakit / Kecelakaan / Lanjut Usia">{{ old('penyebab_kematian') }}</textarea>
 
 </div>
  </div>
@@ -332,27 +349,27 @@
  {{-- =========================================================
  | DATA PELAPOR
  ========================================================= --}}
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-light">
- <strong>Data Pelapor</strong>
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-user-check text-sky-500 mr-2"></i>Data Pelapor</h3>
  </div>
 
  <div class="p-6">
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Pelapor
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <select
  id="pelapor_id"
  name="pelapor_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">-- Pilih Penduduk --</option>
 
@@ -372,15 +389,15 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Hubungan dengan Almarhum / Almarhumah
  </label>
 
  <select
  name="hubungan_pelapor"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">-- Pilih Hubungan --</option>
 
@@ -445,9 +462,9 @@
 | DATA ORANG YANG SAMA
 ========================================================= --}}
 
-<div id="orang-sama-fields" class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4" style="display:none;">
+<div id="orang-sama-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-light">
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
  <strong>
  Data Dokumen Orang Yang Sama
  </strong>
@@ -457,22 +474,22 @@
  <div class="p-6">
 
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 
  {{-- Nama dalam dokumen lain --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Nama Dalam Dokumen Lain
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
 
  <input
  type="text"
  name="nama_lain"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh: ABDUL RAHMAN"
  value="{{ old('nama_lain', $permohonanSurat->data_surat['nama_lain'] ?? '') }}">
 
@@ -482,45 +499,40 @@
 
 
  {{-- Jenis Dokumen --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Jenis Dokumen
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
 
  <input
  type="text"
  name="jenis_dokumen"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh: Sertifikat Hak Milik"
  value="{{ old('jenis_dokumen', $permohonanSurat->data_surat['jenis_dokumen'] ?? '') }}">
 
-
- </div>
-
-
  </div>
 
 
 
- <div class="flex flex-wrap -mx-3">
 
 
  {{-- Nomor Dokumen --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Nomor Dokumen
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
 
  <input
  type="text"
  name="nomor_dokumen"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh: SHM No. 1234"
  value="{{ old('nomor_dokumen', $permohonanSurat->data_surat['nomor_dokumen'] ?? '') }}">
 
@@ -530,9 +542,9 @@
 
 
  {{-- Keterangan --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Keterangan Perbedaan
  </label>
 
@@ -540,7 +552,7 @@
  <input
  type="text"
  name="keterangan_perbedaan"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh: Perbedaan penulisan nama"
  value="{{ old('keterangan_perbedaan', $permohonanSurat->data_surat['keterangan_perbedaan'] ?? '') }}">
 
@@ -560,53 +572,56 @@
 | DATA DOMISILI
 ========================================================= --}}
 <div id="domisili-fields"
- class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4"
+ class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6"
  style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-200 bg-light">
- <strong>Data Pemohon Domisili</strong>
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0">Data Pemohon Domisili</h3>
  </div>
 
  <div class="p-6">
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Nama Lengkap</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap</label>
  <input type="text"
  name="nama_lengkap"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: Budi Santoso"
  value="{{ old('nama_lengkap', $permohonanSurat->data_surat['nama_lengkap'] ?? '') }}">
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">NIK</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">NIK</label>
  <input type="text"
  name="nik"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: 3201234567..."
  value="{{ old('nik', $permohonanSurat->data_surat['nik'] ?? '') }}">
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Tempat Lahir</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tempat Lahir</label>
  <input type="text"
  name="tempat_lahir"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: Jakarta"
  value="{{ old('tempat_lahir', $permohonanSurat->data_surat['tempat_lahir'] ?? '') }}">
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Tanggal Lahir</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tanggal Lahir</label>
  <input type="date"
  name="tanggal_lahir"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  value="{{ old('tanggal_lahir', $permohonanSurat->data_surat['tanggal_lahir'] ?? '') }}">
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Jenis Kelamin</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Jenis Kelamin</label>
 
- <select name="jenis_kelamin" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ <select name="jenis_kelamin" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">-- Pilih --</option>
 
@@ -624,10 +639,10 @@
 
  </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Agama</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Agama</label>
 
- <select name="agama" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ <select name="agama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
  <option value="">-- Pilih Agama --</option>
 
  @foreach(\App\Models\Penduduk::agamaList() as $agama)
@@ -639,10 +654,10 @@
  </select>
 </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Pekerjaan</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pekerjaan</label>
 
- <select name="pekerjaan" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ <select name="pekerjaan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
  <option value="">-- Pilih Pekerjaan --</option>
 
  @foreach(\App\Models\Penduduk::pekerjaanList() as $pekerjaan)
@@ -654,52 +669,55 @@
  </select>
 </div>
 
- <div class="w-full md:w-1/2 px-3 mb-4">
- <label class="form-label">Telepon</label>
+ <div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Telepon</label>
  <input type="text"
  name="telepon"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: 081234567890"
  value="{{ old('telepon', $permohonanSurat->data_surat['telepon'] ?? '') }}">
  </div>
 
  {{-- RT --}}
-<div class="w-full md:w-1/4 px-3 mb-4">
- <label class="form-label">RT</label>
+<div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">RT</label>
  <input
  type="text"
  name="rt"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="001"
  value="{{ old('rt', $permohonanSurat->data_surat['rt'] ?? '') }}">
 </div>
 
 {{-- RW --}}
-<div class="w-full md:w-1/4 px-3 mb-4">
- <label class="form-label">RW</label>
+<div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">RW</label>
  <input
  type="text"
  name="rw"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="002"
  value="{{ old('rw', $permohonanSurat->data_surat['rw'] ?? '') }}">
 </div>
 
 {{-- Lama Tinggal --}}
-<div class="w-full md:w-1/4 px-3 mb-4">
- <label class="form-label">Lama Tinggal</label>
+<div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Lama Tinggal</label>
  <input
  type="text"
  name="lama_tinggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Contoh: 2 Tahun"
  value="{{ old('lama_tinggal', $permohonanSurat->data_surat['lama_tinggal'] ?? '') }}">
 </div>
 
 {{-- Status Tempat Tinggal --}}
-<div class="w-full md:w-1/4 px-3 mb-4">
- <label class="form-label">Status Tempat Tinggal</label>
+<div >
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Status Tempat Tinggal</label>
 
  <select
  name="status_tempat_tinggal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
 
  <option value="">-- Pilih Status --</option>
 
@@ -727,23 +745,24 @@
 </div>
 
 {{-- Alamat Asal --}}
-<div class="w-full px-3 mb-4">
- <label class="form-label">Alamat Asal</label>
+<div  class="md:col-span-2">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Alamat Asal</label>
 
  <textarea
  name="alamat_asal"
  rows="3"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Alamat sebelum berdomisili">{{ old('alamat_asal', $permohonanSurat->data_surat['alamat_asal'] ?? '') }}</textarea>
 </div> 
 
- <div class="w-full px-3 mb-4">
- <label class="form-label">Alamat Domisili</label>
+ <div  class="md:col-span-2">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">Alamat Domisili</label>
 
  <textarea
  name="alamat"
  rows="3"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('alamat', $permohonanSurat->data_surat['alamat'] ?? '') }}</textarea>
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ placeholder="Contoh: Jl. Sudirman No. 12">{{ old('alamat', $permohonanSurat->data_surat['alamat'] ?? '') }}</textarea>
  </div>
 
  </div>
@@ -752,39 +771,45 @@
 
 </div>
 
-
-<div class="flex flex-wrap -mx-3" style="padding-left:5mm;">
+    
+    
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+ <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-circle-info text-teal-500 mr-2"></i>Informasi Tambahan</h3>
+ </div>
+ <div class="p-6">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
  {{-- Tanggal Permohonan --}}
- <div class="w-full md:w-1/3 px-3 mb-4">
+ <div >
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Tanggal Permohonan
  </label>
 
  <input
  type="date"
  name="tanggal_permohonan"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('tanggal_permohonan') is-invalid @enderror"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  value="{{ old('tanggal_permohonan', isset($permohonanSurat) ? $permohonanSurat->tanggal_permohonan->format('Y-m-d') : date('Y-m-d')) }}">
 
  @error('tanggal_permohonan')
- <div class="invalid-feedback">{{ $message }}</div>
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
  @enderror
 
  </div>
 
  {{-- Penandatangan --}}
- <div class="col-md-8 mb-5">
+ <div  class="md:col-span-2">
 
- <label class="form-label">
+ <label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Pejabat Penandatangan
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <select
  name="penandatangan_id"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('penandatangan_id') is-invalid @enderror"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  required>
 
  <option value="">
@@ -807,76 +832,54 @@
  </select>
 
  @error('penandatangan_id')
- <div class="invalid-feedback">{{ $message }}</div>
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
  @enderror
 
  </div>
 
-</div>
-
 {{-- Keperluan --}}
-<div class="mb-4">
-
- <label class="form-label">
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Keperluan
- <span class="text-danger">*</span>
+ <span class="text-red-500">*</span>
  </label>
 
  <textarea
  name="keperluan"
  rows="4"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('keperluan') is-invalid @enderror"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Tuliskan keperluan permohonan surat...">{{ old('keperluan', $permohonanSurat->keperluan ?? '') }}</textarea>
 
  @error('keperluan')
- <div class="invalid-feedback">{{ $message }}</div>
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
  @enderror
 
 </div>
 
 {{-- Catatan --}}
-<div class="mb-6">
-
- <label class="form-label">
+<div class="md:col-span-2">
+<label class="block text-sm font-semibold text-slate-700 mb-1.5">
  Catatan
  </label>
 
  <textarea
  name="catatan"
  rows="3"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('catatan') is-invalid @enderror"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
  placeholder="Catatan tambahan (opsional)...">{{ old('catatan', $permohonanSurat->catatan ?? '') }}</textarea>
 
  @error('catatan')
- <div class="invalid-feedback">{{ $message }}</div>
+ <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
  @enderror
 
 </div>
 
-<div class="flex justify-end">
 
- <a
- href="{{ isset($permohonanSurat) && $permohonanSurat->exists
- ? route('admin.permohonan-surat.show', $permohonanSurat)
- : route('admin.permohonan-surat.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600 mr-2">
 
- <i class="fa-solid fa-arrow-left"></i>
- Kembali
-
- </a>
-
- <button
- type="submit"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- <i class="fa-solid fa-circle-check"></i>
- Simpan
-
- </button>
 
 </div>
-
+ </div>
+</div>
 
 <script>
 
@@ -988,5 +991,4 @@ function toggleFields() {
  );
 
 });
-
 </script>

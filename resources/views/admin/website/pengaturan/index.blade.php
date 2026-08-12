@@ -15,7 +15,7 @@
 
 
  <div>
-
+ <h3 class="text-2xl font-bold text-slate-800 mb-1">Pengaturan Website</h3>
  <p class="text-slate-500 mb-0">
  Kelola identitas dan informasi utama website
  </p>
@@ -51,7 +51,7 @@
 
 
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
 
 
@@ -60,13 +60,11 @@
 
 
  {{-- LOGO --}}
-<div class="w-full lg:w-1/3 px-3">
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
- <div class="p-6 flex flex-column">
+<div class="lg:col-span-1 flex flex-col">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1">
+ <div class="p-6 flex flex-col h-full">
 
- <h5 class="font-bold text-center mb-6">
- Logo Website
- </h5>
+ <h3 class="font-bold text-slate-800 text-base mb-6 text-center">Logo Website</h3>
 
  <div class="flex-grow-1 flex justify-center items-center">
  @if($setting && $setting->logo)
@@ -102,21 +100,17 @@
 
  {{-- INFORMASI WEBSITE --}}
 
- <div class="w-full lg:w-2/3 px-3">
+ <div class="lg:col-span-2 flex flex-col">
 
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1">
 
 
  <div class="p-6">
 
 
 
- <h5 class="font-bold mb-6">
-
- Informasi Website
-
- </h5>
+ <h3 class="font-bold text-slate-800 text-base mb-6">Informasi Website</h3>
 
 
 
@@ -259,32 +253,28 @@
 
  {{-- SOSIAL MEDIA --}}
 
- <div class="w-full px-3">
+ <div class="lg:col-span-3 flex flex-col">
 
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1">
 
 
  <div class="p-6">
 
 
 
- <h5 class="font-bold mb-6">
-
- Sosial Media
-
- </h5>
+ <h3 class="font-bold text-slate-800 text-base mb-6">Sosial Media</h3>
 
 
 
 
 
 
- <div class="flex flex-wrap -mx-3">
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
 
 
- <div class="w-full md:w-1/3 px-3 mb-4">
+ <div class="flex flex-col">
 
 
  <strong>
@@ -306,7 +296,7 @@
 
 
 
- <div class="w-full md:w-1/3 px-3 mb-4">
+ <div class="flex flex-col">
 
 
  <strong>
@@ -329,7 +319,7 @@
 
 
 
- <div class="w-full md:w-1/3 px-3 mb-4">
+ <div class="flex flex-col">
 
 
  <strong>
@@ -372,20 +362,16 @@
 
  {{-- DESKRIPSI --}}
 
- <div class="w-full px-3">
+ <div class="lg:col-span-3 flex flex-col">
 
 
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
+ <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1">
 
 
  <div class="p-6">
 
 
- <h5 class="font-bold mb-4">
-
- Deskripsi Website
-
- </h5>
+ <h3 class="font-bold text-slate-800 text-base mb-4">Deskripsi Website</h3>
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title', 'Manajemen Pengumuman')
+@section('title', 'Pengumuman')
 
 
 @section('content')
@@ -352,11 +352,11 @@
 
 
 
- <div class="mt-3">
-
- {{ $pengumumen->links() }}
-
+ @if($pengumumen->hasPages())
+ <div class="px-6 py-4 border-t border-slate-100 bg-white">
+    {{ $pengumumen->links() }}
  </div>
+ @endif
 
 
 

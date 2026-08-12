@@ -12,15 +12,15 @@
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap KK No. <span class="font-mono font-semibold text-slate-700">{{ $kartuKeluarga->no_kk }}</span></p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
                 <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-            <a href="{{ route('admin.kartu-keluarga.edit', $kartuKeluarga) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5">
+            <a href="{{ route('admin.kartu-keluarga.edit', $kartuKeluarga) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
             </a>
             <form action="{{ route('admin.kartu-keluarga.destroy', $kartuKeluarga) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus Kartu Keluarga ini?')">
                 @csrf @method('DELETE')
-                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20">
+                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20 focus:outline-none cursor-pointer">
                     <i class="fa-solid fa-trash"></i> Hapus
                 </button>
             </form>
@@ -30,7 +30,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         
         {{-- Card: Informasi KK --}}
-        <div class="lg:col-span-2 bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
                 <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
                     <i class="fa-solid fa-address-card"></i>
@@ -75,7 +75,7 @@
 
         {{-- Card: Status & Sistem --}}
         <div class="space-y-6">
-            <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
                     <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
                         <i class="fa-solid fa-server"></i>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             
-            <div class="bg-primary-600 rounded-3xl shadow-[0_4px_20px_-4px_rgba(6,81,237,0.3)] p-6 relative overflow-hidden">
+            <div class="bg-primary-600 rounded-2xl shadow-sm p-6 relative overflow-hidden">
                 <i class="fa-solid fa-users absolute -bottom-4 -right-4 text-7xl text-white opacity-10"></i>
                 <div class="relative z-10">
                     <p class="text-primary-100 text-xs font-semibold uppercase tracking-widest mb-1">Total Anggota</p>
@@ -117,7 +117,7 @@
     </div>
 
     {{-- Daftar Anggota Keluarga --}}
-    <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden mb-8">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
         <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
             <h3 class="font-bold text-slate-800 flex items-center gap-2">
                 <i class="fa-solid fa-users text-slate-400"></i> Daftar Anggota Keluarga
@@ -156,7 +156,7 @@
                                 @gender($anggota->jenis_kelamin)
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <a href="{{ route('admin.penduduk.show', $anggota->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors" title="Lihat Profil">
+                                <a href="{{ route('admin.penduduk.show', $anggota->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors focus:outline-none" title="Lihat Profil">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                             </td>

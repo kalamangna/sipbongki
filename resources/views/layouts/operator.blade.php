@@ -12,6 +12,7 @@
     <title>
         @yield('title', 'Operator') | SIP Bongki
     </title>
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
 
     {{-- Google Font --}}

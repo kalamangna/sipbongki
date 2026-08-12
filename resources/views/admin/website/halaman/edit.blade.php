@@ -100,7 +100,7 @@ Judul Halaman
 
 <input type="text"
 name="judul"
-class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
 value="{{ old('judul',$halaman->judul) }}">
 
 
@@ -125,7 +125,7 @@ Isi Halaman
 <textarea
 name="isi"
 rows="10"
-class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('isi',$halaman->isi) }}</textarea>
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('isi',$halaman->isi) }}</textarea>
 
 
 </div>
@@ -183,7 +183,7 @@ Ganti Gambar
 
 <input type="file"
 name="gambar"
-class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 </div>
@@ -205,7 +205,7 @@ Status
 
 
 <select name="status"
-class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
 <option value="aktif"

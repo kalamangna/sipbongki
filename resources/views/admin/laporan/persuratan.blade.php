@@ -268,7 +268,7 @@
  <input
  type="text"
  name="keyword"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  value="{{ request('keyword') }}"
  placeholder="Nomor surat, nama atau NIK">
 
@@ -287,7 +287,7 @@
 
  <select
  name="jenis_surat"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
  <option value="">
 
@@ -324,7 +324,7 @@
 
  <select
  name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
 
  <option value="">
 
@@ -378,7 +378,7 @@
  <input
  type="date"
  name="tanggal_awal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  value="{{ request('tanggal_awal') }}">
 
  </div>
@@ -397,7 +397,7 @@
  <input
  type="date"
  name="tanggal_akhir"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
  value="{{ request('tanggal_akhir') }}">
 
  </div>
@@ -417,15 +417,9 @@
 
  </button>
 
- <a
- href="{{ route('admin.laporan.persuratan') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-secondary">
-
- <i class="fa-solid fa-arrow-clockwise"></i>
-
- Reset
-
- </a>
+ <a href="{{ route('admin.laporan.persuratan') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
+    <i class="fa-solid fa-rotate-left"></i>
+</a>
 
  </div>
 

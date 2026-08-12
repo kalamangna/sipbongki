@@ -7,7 +7,7 @@
  <input
  type="text"
  name="kode"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
  value="{{ old('kode', $lingkungan->kode ?? '') }}">
 
  @error('kode')
@@ -23,7 +23,7 @@
  <input
  type="text"
  name="nama"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
  value="{{ old('nama', $lingkungan->nama ?? '') }}">
 
  @error('nama')
@@ -42,7 +42,7 @@
 
  <select
  name="ketua_lingkungan"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('ketua_lingkungan') is-invalid @enderror">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('ketua_lingkungan') is-invalid @enderror">
 
  <option value="">-- Pilih Kepala Lingkungan --</option>
 
@@ -72,7 +72,7 @@
  <input
  type="text"
  name="telepon"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old('telepon', $lingkungan->telepon ?? '') }}">
 
  </div>
@@ -86,7 +86,7 @@
  <textarea
  name="keterangan"
  rows="4"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('keterangan', $lingkungan->keterangan ?? '') }}</textarea>
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('keterangan', $lingkungan->keterangan ?? '') }}</textarea>
 
 </div>
 
@@ -94,7 +94,7 @@
 
  <label class="form-label">Status</label>
 
- <select name="status" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ <select name="status" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
  <option value="1"
  {{ old('status', $lingkungan->status ?? 1) == 1 ? 'selected' : '' }}>

@@ -149,7 +149,7 @@ if ($kepala && !in_array($kepala, $idsToCheck)) {
 
         $kk = KartuKeluarga::create($data);
 
-       foreach ($request->anggota as $anggota) {
+       foreach ($request->anggota ?? [] as $anggota) {
 
     Penduduk::where('id', $anggota['penduduk_id'])
         ->update([
@@ -279,7 +279,7 @@ if ($kepala && !in_array($kepala, $idsToCheck)) {
         |--------------------------------------------------------------------------
         */
 
-        foreach ($request->anggota as $anggota) {
+        foreach ($request->anggota ?? [] as $anggota) {
 
             Penduduk::where('id', $anggota['penduduk_id'])
                 ->update([

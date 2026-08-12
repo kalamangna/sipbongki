@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Dashboard Utama')
+@section('title', 'Dashboard')
 @section('subtitle','Ringkasan Data & Aktivitas Sistem')
 
 @section('content')
@@ -19,9 +19,11 @@
         <p class="text-sm text-slate-500 mt-1">Berikut adalah ringkasan data kelurahan per tanggal <span class="font-medium text-slate-700">{{ now()->translatedFormat('d F Y') }}</span></p>
     </div>
     <div class="flex flex-wrap items-center gap-3">
+        @if(in_array(auth()->user()->role, ['admin', 'operator']))
         <a href="{{ route('admin.penduduk.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-700 border border-slate-200 shadow-sm hover:bg-slate-50 hover:text-primary-600 transition-all">
             <i class="fa-solid fa-user-plus text-slate-400"></i> Data Penduduk
         </a>
+        @endif
         <a href="{{ route('admin.permohonan-surat.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5">
             <i class="fa-solid fa-file-signature"></i> Layanan Surat
         </a>
@@ -91,7 +93,7 @@
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
     
     {{-- Chart Pelayanan --}}
-    <div class="xl:col-span-2 bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+    <div class="xl:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
         <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
             <h5 class="text-base font-bold text-slate-900">Statistik Pelayanan</h5>
             <button onclick="downloadChart()" type="button" class="group flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-primary-600 transition-all">
@@ -110,27 +112,33 @@
         <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]">
             <h5 class="text-sm font-bold text-slate-900 mb-4">Akses Cepat</h5>
             <div class="grid grid-cols-2 gap-3">
+                @if(in_array(auth()->user()->role, ['admin', 'operator']))
                 <a href="{{ route('admin.penduduk.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-primary-50 border border-transparent hover:border-primary-100 transition-all">
                     <div class="w-10 h-10 rounded-full bg-white text-primary-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-users"></i></div>
                     <span class="text-xs font-semibold text-slate-700 group-hover:text-primary-700">Penduduk</span>
                 </a>
+                @endif
                 <a href="{{ route('admin.permohonan-surat.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-amber-50 border border-transparent hover:border-amber-100 transition-all">
                     <div class="w-10 h-10 rounded-full bg-white text-amber-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-envelope-open-text"></i></div>
                     <span class="text-xs font-semibold text-slate-700 group-hover:text-amber-700">Surat</span>
                 </a>
+                @if(in_array(auth()->user()->role, ['admin', 'pimpinan']))
                 <a href="{{ route('admin.laporan.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-sky-50 border border-transparent hover:border-sky-100 transition-all">
                     <div class="w-10 h-10 rounded-full bg-white text-sky-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-print"></i></div>
                     <span class="text-xs font-semibold text-slate-700 group-hover:text-sky-700">Laporan</span>
                 </a>
+                @endif
+                @if(auth()->user()->role === 'admin')
                 <a href="{{ route('admin.website.berita.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-transparent hover:border-emerald-100 transition-all">
                     <div class="w-10 h-10 rounded-full bg-white text-emerald-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform"><i class="fa-solid fa-newspaper"></i></div>
                     <span class="text-xs font-semibold text-slate-700 group-hover:text-emerald-700">Berita</span>
                 </a>
+                @endif
             </div>
         </div>
 
         {{-- Demographics Chart --}}
-        <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden flex-1 flex flex-col">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1 flex flex-col">
             <div class="px-6 py-5 border-b border-slate-100">
                 <h5 class="text-sm font-bold text-slate-900">Komposisi Penduduk</h5>
             </div>
@@ -148,7 +156,7 @@
 <div class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-8">
     
     {{-- Tabel Permohonan --}}
-    <div class="xl:col-span-3 bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+    <div class="xl:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
             <h5 class="text-base font-bold text-slate-900">Permohonan Terbaru</h5>
             <a href="{{ route('admin.permohonan-surat.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors flex items-center gap-1 group">
@@ -190,7 +198,7 @@
     </div>
 
     {{-- Statistik Lingkungan --}}
-    <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-5 border-b border-slate-100">
             <h5 class="text-sm font-bold text-slate-900">Distribusi Penduduk</h5>
         </div>
@@ -311,7 +319,7 @@
 {{-- ============================================================
  PENDUDUK TERBARU
 ============================================================ --}}
-<div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden mb-8">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
     <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
         <h5 class="text-base font-bold text-slate-900">Penduduk Baru Terdaftar</h5>
         <a href="{{ route('admin.penduduk.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors flex items-center gap-1 group">

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Kartu Keluarga')
+@section('title', 'Kartu Keluarga')
 
 @section('content')
 <div class="w-full">
@@ -11,27 +11,27 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Kartu Keluarga</h2>
             <p class="text-sm text-slate-500 mt-1">Kelola data Kartu Keluarga (KK) Kelurahan Bongki</p>
         </div>
-        <a href="{{ route('admin.kartu-keluarga.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5">
+        <a href="{{ route('admin.kartu-keluarga.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
             <i class="fa-solid fa-circle-plus"></i> Tambah KK
         </a>
     </div>
 
     {{-- Main Card --}}
-    <div class="bg-white rounded-3xl ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] overflow-hidden">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         
         {{-- Filters --}}
         <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
             <form action="{{ route('admin.kartu-keluarga.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
                 <div class="flex-1">
-                    <input type="text" name="keyword" value="{{ request('keyword') }}" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm" placeholder="Cari No. KK / NIK / Nama Kepala Keluarga / Anggota...">
+                    <input type="text" name="keyword" value="{{ request('keyword') }}" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm" placeholder="Cari No. KK / NIK / Nama Kepala Keluarga / Anggota...">
                 </div>
                 
                 <div class="flex gap-2">
-                    <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all w-full sm:w-auto">
+                    <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-slate-500">
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
                     @if(request('keyword'))
-                        <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all" title="Reset Filter">
+                        <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none" title="Reset Filter">
                             <i class="fa-solid fa-rotate-left"></i>
                         </a>
                     @endif
@@ -80,15 +80,15 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center justify-center gap-2">
-                                <a href="{{ route('admin.kartu-keluarga.show', $kk->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors" title="Detail">
+                                <a href="{{ route('admin.kartu-keluarga.show', $kk->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors focus:outline-none" title="Detail">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{ route('admin.kartu-keluarga.edit', $kk->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 hover:text-amber-700 transition-colors" title="Edit">
+                                <a href="{{ route('admin.kartu-keluarga.edit', $kk->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 hover:text-amber-700 transition-colors focus:outline-none" title="Edit">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                                 <form action="{{ route('admin.kartu-keluarga.destroy', $kk->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus Kartu Keluarga ini? Semua data penduduk di dalamnya akan kehilangan relasi KK ini.')">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors" title="Hapus">
+                                    <button type="submit" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors focus:outline-none" title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

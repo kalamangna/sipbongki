@@ -73,7 +73,7 @@
 
  <input type="text"
  name="judul"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('judul') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('judul') is-invalid @enderror"
  value="{{ old('judul', $berita->judul) }}">
 
 
@@ -104,7 +104,7 @@
  <textarea
  name="isi"
  rows="8"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('isi') is-invalid @enderror">{{ old('isi', $berita->isi) }}</textarea>
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('isi') is-invalid @enderror">{{ old('isi', $berita->isi) }}</textarea>
 
 
 
@@ -162,7 +162,7 @@
 
  <input type="file"
  name="gambar"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('gambar') is-invalid @enderror">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('gambar') is-invalid @enderror">
 
 
  <small class="text-slate-500">
@@ -198,7 +198,7 @@
 
 
  <select name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
 
  <option value="draft"
@@ -235,7 +235,7 @@
 
  <input type="date"
  name="tanggal_publish"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
  value="{{ old(
  'tanggal_publish',
  optional($berita->tanggal_publish)->format('Y-m-d')

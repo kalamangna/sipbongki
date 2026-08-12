@@ -24,9 +24,8 @@
 
                     {{-- Overlay --}}
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <div class="text-white">
-                            <i class="fa-solid fa-image"></i>
-                            <h5 class="text-sm font-bold line-clamp-1">{{ $galeri->judul }}</h5>
+                        <div>
+                            <h5 class="text-sm font-bold text-white line-clamp-1">{{ $galeri->judul }}</h5>
                         </div>
                     </div>
 

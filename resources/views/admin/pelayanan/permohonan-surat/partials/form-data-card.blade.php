@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white flex items-center">
 
@@ -50,7 +50,7 @@
  @endphp
 
  @if($pemohon)
- <div class="p-4 mb-4 text-sm text-sky-800 rounded-xl bg-sky-50 border border-sky-200 border-0 mb-6">
+ <div class="p-4 mb-6 rounded-xl bg-sky-50 border border-sky-100 text-sm text-sky-800">
  <div class="flex items-center gap-3">
  <i class="fa-solid fa-shield-check "></i>
  <div>
@@ -60,7 +60,7 @@
  </div>
  </div>
  @else
- <div class="p-4 mb-4 text-sm text-amber-800 rounded-xl bg-amber-50 border border-amber-200 border-0 mb-6">
+ <div class="p-4 mb-6 rounded-xl bg-amber-50 border border-amber-100 text-sm text-amber-800">
  <div class="flex items-center gap-3">
  <i class="fa-solid fa-exclamation-triangle "></i>
  <div>
@@ -71,8 +71,8 @@
  </div>
  @endif
 
- <div class="flex flex-wrap -mx-3 gy-3">
- <div class="w-full md:w-1/2 px-3">
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div>
  <small class="text-slate-500 block">Nama Lengkap</small>
  <div class="flex items-center gap-2">
  <span class="font-semibold">{{ data_get($dataSurat, 'nama_lengkap', '-') }}</span>
@@ -86,7 +86,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">NIK</small>
  <div class="flex items-center gap-2">
  <span class="font-semibold">{{ data_get($dataSurat, 'nik', '-') }}</span>
@@ -100,7 +100,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Tempat Lahir</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'tempat_lahir', '-') }}</span>
@@ -114,7 +114,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Tanggal Lahir</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'tanggal_lahir', '-') }}</span>
@@ -128,7 +128,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Jenis Kelamin</small>
  <div class="flex items-center gap-2">
  @gender(data_get($dataSurat, 'jenis_kelamin'))
@@ -142,7 +142,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Agama</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'agama', '-') }}</span>
@@ -156,7 +156,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Pekerjaan</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'pekerjaan', '-') }}</span>
@@ -170,7 +170,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Telepon</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'telepon', '-') }}</span>
@@ -184,7 +184,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/3 px-3">
+ <div>
  <small class="text-slate-500 block">RT</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'rt', '-') }}</span>
@@ -198,7 +198,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/3 px-3">
+ <div>
  <small class="text-slate-500 block">RW</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'rw', '-') }}</span>
@@ -212,7 +212,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/3 px-3">
+ <div>
  <small class="text-slate-500 block">Lama Tinggal</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'lama_tinggal', '-') }}</span>
@@ -226,7 +226,7 @@
  @endif
  </div>
  </div>
- <div class="w-full md:w-1/2 px-3">
+ <div>
  <small class="text-slate-500 block">Status Tempat Tinggal</small>
  <div class="flex items-center gap-2">
  <span>{{ data_get($dataSurat, 'status_tempat_tinggal', '-') }}</span>
@@ -240,19 +240,19 @@
  @endif
  </div>
  </div>
- <div class="w-full px-3">
+ <div class="md:col-span-2">
  <small class="text-slate-500 block">Alamat Asal</small>
- <div class="border rounded-3 p-3 bg-light">{{ data_get($dataSurat, 'alamat_asal', '-') }}</div>
+ <div class="border rounded-3 p-3 bg-slate-50">{{ data_get($dataSurat, 'alamat_asal', '-') }}</div>
  </div>
- <div class="w-full px-3">
+ <div class="md:col-span-2">
  <small class="text-slate-500 block">Alamat Domisili</small>
- <div class="border rounded-3 p-3 bg-light">{{ data_get($dataSurat, 'alamat', '-') }}</div>
+ <div class="border rounded-3 p-3 bg-slate-50">{{ data_get($dataSurat, 'alamat', '-') }}</div>
  </div>
  </div>
 
  <div class="mt-6">
- <h6 class="mb-4">Dokumen Upload</h6>
- <div class="flex flex-wrap -mx-3 gy-3">
+ <h3 class="font-bold text-slate-800 text-base mb-4">Dokumen Upload</h6>
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
  @php
  $files = [
  'dokumen_ktp' => 'KTP',
@@ -262,10 +262,10 @@
  @endphp
 
  @foreach($files as $field => $label)
- <div class="w-full px-3">
+ <div class="md:col-span-2">
  <small class="text-slate-500 block">{{ $label }}</small>
  @if(!empty($dataSurat[$field]))
- <a href="{{ asset('storage/' . $dataSurat[$field]) }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all !px-3 !py-1.5 !text-xs text-primary-600 border border-primary-600 hover:bg-primary-50" target="_blank" rel="noopener">
+ <a href="{{ asset('storage/' . $dataSurat[$field]) }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all !px-3 !py-1.5 !text-xs text-primary-600 border border-primary-600 hover:bg-primary-50 focus:outline-none active:scale-95 cursor-pointer" target="_blank" rel="noopener">
  Lihat {{ $label }}
  </a>
  @else

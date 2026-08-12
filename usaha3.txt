@@ -1,0 +1,90 @@
+88 <div id="usaha-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
+89 
+90  <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+91  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-store text-emerald-500 mr-2"></i>Data Usaha</h3>
+92  </div>
+93 
+94  <div class="p-6">
+95 
+96  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+97 
+98  <div >
+99 
+100  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+101  Nama Usaha <span class="text-red-500">*</span>
+102  </label>
+103 
+104  <input
+105  type="text"
+106  name="nama_usaha"
+107  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+108  placeholder="Contoh : Warung Kelontong Berkah"
+109  value="{{ old('nama_usaha', $permohonanSurat->data_surat['nama_usaha'] ?? '') }}">
+110 
+111  </div>
+112 
+113  <div >
+114 
+115  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+116  Jenis Usaha <span class="text-red-500">*</span>
+117  </label>
+118 
+119  <input
+120  type="text"
+121  name="jenis_usaha"
+122  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+123  placeholder="Contoh : Perdagangan Sembako"
+124  value="{{ old('jenis_usaha', $permohonanSurat->data_surat['jenis_usaha'] ?? '') }}">
+125 
+126  </div>
+127 
+128  <div class="md:col-span-2">
+129 
+130  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+131  Alamat Usaha
+132  </label>
+133 
+134  <textarea
+135  name="alamat_usaha"
+136  rows="2"
+137  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+138  placeholder="Contoh : Jl. Merdeka No. 123, RT 01/RW 02">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
+139 
+140  </div>
+141 
+142  <div >
+143 
+144  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+145  Lama Usaha
+146  </label>
+147 
+148  <input
+149  type="text"
+150  name="lama_usaha"
+151  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+152  placeholder="Contoh : 5 Tahun"
+153  value="{{ old('lama_usaha', $permohonanSurat->data_surat['lama_usaha'] ?? '') }}">
+154 
+155  </div>
+156 
+157  <div >
+158 
+159  <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+160  Keterangan Usaha
+161  </label>
+162 
+163  <input
+164  type="text"
+165  name="keterangan_usaha"
+166  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+167  placeholder="Contoh : Sedang berjalan / Berkembang"
+168  value="{{ old('keterangan_usaha', $permohonanSurat->data_surat['keterangan_usaha'] ?? '') }}">
+169 
+170  </div>
+171 
+172  </div>
+173 
+174  </div>
+175 
+176 </div>
+177 

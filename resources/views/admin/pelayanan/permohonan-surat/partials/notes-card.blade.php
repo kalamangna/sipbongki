@@ -1,4 +1,4 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="p-6">
 
@@ -17,7 +17,7 @@
  <textarea
  name="catatan"
  rows="5"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('catatan') is-invalid @enderror"
+ class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('catatan') is-invalid @enderror"
  placeholder="Tulis catatan khusus untuk warga...">{{ old('catatan', $permohonanSurat->catatan) }}</textarea>
 
  @error('catatan')
@@ -25,8 +25,8 @@
  @enderror
  </div>
 
- <div class="d-grid">
- <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
+ <div class="flex flex-col">
+ <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm focus:outline-none active:scale-95 cursor-pointer w-full">
  <i class="fa-solid fa-save mr-2"></i>
  Simpan Catatan
  </button>

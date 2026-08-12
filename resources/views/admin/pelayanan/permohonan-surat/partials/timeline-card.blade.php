@@ -1,12 +1,12 @@
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
 
  <div class="px-6 py-4 border-b border-slate-200 bg-white border-0 request-detail-card-header">
 
  <div>
 
- <h5 class="mb-0 request-detail-card-title">
+ <h3 class="font-bold text-slate-800 text-base mb-0">
  Riwayat Pelayanan
- </h5>
+ </h3>
 
  </div>
 

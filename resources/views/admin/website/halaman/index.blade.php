@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title','Manajemen Halaman Website')
+@section('title', 'Halaman')
 
 
 @section('content')
