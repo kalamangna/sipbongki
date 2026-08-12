@@ -9,13 +9,12 @@
  {{-- Breadcrumb --}}
  @include('admin.pelayanan.permohonan-surat.partials.breadcrumb')
 
- <div class="mb-4 flex justify-end">
- <a href="{{ route('admin.permohonan-surat.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600 !px-3 !py-1.5 !text-xs focus:outline-none active:scale-95 cursor-pointer">
- <i class="fa-solid fa-arrow-left"></i>
- Kembali
-
- </a>
+ <div class="mb-4 flex justify-between items-center">
+    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Permohonan</h2>
+    <a href="{{ route('admin.permohonan-surat.index') }}"
+        class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
+        <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
+    </a>
  </div>
 
  
