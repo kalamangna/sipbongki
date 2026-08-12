@@ -67,7 +67,7 @@
                 <i class="fa-solid fa-user-tie"></i>
             </div>
             <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Aparat Desa</p>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Aparat Kelurahan</p>
                 <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ number_format($totalPerangkat) }}</p>
             </div>
         </div>

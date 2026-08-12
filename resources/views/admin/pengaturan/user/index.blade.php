@@ -64,9 +64,9 @@
                         @if($user->role === 'admin')
                             <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700 tracking-wide">Admin</span>
                         @elseif($user->role === 'operator')
-                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-100 text-primary-700 tracking-wide">Operator</span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-700 tracking-wide">Operator</span>
                         @elseif($user->role === 'pimpinan')
-                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">Pimpinan</span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 tracking-wide">Pimpinan</span>
                         @else
                             <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700 tracking-wide">{{ ucfirst($user->role ?? 'n/a') }}</span>
                         @endif
