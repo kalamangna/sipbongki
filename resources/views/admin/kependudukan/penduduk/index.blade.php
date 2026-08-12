@@ -109,15 +109,6 @@
                                 <a href="{{ route('admin.penduduk.show', $penduduk) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors focus:outline-none" title="Detail">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{ route('admin.penduduk.edit', $penduduk) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-amber-50 text-amber-600 hover:bg-amber-100 hover:text-amber-700 transition-colors focus:outline-none" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <form action="{{ route('admin.penduduk.destroy', $penduduk) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus data penduduk ini?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors focus:outline-none" title="Hapus">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
                             </div>
                         </td>
                     </tr>

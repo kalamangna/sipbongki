@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **UI/UX (Pelayanan)**: Mengubah desain halaman indeks dan formulir (Create/Edit) `Permohonan Surat` serta `Riwayat Pelayanan` agar mengikuti standar gaya komponen Tailwind yang bersih dan responsif, tanpa ketergantungan pada *class* Bootstrap.
+- **UI/UX (Pelayanan)**: Merestrukturisasi tampilan Detail Permohonan Surat (`show` dan semua *partial* di dalamnya) agar memiliki struktur layout (Grid, Icon Header, Label/Data) yang presisi dan konsisten dengan halaman Detail Penduduk.
+- **Fitur (Pelayanan)**: Menambahkan fungsionalitas di mana pada pembuatan permohonan surat baru (tanpa *pejabat penandatangan* yang terisi sebelumnya), pilihan *default dropdown* akan secara otomatis mengarah pada perangkat kelurahan yang menjabat sebagai "Lurah".
+- **UI/UX (Manajemen Data)**: Menyembunyikan/menghilangkan tombol "Edit" dan "Hapus" dari tampilan tabel indeks utama (Data Penduduk, Kartu Keluarga, Perangkat Kelurahan, Permohonan Surat), membatasi akses pada tombol "Lihat" saja, dengan aksi edit/hapus tetap dapat dilakukan di dalam halaman detail.
 - **UI/UX (Pengaturan)**: Menyelaraskan *style* tabel dan *filter* pencarian pada manajemen Pengguna agar identik dan konsisten dengan modul Kependudukan.
 - **UI/UX (Pengaturan)**: Merombak tata letak form Tambah & Edit Pengguna menjadi lebih bersih, melengkapi label *placeholder*, dan merapikan teks menu peran (role).
 - **UI/UX (Dasbor Admin)**: Menyeragamkan seluruh tombol "Reset Filter" di seluruh halaman dasbor menggunakan satu ikon rotasi tanpa teks yang redundan.

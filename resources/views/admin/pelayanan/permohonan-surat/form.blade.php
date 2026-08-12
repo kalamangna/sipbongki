@@ -816,11 +816,21 @@
  -- Pilih Penandatangan --
  </option>
 
+ @php
+     $defaultPenandatanganId = $permohonanSurat->penandatangan_id ?? '';
+     if (empty($defaultPenandatanganId)) {
+         $lurah = $penandatangans->first(function($p) {
+             return str_contains(strtolower($p->jabatan->nama ?? ''), 'lurah');
+         });
+         $defaultPenandatanganId = $lurah ? $lurah->id : '';
+     }
+ @endphp
+
  @foreach($penandatangans as $item)
 
  <option
  value="{{ $item->id }}"
- @selected(old('penandatangan_id', $permohonanSurat->penandatangan_id ?? '') == $item->id)>
+ @selected(old('penandatangan_id', $defaultPenandatanganId) == $item->id)>
 
  {{ $item->nama_lengkap }}
  ({{ $item->jabatan->nama }})
