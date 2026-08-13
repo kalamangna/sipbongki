@@ -1,6 +1,0 @@
-<?php
-$pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=sipbongki;charset=utf8mb4', 'root', '');
-$tables = $pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);
-foreach ($tables as $table) {
-    echo $table . PHP_EOL;
-}
