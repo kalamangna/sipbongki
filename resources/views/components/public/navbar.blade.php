@@ -37,69 +37,70 @@
 
             </a>
 
-            {{-- ── DESKTOP MENU ──────────────────── --}}
-            <ul class="hidden lg:flex items-center gap-1" role="navigation" aria-label="Menu utama">
-                @php
-                    $navLinks = [
-                        ['href' => url('/'),                        'label' => 'Beranda'],
-                        ['href' => url('/#profil'),                 'label' => 'Profil'],
-                        ['href' => url('/#struktur-organisasi'),    'label' => 'Organisasi'],
-                    ];
-                    if($website->tampilkan_statistik ?? true)
-                        $navLinks[] = ['href' => url('/#statistik'), 'label' => 'Statistik'];
-                    if($website->tampilkan_layanan ?? true)
-                        $navLinks[] = ['href' => url('/#layanan'),   'label' => 'Layanan'];
-                    if($website->tampilkan_berita ?? true)
-                        $navLinks[] = ['href' => url('/#berita'),    'label' => 'Berita'];
-                    if($website->tampilkan_galeri ?? true)
-                        $navLinks[] = ['href' => url('/#galeri'),    'label' => 'Galeri'];
-                    
-                    $navLinks[] = ['href' => url('/#kontak'),        'label' => 'Kontak'];
-                    $navLinks[] = ['href' => route('pengaduan'),    'label' => 'Pengaduan'];
-                @endphp
+            {{-- ── RIGHT ALIGNED: MENU + CTA ──────────────────── --}}
+            <div class="flex items-center gap-4">
+                {{-- ── DESKTOP MENU ──────────────────── --}}
+                <ul class="hidden lg:flex items-center gap-1" role="navigation" aria-label="Menu utama">
+                    @php
+                        $navLinks = [
+                            ['href' => url('/'),                        'label' => 'Beranda'],
+                            ['href' => url('/#profil'),                 'label' => 'Profil'],
+                            ['href' => url('/#struktur-organisasi'),    'label' => 'Organisasi'],
+                        ];
+                        if($website->tampilkan_statistik ?? true)
+                            $navLinks[] = ['href' => url('/#statistik'), 'label' => 'Statistik'];
+                        if($website->tampilkan_layanan ?? true)
+                            $navLinks[] = ['href' => url('/#layanan'),   'label' => 'Layanan'];
+                        if($website->tampilkan_berita ?? true)
+                            $navLinks[] = ['href' => url('/#berita'),    'label' => 'Berita'];
+                        if($website->tampilkan_galeri ?? true)
+                            $navLinks[] = ['href' => url('/#galeri'),    'label' => 'Galeri'];
+                        
+                        $navLinks[] = ['href' => url('/#kontak'),        'label' => 'Kontak'];
+                        $navLinks[] = ['href' => route('pengaduan'),    'label' => 'Pengaduan'];
+                    @endphp
 
-                @foreach($navLinks as $link)
-                    <li>
-                        <a href="{{ $link['href'] }}"
-                           class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200
-                                  focus:outline-none text-slate-600 hover:text-primary hover:bg-primary-light">
-                            {{ $link['label'] }}
+                    @foreach($navLinks as $link)
+                        <li>
+                            <a href="{{ $link['href'] }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200
+                                      focus:outline-none text-slate-600 hover:text-primary hover:bg-primary-light">
+                                {{ $link['label'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+                {{-- ── CTA + HAMBURGER ──────────────── --}}
+                <div class="flex items-center gap-3 border-l lg:border-slate-200 lg:pl-4 border-transparent pl-0">
+                    @auth
+                        <a href="{{ route('dashboard') }}"
+                           class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                                  transition-all duration-200 active:scale-95
+                                  focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md">
+                            <i class="fa-solid fa-gauge"></i>
+                            Dashboard
                         </a>
-                    </li>
-                @endforeach
-            </ul>
+                    @else
+                        <a href="{{ route('login') }}"
+                           class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                                  transition-all duration-200 active:scale-95
+                                  focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            Masuk
+                        </a>
+                    @endauth
 
-            {{-- ── CTA + HAMBURGER ──────────────── --}}
-            <div class="flex items-center gap-3">
-
-                @auth
-                    <a href="{{ route('dashboard') }}"
-                       class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
-                              transition-all duration-200 active:scale-95
-                              focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md">
-                        <i class="fa-solid fa-gauge"></i>
-                        Dashboard
-                    </a>
-                @else
-                    <a href="{{ route('login') }}"
-                       class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
-                              transition-all duration-200 active:scale-95
-                              focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md">
-                        <i class="fa-solid fa-arrow-right"></i>
-                        Masuk
-                    </a>
-                @endauth
-
-                {{-- Hamburger — min h-11 w-11 sesuai touch target DESIGN.md --}}
-                <button @click="open = !open"
-                        aria-label="Buka menu"
-                        :aria-expanded="open"
-                        class="lg:hidden h-11 w-11 flex items-center justify-center rounded-xl transition-colors
-                               focus:outline-none text-slate-700 hover:bg-slate-100">
-                    <i class="fa-solid fa-bars"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-
+                    {{-- Hamburger — min h-11 w-11 sesuai touch target DESIGN.md --}}
+                    <button @click="open = !open"
+                            aria-label="Buka menu"
+                            :aria-expanded="open"
+                            class="lg:hidden h-11 w-11 flex items-center justify-center rounded-xl transition-colors
+                                   focus:outline-none text-slate-700 hover:bg-slate-100">
+                        <i class="fa-solid fa-bars" x-show="!open"></i>
+                        <i class="fa-solid fa-xmark" x-show="open" style="display: none;"></i>
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -129,16 +130,20 @@
                 </a>
             @endforeach
 
-            <div class="pt-3 mt-2 border-t border-slate-100">
+            <div class="pt-3 mt-2 border-t border-slate-100 px-2 pb-2">
                 @auth
                     <a href="{{ route('dashboard') }}"
-                       class="btn-primary !bg-emerald-600 hover:!bg-emerald-700 w-full justify-center py-3 rounded-xl">
+                       class="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold
+                              transition-all duration-200 active:scale-95
+                              focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md w-full">
                         <i class="fa-solid fa-gauge"></i>
                         Ke Dashboard
                     </a>
                 @else
                     <a href="{{ route('login') }}"
-                       class="btn-primary w-full justify-center py-3 rounded-xl">
+                       class="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold
+                              transition-all duration-200 active:scale-95
+                              focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md w-full">
                         <i class="fa-solid fa-arrow-right"></i>
                         Masuk sebagai Admin / Operator
                     </a>

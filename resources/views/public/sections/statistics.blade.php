@@ -61,12 +61,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {{-- RT / RW --}}
             <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
-                    <h3 class="text-base font-bold text-slate-800">Statistik RT / RW</h3>
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                        RT/RW
-                    </span>
-                </div>
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">RT & RW</h3>
                 <div class="flex-1 relative" style="height:260px;">
                     <div id="chartRTRW"></div>
                 </div>
@@ -74,12 +69,7 @@
 
             {{-- Lingkungan --}}
             <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
-                    <h3 class="text-base font-bold text-slate-800">Statistik Lingkungan</h3>
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                        Lingkungan
-                    </span>
-                </div>
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Lingkungan</h3>
                 <div class="flex-1 relative" style="height:260px;">
                     <div id="chartLingkungan"></div>
                 </div>
@@ -111,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
             chart: { type: 'donut', height: 300 },
             labels: labels,
             colors: colors,
+            dataLabels: { enabled: false },
             plotOptions: { pie: { donut: { size: '65%' } } },
             legend: { position: 'bottom', markers: { radius: 12 } },
             ...opts

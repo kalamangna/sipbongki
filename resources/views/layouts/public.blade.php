@@ -8,101 +8,18 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{-- SEO --}}
+    {{-- STATIC META --}}
     <meta name="author" content="Kelurahan Bongki">
     <meta name="robots" content="index, follow">
     <meta name="language" content="id">
     <meta name="geo.region" content="ID-SN">
-    <meta name="geo.placename"
-        content="Kelurahan Bongki, Kecamatan Sinjai Utara, Kabupaten Sinjai">
+    <meta name="geo.placename" content="Kelurahan Bongki, Kecamatan Sinjai Utara, Kabupaten Sinjai">
     <meta name="theme-color" content="#1E5AA8">
-
-    {{-- TITLE --}}
-    <title>
-        @yield('title', $website?->meta_title ?? 'SIP Bongki | Sistem Informasi dan Pelayanan Kelurahan Bongki')
-    </title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
-    <meta property="og:image" content="{{ asset('images/meta.png') }}">
-    <meta name="twitter:image" content="{{ asset('images/meta.png') }}">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-    @if($website)
-
-        {{-- SEO --}}
-        <meta
-            name="description"
-            content="{{ $website->meta_description }}">
-
-        <meta
-            name="keywords"
-            content="{{ $website->meta_keyword }}">
-
-        <link
-            rel="canonical"
-            href="{{ url()->current() }}">
-
-        {{-- OPEN GRAPH --}}
-        <meta property="og:locale" content="id_ID">
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="SIP Bongki">
-
-        <meta
-            property="og:title"
-            content="@yield('title', $website?->meta_title)">
-
-        <meta
-            property="og:description"
-            content="{{ $website->meta_description }}">
-
-        <meta
-            property="og:url"
-            content="{{ url()->current() }}">
-
-        @if($website?->logo)
-
-            <meta
-                property="og:image"
-                content="{{ asset('storage/'.$website->logo) }}">
-
-        @elseif(file_exists(public_path('images/meta.png')))
-
-            <meta
-                property="og:image"
-                content="{{ asset('images/meta.png') }}">
-
-        @endif
-
-
-        {{-- TWITTER --}}
-        <meta
-            name="twitter:card"
-            content="summary_large_image">
-
-        <meta
-            name="twitter:title"
-            content="@yield('title', $website?->meta_title)">
-
-        <meta
-            name="twitter:description"
-            content="{{ $website->meta_description }}">
-
-        @if($website?->logo)
-
-            <meta
-                name="twitter:image"
-                content="{{ asset('storage/'.$website->logo) }}">
-
-        @elseif(file_exists(public_path('images/meta.png')))
-
-            <meta
-                name="twitter:image"
-                content="{{ asset('images/meta.png') }}">
-
-        @endif
-
-
-        
-
-    @endif
+    {{-- DYNAMIC SEO META --}}
+    <x-seo-meta />
 
 
     {{-- STRUCTURED DATA --}}
@@ -112,7 +29,7 @@
         "@@type":"GovernmentOrganization",
         "name":"Kelurahan Bongki",
         "url":"{{ url('/') }}",
-        "logo":"{{ $website?->logo ? asset('storage/'.$website->logo) : asset('images/logo.png') }}",
+        "logo":"{{ asset('images/logo.png') }}",
         "description":"Website resmi Kelurahan Bongki yang menyediakan layanan publik digital, statistik kependudukan, berita, agenda, pengumuman, galeri, dan informasi pemerintahan.",
         "address":{
             "@@type":"PostalAddress",

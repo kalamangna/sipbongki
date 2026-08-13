@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **UI/UX (Public)**: Memperbaiki konflik *class* responsif pada section Hero dan menyelaraskan ukuran tombol utamanya.
+- **UI/UX (Public)**: Merapikan padding dan perataan ikon pada tombol menu "Masuk/Dashboard" di versi layar kecil (Mobile Navbar).
+- **UI/UX (Public)**: Merombak total tata letak halaman Detail Berita dan Detail Pengumuman menjadi *grid* 2 kolom dengan *sticky sidebar* daftar artikel terbaru, penyesuaian rasio gambar *aspect-video*, dan menyematkan integrasi tombol bagikan (*share*).
 - **UI/UX (Admin)**: Merapikan tag `<title>` dan *header* halaman (`<h2>`/`<h3>`) pada seluruh modul (Kependudukan, Pelayanan, Pengaturan, Website) agar selaras secara absolut dengan penamaan menu *sidebar*.
 - **UI/UX (Admin)**: Melakukan audit menyeluruh dan menambahkan atribut *placeholder* pada setiap isian form (seperti di modul Referensi, Laporan, dan Pengaduan) yang belum memilikinya.
 - **UI/UX (Pelayanan)**: Mengubah desain halaman indeks dan formulir (Create/Edit) `Permohonan Surat` serta `Riwayat Pelayanan` agar mengikuti standar gaya komponen Tailwind yang bersih dan responsif, tanpa ketergantungan pada *class* Bootstrap.
