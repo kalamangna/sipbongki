@@ -6,11 +6,7 @@
         <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $jabatan->nama ?? '') }}" placeholder="Masukkan nama jabatan" required>
     </div>
 
-    {{-- Slug --}}
-    <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Slug</label>
-        <input type="text" name="slug" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('slug', $jabatan->slug ?? '') }}" placeholder="contoh: kasi-pemerintahan">
-    </div>
+
 
     {{-- Parent Jabatan --}}
     <div>

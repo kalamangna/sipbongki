@@ -21,6 +21,8 @@ class PermohonanSuratController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
+        $jenis_surat_id = $request->jenis_surat_id;
+        $status = $request->status;
 
         $permohonans = PermohonanSurat::with([
                 'penduduk',
@@ -28,25 +30,34 @@ class PermohonanSuratController extends Controller
                 'penandatangan.jabatan',
             ])
             ->when($search, function ($query) use ($search) {
-
-                $query->where('nomor_permohonan', 'like', "%{$search}%")
-                    ->orWhereHas('penduduk', function ($q) use ($search) {
-
-                        $q->where('nama_lengkap', 'like', "%{$search}%")
-                          ->orWhere('nik', 'like', "%{$search}%");
-
-                    });
-
+                $query->where(function ($q) use ($search) {
+                    $q->where('nomor_permohonan', 'like', "%{$search}%")
+                      ->orWhereHas('penduduk', function ($subq) use ($search) {
+                          $subq->where('nama_lengkap', 'like', "%{$search}%")
+                               ->orWhere('nik', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->when($jenis_surat_id, function ($query) use ($jenis_surat_id) {
+                $query->where('jenis_surat_id', $jenis_surat_id);
+            })
+            ->when($status, function ($query) use ($status) {
+                $query->where('status', $status);
             })
             ->latest()
             ->paginate(10)
             ->withQueryString();
 
+        $jenisSurats = JenisSurat::orderBy('nama')->get();
+
         return view(
             'admin.pelayanan.permohonan-surat.index',
             compact(
                 'permohonans',
-                'search'
+                'search',
+                'jenis_surat_id',
+                'status',
+                'jenisSurats'
             )
         );
     }
@@ -63,7 +74,7 @@ class PermohonanSuratController extends Controller
       $penandatangans = Perangkat::with('jabatan')
     ->where('aktif', true)
     ->whereHas('jabatan', function ($q) {
-        $q->where('aktif', true);
+        $q->where('aktif', true)->where('is_penandatangan', true);
     })
     ->orderBy('jabatan_id')
     ->orderBy('nama_lengkap')
@@ -291,16 +302,19 @@ break;
 
     $validated['status'] = 'Menunggu';
 
-    $validated['data_surat'] = $dataSurat;
+    $manualFields = $request->only([
+        'manual_nama_lengkap', 'manual_nik', 'manual_tempat_lahir', 'manual_tanggal_lahir',
+        'manual_jenis_kelamin', 'manual_agama', 'manual_pekerjaan', 'manual_alamat',
+        'manual_rt', 'manual_rw', 'manual_no_kk'
+    ]);
     
-    if (
-        ! $this->isDomisiliJenisSurat($jenisSurat)
-        && empty($validated['penduduk_id'])
-    ) {
+    $validated['data_surat'] = array_merge($dataSurat, $manualFields);
+
+    if (empty($validated['penduduk_id']) && empty($request->manual_nama_lengkap)) {
         return back()
             ->withInput()
             ->withErrors([
-                'penduduk_id' => 'Penduduk belum dipilih.'
+                'penduduk_id' => 'Penduduk atau Nama Pemohon (Manual) harus diisi.'
             ]);
     }
 
@@ -431,7 +445,7 @@ public function print(PermohonanSurat $permohonanSurat)
         $penandatangans = Perangkat::with('jabatan')
     ->where('aktif', true)
     ->whereHas('jabatan', function ($q) {
-        $q->where('aktif', true);
+        $q->where('aktif', true)->where('is_penandatangan', true);
     })
     ->orderBy('jabatan_id')
     ->orderBy('nama_lengkap')
@@ -624,7 +638,14 @@ public function update(
             break;
     }
 
-    $validated['data_surat'] = $dataSurat;
+    $manualFields = $request->only([
+        'manual_nama_lengkap', 'manual_nik', 'manual_tempat_lahir', 'manual_tanggal_lahir',
+        'manual_jenis_kelamin', 'manual_agama', 'manual_pekerjaan', 'manual_alamat',
+        'manual_rt', 'manual_rw', 'manual_no_kk'
+    ]);
+    
+    // Merge existing data_surat so we don't lose them if they are omitted in request, then overlay new ones
+    $validated['data_surat'] = array_merge($permohonanSurat->data_surat ?? [], $dataSurat, $manualFields);
 
     $permohonanSurat->update($validated);
 
@@ -681,6 +702,10 @@ public function update(
                 'error',
                 'Perubahan status tidak diperbolehkan.'
             );
+        }
+
+        if (($statusBaru === 'Diproses' || $statusBaru === 'Selesai') && empty($permohonanSurat->penandatangan_id)) {
+            return back()->with('error', 'Pejabat penandatangan belum dipilih. Silakan klik tombol Edit Permohonan terlebih dahulu untuk memilih penandatangan.');
         }
 
 if (

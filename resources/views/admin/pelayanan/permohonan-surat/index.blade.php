@@ -26,12 +26,30 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Nomor / Nama Pemohon..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm">
                 </div>
-                
+                <div class="w-full md:w-48">
+                    <select name="jenis_surat_id" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
+                        <option value="">Semua Jenis Surat</option>
+                        @foreach($jenisSurats as $js)
+                            <option value="{{ $js->id }}" {{ request('jenis_surat_id') == $js->id ? 'selected' : '' }}>{{ $js->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="w-full md:w-40">
+                    <select name="status" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
+                        <option value="">Semua Status</option>
+                        <option value="Menunggu" {{ request('status') == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
+                        <option value="Diproses" {{ request('status') == 'Diproses' ? 'selected' : '' }}>Diproses</option>
+                        <option value="Selesai" {{ request('status') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                        <option value="Ditolak" {{ request('status') == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                    </select>
+                </div>
+
                 <div class="flex gap-2 w-full md:w-auto">
                     <button type="submit" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer">
-                        Cari
+                        <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
-                    @if(request('search'))
+                    @if(request('search') || request('jenis_surat_id') || request('status'))
                         <a href="{{ route('admin.permohonan-surat.index') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
     <i class="fa-solid fa-rotate-left"></i>
 </a>
@@ -61,7 +79,7 @@
                         <td class="px-6 py-4 font-mono font-medium text-slate-900">{{ $permohonan->nomor_permohonan }}</td>
                         <td class="px-6 py-4">{{ $permohonan->tanggal_permohonan->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 font-bold text-slate-900">
-                            {{ optional($permohonan->penduduk)->nama_lengkap ?? data_get($permohonan->data_surat, 'nama_lengkap') ?? '-' }}
+                            {{ $permohonan->pemohon->nama_lengkap ?? '-' }}
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700">

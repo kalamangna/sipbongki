@@ -22,21 +22,21 @@
     <tr>
         <td width="180">Nama</td>
         <td width="20">:</td>
-        <td><strong>{{ strtoupper($permohonan->penduduk->nama_lengkap) }}</strong></td>
+        <td><strong>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</strong></td>
     </tr>
 
     <tr>
         <td>NIK</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->nik }}</td>
+        <td>{{ $permohonan->pemohon->nik }}</td>
     </tr>
 
     <tr>
         <td>Tempat / Tanggal Lahir</td>
         <td>:</td>
         <td>
-            {{ $permohonan->penduduk->tempat_lahir }},
-            {{ \Carbon\Carbon::parse($permohonan->penduduk->tanggal_lahir)->translatedFormat('d F Y') }}
+            {{ $permohonan->pemohon->tempat_lahir }},
+            {{ \Carbon\Carbon::parse($permohonan->pemohon->tanggal_lahir)->translatedFormat('d F Y') }}
         </td>
     </tr>
 
@@ -44,20 +44,20 @@
         <td>Jenis Kelamin</td>
         <td>:</td>
         <td>
-            {{ $permohonan->penduduk->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
+            {{ $permohonan->pemohon->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}
         </td>
     </tr>
 
     <tr>
         <td>Pekerjaan</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->pekerjaan }}</td>
+        <td>{{ $permohonan->pemohon->pekerjaan }}</td>
     </tr>
 
     <tr>
         <td>Alamat</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->alamat }}</td>
+        <td>{{ $permohonan->pemohon->alamat }}</td>
     </tr>
 
 </table>

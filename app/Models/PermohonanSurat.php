@@ -65,7 +65,7 @@ class PermohonanSurat extends Model
 
     protected $casts = [
 
-        'tanggal_permohonan' => 'date',
+        'tanggal_permohonan' => 'datetime',
 
         'tanggal_selesai' => 'date',
 
@@ -138,6 +138,31 @@ class PermohonanSurat extends Model
     | Accessor
     |--------------------------------------------------------------------------
     */
+
+    public function getPemohonAttribute()
+    {
+        if ($this->penduduk_id) {
+            return $this->penduduk;
+        }
+
+        $data = $this->data_surat ?? [];
+
+        return (object) [
+            'nama_lengkap'  => $data['manual_nama_lengkap'] ?? $data['nama_lengkap'] ?? $data['nama_pemohon'] ?? '-',
+            'nik'           => $data['manual_nik'] ?? $data['nik'] ?? '-',
+            'tempat_lahir'  => $data['manual_tempat_lahir'] ?? $data['tempat_lahir'] ?? '-',
+            'tanggal_lahir' => $data['manual_tanggal_lahir'] ?? $data['tanggal_lahir'] ?? null,
+            'jenis_kelamin' => $data['manual_jenis_kelamin'] ?? $data['jenis_kelamin'] ?? '-',
+            'agama'         => $data['manual_agama'] ?? $data['agama'] ?? '-',
+            'pekerjaan'     => $data['manual_pekerjaan'] ?? $data['pekerjaan'] ?? '-',
+            'telepon'       => $data['manual_telepon'] ?? $data['telepon'] ?? '-',
+            'alamat'        => $data['manual_alamat'] ?? $data['alamat'] ?? '-',
+            'rt'            => $data['manual_rt'] ?? $data['rt'] ?? '-',
+            'rw'            => $data['manual_rw'] ?? $data['rw'] ?? '-',
+            'lingkungan'    => null, // mock relationship
+            'no_kk'         => $data['manual_no_kk'] ?? '-',
+        ];
+    }
 
     public function getStatusBadgeClassAttribute()
     {

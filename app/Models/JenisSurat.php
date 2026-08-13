@@ -78,6 +78,19 @@ class JenisSurat extends Model
             || str_contains(strtolower($this->nama), 'usaha');
     }
 
+    public function isKematian(): bool
+    {
+        return in_array(strtoupper($this->kode), ['KEMATIAN'])
+            || str_contains(strtolower($this->nama), 'kematian');
+    }
+
+    public function isOrangSama(): bool
+    {
+        return in_array(strtoupper($this->kode), ['ORANG-SAMA'])
+            || str_contains(strtolower($this->nama), 'orang sama')
+            || str_contains(strtolower($this->nama), 'orang yang sama');
+    }
+
     /**
  * Template Blade surat
  */

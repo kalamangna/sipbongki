@@ -11,13 +11,31 @@ class PengaduanController extends Controller
     /**
      * Daftar pengaduan
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pengaduans = Pengaduan::latest()
-            ->paginate(10);
+        $pengaduans = Pengaduan::query()
+            ->when($request->search, function($query, $search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('kode', 'like', "%{$search}%")
+                      ->orWhere('nama', 'like', "%{$search}%")
+                      ->orWhere('uraian', 'like', "%{$search}%");
+                });
+            })
+            ->when($request->kategori, function($query, $kategori) {
+                $query->where('kategori', $kategori);
+            })
+            ->when($request->status, function($query, $status) {
+                $query->where('status', $status);
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+            
+        $kategoris = Pengaduan::select('kategori')->whereNotNull('kategori')->distinct()->orderBy('kategori')->pluck('kategori');
 
         return view('admin.pengaduan.index', compact(
-            'pengaduans'
+            'pengaduans',
+            'kategoris'
         ));
     }
 

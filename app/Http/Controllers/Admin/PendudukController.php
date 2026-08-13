@@ -22,98 +22,29 @@ class PendudukController extends Controller
 public function index(Request $request)
 {
     $search = trim($request->search);
-
     $lingkungan = $request->lingkungan;
-
-    $jenis_kelamin = $request->jenis_kelamin;
-
-    $agama = $request->agama;
-
-
+    $aktif = $request->aktif;
     $sort = $request->sort ?? 'nama_lengkap';
-
     $direction = $request->direction ?? 'asc';
 
-
-
-    $penduduks = Penduduk::with([
-            'lingkungan',
-            'kartuKeluarga'
-        ])
-
-
+    $penduduks = Penduduk::with(['lingkungan', 'kartuKeluarga'])
         ->when($search, function ($query) use ($search) {
-
             $query->where(function ($q) use ($search) {
-
-                $q->where(
-                    'nik',
-                    'like',
-                    "%{$search}%"
-                )
-
-                ->orWhere(
-                    'nama_lengkap',
-                    'like',
-                    "%{$search}%"
-                );
-
+                $q->where('nik', 'like', "%{$search}%")
+                  ->orWhere('nama_lengkap', 'like', "%{$search}%");
             });
-
         })
-
-
         ->when($lingkungan, function ($query) use ($lingkungan) {
-
-            $query->where(
-                'lingkungan_id',
-                $lingkungan
-            );
-
+            $query->where('lingkungan_id', $lingkungan);
         })
-
-
-        ->when($jenis_kelamin, function ($query) use ($jenis_kelamin) {
-
-            $query->where(
-                'jenis_kelamin',
-                $jenis_kelamin
-            );
-
+        ->when($request->has('aktif') && $aktif !== '', function ($query) use ($aktif) {
+            $query->where('aktif', $aktif);
         })
-
-
-        ->when($agama, function ($query) use ($agama) {
-
-            $query->where(
-                'agama',
-                $agama
-            );
-
-        })
-
-
-        ->orderBy(
-            $sort,
-            $direction
-        )
-
-
+        ->orderBy($sort, $direction)
         ->paginate(10)
-
         ->withQueryString();
 
-
-
-    $lingkungans = Lingkungan::orderBy(
-        'nama'
-    )->get();
-
-
-
-    $agamas = Penduduk::agamaList();
-
-
+    $lingkungans = Lingkungan::orderBy('nama')->get();
 
     return view(
         'admin.kependudukan.penduduk.index',
@@ -122,9 +53,7 @@ public function index(Request $request)
             'search',
             'lingkungans',
             'lingkungan',
-            'jenis_kelamin',
-            'agama',
-            'agamas',
+            'aktif',
             'sort',
             'direction'
         )

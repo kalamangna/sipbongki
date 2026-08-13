@@ -49,34 +49,84 @@
  </div>
 
  {{-- Pemohon --}}
- <div id="pemohon-field">
+ <div class="md:col-span-2" id="pemohon-container">
+    <label class="block text-sm font-semibold text-slate-700 mb-3">
+        Sumber Data Pemohon <span class="text-red-500">*</span>
+    </label>
+    
+    <div class="flex flex-wrap gap-4 mb-4">
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="radio" name="jenis_pemohon" value="terdaftar" class="text-primary-600 focus:ring-primary-500" checked onchange="togglePemohonSource()">
+            <span class="ml-2 text-sm text-slate-700">Penduduk Bongki</span>
+        </label>
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="radio" name="jenis_pemohon" value="manual" class="text-primary-600 focus:ring-primary-500" {{ old('jenis_pemohon', (!empty($permohonanSurat->data_surat['manual_nama_lengkap']) ? 'manual' : 'terdaftar')) == 'manual' ? 'checked' : '' }} onchange="togglePemohonSource()">
+            <span class="ml-2 text-sm text-slate-700">Penduduk Luar Bongki</span>
+        </label>
+    </div>
 
- <label class="block text-sm font-semibold text-slate-700 mb-1.5">
- Pemohon <span class="text-red-500">*</span>
- </label>
+     <div id="pemohon-field">
+         <select
+         id="penduduk_id"
+         name="penduduk_id"
+         class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+             <option value="">-- Pilih Penduduk --</option>
+             @foreach($penduduks as $penduduk)
+             <option
+             value="{{ $penduduk->id }}"
+             @selected(old('penduduk_id', $permohonanSurat->penduduk_id ?? '') == $penduduk->id)>
+             {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
+             </option>
+             @endforeach
+         </select>
+         @error('penduduk_id')
+         <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+         @enderror
+     </div>
 
- <select
- id="penduduk_id"
- name="penduduk_id"
- class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+     <div id="manual-pemohon-fields" style="display: none;" class="bg-slate-50 p-4 rounded-xl border border-slate-200 mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap</label>
+            <input type="text" name="manual_nama_lengkap" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_nama_lengkap', $permohonanSurat->data_surat['manual_nama_lengkap'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">NIK</label>
+            <input type="text" name="manual_nik" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_nik', $permohonanSurat->data_surat['manual_nik'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">No KK</label>
+            <input type="text" name="manual_no_kk" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_no_kk', $permohonanSurat->data_surat['manual_no_kk'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Jenis Kelamin</label>
+            <select name="manual_jenis_kelamin" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2">
+                <option value="">-- Pilih --</option>
+                <option value="L" @selected(old('manual_jenis_kelamin', $permohonanSurat->data_surat['manual_jenis_kelamin'] ?? '') == 'L')>Laki-laki</option>
+                <option value="P" @selected(old('manual_jenis_kelamin', $permohonanSurat->data_surat['manual_jenis_kelamin'] ?? '') == 'P')>Perempuan</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Tempat Lahir</label>
+            <input type="text" name="manual_tempat_lahir" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_tempat_lahir', $permohonanSurat->data_surat['manual_tempat_lahir'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Lahir</label>
+            <input type="date" name="manual_tanggal_lahir" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_tanggal_lahir', $permohonanSurat->data_surat['manual_tanggal_lahir'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Agama</label>
+            <input type="text" name="manual_agama" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_agama', $permohonanSurat->data_surat['manual_agama'] ?? '') }}">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Pekerjaan</label>
+            <input type="text" name="manual_pekerjaan" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2" value="{{ old('manual_pekerjaan', $permohonanSurat->data_surat['manual_pekerjaan'] ?? '') }}">
+        </div>
+        <div class="md:col-span-2">
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Lengkap</label>
+            <textarea name="manual_alamat" rows="2" class="w-full bg-white border border-slate-200 text-sm rounded-lg px-3 py-2">{{ old('manual_alamat', $permohonanSurat->data_surat['manual_alamat'] ?? '') }}</textarea>
+        </div>
+     </div>
 
- <option value="">-- Pilih Penduduk --</option>
-
- @foreach($penduduks as $penduduk)
- <option
- value="{{ $penduduk->id }}"
- @selected(old('penduduk_id', $permohonanSurat->penduduk_id ?? '') == $penduduk->id)>
-
- {{ $penduduk->nik }} - {{ $penduduk->nama_lengkap }}
-
- </option>
- @endforeach
-
- </select>
-
- @error('penduduk_id')
- <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
- @enderror
  </div>
  </div>
 </div>
@@ -820,7 +870,8 @@
      $defaultPenandatanganId = $permohonanSurat->penandatangan_id ?? '';
      if (empty($defaultPenandatanganId)) {
          $lurah = $penandatangans->first(function($p) {
-             return str_contains(strtolower($p->jabatan->nama ?? ''), 'lurah');
+             $jabatan = trim(strtolower($p->jabatan->nama ?? ''));
+             return $jabatan === 'lurah' || str_starts_with($jabatan, 'plt. lurah') || str_starts_with($jabatan, 'plt lurah');
          });
          $defaultPenandatanganId = $lurah ? $lurah->id : '';
      }
@@ -913,9 +964,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
  const domisiliFields = document.getElementById('domisili-fields');
 
+ const pemohonContainer = document.getElementById(
+ 'pemohon-container'
+ );
+
  const pemohonField = document.getElementById(
  'pemohon-field'
  );
+
+ const manualPemohonFields = document.getElementById(
+ 'manual-pemohon-fields'
+ );
+
+ window.togglePemohonSource = function() {
+     const val = document.querySelector('input[name="jenis_pemohon"]:checked').value;
+     if (val === 'manual') {
+         pemohonField.style.display = 'none';
+         manualPemohonFields.style.display = 'grid';
+         pemohonSelect.required = false;
+     } else {
+         pemohonField.style.display = 'block';
+         manualPemohonFields.style.display = 'none';
+         pemohonSelect.required = true;
+     }
+ };
 
  const pemohonSelect = document.querySelector(
  'select[name="penduduk_id"]'
@@ -939,8 +1011,8 @@ function toggleFields() {
  orangSamaFields.style.display = 'none';
  domisiliFields.style.display = 'none';
 
- pemohonField.style.display = 'block';
- pemohonSelect.required = true;
+ pemohonContainer.style.display = 'block';
+ togglePemohonSource(); // Ensures correct display based on radio
 
  if (almarhumSelect) {
  almarhumSelect.required = false;
@@ -961,7 +1033,7 @@ function toggleFields() {
 
  domisiliFields.style.display = 'block';
 
- pemohonField.style.display = 'none';
+ pemohonContainer.style.display = 'none';
  pemohonSelect.required = false;
  }
 
@@ -970,7 +1042,7 @@ function toggleFields() {
 
  kematianFields.style.display = 'block';
 
- pemohonField.style.display = 'none';
+ pemohonContainer.style.display = 'none';
  pemohonSelect.required = false;
 
  if (almarhumSelect) {

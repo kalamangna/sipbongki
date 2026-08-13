@@ -17,25 +17,25 @@
     <tr>
         <td width="200">Nama Kepala Keluarga</td>
         <td width="20">:</td>
-        <td>{{ strtoupper($permohonan->penduduk->nama_lengkap) }}</td>
+        <td>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</td>
     </tr>
 
     <tr>
         <td>Nomor Kartu Keluarga</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->no_kk }}</td>
+        <td>{{ $permohonan->pemohon->no_kk }}</td>
     </tr>
 
     <tr>
         <td>NIK</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->nik }}</td>
+        <td>{{ $permohonan->pemohon->nik }}</td>
     </tr>
 
     <tr>
         <td>Alamat Asal</td>
         <td>:</td>
-        <td>{{ $permohonan->penduduk->alamat }}</td>
+        <td>{{ $permohonan->pemohon->alamat }}</td>
     </tr>
 
     <tr>

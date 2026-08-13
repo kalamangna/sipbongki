@@ -11,7 +11,7 @@
             {{-- Permohonan Dibuat --}}
             <div class="relative flex items-center gap-4">
                 <div class="w-11 h-11 rounded-full bg-primary-50 border-4 border-white flex items-center justify-center text-primary-600 shadow-sm z-10 shrink-0 text-lg">
-                    <i class="fa-solid fa-file-earmark-plus"></i>
+                    <i class="fa-solid fa-file-circle-plus"></i>
                 </div>
                 <div class="flex-1">
                     <p class="font-bold text-slate-900 text-base mb-0.5">Permohonan Dibuat</p>

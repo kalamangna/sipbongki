@@ -7,13 +7,17 @@
     </div>
     <div class="p-6">
         @php
-            $pemohon = $permohonanSurat->penduduk;
+            $pendudukAsli = $permohonanSurat->penduduk;
+            $pemohon = $permohonanSurat->pemohon;
             $dataSurat = $permohonanSurat->data_surat ?? [];
             $isUsaha = $permohonanSurat->jenisSurat?->isUsaha() ?? false;
+            $isDomisili = $permohonanSurat->jenisSurat?->isDomisili() ?? false;
+            $isKematian = $permohonanSurat->jenisSurat?->isKematian() ?? false;
+            $isOrangSama = $permohonanSurat->jenisSurat?->isOrangSama() ?? false;
 
-            $compare = function ($field) use ($pemohon, $dataSurat) {
-                if (!$pemohon) return null;
-                $pendudukValue = data_get($pemohon, $field);
+            $compare = function ($field) use ($pendudukAsli, $dataSurat) {
+                if (!$pendudukAsli) return null;
+                $pendudukValue = data_get($pendudukAsli, $field);
                 $formValue = data_get($dataSurat, $field);
                 if (blank($pendudukValue) || blank($formValue)) return null;
                 return trim(strtolower($pendudukValue)) === trim(strtolower($formValue));
@@ -45,7 +49,7 @@
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nama Lengkap</p>
                 <p class="font-bold text-slate-900 text-base">{{ optional($pemohon)->nama_lengkap ?? data_get($dataSurat, 'nama_lengkap') ?? '-' }}</p>
-                @if($pemohon)
+                @if($pendudukAsli)
                     @php $match = $compare('nama_lengkap'); @endphp
                     @if($match === true)
                         <div class="mt-1.5"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide uppercase">Nama Cocok</span></div>
@@ -73,9 +77,9 @@
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Tempat, Tanggal Lahir</p>
                 <p class="font-medium text-slate-900 text-base">
-                    {{ optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir') ?? '-' }}, {{ optional($pemohon)->tanggal_lahir?->translatedFormat('d F Y') ?? data_get($dataSurat, 'tanggal_lahir') ?? '-' }}
+                    {{ optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir') ?? '-' }}, {{ optional($pemohon)->tanggal_lahir instanceof \Carbon\Carbon ? $pemohon->tanggal_lahir->translatedFormat('d F Y') : (optional($pemohon)->tanggal_lahir ?? data_get($dataSurat, 'tanggal_lahir') ?? '-') }}
                 </p>
-                @if($pemohon)
+                @if($pendudukAsli)
                     @php 
                         $matchTL = $compare('tempat_lahir'); 
                         $matchTGL = $compare('tanggal_lahir'); 
@@ -187,8 +191,14 @@
                         </div>
                     </div>
                 </div>
-            @else
+            @elseif($isDomisili)
                 <div class="sm:col-span-2 mt-4 pt-6 border-t border-slate-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800">Detail Domisili</h3>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
                         <div class="sm:col-span-2">
                             <p class="text-xs font-semibold text-slate-500 mb-1">Alamat Asal</p>
@@ -211,6 +221,70 @@
                         </div>
                     </div>
                 </div>
+            @elseif($isKematian)
+                <div class="sm:col-span-2 mt-4 pt-6 border-t border-slate-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                            <i class="fa-solid fa-book-skull"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800">Detail Kematian</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Waktu Meninggal</p>
+                            <p class="font-medium text-slate-900 text-base">
+                                {{ data_get($dataSurat, 'hari_meninggal', '-') }}, 
+                                {{ data_get($dataSurat, 'tanggal_meninggal') ? \Carbon\Carbon::parse(data_get($dataSurat, 'tanggal_meninggal'))->translatedFormat('d F Y') : '-' }} 
+                                {{ data_get($dataSurat, 'jam_meninggal') ? 'Jam ' . data_get($dataSurat, 'jam_meninggal') : '' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Tempat Meninggal</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'tempat_meninggal', '-') }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Penyebab Kematian</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'penyebab_kematian', '-') }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Hubungan Pelapor</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'hubungan_pelapor', '-') }}</p>
+                        </div>
+                        @if(optional($permohonanSurat)->pelapor)
+                        <div class="sm:col-span-2">
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Pelapor</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $permohonanSurat->pelapor->nama_lengkap }} (NIK: {{ $permohonanSurat->pelapor->nik }})</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            @elseif($isOrangSama)
+                <div class="sm:col-span-2 mt-4 pt-6 border-t border-slate-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800">Detail Orang Yang Sama</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Lain</p>
+                            <p class="font-bold text-slate-900 text-base">{{ data_get($dataSurat, 'nama_lain', '-') }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Jenis Dokumen Pembanding</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'jenis_dokumen', '-') }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Nomor Dokumen</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'nomor_dokumen', '-') }}</p>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Keterangan Perbedaan</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'keterangan_perbedaan', '-') }}</p>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             <div class="sm:col-span-2 mt-4 pt-6 border-t border-slate-100">
@@ -222,6 +296,9 @@
                             'dokumen_kk' => 'KK',
                             'dokumen_surat_pengantar' => 'Surat Pengantar RT/RW',
                         ];
+                        if ($isUsaha) {
+                            $files['dokumen_tempat_usaha'] = 'Foto Tempat Usaha';
+                        }
                     @endphp
 
                     @foreach($files as $field => $label)

@@ -28,13 +28,22 @@
 
         <hr class="border-slate-100 my-5">
 
+        @if(empty($permohonanSurat->penandatangan_id) && in_array($permohonanSurat->status, ['Menunggu', 'Diproses']))
+            <div class="mb-4 p-3 bg-rose-50 border border-rose-200 rounded-xl">
+                <div class="flex gap-2 text-rose-700">
+                    <i class="fa-solid fa-triangle-exclamation mt-0.5"></i>
+                    <p class="text-xs font-medium">Anda harus memilih Pejabat Penandatangan melalui menu <b>Edit Permohonan</b> sebelum dapat memproses atau menyelesaikan surat ini.</p>
+                </div>
+            </div>
+        @endif
+
         {{-- STATUS MENUNGGU --}}
         @if($permohonanSurat->status == 'Menunggu')
         <div class="flex flex-col gap-3">
             <form action="{{ route('admin.permohonan-surat.update-status', $permohonanSurat) }}" method="POST" class="w-full m-0">
                 @csrf @method('PATCH')
                 <input type="hidden" name="status" value="Diproses">
-                <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none active:scale-95" onclick="return confirm('Proses permohonan ini?')">
+                <button type="submit" @if(empty($permohonanSurat->penandatangan_id)) disabled @endif class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" onclick="return confirm('Proses permohonan ini?')">
                     <i class="fa-solid fa-play-circle text-lg"></i> Proses Permohonan
                 </button>
             </form>
@@ -51,16 +60,13 @@
         {{-- STATUS DIPROSES --}}
         @if($permohonanSurat->status == 'Diproses')
         <div class="flex flex-col gap-3">
-            <a href="{{ route('admin.permohonan-surat.preview', $permohonanSurat) }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-sky-600 text-white hover:bg-sky-700 shadow-sm transition-all focus:outline-none active:scale-95">
-                <i class="fa-solid fa-eye text-lg"></i> Preview Surat
-            </a>
-            <a href="{{ route('admin.permohonan-surat.print', $permohonanSurat) }}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95">
-                <i class="fa-solid fa-print text-lg"></i> Cetak Surat
+            <a href="{{ empty($permohonanSurat->penandatangan_id) ? '#' : route('admin.permohonan-surat.print', $permohonanSurat) }}" {{ empty($permohonanSurat->penandatangan_id) ? '' : 'target="_blank"' }} class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 {{ empty($permohonanSurat->penandatangan_id) ? 'opacity-50 cursor-not-allowed pointer-events-none' : '' }}">
+                <i class="fa-solid fa-print text-lg"></i> Preview & Cetak Surat
             </a>
             <form action="{{ route('admin.permohonan-surat.update-status', $permohonanSurat) }}" method="POST" class="w-full m-0">
                 @csrf @method('PATCH')
                 <input type="hidden" name="status" value="Selesai">
-                <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all focus:outline-none active:scale-95" onclick="return confirm('Selesaikan permohonan ini?')">
+                <button type="submit" @if(empty($permohonanSurat->penandatangan_id)) disabled @endif class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all focus:outline-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" onclick="return confirm('Selesaikan permohonan ini?')">
                     <i class="fa-solid fa-circle-check text-lg"></i> Selesaikan Permohonan
                 </button>
             </form>
@@ -70,11 +76,8 @@
         {{-- STATUS SELESAI --}}
         @if($permohonanSurat->status == 'Selesai')
         <div class="flex flex-col gap-3">
-            <a href="{{ route('admin.permohonan-surat.preview', $permohonanSurat) }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-sky-600 text-white hover:bg-sky-700 shadow-sm transition-all focus:outline-none active:scale-95">
-                <i class="fa-solid fa-eye text-lg"></i> Preview Surat
-            </a>
-            <a href="{{ route('admin.permohonan-surat.print', $permohonanSurat) }}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all focus:outline-none active:scale-95">
-                <i class="fa-solid fa-print text-lg"></i> Cetak Surat
+            <a href="{{ route('admin.permohonan-surat.print', $permohonanSurat) }}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95">
+                <i class="fa-solid fa-print text-lg"></i> Preview & Cetak Surat
             </a>
         </div>
         @endif

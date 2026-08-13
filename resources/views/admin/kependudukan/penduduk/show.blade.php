@@ -65,8 +65,12 @@
                             <p class="font-medium text-slate-900 text-base">{{ $penduduk->agama ?? '-' }}</p>
                         </div>
                         <div>
-                            <p class="text-xs font-semibold text-slate-500 mb-1">Golongan Darah</p>
-                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->golongan_darah ?? '-' }}</p>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Telepon / WhatsApp</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->telepon ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Email</p>
+                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->email ?? '-' }}</p>
                         </div>
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1">Pendidikan</p>
@@ -114,12 +118,12 @@
                             <p class="font-medium text-slate-900 text-base">{{ $penduduk->kartuKeluarga->kepalaKeluarga->nama_lengkap ?? '-' }}</p>
                         </div>
                         <div>
-                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Ayah</p>
-                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->nama_ayah ?? '-' }}</p>
-                        </div>
-                        <div>
-                            <p class="text-xs font-semibold text-slate-500 mb-1">Nama Ibu</p>
-                            <p class="font-medium text-slate-900 text-base">{{ $penduduk->nama_ibu ?? '-' }}</p>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Hak Akses Publik</p>
+                            @if($penduduk->is_public)
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-700">Ya</span>
+                            @else
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">Tidak</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -157,6 +161,24 @@
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1">Alamat Lengkap</p>
                             <p class="font-medium text-slate-900 text-base leading-relaxed">{{ $penduduk->alamat ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">Status Validasi Alamat</p>
+                            <p class="font-medium text-slate-900 text-base">
+                                @if($penduduk->status_validasi_alamat === 'Valid')
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+                                        <i class="fa-solid fa-check-circle mr-1"></i> Valid
+                                    </span>
+                                @elseif($penduduk->status_validasi_alamat === 'Perlu Verifikasi')
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
+                                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Perlu Verifikasi
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
+                                        <i class="fa-solid fa-circle-question mr-1"></i> Belum Divalidasi
+                                    </span>
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>

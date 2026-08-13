@@ -15,7 +15,48 @@
 
  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
- 
+    {{-- Toolbar Filter & Pencarian --}}
+    <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
+        <form action="{{ route('admin.pengaduan.index') }}" method="GET" class="flex flex-col md:flex-row gap-3">
+            
+            {{-- Pencarian --}}
+            <div class="flex-1 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kode, nama, uraian..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm transition-all">
+            </div>
+
+            {{-- Filter Kategori --}}
+            <div class="w-full md:w-48">
+                <select name="kategori" class="w-full bg-white border border-slate-200 text-slate-700 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm transition-all cursor-pointer">
+                    <option value="">Semua Kategori</option>
+                    @foreach($kategoris as $kat)
+                        <option value="{{ $kat }}" @selected(request('kategori') == $kat)>{{ $kat }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            {{-- Filter Status --}}
+            <div class="w-full md:w-40">
+                <select name="status" class="w-full bg-white border border-slate-200 text-slate-700 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm transition-all cursor-pointer">
+                    <option value="">Semua Status</option>
+                    <option value="Baru" @selected(request('status') == 'Baru')>Baru</option>
+                    <option value="Diproses" @selected(request('status') == 'Diproses')>Diproses</option>
+                    <option value="Selesai" @selected(request('status') == 'Selesai')>Selesai</option>
+                </select>
+            </div>
+            
+            <div class="flex gap-2 w-full md:w-auto">
+                <button type="submit" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass"></i> Cari
+                </button>
+                @if(request('search') || request('kategori') || request('status'))
+                    <a href="{{ route('admin.pengaduan.index') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </a>
+                @endif
+            </div>
+        </form>
+    </div>
 
  <div class="overflow-x-auto">
 

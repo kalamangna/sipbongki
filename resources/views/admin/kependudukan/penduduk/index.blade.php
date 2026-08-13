@@ -36,19 +36,10 @@
                 </div>
 
                 <div class="w-full md:w-40">
-                    <select name="jenis_kelamin" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
-                        <option value="">Semua JK</option>
-                        <option value="L" {{ $jenis_kelamin == 'L' ? 'selected':'' }}>Laki-laki</option>
-                        <option value="P" {{ $jenis_kelamin == 'P' ? 'selected':'' }}>Perempuan</option>
-                    </select>
-                </div>
-
-                <div class="w-full md:w-40">
-                    <select name="agama" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
-                        <option value="">Semua Agama</option>
-                        @foreach($agamas as $item)
-                            <option value="{{ $item }}" {{ $agama == $item ? 'selected':'' }}>{{ $item }}</option>
-                        @endforeach
+                    <select name="aktif" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
+                        <option value="">Semua Status</option>
+                        <option value="1" {{ $aktif === '1' ? 'selected':'' }}>Aktif</option>
+                        <option value="0" {{ $aktif === '0' ? 'selected':'' }}>Tidak Aktif</option>
                     </select>
                 </div>
 
@@ -56,7 +47,7 @@
                     <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-slate-500">
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
-                    @if($search || $lingkungan || $jenis_kelamin || $agama)
+                    @if($search || $lingkungan || $aktif !== null)
                         <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none" title="Reset Filter">
                             <i class="fa-solid fa-rotate-left"></i>
                         </a>
@@ -81,9 +72,7 @@
                                 Nama <i class="fa-solid fa-sort text-[10px] text-slate-400 group-hover:text-primary-500 transition-colors"></i>
                             </a>
                         </th>
-                        <th class="px-6 py-4 border-b border-slate-100">JK</th>
                         <th class="px-6 py-4 border-b border-slate-100">Lingkungan</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Agama</th>
                         <th class="px-6 py-4 border-b border-slate-100">Status</th>
                         <th width="100" class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
                     </tr>
@@ -94,9 +83,7 @@
                         <td class="px-6 py-4 text-center font-medium">{{ $penduduks->firstItem() + $loop->index }}</td>
                         <td class="px-6 py-4 font-mono text-xs">{{ $penduduk->nik }}</td>
                         <td class="px-6 py-4 font-medium text-slate-900">{{ $penduduk->nama_lengkap }}</td>
-                        <td class="px-6 py-4">@gender($penduduk->jenis_kelamin)</td>
                         <td class="px-6 py-4">{{ $penduduk->lingkungan->nama ?? '-' }}</td>
-                        <td class="px-6 py-4">{{ $penduduk->agama ?? '-' }}</td>
                         <td class="px-6 py-4">
                             @if($penduduk->aktif)
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">Aktif</span>
@@ -114,7 +101,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="px-6 py-12 text-center">
+                        <td colspan="6" class="px-6 py-12 text-center">
                             <div class="flex flex-col items-center justify-center text-slate-400">
                                 <i class="fa-solid fa-users text-4xl mb-4 text-slate-300"></i>
                                 <p class="text-sm">Belum ada data penduduk yang sesuai.</p>
