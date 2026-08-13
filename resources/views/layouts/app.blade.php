@@ -7,6 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <meta property="og:image" content="{{ asset('images/meta.png') }}">
+    <meta name="twitter:image" content="{{ asset('images/meta.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

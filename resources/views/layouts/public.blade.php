@@ -22,6 +22,8 @@
         @yield('title', $website?->meta_title ?? 'SIP Bongki | Sistem Informasi dan Pelayanan Kelurahan Bongki')
     </title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <meta property="og:image" content="{{ asset('images/meta.png') }}">
+    <meta name="twitter:image" content="{{ asset('images/meta.png') }}">
 
     @if($website)
 

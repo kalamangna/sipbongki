@@ -7,6 +7,8 @@
 
     <title>@yield('title', 'Administrator') | SIP Bongki</title>
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <meta property="og:image" content="{{ asset('images/meta.png') }}">
+    <meta name="twitter:image" content="{{ asset('images/meta.png') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 

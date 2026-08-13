@@ -84,9 +84,7 @@ View::composer([
 
 View::composer([
     'layouts.admin',
-    'layouts.operator',
     'components.admin.navbar',
-    'components.operator.navbar',
 ], function ($view) {
 
     $jumlahPermohonanBaru = PermohonanSurat::where('status', 'Menunggu')->count();
