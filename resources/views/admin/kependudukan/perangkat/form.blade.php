@@ -1,15 +1,15 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
     {{-- KIRI: Informasi Utama --}}
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-        <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+    <div class="h-full">
+        <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
             <h3 class="font-bold text-slate-800 text-base mb-0">
                 <i class="fa-solid fa-user-tie text-primary-600 mr-2"></i>
                 Informasi Utama
             </h3>
         </div>
 
-        <div class="p-6 md:p-8 space-y-6">
+        <div class="space-y-6">
             
             {{-- Nama Lengkap --}}
             <div>
@@ -94,14 +94,14 @@
     {{-- KANAN: Data Pribadi & SK --}}
     <div class="space-y-6">
         
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+        <div>
+            <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
                 <h3 class="font-bold text-slate-800 text-base mb-0">
                     <i class="fa-solid fa-address-book text-amber-500 mr-2"></i>
                     Data Pribadi
                 </h3>
             </div>
-            <div class="p-6 space-y-6">
+            <div class="space-y-6">
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {{-- TTL --}}
@@ -152,14 +152,14 @@
             </div>
         </div>
         
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+        <div>
+            <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
                 <h3 class="font-bold text-slate-800 text-base mb-0">
                     <i class="fa-solid fa-file-signature text-emerald-500 mr-2"></i>
                     Status & Keputusan
                 </h3>
             </div>
-            <div class="p-6 space-y-6">
+            <div class="space-y-6">
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>

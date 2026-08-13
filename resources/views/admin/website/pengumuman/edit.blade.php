@@ -3,199 +3,94 @@
 @section('title', 'Edit Pengumuman')
 
 @section('content')
-
 <div class="w-full">
-
- {{-- HEADER --}}
- <div class="flex justify-between items-center mb-6">
-
- <div>
-
- <h3 class="font-bold mb-1">
- Edit Pengumuman
- </h3>
-
- <p class="text-slate-500 mb-0">
- Perbarui informasi pengumuman Kelurahan Bongki.
- </p>
-
- </div>
-
- <a href="{{ route('admin.website.pengumuman.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
-
- <i class="fa-solid fa-arrow-left mr-2"></i>
-
- Kembali
-
- </a>
-
- </div>
-
- {{-- VALIDATION ERROR --}}
- @if($errors->any())
-
- <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">
-
- <ul class="mb-0">
-
- @foreach($errors->all() as $error)
-
- <li>{{ $error }}</li>
-
- @endforeach
-
- </ul>
-
- </div>
-
- @endif
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
-
- <div class="p-6">
-
- <form action="{{ route('admin.website.pengumuman.update', $pengumuman) }}"
- method="POST"
- enctype="multipart/form-data">
-
- @csrf
- @method('PUT')
-
- {{-- JUDUL --}}
- <div class="mb-4">
-
- <label class="form-label font-semibold">
- Judul Pengumuman
- </label>
-
- <input
- type="text"
- name="judul"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
- value="{{ old('judul', $pengumuman->judul) }}"
- placeholder="Masukkan judul pengumuman">
-
- </div>
-
- {{-- ISI --}}
- <div class="mb-4">
-
- <label class="form-label font-semibold">
- Isi Pengumuman
- </label>
-
- <textarea
- name="isi"
- rows="8"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
- placeholder="Tuliskan isi pengumuman">{{ old('isi', $pengumuman->isi) }}</textarea>
-
- </div>
-
- <div class="flex flex-wrap -mx-3">
-
- {{-- GAMBAR --}}
- <div class="w-full md:w-1/2 px-3 mb-4">
-
- <label class="form-label font-semibold">
- Gambar Pengumuman
- </label>
-
- <input
- type="file"
- name="gambar"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-
- <small class="text-slate-500">
- Format JPG, PNG maksimal 2MB.
- </small>
-
- @if($pengumuman->gambar)
-
- <div class="mt-3">
-
- <img
- src="{{ asset('storage/'.$pengumuman->gambar) }}"
- class="img-thumbnail"
- style="max-width:220px;">
-
- </div>
-
- @endif
-
- </div>
-
- {{-- STATUS --}}
- <div class="w-full md:w-1/4 px-3 mb-4">
-
- <label class="form-label font-semibold">
- Status
- </label>
-
- <select
- name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-
- <option value="draft"
- {{ old('status', $pengumuman->status) == 'draft' ? 'selected' : '' }}>
- Draft
- </option>
-
- <option value="publish"
- {{ old('status', $pengumuman->status) == 'publish' ? 'selected' : '' }}>
- Publish
- </option>
-
- </select>
-
- </div>
-
- {{-- TANGGAL --}}
- <div class="w-full md:w-1/4 px-3 mb-4">
-
- <label class="form-label font-semibold">
- Tanggal Publish
- </label>
-
- <input
- type="date"
- name="tanggal_publish"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
- value="{{ old('tanggal_publish', optional($pengumuman->tanggal_publish)->format('Y-m-d')) }}">
-
- </div>
-
- </div>
-
- {{-- BUTTON --}}
- <div class="mt-6">
-
- <button
- type="submit"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- <i class="fa-solid fa-save mr-2"></i>
-
- Update Pengumuman
-
- </button>
-
- <a href="{{ route('admin.website.pengumuman.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm">
-
- Batal
-
- </a>
-
- </div>
-
- </form>
-
- </div>
-
- </div>
-
+    {{-- Header Section --}}
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Pengumuman</h2>
+            <p class="text-sm text-slate-500 mt-1">Perbarui informasi pengumuman Kelurahan Bongki.</p>
+        </div>
+        <a href="{{ route('admin.website.pengumuman.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+            <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
+        </a>
+    </div>
+
+    {{-- VALIDATION ERROR --}}
+    @if($errors->any())
+    <div class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 flex gap-3 items-start shadow-sm">
+        <i class="fa-solid fa-circle-exclamation text-rose-500 mt-0.5"></i>
+        <div>
+            <h4 class="text-sm font-bold text-rose-800">Terdapat Kesalahan</h4>
+            <ul class="text-sm text-rose-700 mt-1 list-disc list-inside">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    @endif
+
+    {{-- Main Form Card --}}
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <form action="{{ route('admin.website.pengumuman.update', $pengumuman) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            
+            <div class="p-6 md:p-8 space-y-6">
+                {{-- Judul --}}
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Judul Pengumuman</label>
+                    <input type="text" name="judul" value="{{ old('judul', $pengumuman->judul) }}" placeholder="Masukkan judul pengumuman" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                </div>
+
+                {{-- Isi --}}
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Isi Pengumuman</label>
+                    <textarea name="isi" rows="8" placeholder="Tuliskan isi pengumuman..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('isi', $pengumuman->isi) }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {{-- Gambar --}}
+                    <div class="md:col-span-2 lg:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Gambar Baru (Opsional)</label>
+                        <div class="flex items-start gap-4">
+                            @if($pengumuman->gambar)
+                                <img src="{{ asset('storage/'.$pengumuman->gambar) }}" class="w-24 h-24 object-cover rounded-xl shadow-sm border border-slate-200 shrink-0" alt="Gambar Saat Ini">
+                            @endif
+                            <div class="flex-1 w-full">
+                                <input type="file" name="gambar" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                                <p class="text-xs text-slate-500 mt-2">Format: JPG, JPEG, PNG. Maksimal 2MB. Kosongkan jika tidak ingin mengubah.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Status --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
+                        <select name="status" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                            <option value="draft" @selected(old('status', $pengumuman->status) == 'draft')>Draft</option>
+                            <option value="publish" @selected(old('status', $pengumuman->status) == 'publish')>Publish</option>
+                        </select>
+                    </div>
+
+                    {{-- Tanggal --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Tanggal Publish</label>
+                        <input type="date" name="tanggal_publish" value="{{ old('tanggal_publish', optional($pengumuman->tanggal_publish)->format('Y-m-d')) }}" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Footer / Actions --}}
+            <div class="px-6 py-5 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row justify-end gap-3">
+                <a href="{{ route('admin.website.pengumuman.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all focus:outline-none">
+                    Batal
+                </a>
+                <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none">
+                    <i class="fa-solid fa-save"></i> Update Pengumuman
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
-
 @endsection

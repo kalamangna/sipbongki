@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Profil Perangkat Kelurahan')
+@section('title', 'Profil Aparatur')
 
 @section('content')
 <div class="w-full">
@@ -8,7 +8,7 @@
     {{-- Header Section --}}
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Perangkat</h2>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Profil Aparatur</h2>
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap aparatur kelurahan</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">

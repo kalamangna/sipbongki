@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Penduduk')
+@section('title', 'Detail Data Penduduk')
 
 @section('content')
 <div class="w-full">
@@ -8,7 +8,7 @@
     {{-- Header Section --}}
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Penduduk</h2>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Data Penduduk</h2>
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap kependudukan atas nama <span class="font-semibold text-slate-700">{{ $penduduk->nama_lengkap }}</span></p>
         </div>
         <div class="flex flex-wrap items-center gap-2">

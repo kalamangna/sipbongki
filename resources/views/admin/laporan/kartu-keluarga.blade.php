@@ -1,686 +1,220 @@
 @extends('layouts.admin')
 
-@section('title','Laporan Kartu Keluarga')
+@section('title', 'Laporan Kartu Keluarga')
 
 @section('content')
 
-<div class="w-full">
-
- {{-- ==========================================================
- PAGE HEADER
- ========================================================== --}}
-
- <div class="flex flex-wrap justify-between items-center mb-6">
-
- <div>
-
- <h3 class="font-bold mb-1">
-
- <i class="fa-solid fa-users-fill text-primary mr-2"></i>
-
- Laporan Kartu Keluarga
-
- </h3>
-
- <p class="text-slate-500 mb-0">
- Rekapitulasi data Kartu Keluarga Kelurahan Bongki.
- </p>
-
- </div>
-
- <div class="flex gap-2 mt-3 mt-lg-0">
- 
- <a href="{{ route('admin.laporan.index') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
- <i class="fa-solid fa-arrow-left"></i> Kembali
- </a>
- <a
- href="{{ route('admin.laporan.print-kartu-keluarga', request()->query()) }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
-
- <i class="fa-solid fa-print mr-1"></i>
-
- Cetak
-
- </a>
- <a
- href="{{ route('admin.laporan.export-kartu-keluarga') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
-
- <i class="fa-solid fa-file-earmark-excel mr-1"></i>
-
- Export Excel
-
- </a>
- 
- </div>
-
- </div>
-
-
-
- {{-- ==========================================================
- STATISTIK
- ========================================================== --}}
-
- <div class="flex flex-wrap -mx-3 mb-6">
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6 text-center">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Total Kartu Keluarga
-
- </div>
-
- <h3 class="font-bold mb-2">
-
- {{ number_format($statistik['total_kk']) }}
-
- </h3>
-
- <div
- class="mx-auto rounded-circle bg-primary-100 text-primary-700 bg-opacity-10 inline-flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-users-fill text-primary"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6 text-center">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Total Anggota
-
- </div>
-
- <h3 class="font-bold mb-2">
-
- {{ number_format($statistik['total_anggota']) }}
-
- </h3>
-
- <div
- class="mx-auto rounded-circle bg-emerald-100 text-emerald-700 bg-opacity-10 inline-flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-user-vcard text-success"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6 text-center">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- KK Aktif
-
- </div>
-
- <h3 class="font-bold mb-2">
-
- {{ number_format($statistik['kk_aktif']) }}
-
- </h3>
-
- <div
- class="mx-auto rounded-circle bg-amber-100 text-amber-700 bg-opacity-10 inline-flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-patch-check-fill text-warning"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6 text-center">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Rata-rata Anggota / KK
-
- </div>
-
- <h3 class="font-bold mb-2">
-
- {{ $statistik['rata_anggota'] }}
-
- </h3>
-
- <div
- class="mx-auto rounded-circle bg-sky-100 text-sky-700 bg-opacity-10 inline-flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-bar-chart-fill text-info"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- {{-- ==========================================================
- FILTER
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white">
-
- <h6 class="font-bold mb-0">
-
- <i class="fa-solid fa-funnel mr-2"></i>
-
- Filter Laporan
-
- </h6>
-
- </div>
-
- <div class="p-6">
-
- <form method="GET"
- action="{{ route('admin.laporan.kartu-keluarga') }}">
-
- <div class="flex flex-wrap -mx-3 gap-4">
-
- <div class="w-full lg:w-1/3 px-3 text-center">
-
- <label class="form-label block text-center">
-
- Nomor KK / Kepala Keluarga
-
- </label>
-
- <input
- type="text"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- name="keyword"
- value="{{ request('keyword') }}"
- placeholder="Cari Nomor KK atau Kepala Keluarga">
-
- </div>
-
- <div class="w-full lg:w-1/4 px-3 text-center">
-
- <label class="form-label block text-center">
-
- Lingkungan
-
- </label>
-
- <select
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- name="lingkungan">
-
- <option value="">
- Semua Lingkungan
- </option>
-
- @foreach($lingkungans as $lingkungan)
-
- <option
- value="{{ $lingkungan->id }}"
- @selected(request('lingkungan')==$lingkungan->id)>
-
- {{ $lingkungan->nama }}
-
- </option>
-
- @endforeach
-
- </select>
-
- </div>
-
- <div class="w-full lg:w-1/12 px-3 text-center">
-
- <label class="form-label block text-center">
- RT
- </label>
-
- <input
- type="text"
- name="rt"
- value="{{ request('rt') }}"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
-
- </div>
-
- <div class="w-full lg:w-1/12 px-3 text-center">
-
- <label class="form-label block text-center">
- RW
- </label>
-
- <input
- type="text"
- name="rw"
- value="{{ request('rw') }}"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
-
- </div>
-
- <div class="w-full lg:w-1/6 px-3 text-center">
-
- <label class="form-label block text-center">
-
- Status
-
- </label>
-
- <select
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- name="status">
-
- <option value="">
- Semua
- </option>
-
- <option
- value="1"
- @selected(request('status')==='1')>
-
- Aktif
-
- </option>
-
- <option
- value="0"
- @selected(request('status')==='0')>
-
- Tidak Aktif
-
- </option>
-
- </select>
-
- </div>
-
- <div class="w-full lg:w-1/12 px-3 d-grid">
-
- <label class="form-label">&nbsp;</label>
-
- <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- <i class="fa-solid fa-magnifying-glass"></i>
-
- </button>
-
- </div>
-
- </div>
-
- <div class="mt-3">
-
- <a href="{{ route('admin.laporan.kartu-keluarga') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
-    <i class="fa-solid fa-rotate-left"></i>
-</a>
-
- </div>
-
- </form>
-
- </div>
-
- </div>
- {{-- ==========================================================
- REKAP PER LINGKUNGAN
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-6">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white">
-
- <h6 class="font-bold mb-0">
-
- <i class="fa-solid fa-bar-chart-line mr-2"></i>
-
- Rekap Kartu Keluarga Per Lingkungan
-
- </h6>
-
- </div>
-
- <div class="p-6 p-0">
-
- <div class="overflow-x-auto w-full">
-
- <table class="w-full text-sm text-left text-slate-500">
-
- <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
-
- <tr>
-
- <th width="60" class="px-4 py-3 font-medium text-slate-700">No</th>
-
- <th class="px-4 py-3 font-medium text-slate-700">Lingkungan</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Jumlah KK</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Jumlah Penduduk</th>
-
- </tr>
-
- </thead>
-
- <tbody>
-
- @forelse($rekapLingkungan as $item)
-
- <tr>
-
- <td class="px-4 py-3 border-b border-slate-100">
- {{ $loop->iteration }}
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- {{ $item->nama }}
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
-
- {{ number_format($item->kartu_keluargas_count) }} KK
-
- </span>
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
-
- {{ number_format($item->penduduk_count) }} Jiwa
-
- </span>
-
- </td>
-
- </tr>
-
- @empty
-
- <tr>
-
- <td colspan="4"
- class=\"text-center text-slate-500 py-4 px-4 py-3 border-b border-slate-100\">
-
- Belum ada data.
-
- </td>
-
- </tr>
-
- @endforelse
-
- </tbody>
-
- </table>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- {{-- ==========================================================
- TABEL LAPORAN
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
-
- <h6 class="font-bold mb-0">
-
- <i class="w-full text-sm text-left text-slate-600"></i>
-
- Data Kartu Keluarga
-
- </h6>
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
-
- {{ $kartuKeluargas->total() }} Data
-
- </span>
-
- </div>
-
- <div class="overflow-x-auto w-full">
-
- <table class="w-full text-sm text-left text-slate-500">
-
- <thead class=\"text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 px-4 py-3 font-medium text-slate-700\">
-
- <tr class="text-center">
-
- <th width="60" class="px-4 py-3 font-medium text-slate-700">No</th>
-
- <th class="px-4 py-3 font-medium text-slate-700">No. Kartu Keluarga</th>
-
- <th class="px-4 py-3 font-medium text-slate-700">Kepala Keluarga</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Anggota</th>
-
- <th class="px-4 py-3 font-medium text-slate-700">Lingkungan</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">RT/RW</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Status</th>
-
- <th width="150" class=\"text-center px-4 py-3 font-medium text-slate-700\">
-
- Aksi
-
- </th>
-
- </tr>
-
- </thead>
-
- <tbody>
-
- @forelse($kartuKeluargas as $kk)
-
- <tr>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- {{ $kartuKeluargas->firstItem() + $loop->index }}
-
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- {{ $kk->no_kk }}
-
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($kk->kepalaKeluarga)->nama_lengkap ?? '-' }}
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-700">
-
- {{ $kk->anggota_count }} Orang
-
- </span>
-
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($kk->lingkungan)->nama ?? '-' }}
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- {{ $kk->rt }}
-
- /
-
- {{ $kk->rw }}
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- @if($kk->aktif)
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
-
- Aktif
-
- </span>
-
- @else
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
-
- Tidak Aktif
-
- </span>
-
- @endif
-
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- <div class="action-buttons">
-
- <a href="{{ route('admin.laporan.kartu-keluarga.show',$kk->id) }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm"
- title="Detail">
- <i class="fa-solid fa-eye"></i>
- </a>
-
- </div>
-
- </td>
-
- </tr>
-
- @empty
-
- <tr>
-
- <td colspan="8" class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
-
- <div class="text-slate-500">
-
- <i class="fa-solid fa-inbox block mb-4"></i>
-
- <h6>
-
- Tidak ada data Kartu Keluarga.
-
- </h6>
-
- <p class="mb-0">
-
- Silakan ubah filter atau tambahkan data terlebih dahulu.
-
- </p>
-
- </div>
-
- </td>
-
- </tr>
-
- @endforelse
-
- </tbody>
-
- </table>
-
- </div>
-
- @if($kartuKeluargas->hasPages())
-
- <div class="px-6 py-4 border-t border-slate-200 bg-white">
-
- {{ $kartuKeluargas->links() }}
-
- </div>
-
- @endif
-
- </div>
-
+{{-- HEADER --}}
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div>
+        <h3 class="text-2xl font-bold text-slate-800 mb-1">Laporan Kartu Keluarga</h3>
+        <p class="text-sm text-slate-500">Rekapitulasi data Kartu Keluarga Kelurahan Bongki</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        <a href="{{ route('admin.laporan.index') }}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+        </a>
+        <a href="{{ route('admin.laporan.print-kartu-keluarga', request()->query()) }}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-print"></i> Cetak
+        </a>
+        <a href="{{ route('admin.laporan.export-kartu-keluarga') }}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-file-excel"></i> Export Excel
+        </a>
+    </div>
+</div>
+
+{{-- STATISTIK --}}
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-6">
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Total KK</p>
+        <p class="text-3xl font-extrabold text-slate-900">{{ number_format($statistik['total_kk']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Total Anggota</p>
+        <p class="text-3xl font-extrabold text-emerald-600">{{ number_format($statistik['total_anggota']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">KK Aktif</p>
+        <p class="text-3xl font-extrabold text-sky-600">{{ number_format($statistik['kk_aktif']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Rata-rata / KK</p>
+        <p class="text-3xl font-extrabold text-amber-600">{{ $statistik['rata_anggota'] }}</p>
+    </div>
+</div>
+
+{{-- FILTER --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <h5 class="text-sm font-bold text-slate-800">Filter Data</h5>
+    </div>
+    <div class="p-6">
+        <form method="GET" action="{{ route('admin.laporan.kartu-keluarga') }}">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+                <div class="xl:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">No. KK / Kepala Keluarga</label>
+                    <input type="text" name="keyword"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors"
+                        placeholder="Cari nomor KK atau kepala keluarga..."
+                        value="{{ request('keyword') }}">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Lingkungan</label>
+                    <select name="lingkungan"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors">
+                        <option value="">Semua Lingkungan</option>
+                        @foreach($lingkungans as $lingkungan)
+                        <option value="{{ $lingkungan->id }}" @selected(request('lingkungan') == $lingkungan->id)>{{ $lingkungan->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Status</label>
+                    <select name="status"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors">
+                        <option value="">Semua</option>
+                        <option value="1" @selected(request('status') === '1')>Aktif</option>
+                        <option value="0" @selected(request('status') === '0')>Tidak Aktif</option>
+                    </select>
+                </div>
+                <div class="flex items-end gap-2">
+                    <div class="flex gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">RT</label>
+                            <input type="text" name="rt" value="{{ request('rt') }}"
+                                class="w-16 bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-3 py-2.5 transition-colors text-center" placeholder="00">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">RW</label>
+                            <input type="text" name="rw" value="{{ request('rw') }}"
+                                class="w-16 bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-3 py-2.5 transition-colors text-center" placeholder="00">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+                <button type="submit"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+                    <i class="fa-solid fa-magnifying-glass"></i> Tampilkan
+                </button>
+                <a href="{{ route('admin.laporan.kartu-keluarga') }}"
+                    class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95"
+                    title="Reset Filter">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- REKAP PER LINGKUNGAN --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <h5 class="text-sm font-bold text-slate-800">Rekap Kartu Keluarga per Lingkungan</h5>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-slate-600">
+            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50">
+                <tr>
+                    <th class="px-6 py-4 border-b border-slate-100 w-12">No</th>
+                    <th class="px-6 py-4 border-b border-slate-100">Lingkungan</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">Jumlah KK</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">Jumlah Penduduk</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+                @forelse($rekapLingkungan as $item)
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="px-6 py-4 text-slate-400 text-xs">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-4 font-medium text-slate-800">{{ $item->nama }}</td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-50 text-primary-700">
+                            {{ number_format($item->kartu_keluargas_count) }} KK
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700">
+                            {{ number_format($item->penduduk_count) }} Jiwa
+                        </span>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="4" class="px-6 py-8 text-center text-sm text-slate-400">Belum ada data.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{-- TABEL DATA KK --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
+        <h5 class="text-sm font-bold text-slate-800">Data Kartu Keluarga</h5>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-50 text-primary-700">
+            {{ $kartuKeluargas->total() }} Data
+        </span>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-slate-600">
+            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50">
+                <tr>
+                    <th class="px-6 py-4 border-b border-slate-100 w-12">No</th>
+                    <th class="px-6 py-4 border-b border-slate-100">No. KK</th>
+                    <th class="px-6 py-4 border-b border-slate-100">Kepala Keluarga</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">Anggota</th>
+                    <th class="px-6 py-4 border-b border-slate-100">Lingkungan</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">RT/RW</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">Status</th>
+                    <th class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+                @forelse($kartuKeluargas as $kk)
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="px-6 py-4 text-slate-400 text-xs">{{ $kartuKeluargas->firstItem() + $loop->index }}</td>
+                    <td class="px-6 py-4 font-mono text-xs text-slate-600">{{ $kk->no_kk }}</td>
+                    <td class="px-6 py-4 font-medium text-slate-900">{{ optional($kk->kepalaKeluarga)->nama_lengkap ?? '-' }}</td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-50 text-sky-700">
+                            {{ $kk->anggota_count }} Orang
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">{{ optional($kk->lingkungan)->nama ?? '-' }}</td>
+                    <td class="px-6 py-4 text-center text-slate-500">{{ $kk->rt }}/{{ $kk->rw }}</td>
+                    <td class="px-6 py-4 text-center">
+                        @if($kk->aktif)
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700">Aktif</span>
+                        @else
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700">Tidak Aktif</span>
+                        @endif
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <a href="{{ route('admin.laporan.kartu-keluarga.show', $kk->id) }}"
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 transition-colors"
+                            title="Detail">
+                            <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="8" class="px-6 py-10 text-center text-sm text-slate-400">
+                        <i class="fa-solid fa-inbox text-2xl mb-2 block text-slate-300"></i>
+                        Tidak ada data Kartu Keluarga.
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    @if($kartuKeluargas->hasPages())
+    <div class="px-6 py-4 border-t border-slate-100">
+        {{ $kartuKeluargas->withQueryString()->links() }}
+    </div>
+    @endif
 </div>
 
 @endsection

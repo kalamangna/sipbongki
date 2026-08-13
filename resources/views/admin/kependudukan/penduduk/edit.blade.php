@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Penduduk')
+@section('title', 'Edit Data Penduduk')
 
 @section('content')
 <div class="w-full">
@@ -8,7 +8,7 @@
     {{-- Header Section --}}
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Penduduk</h2>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Data Penduduk</h2>
             <p class="text-sm text-slate-500 mt-1">Perbarui informasi kependudukan atas nama <span class="font-semibold text-slate-700">{{ $penduduk->nama_lengkap }}</span>.</p>
         </div>
         <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">

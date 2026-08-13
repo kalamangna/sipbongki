@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- **UI/UX (Admin)**: Merapikan tag `<title>` dan *header* halaman (`<h2>`/`<h3>`) pada seluruh modul (Kependudukan, Pelayanan, Pengaturan, Website) agar selaras secara absolut dengan penamaan menu *sidebar*.
+- **UI/UX (Admin)**: Melakukan audit menyeluruh dan menambahkan atribut *placeholder* pada setiap isian form (seperti di modul Referensi, Laporan, dan Pengaduan) yang belum memilikinya.
 - **UI/UX (Pelayanan)**: Mengubah desain halaman indeks dan formulir (Create/Edit) `Permohonan Surat` serta `Riwayat Pelayanan` agar mengikuti standar gaya komponen Tailwind yang bersih dan responsif, tanpa ketergantungan pada *class* Bootstrap.
 - **UI/UX (Pelayanan)**: Merestrukturisasi tampilan Detail Permohonan Surat (`show` dan semua *partial* di dalamnya) agar memiliki struktur layout (Grid, Icon Header, Label/Data) yang presisi dan konsisten dengan halaman Detail Penduduk.
 - **Fitur (Pelayanan)**: Menambahkan fungsionalitas di mana pada pembuatan permohonan surat baru (tanpa *pejabat penandatangan* yang terisi sebelumnya), pilihan *default dropdown* akan secara otomatis mengarah pada perangkat kelurahan yang menjabat sebagai "Lurah".
@@ -28,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Icons**: Migrasi penuh dari Heroicons ke Font Awesome 6 di seluruh aplikasi (Navbar, Sidebar, Public Layout, dll).
 
 ### Removed
+- **Fitur (Website)**: Menghapus modul Halaman secara keseluruhan (tabel, *model*, *route*, *controller*, *views*) serta referensinya di *sidebar* untuk menyederhanakan fitur.
 - **Dependencies**: Menghapus package `blade-ui-kit/blade-heroicons` karena sudah sepenuhnya menggunakan Font Awesome via CDN.
 
 ### Fixed

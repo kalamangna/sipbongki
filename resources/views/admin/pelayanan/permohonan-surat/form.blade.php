@@ -7,11 +7,11 @@
     
     
 
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+        <div class="mb-6">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-file-lines text-primary-600 mr-2"></i>Informasi Utama</h3>
  </div>
- <div class="p-6">
+ <div>
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
  {{-- Jenis Surat --}}
@@ -85,13 +85,13 @@
 | DATA USAHA
 | Hanya untuk Surat Keterangan Usaha
 ========================================================= --}}
-<div id="usaha-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
+<div id="usaha-fields" class="mb-6" style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-store text-emerald-500 mr-2"></i>Data Usaha</h3>
  </div>
 
- <div class="p-6">
+ <div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -185,13 +185,13 @@
  {{-- =========================================================
  | DATA ALMARHUM / ALMARHUMAH
  ========================================================= --}}
- <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+ <div class="mb-6">
 
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0">Data Almarhum</h3>
  </div>
 
- <div class="p-6">
+ <div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -349,13 +349,13 @@
  {{-- =========================================================
  | DATA PELAPOR
  ========================================================= --}}
- <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+ <div class="mb-6">
 
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-user-check text-sky-500 mr-2"></i>Data Pelapor</h3>
  </div>
 
- <div class="p-6">
+ <div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -462,16 +462,16 @@
 | DATA ORANG YANG SAMA
 ========================================================= --}}
 
-<div id="orang-sama-fields" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6" style="display:none;">
+<div id="orang-sama-fields" class="mb-6" style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <strong>
  Data Dokumen Orang Yang Sama
  </strong>
  </div>
 
 
- <div class="p-6">
+ <div>
 
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -572,14 +572,14 @@
 | DATA DOMISILI
 ========================================================= --}}
 <div id="domisili-fields"
- class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6"
+ class="mb-6"
  style="display:none;">
 
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0">Data Pemohon Domisili</h3>
  </div>
 
- <div class="p-6">
+ <div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -773,11 +773,11 @@
 
     
     
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
- <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+        <div class="mb-6">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-circle-info text-teal-500 mr-2"></i>Informasi Tambahan</h3>
  </div>
- <div class="p-6">
+ <div>
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
  {{-- Tanggal Permohonan --}}

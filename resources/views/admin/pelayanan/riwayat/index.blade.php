@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Riwayat Pelayanan')
+@section('title', 'Riwayat')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     {{-- Header Section --}}
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Riwayat Pelayanan</h2>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Riwayat</h2>
             <p class="text-sm text-slate-500 mt-1">Semua riwayat pelayanan permohonan surat yang telah selesai atau ditolak.</p>
         </div>
     </div>

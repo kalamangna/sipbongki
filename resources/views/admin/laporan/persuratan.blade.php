@@ -1,737 +1,215 @@
 @extends('layouts.admin')
 
-@section('title','Laporan Persuratan')
+@section('title', 'Laporan Persuratan')
 
 @section('content')
 
-<div class="w-full">
-
- {{-- ==========================================================
- HEADER
- ========================================================== --}}
-
- <div class="flex flex-wrap justify-between items-center mb-6">
-
- <div>
-
- <h3 class="font-bold mb-1">
-
- <i class="fa-solid fa-file-lines-fill text-primary mr-2"></i>
-
- Laporan Persuratan
-
- </h3>
-
- <p class="text-slate-500 mb-0">
-
- Rekapitulasi seluruh pelayanan persuratan Kelurahan Bongki.
-
- </p>
-
- </div>
-
- <div class="flex gap-2 mt-3 mt-lg-0">
- 
- <a href="{{ url()->previous() }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
- <i class="fa-solid fa-arrow-left"></i> Kembali
- </a>
- <a
- href="{{ route('admin.laporan.print-persuratan', request()->query()) }}"
- target="_blank"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm">
-
- <i class="fa-solid fa-print mr-1"></i>
-
- Cetak
-
- </a>
-
- <a
- href="{{ route('admin.laporan.export-persuratan') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
-
- <i class="fa-solid fa-file-earmark-excel mr-1"></i>
-
- Export Excel
-
- </a>
-
- 
- </div>
-
- </div>
- {{-- ==========================================================
- STATISTIK
- ========================================================== --}}
-
- <div class="flex flex-wrap -mx-3 mb-4">
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100 stat-card-centered">
-
- <div class="p-6">
-
- <div class="action-buttons">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Total Permohonan
-
- </div>
-
- <h3 class="font-bold mb-0">
-
- {{ number_format($statistik['total']) }}
-
- </h3>
-
- </div>
-
- <div class="rounded-circle bg-primary-100 text-primary-700 bg-opacity-10 flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-file-lines-fill text-primary"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100 stat-card-centered">
-
- <div class="p-6">
-
- <div class="action-buttons">
-
- <div>
-
- <div class="text-slate-500 small mb-0">
-
- Menunggu
-
- </div>
-
- <h3 class="font-bold text-warning mb-0">
-
- {{ number_format($statistik['menunggu']) }}
-
- </h3>
-
- </div>
-
- <div class="rounded-circle bg-amber-100 text-amber-700 bg-opacity-10 flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-hourglass-split text-warning"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100 stat-card-centered">
-
- <div class="p-6">
-
- <div class="action-buttons">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Diproses
-
- </div>
-
- <h3 class="font-bold text-info mb-0">
-
- {{ number_format($statistik['diproses']) }}
-
- </h3>
-
- </div>
-
- <div class="rounded-circle bg-sky-100 text-sky-700 bg-opacity-10 flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-gear-fill text-info"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
-
-
- <div class="w-full xl:w-1/4 px-3 md:w-1/2">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100 stat-card-centered">
-
- <div class="p-6">
-
- <div class="action-buttons">
-
- <div>
-
- <div class="text-slate-500 small mb-1">
-
- Selesai
-
- </div>
-
- <h3 class="font-bold text-success mb-0">
-
- {{ number_format($statistik['selesai']) }}
-
- </h3>
-
- </div>
-
- <div class="rounded-circle bg-emerald-100 text-emerald-700 bg-opacity-10 flex items-center justify-center"
- style="width:60px;height:60px;">
-
- <i class="fa-solid fa-circle-check-fill text-success"></i>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- {{-- ==========================================================
- FILTER
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white">
-
- <h6 class="font-bold mb-0">
-
- <i class="fa-solid fa-funnel mr-2"></i>
-
- Filter Laporan Persuratan
-
- </h6>
-
- </div>
-
- <div class="p-6">
-
- <form
- method="GET"
- action="{{ route('admin.laporan.persuratan') }}">
-
- <div class="flex flex-wrap -mx-3 gap-4">
-
- {{-- Keyword --}}
- <div class="w-full lg:w-1/4 px-3">
-
- <label class="form-label block text-center">
-
- Nomor / Nama / NIK
-
- </label>
-
- <input
- type="text"
- name="keyword"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- value="{{ request('keyword') }}"
- placeholder="Nomor surat, nama atau NIK">
-
- </div>
-
-
-
- {{-- Jenis Surat --}}
- <div class="w-full lg:w-1/4 px-3">
-
- <label class="form-label block text-center">
-
- Jenis Surat
-
- </label>
-
- <select
- name="jenis_surat"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
-
- <option value="">
-
- Semua Jenis Surat
-
- </option>
-
- @foreach($jenisSurats as $jenis)
-
- <option
- value="{{ $jenis->id }}"
- @selected(request('jenis_surat') == $jenis->id)>
-
- {{ $jenis->nama }}
-
- </option>
-
- @endforeach
-
- </select>
-
- </div>
-
-
-
- {{-- Status --}}
- <div class="w-full lg:w-1/6 px-3">
-
- <label class="form-label block text-center">
-
- Status
-
- </label>
-
- <select
- name="status"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center">
-
- <option value="">
-
- Semua
-
- </option>
-
- <option value="Menunggu"
- @selected(request('status')=='Menunggu')>
-
- Menunggu
-
- </option>
-
- <option value="Diproses"
- @selected(request('status')=='Diproses')>
-
- Diproses
-
- </option>
-
- <option value="Selesai"
- @selected(request('status')=='Selesai')>
-
- Selesai
-
- </option>
-
- <option value="Ditolak"
- @selected(request('status')=='Ditolak')>
-
- Ditolak
-
- </option>
-
- </select>
-
- </div>
-
-
-
- {{-- Tanggal Awal --}}
- <div class="w-full lg:w-1/6 px-3">
-
- <label class="form-label block text-center">
-
- Dari
-
- </label>
-
- <input
- type="date"
- name="tanggal_awal"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- value="{{ request('tanggal_awal') }}">
-
- </div>
-
-
-
- {{-- Tanggal Akhir --}}
- <div class="w-full lg:w-1/6 px-3">
-
- <label class="form-label block text-center">
-
- Sampai
-
- </label>
-
- <input
- type="date"
- name="tanggal_akhir"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 text-center"
- value="{{ request('tanggal_akhir') }}">
-
- </div>
-
- </div>
-
-
-
- <div class="mt-6 flex gap-2">
-
- <button
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- <i class="fa-solid fa-magnifying-glass"></i>
-
- Tampilkan
-
- </button>
-
- <a href="{{ route('admin.laporan.persuratan') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
-    <i class="fa-solid fa-rotate-left"></i>
-</a>
-
- </div>
-
- </form>
-
- </div>
-
- </div>
- {{-- ==========================================================
- REKAP JENIS SURAT
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 mb-4">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white">
-
- <h6 class="font-bold mb-0">
-
- <i class="fa-solid fa-bar-chart-line mr-1"></i>
-
- Rekap Permohonan Berdasarkan Jenis Surat
-
- </h6>
-
- </div>
-
- <div class="p-6">
-
- <div class="flex flex-wrap -mx-3 gap-1">
-
- @forelse($rekapJenis as $index => $item)
-
- <div class="w-full xl:w-1/4 px-3 lg:w-1/3 col-md-0">
-
- <div class="border rounded-0 p-1 h-100 text-center">
-
- <div class="small text-slate-500 mb-0">
-
- {{ $item->nama }}
-
- </div>
-
- <div class="font-bold" style="font-size: 1.25rem; color: {{ ['#2563EB', '#10B981', '#F59E0B', '#EF4444'][$index % 4] }};">
-
- {{ number_format($item->permohonan_surats_count) }}
-
- </div>
-
- <small class="text-slate-500">
-
- Permohonan
-
- </small>
-
- </div>
-
- </div>
-
- @empty
-
- <div class="col-10">
-
- <div class="p-4 mb-4 text-sm rounded-xl border p-4 mb-4 text-sm rounded-xl border-light mb-0">
-
- Belum ada data jenis surat.
-
- </div>
-
- </div>
-
- @endforelse
-
- </div>
-
- </div>
-
- </div>
- {{-- ==========================================================
- TABEL LAPORAN PERSURATAN
- ========================================================== --}}
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0">
-
- <div class="px-6 py-4 border-b border-slate-200 bg-white flex justify-start items-center gap-3">
-
- <h6 class="font-bold mb-0">
-
- <i class="w-full text-sm text-left text-slate-600"></i>
-
- Data Permohonan Surat
-
- </h6>
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-700">
-
- {{ $permohonans->total() }} Data
-
- </span>
-
- </div>
-
- <div class="overflow-x-auto w-full">
-
- <table class="w-full text-sm text-left text-slate-600" style="font-size:0.9rem; line-height:1.35;">
-
- <thead class="px-4 py-3 font-medium text-slate-700">
-
- <tr>
-
- <th width="40" class=\"text-center px-4 py-3 font-medium text-slate-700\">No</th>
-
- <th style="min-width:190px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">No. Permohonan</th>
-
- <th style="min-width:140px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">No. Surat</th>
-
- <th style="min-width:180px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">Pemohon</th>
-
- <th style="min-width:220px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">Jenis Surat</th>
-
- <th style="min-width:120px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">Tanggal</th>
-
- <th style="min-width:240px; white-space: normal; text-align:center;" class="px-4 py-3 font-medium text-slate-700">Penandatangan</th>
-
- <th class=\"text-center px-4 py-3 font-medium text-slate-700\">Status</th>
-
- <th width="100" class=\"text-center px-4 py-3 font-medium text-slate-700\">
-
- Aksi
-
- </th>
-
- </tr>
-
- </thead>
-
- <tbody>
-
- @forelse($permohonans as $item)
-
- <tr>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- {{ $permohonans->firstItem() + $loop->index }}
-
- </td>
-
- <td style="min-width:190px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ $item->nomor_permohonan }}
-
- </td>
-
- <td style="min-width:140px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ $item->nomor_surat ?: '-' }}
-
- </td>
-
- <td style="min-width:180px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($item->penduduk)->nama_lengkap ?? data_get($item->data_surat, 'nama_lengkap') ?? '-' }}
-
- <br>
-
- <small class="text-slate-500">
-
- {{ optional($item->penduduk)->nik ?? data_get($item->data_surat, 'nik') ?? '-' }}
-
- </small>
-
- </td>
-
- <td style="min-width:220px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($item->jenisSurat)->nama }}
-
- </td>
-
- <td style="min-width:120px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($item->tanggal_permohonan)->format('d-m-Y') }}
-
- </td>
-
- <td style="min-width:240px; white-space: normal; word-break: break-word; text-align:center;" class="px-4 py-3 border-b border-slate-100">
-
- {{ optional($item->penandatangan)->nama_lengkap }}
-
- <br>
-
- <small class="text-slate-500" style="display:block; white-space: normal; word-break: break-word;">
-
- {{ optional(optional($item->penandatangan)->jabatan)->nama }}
-
- </small>
-
- </td>
-
- <td class=\"text-center px-4 py-3 border-b border-slate-100\">
-
- @switch($item->status)
-
- @case('Menunggu')
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
-
- Menunggu
-
- </span>
-
- @break
-
- @case('Diproses')
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-700">
-
- Diproses
-
- </span>
-
- @break
-
- @case('Selesai')
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
-
- Selesai
-
- </span>
-
- @break
-
- @default
-
- <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-700">
-
- Ditolak
-
- </span>
-
- @endswitch
-
- </td>
-
- <td class="px-4 py-3 border-b border-slate-100">
-
- <div class="action-buttons">
-
- <a
- href="{{ route('admin.laporan.persuratan.show',$item->id) }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-sky-600 text-white hover:bg-sky-700 shadow-sm !px-3 !py-1.5 !text-xs"
- title="Detail">
-
- <i class="fa-solid fa-eye"></i>
-
- </a>
-
- </div>
-
- </td>
-
- </tr>
-
- @empty
-
- <tr>
-
- <td colspan="9" class=\"text-center py-8 px-4 py-3 border-b border-slate-100\">
-
- <div class="text-slate-500">
-
- <i class="fa-solid fa-inbox block mb-4"></i>
-
- <h6>
-
- Belum ada data permohonan surat.
-
- </h6>
-
- <p class="mb-0">
-
- Data akan muncul setelah pelayanan persuratan dibuat.
-
- </p>
-
- </div>
-
- </td>
-
- </tr>
-
- @endforelse
-
- </tbody>
-
- </table>
-
- </div>
-
- @if($permohonans->hasPages())
-
- <div class="px-6 py-4 border-t border-slate-200 bg-white">
-
- {{ $permohonans->links() }}
-
- </div>
-
- @endif
-
- </div>
-
+{{-- HEADER --}}
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div>
+        <h3 class="text-2xl font-bold text-slate-800 mb-1">Laporan Persuratan</h3>
+        <p class="text-sm text-slate-500">Rekapitulasi seluruh pelayanan persuratan Kelurahan Bongki</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        <a href="{{ url()->previous() }}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-arrow-left"></i> Kembali
+        </a>
+        <a href="{{ route('admin.laporan.print-persuratan', request()->query()) }}" target="_blank"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-print"></i> Cetak
+        </a>
+        <a href="{{ route('admin.laporan.export-persuratan') }}"
+            class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-file-excel"></i> Export Excel
+        </a>
+    </div>
+</div>
+
+{{-- STATISTIK --}}
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-6">
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Total Permohonan</p>
+        <p class="text-3xl font-extrabold text-slate-900">{{ number_format($statistik['total']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Menunggu</p>
+        <p class="text-3xl font-extrabold text-amber-500">{{ number_format($statistik['menunggu']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Diproses</p>
+        <p class="text-3xl font-extrabold text-sky-600">{{ number_format($statistik['diproses']) }}</p>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-sm text-center">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-1">Selesai</p>
+        <p class="text-3xl font-extrabold text-emerald-600">{{ number_format($statistik['selesai']) }}</p>
+    </div>
+</div>
+
+{{-- FILTER --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <h5 class="text-sm font-bold text-slate-800">Filter Data</h5>
+    </div>
+    <div class="p-6">
+        <form method="GET" action="{{ route('admin.laporan.persuratan') }}">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+                <div class="xl:col-span-2">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Nomor / Nama / NIK</label>
+                    <input type="text" name="keyword"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors"
+                        placeholder="Cari nomor surat, nama, atau NIK..."
+                        value="{{ request('keyword') }}">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Jenis Surat</label>
+                    <select name="jenis_surat"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors">
+                        <option value="">Semua Jenis Surat</option>
+                        @foreach($jenisSurats as $jenis)
+                        <option value="{{ $jenis->id }}" @selected(request('jenis_surat') == $jenis->id)>{{ $jenis->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Status</label>
+                    <select name="status"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors">
+                        <option value="">Semua</option>
+                        <option value="Menunggu" @selected(request('status')=='Menunggu')>Menunggu</option>
+                        <option value="Diproses" @selected(request('status')=='Diproses')>Diproses</option>
+                        <option value="Selesai" @selected(request('status')=='Selesai')>Selesai</option>
+                        <option value="Ditolak" @selected(request('status')=='Ditolak')>Ditolak</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Dari</label>
+                    <input type="date" name="tanggal_awal"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-4 py-2.5 transition-colors"
+                        value="{{ request('tanggal_awal') }}">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mt-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Sampai</label>
+                    <input type="date" name="tanggal_akhir"
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-4 py-2.5 transition-colors"
+                        value="{{ request('tanggal_akhir') }}">
+                </div>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+                <button type="submit"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95 focus:outline-none">
+                    <i class="fa-solid fa-magnifying-glass"></i> Tampilkan
+                </button>
+                <a href="{{ route('admin.laporan.persuratan') }}"
+                    class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95"
+                    title="Reset Filter">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- REKAP JENIS SURAT --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+        <h5 class="text-sm font-bold text-slate-800">Rekap Berdasarkan Jenis Surat</h5>
+    </div>
+    <div class="p-6 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+        @php $colors = ['primary', 'emerald', 'amber', 'rose', 'sky', 'violet']; @endphp
+        @forelse($rekapJenis as $index => $item)
+        @php $color = $colors[$index % count($colors)]; @endphp
+        <div class="text-center p-4 rounded-xl border border-slate-100 bg-slate-50/50">
+            <p class="text-xs font-semibold text-slate-500 mb-1 truncate" title="{{ $item->nama }}">{{ $item->nama }}</p>
+            <p class="text-2xl font-extrabold text-{{ $color }}-600">{{ number_format($item->permohonan_surats_count) }}</p>
+            <p class="text-xs text-slate-400 mt-0.5">Permohonan</p>
+        </div>
+        @empty
+        <div class="col-span-4 text-center text-sm text-slate-400 py-6">Belum ada data jenis surat.</div>
+        @endforelse
+    </div>
+</div>
+
+{{-- TABEL DATA PERSURATAN --}}
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
+        <h5 class="text-sm font-bold text-slate-800">Data Permohonan Surat</h5>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-primary-50 text-primary-700">
+            {{ $permohonans->total() }} Data
+        </span>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-slate-600">
+            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50">
+                <tr>
+                    <th class="px-4 py-4 border-b border-slate-100 w-10">No</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:180px">No. Permohonan</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:130px">No. Surat</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:160px">Pemohon</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:200px">Jenis Surat</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:110px">Tanggal</th>
+                    <th class="px-4 py-4 border-b border-slate-100" style="min-width:180px">Penandatangan</th>
+                    <th class="px-4 py-4 border-b border-slate-100 text-center">Status</th>
+                    <th class="px-4 py-4 border-b border-slate-100 text-center w-16">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+                @forelse($permohonans as $item)
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="px-4 py-3 text-slate-400 text-xs">{{ $permohonans->firstItem() + $loop->index }}</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-600">{{ $item->nomor_permohonan }}</td>
+                    <td class="px-4 py-3 font-mono text-xs text-slate-500">{{ $item->nomor_surat ?: '-' }}</td>
+                    <td class="px-4 py-3">
+                        <p class="font-medium text-slate-900 leading-tight">{{ optional($item->penduduk)->nama_lengkap ?? data_get($item->data_surat, 'nama_lengkap') ?? '-' }}</p>
+                        <p class="text-xs text-slate-400 mt-0.5">{{ optional($item->penduduk)->nik ?? data_get($item->data_surat, 'nik') ?? '-' }}</p>
+                    </td>
+                    <td class="px-4 py-3 text-slate-700">{{ optional($item->jenisSurat)->nama }}</td>
+                    <td class="px-4 py-3 text-slate-500">{{ optional($item->tanggal_permohonan)->format('d/m/Y') }}</td>
+                    <td class="px-4 py-3">
+                        <p class="font-medium text-slate-800 leading-tight">{{ optional($item->penandatangan)->nama_lengkap ?? '-' }}</p>
+                        <p class="text-xs text-slate-400 mt-0.5">{{ optional(optional($item->penandatangan)->jabatan)->nama ?? '' }}</p>
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                        @switch($item->status)
+                            @case('Menunggu')
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700">Menunggu</span>
+                                @break
+                            @case('Diproses')
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-700">Diproses</span>
+                                @break
+                            @case('Selesai')
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700">Selesai</span>
+                                @break
+                            @default
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700">Ditolak</span>
+                        @endswitch
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                        <a href="{{ route('admin.laporan.persuratan.show', $item->id) }}"
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 transition-colors"
+                            title="Detail">
+                            <i class="fa-solid fa-eye text-xs"></i>
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="9" class="px-6 py-10 text-center text-sm text-slate-400">
+                        <i class="fa-solid fa-inbox text-2xl mb-2 block text-slate-300"></i>
+                        Belum ada data permohonan surat.
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    @if($permohonans->hasPages())
+    <div class="px-6 py-4 border-t border-slate-100">
+        {{ $permohonans->withQueryString()->links() }}
+    </div>
+    @endif
 </div>
 
 @endsection

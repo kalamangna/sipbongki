@@ -16,7 +16,6 @@ use App\Models\Galeri;
 use App\Models\Berita;
 use App\Models\Pengumuman;
 use App\Models\WebsiteSetting;
-use App\Models\Halaman;
 use Illuminate\Support\Facades\DB;
 
 
@@ -224,20 +223,7 @@ $statistikLingkungan = Lingkungan::withCount('penduduk')
         */
 
 
-        $halamanProfil = Halaman::where('status','aktif')
-
-            ->whereIn('slug',[
-                'profil-kelurahan',
-                'sejarah',
-                'visi-misi',
-                'monografi',
-                'batas-wilayah',
-                'struktur-organisasi'
-            ])
-
-            ->get()
-
-            ->keyBy('slug');
+        $halamanProfil = [];
 
 
 
@@ -374,51 +360,6 @@ public function pengaduan()
     $profil = WebsiteSetting::first();
 
     return view('public.pengaduan', compact('profil'));
-}
-
-/*
-|--------------------------------------------------------------------------
-| HALAMAN CMS
-|--------------------------------------------------------------------------
-*/
-
-private function halaman(string $slug)
-{
-    $profil = WebsiteSetting::first();
-
-    $halaman = Halaman::where('slug', $slug)
-        ->where('status', 'aktif')
-        ->firstOrFail();
-
-    return view('public.halaman', compact(
-        'profil',
-        'halaman'
-    ));
-}
-
-public function profil()
-{
-    return $this->halaman('profil-kelurahan');
-}
-
-public function sejarah()
-{
-    return $this->halaman('sejarah');
-}
-
-public function visiMisi()
-{
-    return $this->halaman('visi-misi');
-}
-
-public function monografi()
-{
-    return $this->halaman('monografi');
-}
-
-public function batasWilayah()
-{
-    return $this->halaman('batas-wilayah');
 }
 
 }

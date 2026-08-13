@@ -1,234 +1,53 @@
-@csrf
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-<div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+    {{-- Kode Surat --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kode Surat <span class="text-red-500">*</span></label>
+        <input type="text" name="kode" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode', $jenisSurat->kode ?? '') }}" placeholder="Contoh : SKTM" required>
+    </div>
 
- <div class="p-6">
+    {{-- Kode Nomor Surat --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kode Nomor Surat</label>
+        <input type="text" name="kode_nomor" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}" placeholder="Contoh : 470">
+        <p class="mt-1 text-xs text-slate-500">Digunakan pada nomor surat. Contoh: 470/001/KLB/VII/2026</p>
+    </div>
 
- <div class="flex flex-wrap -mx-3 gap-4">
+    {{-- Nomor Urut Awal --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nomor Urut Awal</label>
+        <input type="number" min="0" name="nomor_urut" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}" placeholder="0">
+        <p class="mt-1 text-xs text-slate-500">Nomor terakhir yang telah digunakan.</p>
+    </div>
 
- {{-- =========================
- KODE SURAT
- ========================== --}}
- <div class="w-full md:w-1/3 px-3">
+    {{-- Template View --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Template View</label>
+        <input type="text" name="template_view" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('template_view', $jenisSurat->template_view ?? '') }}" placeholder="admin.pelayanan.surat.domisili">
+        <p class="mt-1 text-xs text-slate-500">Gunakan nama Blade Laravel. Contoh: admin.pelayanan.surat.domisili</p>
+    </div>
 
- <label class="form-label">
- Kode Surat <span class="text-danger">*</span>
- </label>
+    {{-- Nama Surat --}}
+    <div class="md:col-span-2">
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Surat <span class="text-red-500">*</span></label>
+        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $jenisSurat->nama ?? '') }}" placeholder="Masukkan nama surat" required>
+    </div>
 
- <input
- type="text"
- name="kode"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
- value="{{ old('kode', $jenisSurat->kode ?? '') }}"
- placeholder="Contoh : SKTM">
-
- @error('kode')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
-
- </div>
-
- {{-- =========================
- KODE NOMOR
- ========================== --}}
- <div class="w-full md:w-1/3 px-3">
-
- <label class="form-label">
- Kode Nomor Surat
- </label>
-
- <input
- type="text"
- name="kode_nomor"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode_nomor') is-invalid @enderror"
- value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}"
- placeholder="Contoh : 470">
-
- <div class="form-text">
-
- Digunakan pada nomor surat.
- Contoh:
- 470/001/KLB/VII/2026
-
- </div>
-
- @error('kode_nomor')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
-
- </div>
-
- {{-- =========================
- NOMOR URUT
- ========================== --}}
- <div class="w-full md:w-1/3 px-3">
-
- <label class="form-label">
- Nomor Urut Awal
- </label>
-
- <input
- type="number"
- min="0"
- name="nomor_urut"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nomor_urut') is-invalid @enderror"
- value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}">
-
- <div class="form-text">
-
- Nomor terakhir yang telah digunakan.
-
- </div>
-
- @error('nomor_urut')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
-
- </div>
-
- {{-- =========================
- NAMA SURAT
- ========================== --}}
- <div class="w-full px-3">
-
- <label class="form-label">
- Nama Surat <span class="text-danger">*</span>
- </label>
-
- <input
- type="text"
- name="nama"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
- value="{{ old('nama', $jenisSurat->nama ?? '') }}"
- placeholder="Masukkan nama surat">
-
- @error('nama')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
-
- </div>
-
-{{-- =========================
- PERSYARATAN LAYANAN
- (Ditampilkan pada card layanan di website)
-========================== --}}
-<div class="w-full px-3">
-
- <label class="form-label">
- Persyaratan Layanan
- </label>
-
- <textarea
- rows="4"
- name="deskripsi"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('deskripsi') is-invalid @enderror"
- placeholder="Contoh: KTP, KK, dan surat pengantar RT/RW.">{{ old('deskripsi', $jenisSurat->deskripsi ?? '') }}</textarea>
-
- <div class="form-text">
- Masukkan persyaratan singkat yang akan ditampilkan pada kartu layanan di halaman utama website.
- </div>
-
- @error('deskripsi')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
+    {{-- Persyaratan Layanan --}}
+    <div class="md:col-span-2">
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Persyaratan Layanan</label>
+        <textarea rows="4" name="deskripsi" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Contoh: KTP, KK, dan surat pengantar RT/RW.">{{ old('deskripsi', $jenisSurat->deskripsi ?? '') }}</textarea>
+        <p class="mt-1 text-xs text-slate-500">Masukkan persyaratan singkat yang akan ditampilkan pada kartu layanan di halaman utama website.</p>
+    </div>
 
 </div>
 
- {{-- =========================
- TEMPLATE VIEW
- ========================== --}}
- <div class="w-full px-3">
-
- <label class="form-label">
- Template View
- </label>
-
- <input
- type="text"
- name="template_view"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('template_view') is-invalid @enderror"
- value="{{ old('template_view', $jenisSurat->template_view ?? '') }}"
- placeholder="admin.pelayanan.surat.domisili">
-
- <div class="form-text">
-
- Gunakan nama Blade Laravel.
-
- Contoh:
-
- <strong>admin.pelayanan.surat.domisili</strong>
-
- </div>
-
- @error('template_view')
- <div class="invalid-feedback">
- {{ $message }}
- </div>
- @enderror
-
- </div>
-
- {{-- =========================
- STATUS
- ========================== --}}
- <div class="w-full px-3">
-
- <div class="form-check">
-
- <input
- class="form-check-input"
- type="checkbox"
- id="aktif"
- name="aktif"
- value="1"
- {{ old('aktif', $jenisSurat->aktif ?? true) ? 'checked' : '' }}>
-
- <label
- class="form-check-label"
- for="aktif">
-
- Aktif
-
- </label>
-
- </div>
-
- </div>
-
- </div>
-
- </div>
-
- <div class="px-6 py-4 border-t border-slate-200 bg-white flex justify-end gap-2">
-
- <a
- href="{{ route('admin.jenis-surat.index') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-slate-500 text-white hover:bg-slate-600">
-
- Kembali
-
- </a>
-
- <button
- type="submit"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- <i class="fa-solid fa-circle-check"></i>
-
- Simpan
-
- </button>
-
- </div>
-
+<div class="mt-6 pt-6 border-t border-slate-100">
+    <div class="grid grid-cols-1 gap-4">
+        {{-- Aktif --}}
+        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 w-fit">
+            <input type="checkbox" name="aktif" value="1" class="w-5 h-5 rounded border-slate-300 text-primary-600 focus:ring-primary-600 focus:ring-2" @checked(old('aktif', $jenisSurat->aktif ?? true))>
+            <span class="text-sm font-bold text-slate-800 pr-4">Status Aktif</span>
+        </label>
+    </div>
 </div>

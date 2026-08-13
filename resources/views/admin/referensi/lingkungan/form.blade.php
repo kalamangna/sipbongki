@@ -1,111 +1,52 @@
-<div class="flex flex-wrap -mx-3">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
- <div class="w-full md:w-1/3 px-3 mb-4">
+    {{-- Kode --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kode <span class="text-red-500">*</span></label>
+        <input type="text" name="kode" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode', $lingkungan->kode ?? '') }}" placeholder="Contoh: LKG-01" required>
+    </div>
 
- <label class="form-label">Kode</label>
+    {{-- Nama Lingkungan --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lingkungan <span class="text-red-500">*</span></label>
+        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $lingkungan->nama ?? '') }}" placeholder="Masukkan nama lingkungan" required>
+    </div>
 
- <input
- type="text"
- name="kode"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('kode') is-invalid @enderror"
- value="{{ old('kode', $lingkungan->kode ?? '') }}">
+    {{-- Kepala Lingkungan --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kepala Lingkungan</label>
+        <select name="ketua_lingkungan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+            <option value="">-- Pilih Kepala Lingkungan --</option>
+            @foreach($kepalaLingkungans as $perangkat)
+                <option value="{{ $perangkat->nama_lengkap }}" @selected(old('ketua_lingkungan', $lingkungan->ketua_lingkungan ?? '') == $perangkat->nama_lengkap)>
+                    {{ $perangkat->nama_lengkap }}
+                    @if($perangkat->jabatanStruktur)
+                        ({{ $perangkat->jabatanStruktur->nama }})
+                    @endif
+                </option>
+            @endforeach
+        </select>
+    </div>
 
- @error('kode')
- <div class="invalid-feedback">{{ $message }}</div>
- @enderror
+    {{-- Telepon --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Telepon</label>
+        <input type="text" name="telepon" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('telepon', $lingkungan->telepon ?? '') }}" placeholder="Contoh: 08123456789">
+    </div>
 
- </div>
+    {{-- Keterangan --}}
+    <div class="md:col-span-2">
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Keterangan</label>
+        <textarea name="keterangan" rows="3" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Tulis keterangan singkat (opsional)...">{{ old('keterangan', $lingkungan->keterangan ?? '') }}</textarea>
+    </div>
 
- <div class="col-md-8 mb-4">
-
- <label class="form-label">Nama Lingkungan</label>
-
- <input
- type="text"
- name="nama"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('nama') is-invalid @enderror"
- value="{{ old('nama', $lingkungan->nama ?? '') }}">
-
- @error('nama')
- <div class="invalid-feedback">{{ $message }}</div>
- @enderror
-
- </div>
-
-</div>
-
-<div class="flex flex-wrap -mx-3">
-
- <div class="w-full md:w-1/2 px-3 mb-4">
-
- <label class="form-label">Kepala Lingkungan</label>
-
- <select
- name="ketua_lingkungan"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 @error('ketua_lingkungan') is-invalid @enderror">
-
- <option value="">-- Pilih Kepala Lingkungan --</option>
-
- @foreach($kepalaLingkungans as $perangkat)
- <option
- value="{{ $perangkat->nama_lengkap }}"
- @selected(old('ketua_lingkungan', $lingkungan->ketua_lingkungan ?? '') == $perangkat->nama_lengkap)>
- {{ $perangkat->nama_lengkap }}
- @if($perangkat->jabatanStruktur)
- ({{ $perangkat->jabatanStruktur->nama }})
- @endif
- </option>
- @endforeach
-
- </select>
-
- @error('ketua_lingkungan')
- <div class="invalid-feedback">{{ $message }}</div>
- @enderror
-
- </div>
-
- <div class="w-full md:w-1/2 px-3 mb-4">
-
- <label class="form-label">Telepon</label>
-
- <input
- type="text"
- name="telepon"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
- value="{{ old('telepon', $lingkungan->telepon ?? '') }}">
-
- </div>
-
-</div>
-
-<div class="mb-4">
-
- <label class="form-label">Keterangan</label>
-
- <textarea
- name="keterangan"
- rows="4"
- class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">{{ old('keterangan', $lingkungan->keterangan ?? '') }}</textarea>
-
-</div>
-
-<div class="mb-6">
-
- <label class="form-label">Status</label>
-
- <select name="status" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-
- <option value="1"
- {{ old('status', $lingkungan->status ?? 1) == 1 ? 'selected' : '' }}>
- Aktif
- </option>
-
- <option value="0"
- {{ old('status', $lingkungan->status ?? 1) == 0 ? 'selected' : '' }}>
- Nonaktif
- </option>
-
- </select>
+    {{-- Status --}}
+    <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Status</label>
+        <select name="status" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+            <option value="1" {{ old('status', $lingkungan->status ?? 1) == 1 ? 'selected' : '' }}>Aktif</option>
+            <option value="0" {{ old('status', $lingkungan->status ?? 1) == 0 ? 'selected' : '' }}>Nonaktif</option>
+        </select>
+    </div>
 
 </div>

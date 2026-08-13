@@ -2,15 +2,15 @@
     DATA KARTU KELUARGA
 =========================== --}}
 
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
-    <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
+<div>
+    <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
         <h3 class="font-bold text-slate-800 text-base mb-0">
             <i class="fa-solid fa-address-card text-primary-600 mr-2"></i>
             Data Kartu Keluarga
         </h3>
     </div>
 
-    <div class="p-6 md:p-8">
+    <div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -87,9 +87,9 @@
     ANGGOTA KELUARGA
 =========================== --}}
 
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+<div>
 
-    <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-50/50">
+    <div class="pb-3 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
         <h3 class="font-bold text-slate-800 text-base mb-0">
             <i class="fa-solid fa-users text-sky-600 mr-2"></i>
             Anggota Keluarga

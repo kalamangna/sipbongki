@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Perangkat Kelurahan')
+@section('title', 'Aparatur')
 
 @section('content')
 <div class="w-full">
@@ -8,7 +8,7 @@
     {{-- Header Section --}}
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Perangkat Kelurahan</h2>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Aparatur</h2>
             <p class="text-sm text-slate-500 mt-1">Kelola data aparatur dan perangkat kelurahan</p>
         </div>
         <a href="{{ route('admin.perangkat.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 active:scale-95 cursor-pointer">

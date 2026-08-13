@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengaturan Website')
+@section('title', 'Website')
 
 @section('content')
 
 {{-- HEADER --}}
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
     <div>
-        <h3 class="text-2xl font-bold text-slate-800 mb-1">Pengaturan Website</h3>
+        <h3 class="text-2xl font-bold text-slate-800 mb-1">Website</h3>
         <p class="text-sm text-slate-500">Kelola identitas dan informasi utama website</p>
     </div>
     <a href="{{ route('admin.website.pengaturan.edit') }}"

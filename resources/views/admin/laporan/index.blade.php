@@ -4,235 +4,131 @@
 
 @section('content')
 
-<div class="w-full">
-
- <div class="flex flex-wrap -mx-3 mb-6">
-
- <div class="col">
-
- 
- <p class="text-slate-500 mb-0">
- Ringkasan Data dan Akses Cepat ke Seluruh Laporan 
- </p>
-
- </div>
-
- </div>
-
-
- {{-- Statistik --}}
-
- <div class="flex flex-wrap -mx-3 g-5">
-
- <div class="w-full lg:w-1/4 px-3 w-full md:w-5/12 px-3">
-
- <x-ui.stat-card
- title="Penduduk"
- :total="$statistik['penduduk']"
- icon="fa-users"
- color="primary"/>
-
- </div>
-
-
- <div class="w-full lg:w-1/4 px-3 w-full md:w-5/12 px-3">
-
- <x-ui.stat-card
- title="Kartu Keluarga"
- :total="$statistik['kk']"
- icon="fa-house-user"
- color="success"/>
-
- </div>
-
-
- <div class="w-full lg:w-1/4 px-3 w-full md:w-5/12 px-3">
-
- <x-ui.stat-card
- title="Permohonan Surat"
- :total="$statistik['permohonan']"
- icon="fa-envelope-open-text"
- color="warning"/>
-
- </div>
-
-
- <div class="w-full lg:w-1/4 px-3 w-full md:w-5/12 px-3">
-
- <x-ui.stat-card
- title="Jenis Surat"
- :total="$statistik['jenis_surat']"
- icon="fa-folder-open"
- color="info"/>
-
- </div>
-
- </div>
-
-
-
- {{-- Menu Laporan --}}
-
- <div class="flex flex-wrap -mx-3 mt-0 g-5">
-
-
- {{-- Penduduk --}}
-
- <div class="w-full lg:w-1/3 px-3">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6">
-
- <h5 class="font-bold">
- Laporan Kependudukan
- </h5>
-
-
- <p class="text-slate-500">
-
- Rekapitulasi Data Penduduk
-
- </p>
-
-
- <div class="flex gap-2 flex-wrap">
-
- <a href="{{ route('admin.laporan.penduduk') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm">
-
- </p></p>Buka Laporan</p></p>
-
- </a>
-
-
- <a href="{{ route('admin.laporan.export-penduduk') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-success">
-
- <i class="fa-solid fa-file-excel"></i>
- Export Excel
-
- </a>
-
- <a href="{{ route('admin.laporan.statistik') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all text-primary-600 border border-primary-600 hover:bg-primary-50">
-
- Lihat Statistik
-
- </a>
-
- </div>
-
-
- </div>
-
- </div>
-
- </div>
-
-
- {{-- Kartu Keluarga --}}
-
- <div class="w-full lg:w-1/3 px-3">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6">
-
- <h5 class="font-bold">
- Laporan Kartu Keluarga
- </h5>
-
-
- <p class="text-slate-500">
-
- Rekapitulasi Data KK.
-
- </p>
-
-
- <div class="flex gap-2 flex-wrap">
-
- <a href="{{ route('admin.laporan.kartu-keluarga') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm">
-
- </p></p>Buka Laporan</p></p>
-
- </a>
-
-
- <a href="{{ route('admin.laporan.export-kartu-keluarga') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-success">
-
- <i class="fa-solid fa-file-excel"></i>
- Export Excel
-
- </a>
-
- </div>
-
-
- </div>
-
- </div>
-
- </div>
-
-
-
-
- {{-- Persuratan --}}
-
- <div class="w-full lg:w-1/3 px-3">
-
- <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm border-0 h-100">
-
- <div class="p-6">
-
- <h5 class="font-bold">
- Laporan Persuratan
- </h5>
-
-
- <p class="text-slate-500">
-
- Rekapitulasi Layanan Persuratan
-
- </p>
-
-
- <div class="flex gap-2 flex-wrap">
-
-
- <a href="{{ route('admin.laporan.persuratan') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-amber-500 text-white hover:bg-amber-600 shadow-sm">
-
- </p></p>Buka Laporan</p></p>
-
- </a>
-
-
- <a href="{{ route('admin.laporan.export-persuratan') }}"
- class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all shadow-sm-outline-success">
-
- <i class="fa-solid fa-file-excel"></i>
- Export Excel
-
- </a>
-
-
- </div>
-
-
- </div>
-
- </div>
-
- </div>
-
-
- </div>
-
+{{-- HEADER --}}
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div>
+        <h3 class="text-2xl font-bold text-slate-800 mb-1">Laporan</h3>
+        <p class="text-sm text-slate-500">Ringkasan data dan akses cepat ke seluruh laporan</p>
+    </div>
+</div>
+
+{{-- STATISTIK --}}
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Penduduk</p>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ number_format($statistik['penduduk']) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-house-user"></i>
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Kartu Keluarga</p>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ number_format($statistik['kk']) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Permohonan Surat</p>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ number_format($statistik['permohonan']) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5">Jenis Surat</p>
+                <p class="text-3xl font-extrabold text-slate-900 tracking-tight">{{ number_format($statistik['jenis_surat']) }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- MENU LAPORAN --}}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    {{-- Kependudukan --}}
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-6 flex-1">
+            <div class="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center text-lg mb-4">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h5 class="font-bold text-slate-800 mb-1">Laporan Kependudukan</h5>
+            <p class="text-sm text-slate-500">Rekapitulasi data penduduk berdasarkan berbagai kategori demografis.</p>
+        </div>
+        <div class="px-6 pb-6 flex flex-wrap gap-2">
+            <a href="{{ route('admin.laporan.penduduk') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-chart-bar"></i> Buka Laporan
+            </a>
+            <a href="{{ route('admin.laporan.export-penduduk') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-file-excel text-emerald-600"></i> Export Excel
+            </a>
+            <a href="{{ route('admin.laporan.statistik') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-chart-pie text-sky-600"></i> Statistik
+            </a>
+        </div>
+    </div>
+
+    {{-- Kartu Keluarga --}}
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-6 flex-1">
+            <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-4">
+                <i class="fa-solid fa-house-user"></i>
+            </div>
+            <h5 class="font-bold text-slate-800 mb-1">Laporan Kartu Keluarga</h5>
+            <p class="text-sm text-slate-500">Rekapitulasi data kartu keluarga dan anggota keluarga per lingkungan.</p>
+        </div>
+        <div class="px-6 pb-6 flex flex-wrap gap-2">
+            <a href="{{ route('admin.laporan.kartu-keluarga') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-chart-bar"></i> Buka Laporan
+            </a>
+            <a href="{{ route('admin.laporan.export-kartu-keluarga') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-file-excel text-emerald-600"></i> Export Excel
+            </a>
+        </div>
+    </div>
+
+    {{-- Persuratan --}}
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-6 flex-1">
+            <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-4">
+                <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <h5 class="font-bold text-slate-800 mb-1">Laporan Persuratan</h5>
+            <p class="text-sm text-slate-500">Rekapitulasi layanan permohonan surat dan statusnya per periode.</p>
+        </div>
+        <div class="px-6 pb-6 flex flex-wrap gap-2">
+            <a href="{{ route('admin.laporan.persuratan') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-500 text-white hover:bg-amber-600 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-chart-bar"></i> Buka Laporan
+            </a>
+            <a href="{{ route('admin.laporan.export-persuratan') }}"
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
+                <i class="fa-solid fa-file-excel text-emerald-600"></i> Export Excel
+            </a>
+        </div>
+    </div>
 
 </div>
 

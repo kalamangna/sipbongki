@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Penduduk')
+@section('title', 'Data Penduduk')
 
 @section('content')
 <div class="w-full">

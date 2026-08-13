@@ -31,7 +31,6 @@ use App\Http\Controllers\Operator\LaporanController as OperatorLaporanController
 use App\Http\Controllers\Admin\Website\BeritaController;
 use App\Http\Controllers\Admin\Website\AgendaController;
 use App\Http\Controllers\Admin\Website\GaleriController;
-use App\Http\Controllers\Admin\Website\HalamanController;
 use App\Http\Controllers\Admin\Website\WebsiteSettingController;
 
 use App\Http\Controllers\HomeController;
@@ -370,8 +369,6 @@ Route::get(
             'agenda' => 'agenda'
         ]);
                 Route::resource('galeri', GaleriController::class);
-
-                Route::resource('halaman', HalamanController::class);
 
                 Route::get(
                     'pengaturan',

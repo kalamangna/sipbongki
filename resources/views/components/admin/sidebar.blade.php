@@ -98,10 +98,7 @@
                     <i class="fa-solid fa-images w-4 text-center"></i>
                     <span>Galeri</span>
                 </a>
-                <a href="{{ route('admin.website.halaman.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium focus:outline-none {{ request()->routeIs('admin.website.halaman.*') ? 'bg-primary-50 text-primary-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                    <i class="fa-solid fa-file-lines w-4 text-center"></i>
-                    <span>Halaman</span>
-                </a>
+
             </div>
         </div>
         @endif
