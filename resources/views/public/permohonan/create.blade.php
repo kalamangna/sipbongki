@@ -754,7 +754,7 @@
 
                         try {
                             const csrfToken = document.querySelector('input[name="_token"]')?.value || '{{ csrf_token() }}';
-                            const response = await fetch('{{ route('permohonan.lookup', [], false) }}', {
+                            const response = await fetch('{{ route('permohonan.lookup') }}', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
