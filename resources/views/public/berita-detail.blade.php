@@ -3,15 +3,13 @@
 @section('seo_title', $berita->judul)
 @section('seo_description', Str::limit(strip_tags($berita->isi), 160))
 @section('seo_type', 'article')
-@if($berita->gambar)
-    @section('seo_image', asset('storage/'.$berita->gambar))
-@endif
+@section('seo_image', $berita->gambar ? asset('storage/'.$berita->gambar) : asset('images/meta.png'))
 
 @push('styles')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
+    "@@context": "https://schema.org",
+    "@@type": "NewsArticle",
     "headline": "{{ addslashes($berita->judul) }}",
     "description": "{{ addslashes(Str::limit(strip_tags($berita->isi), 160)) }}",
     "image": [
@@ -20,21 +18,21 @@
     "datePublished": "{{ optional($berita->tanggal_publish ?? $berita->created_at)->toIso8601String() }}",
     "dateModified": "{{ $berita->updated_at->toIso8601String() }}",
     "author": {
-        "@type": "Organization",
+        "@@type": "Organization",
         "name": "Kelurahan Bongki",
         "url": "{{ url('/') }}"
     },
     "publisher": {
-        "@type": "GovernmentOrganization",
+        "@@type": "GovernmentOrganization",
         "name": "Kelurahan Bongki",
         "logo": {
-            "@type": "ImageObject",
+            "@@type": "ImageObject",
             "url": "{{ asset('images/logo.png') }}"
         }
     },
     "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ url()->current() }}"
+        "@@type": "WebPage",
+        "@@id": "{{ url()->current() }}"
     }
 }
 </script>

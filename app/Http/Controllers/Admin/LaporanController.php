@@ -98,38 +98,21 @@ if ($request->filled('lingkungan')) {
 |--------------------------------------------------------------------------
 */
 
-if ($request->filled('jk')) {
+        if ($request->filled('status')) {
+            $query->where('aktif', $request->status === '1');
+        }
 
-    $query->where(
-        'jenis_kelamin',
-        $request->jk
-    );
+        if ($request->filled('rt')) {
+            $query->where('rt', $request->rt);
+        }
 
-}
+        if ($request->filled('rw')) {
+            $query->where('rw', $request->rw);
+        }
 
-/*
-|--------------------------------------------------------------------------
-| Filter Agama
-|--------------------------------------------------------------------------
-*/
-
-if ($request->filled('agama')) {
-
-    $query->where(
-        'agama',
-        $request->agama
-    );
-
-}
-
-    if ($request->filled('lingkungan')) {
-
-        $query->where(
-            'lingkungan_id',
-            $request->lingkungan
-        );
-
-    }
+        if ($request->filled('status_perkawinan')) {
+            $query->where('status_perkawinan', $request->status_perkawinan);
+        }
 
     $penduduks = $query
         ->orderBy('nama_lengkap')
@@ -628,7 +611,17 @@ public function showPersuratan(PermohonanSurat $permohonanSurat)
             ->orderBy('nama')
             ->get();
 
+        // Ringkasan metrik
+        $totalPenduduk = Penduduk::count();
+        $totalLaki = Penduduk::where('jenis_kelamin', 'L')->count();
+        $totalPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
+        $totalKK = KartuKeluarga::count();
+
         return view('admin.laporan.statistik', compact(
+            'totalPenduduk',
+            'totalLaki',
+            'totalPerempuan',
+            'totalKK',
             'pekerjaanStat',
             'agamaStat',
             'statusNikahStat',
@@ -685,24 +678,21 @@ public function printPenduduk(Request $request)
     }
 
 
-    if ($request->filled('jk')) {
+        if ($request->filled('status')) {
+            $query->where('aktif', $request->status === '1');
+        }
 
-        $query->where(
-            'jenis_kelamin',
-            $request->jk
-        );
+        if ($request->filled('rt')) {
+            $query->where('rt', $request->rt);
+        }
 
-    }
+        if ($request->filled('rw')) {
+            $query->where('rw', $request->rw);
+        }
 
-
-    if ($request->filled('agama')) {
-
-        $query->where(
-            'agama',
-            $request->agama
-        );
-
-    }
+        if ($request->filled('status_perkawinan')) {
+            $query->where('status_perkawinan', $request->status_perkawinan);
+        }
 
 
     $penduduks = $query

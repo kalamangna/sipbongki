@@ -3,15 +3,13 @@
 @section('seo_title', $pengumuman->judul)
 @section('seo_description', Str::limit(strip_tags($pengumuman->isi), 160))
 @section('seo_type', 'article')
-@if($pengumuman->gambar)
-    @section('seo_image', asset('storage/'.$pengumuman->gambar))
-@endif
+@section('seo_image', $pengumuman->gambar ? asset('storage/'.$pengumuman->gambar) : asset('images/meta.png'))
 
 @push('styles')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
-    "@type": "Article",
+    "@@context": "https://schema.org",
+    "@@type": "Article",
     "headline": "{{ addslashes($pengumuman->judul) }}",
     "description": "{{ addslashes(Str::limit(strip_tags($pengumuman->isi), 160)) }}",
     "image": [
@@ -20,21 +18,21 @@
     "datePublished": "{{ optional($pengumuman->tanggal_publish ?? $pengumuman->created_at)->toIso8601String() }}",
     "dateModified": "{{ $pengumuman->updated_at->toIso8601String() }}",
     "author": {
-        "@type": "Organization",
+        "@@type": "Organization",
         "name": "Kelurahan Bongki",
         "url": "{{ url('/') }}"
     },
     "publisher": {
-        "@type": "GovernmentOrganization",
+        "@@type": "GovernmentOrganization",
         "name": "Kelurahan Bongki",
         "logo": {
-            "@type": "ImageObject",
+            "@@type": "ImageObject",
             "url": "{{ asset('images/logo.png') }}"
         }
     },
     "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ url()->current() }}"
+        "@@type": "WebPage",
+        "@@id": "{{ url()->current() }}"
     }
 }
 </script>

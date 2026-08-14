@@ -21,14 +21,11 @@
                 </span>
 
                 <h3 class="text-2xl md:text-3xl font-bold text-slate-800 leading-snug mb-4">
-                    Mewujudkan pelayanan publik yang mudah, cepat, transparan,
-                    dan profesional bagi seluruh warga.
+                    Mewujudkan pelayanan publik yang mudah, cepat, transparan, dan profesional bagi seluruh warga.
                 </h3>
 
                 <p class="text-slate-500 leading-relaxed">
-                    Kelurahan Bongki berkomitmen memberikan layanan pemerintahan yang responsif
-                    dan berorientasi pada kebutuhan warga, selaras dengan visi misi Bupati Sinjai
-                    dan RPJMD Kabupaten Sinjai melalui inovasi digital SIP Bongki.
+                    Kelurahan Bongki berkomitmen memberikan layanan pemerintahan yang responsif dan berorientasi pada kebutuhan warga, selaras dengan visi misi Bupati Sinjai dan RPJMD Kabupaten Sinjai melalui inovasi digital SIP Bongki.
                 </p>
 
                 {{-- Quick facts --}}
@@ -78,16 +75,20 @@
 
                 <div class="w-12 h-1 bg-primary rounded-full mb-4"></div>
 
-                <div class="prose prose-sm prose-slate max-w-none text-slate-600 leading-relaxed">
-                    {!! $halamanProfil['profil-kelurahan']->isi ??
-                    '<p>Kelurahan Bongki merupakan salah satu kelurahan di Kecamatan Sinjai Utara,
-                    Kabupaten Sinjai, Provinsi Sulawesi Selatan yang memiliki peran penting sebagai
-                    pusat pelayanan pemerintahan, pembangunan, dan pemberdayaan masyarakat.</p>
-                    <p>Dengan luas wilayah sekitar <strong>4,81 Km²</strong>, Kelurahan Bongki terdiri
-                    atas empat lingkungan, yaitu Paruntu, Popanda, Benteng, dan Samaenre.</p>
-                    <p>Melalui inovasi pelayanan digital <strong>SIP Bongki</strong>, masyarakat dapat
-                    memperoleh berbagai informasi dan pelayanan administrasi secara lebih mudah,
-                    efektif, dan efisien.</p>' !!}
+                <div class="prose prose-sm prose-slate max-w-none text-slate-600 leading-relaxed space-y-3">
+                    @if(isset($halamanProfil['profil-kelurahan']) && !empty($halamanProfil['profil-kelurahan']->isi))
+                        {!! $halamanProfil['profil-kelurahan']->isi !!}
+                    @else
+                        <p>
+                            Kelurahan Bongki merupakan salah satu kelurahan di Kecamatan Sinjai Utara, Kabupaten Sinjai, Provinsi Sulawesi Selatan yang memiliki peran penting sebagai pusat pelayanan pemerintahan, pembangunan, dan pemberdayaan masyarakat.
+                        </p>
+                        <p>
+                            Dengan luas wilayah sekitar <strong>4,81 Km²</strong>, Kelurahan Bongki terdiri atas empat lingkungan, yaitu Paruntu, Popanda, Benteng, dan Samaenre.
+                        </p>
+                        <p>
+                            Melalui inovasi pelayanan digital <strong>SIP Bongki</strong>, masyarakat dapat memperoleh berbagai informasi dan pelayanan administrasi secara lebih mudah, efektif, dan efisien.
+                        </p>
+                    @endif
                 </div>
 
             </div>

@@ -10,18 +10,80 @@
             <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Layanan Administrasi</h2>
         </div>
 
+        @php
+            $colorThemes = [
+                [
+                    'icon_bg'      => 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white',
+                    'icon_color'   => 'text-emerald-600 group-hover:text-white',
+                    'badge'        => 'bg-emerald-50 text-emerald-700 border-emerald-100',
+                    'btn'          => 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20 focus:ring-emerald-500',
+                    'hover_border' => 'hover:border-emerald-300',
+                    'hover_title'  => 'group-hover:text-emerald-700',
+                ],
+                [
+                    'icon_bg'      => 'bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white',
+                    'icon_color'   => 'text-sky-600 group-hover:text-white',
+                    'badge'        => 'bg-sky-50 text-sky-700 border-sky-100',
+                    'btn'          => 'bg-sky-600 hover:bg-sky-700 shadow-sky-600/20 focus:ring-sky-500',
+                    'hover_border' => 'hover:border-sky-300',
+                    'hover_title'  => 'group-hover:text-sky-700',
+                ],
+                [
+                    'icon_bg'      => 'bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white',
+                    'icon_color'   => 'text-amber-600 group-hover:text-white',
+                    'badge'        => 'bg-amber-50 text-amber-700 border-amber-100',
+                    'btn'          => 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/20 focus:ring-amber-500',
+                    'hover_border' => 'hover:border-amber-300',
+                    'hover_title'  => 'group-hover:text-amber-700',
+                ],
+                [
+                    'icon_bg'      => 'bg-violet-50 text-violet-600 group-hover:bg-violet-600 group-hover:text-white',
+                    'icon_color'   => 'text-violet-600 group-hover:text-white',
+                    'badge'        => 'bg-violet-50 text-violet-700 border-violet-100',
+                    'btn'          => 'bg-violet-600 hover:bg-violet-700 shadow-violet-600/20 focus:ring-violet-500',
+                    'hover_border' => 'hover:border-violet-300',
+                    'hover_title'  => 'group-hover:text-violet-700',
+                ],
+                [
+                    'icon_bg'      => 'bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white',
+                    'icon_color'   => 'text-rose-600 group-hover:text-white',
+                    'badge'        => 'bg-rose-50 text-rose-700 border-rose-100',
+                    'btn'          => 'bg-rose-600 hover:bg-rose-700 shadow-rose-600/20 focus:ring-rose-500',
+                    'hover_border' => 'hover:border-rose-300',
+                    'hover_title'  => 'group-hover:text-rose-700',
+                ],
+                [
+                    'icon_bg'      => 'bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white',
+                    'icon_color'   => 'text-teal-600 group-hover:text-white',
+                    'badge'        => 'bg-teal-50 text-teal-700 border-teal-100',
+                    'btn'          => 'bg-teal-600 hover:bg-teal-700 shadow-teal-600/20 focus:ring-teal-500',
+                    'hover_border' => 'hover:border-teal-300',
+                    'hover_title'  => 'group-hover:text-teal-700',
+                ],
+            ];
+        @endphp
+
         {{-- Cards --}}
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
             @forelse($jenisSurats ?? [] as $jenisSurat)
+                @php
+                    $theme = $colorThemes[$loop->index % count($colorThemes)];
+                @endphp
 
-                <div class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                <div class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 {{ $theme['hover_border'] }} transition-all duration-300">
 
-                    <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                        <i class="{{ $jenisSurat->icon ?? 'fa-solid fa-file-lines' }} text-primary group-hover:text-white transition-colors text-2xl"></i>
+                    {{-- Top bar: Icon + Nomor Card --}}
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="w-14 h-14 rounded-2xl {{ $theme['icon_bg'] }} flex items-center justify-center transition-colors duration-300">
+                            <i class="{{ $jenisSurat->icon ?? 'fa-solid fa-file-lines' }} {{ $theme['icon_color'] }} transition-colors text-2xl"></i>
+                        </div>
+                        <span class="inline-flex items-center justify-center px-2.5 py-1 text-xs font-bold rounded-lg border {{ $theme['badge'] }} tracking-wider">
+                            #{{ sprintf('%02d', $loop->iteration) }}
+                        </span>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
+                    <h3 class="text-base font-bold text-slate-800 mb-2 {{ $theme['hover_title'] }} transition-colors">
                         {{ $jenisSurat->nama }}
                     </h3>
 
@@ -31,8 +93,8 @@
 
                     <div class="mt-5 pt-4 border-t border-slate-100">
                         <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}"
-                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-all duration-200 active:scale-95 shadow-sm shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                            <i class="fa-solid fa-paper-plane"></i>
+                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl {{ $theme['btn'] }} text-white text-sm font-semibold transition-all duration-200 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">
+                            <i class="fa-solid fa-paper-plane text-xs"></i>
                             Ajukan Permohonan
                         </a>
                     </div>

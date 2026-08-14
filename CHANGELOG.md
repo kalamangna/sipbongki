@@ -8,10 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Nomor Urut & Variasi Tema Warna Kartu Layanan**: Menambahkan badge nomor urut (`#01`, `#02`, dst.) dan tema warna harmonis unik (Emerald, Sky, Amber, Violet, Rose, Teal) pada setiap kartu di section Layanan Administrasi publik.
+- **Metrik Ringkasan Laporan Statistik Kelurahan**: Menambahkan kartu ringkasan metrik demografi (Total Penduduk, Laki-laki, Perempuan, dan Kartu Keluarga) pada modul Laporan Statistik Admin.
 - **Visualisasi Statistik Kelurahan (ApexCharts)**: Menyelaraskan tinggi wadah grafik statistik menjadi responsif `min-h-[280px]` dan tinggi render `280px` yang proporsional, memperkaya variasi warna multi-kategori (*distributed palette*) pada grafik batang horizontal dan donat, serta menyematkan ringkasan akumulatif total pada bagian tengah *donut chart*.
 - **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
 
 ### Changed
+- **Filter Kompak 1 Baris pada Seluruh Modul Laporan Admin**: Merapikan formulir filter pada Laporan Kependudukan, Laporan Kartu Keluarga, dan Laporan Persuratan menjadi 1 baris horizontal yang bersih, terfokus pada field esensial (Keyword, Lingkungan, Status, Rentang Tanggal), serta melengkapi tombol Reset kondisional.
+- **Konsistensi Navigasi Modul Laporan**: Memastikan seluruh tombol *Kembali* pada modul Laporan Kependudukan, Kartu Keluarga, Persuratan, dan Statistik mengarah langsung ke `/admin/laporan` (`route('admin.laporan.index')`).
+- **Standardisasi Template Dokumen Cetak Laporan**:
+  - Menerapkan header tabel **BOLD UPPERCASE** pada template cetak Laporan Penduduk, Kartu Keluarga, dan Persuratan.
+  - Menyelaraskan blok tanda tangan kedinasan (Plt. Lurah Bongki, Kasi Pemerintahan, Kasi Pelayanan Umum) dengan format tabel rapi, penempatan proporsional (`padding-left: 100px` pada kolom kanan), serta NIP yang terkunci dalam 1 baris (`white-space: nowrap;`).
+  - Menambahkan sub-judul dinamis berbasis filter aktif dan penanganan *empty state* `@forelse ... @empty`.
+- **Penyelarasan Desain Laporan Statistik Kelurahan**: Menghapus ikon dekoratif dari header kartu grafik sesuai referensi tampilan statistik di halaman publik serta menyelaraskan palet warna grafik ApexCharts.
+- **Perbaikan ParseError Blade pada JSON-LD Berita & Pengumuman**: Melakukan escaping sintaks Blade `@context`, `@type`, dan `@id` pada skrip Schema.org structured data di `berita-detail.blade.php` dan `pengumuman-detail.blade.php`.
+- **Perapian Line Break Informasi Umum Profil Kelurahan**: Merapikan alur kalimat dan membungkus paragraf Informasi Umum Kelurahan Bongki di beranda dengan tag `<p>` bersih dan spasi proporsional tanpa patahan baris di tengah kalimat.
 - **Refactor & Perapian Halaman Edit Persuratan**:
   - Menyelaraskan klasifikasi sumber data pemohon pada form persuratan admin (Penduduk Bongki Terdaftar/Belum Verifikasi vs Luar Bongki Manual). Untuk penduduk Bongki, form menampilkan kartu ringkasan data read-only yang ramping serta tombol tautan langsung ke *Edit Data Penduduk* pada modul master kependudukan.
   - Menghapus bagian input edit Dokumen Persyaratan dari form edit persuratan admin untuk menjaga integritas dokumen asli yang diunggah warga.
