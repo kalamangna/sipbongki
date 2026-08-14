@@ -745,11 +745,13 @@
                             btnCari.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mencari...';
 
                         try {
+                            const csrfToken = document.querySelector('input[name="_token"]')?.value || '{{ csrf_token() }}';
                             const response = await fetch('{{ route('permohonan.lookup', [], false) }}', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
                                 },
                                 body: JSON.stringify({
                                     nik: nik,
@@ -757,7 +759,23 @@
                                 })
                             });
 
-                            const data = await response.json();
+                            if (response.status === 429) {
+                                displayLookupError('Terlalu banyak permintaan. Mohon tunggu 1 menit sebelum mencari kembali.');
+                                return;
+                            }
+
+                            if (response.status === 419) {
+                                displayLookupError('Sesi Anda telah kedaluwarsa. Silakan muat ulang (refresh) halaman ini untuk memperbarui sesi.');
+                                return;
+                            }
+
+                            let data;
+                            try {
+                                data = await response.json();
+                            } catch (parseErr) {
+                                displayLookupError('Terjadi kesalahan format respon server. Silakan coba kembali atau refresh halaman.');
+                                return;
+                            }
 
                             if (!response.ok) {
                                 const message = data.error || data.message || 'Terjadi kesalahan saat memeriksa NIK.';
@@ -781,7 +799,7 @@
                             }
                         } catch (error) {
                             console.error('lookup error', error);
-                            displayLookupError('Tidak dapat memproses permintaan (Mungkin sesi Anda telah habis). Silakan muat ulang (refresh) halaman ini.');
+                            displayLookupError('Gagal menghubungi server. Periksa koneksi internet atau muat ulang (refresh) halaman ini.');
                         } finally {
                             const btnCari = document.getElementById('btn-cari-nik');
                             if (btnCari) {

@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fitur (Pelayanan)**: Menambahkan dukungan pengisian formulir layanan secara manual bagi pemohon yang belum terdaftar di database kependudukan, dengan field `manual_` pada `data_surat` dan metode akses dinamis `pemohon`.
 
 ### Changed
+- **Keamanan & Stabilitas (Rate Limiting & Lookup NIK)**: Menyesuaikan batas *rate limiting* pencarian NIK publik menjadi 30 request/menit serta pengiriman form menjadi 10 request/menit untuk mencegah pemblokiran HTTP 429 yang prematur saat pengujian/pengisian formulir.
+- **UI/UX (Layanan Publik - Error Handling Lookup)**: Menyempurnakan mekanisme *fetch* lookup NIK dengan header `Accept: application/json`, token CSRF dinamis, serta pesan penanganan kesalahan yang presisi dan ramah pengguna untuk status HTTP 429 (Too Many Requests) dan 419 (Page Expired).
 - **SEO & Metadata**: Mengoptimalkan komponen `<x-seo-meta />` agar secara otomatis menyusun meta title, description, dan Open Graph langsung dari data identitas `WebsiteSetting` secara dinamis.
 - **UI/UX (Admin - Pengaturan Website)**: Merapikan form Pengaturan Website menjadi khusus "Visibilitas Section Publik" dan menghapus input SEO manual yang redundan.
 - **Kebersihan Kode (Routes & Robots)**: Menghapus impor controller `Operator` yang tidak terpakai dari `routes/web.php` dan membersihkan direktif `Disallow: /operator/` pada `public/robots.txt`.
