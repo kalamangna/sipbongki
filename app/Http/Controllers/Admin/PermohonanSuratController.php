@@ -23,6 +23,7 @@ class PermohonanSuratController extends Controller
         $search = $request->search;
         $jenis_surat_id = $request->jenis_surat_id;
         $status = $request->status;
+        $jenis_pemohon = $request->jenis_pemohon;
 
         $permohonans = PermohonanSurat::with([
                 'penduduk',
@@ -44,6 +45,13 @@ class PermohonanSuratController extends Controller
             ->when($status, function ($query) use ($status) {
                 $query->where('status', $status);
             })
+            ->when($jenis_pemohon, function ($query) use ($jenis_pemohon) {
+                if ($jenis_pemohon === 'bongki') {
+                    $query->whereNotNull('penduduk_id');
+                } elseif ($jenis_pemohon === 'luar') {
+                    $query->whereNull('penduduk_id');
+                }
+            })
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -57,6 +65,7 @@ class PermohonanSuratController extends Controller
                 'search',
                 'jenis_surat_id',
                 'status',
+                'jenis_pemohon',
                 'jenisSurats'
             )
         );

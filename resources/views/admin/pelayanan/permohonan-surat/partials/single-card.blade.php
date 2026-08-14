@@ -88,7 +88,7 @@
             @if($hasVal($noKk) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nomor KK</p>
-                <p class="font-medium text-slate-900 text-base">{{ $noKk ?: '-' }}</p>
+                <p class="font-mono font-medium text-slate-900 text-base">{{ $noKk ?: '-' }}</p>
             </div>
             @endif
             

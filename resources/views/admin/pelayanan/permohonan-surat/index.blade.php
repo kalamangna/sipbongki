@@ -32,6 +32,14 @@
                     </select>
                 </div>
 
+                <div class="w-full md:w-44">
+                    <select name="jenis_pemohon" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
+                        <option value="">Semua Kategori</option>
+                        <option value="bongki" {{ request('jenis_pemohon') == 'bongki' ? 'selected' : '' }}>Penduduk Bongki</option>
+                        <option value="luar" {{ request('jenis_pemohon') == 'luar' ? 'selected' : '' }}>Penduduk Luar</option>
+                    </select>
+                </div>
+
                 <div class="w-full md:w-40">
                     <select name="status" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
                         <option value="">Semua Status</option>
@@ -46,7 +54,7 @@
                     <button type="submit" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
-                    @if(request('search') || request('jenis_surat_id') || request('status'))
+                    @if(request('search') || request('jenis_surat_id') || request('status') || request('jenis_pemohon'))
                         <a href="{{ route('admin.permohonan-surat.index') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
     <i class="fa-solid fa-rotate-left"></i>
 </a>

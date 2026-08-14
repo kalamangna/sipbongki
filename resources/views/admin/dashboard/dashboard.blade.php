@@ -175,13 +175,13 @@
                 <tbody class="divide-y divide-slate-100">
                     @forelse($permohonanTerbaru as $item)
                     <tr class="hover:bg-slate-50/80 transition-colors">
-                        <td class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap">{{ optional($item->penduduk)->nama_lengkap ?? '-' }}</td>
+                        <td class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap">{{ optional($item->pemohon)->nama_lengkap ?? data_get($item->data_surat, 'nama_lengkap') ?? '-' }}</td>
                         <td class="px-6 py-4">{{ optional($item->jenisSurat)->nama ?? '-' }}</td>
                         <td class="px-6 py-4">
                             @if($item->status == 'Menunggu')
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 tracking-wide">{{ $item->status }}</span>
-                            @elseif($item->status == 'Diproses')
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 tracking-wide">{{ $item->status }}</span>
+                            @elseif($item->status == 'Diproses')
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-700 tracking-wide">{{ $item->status }}</span>
                             @elseif($item->status == 'Selesai')
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">{{ $item->status }}</span>
                             @else
@@ -384,7 +384,8 @@ document.addEventListener('DOMContentLoaded', function () {
         pelayananChart = new ApexCharts(pelayananEl, {
             series: [{ name: 'Jumlah', data: pelayanan.data }],
             chart: { type: 'bar', height: 320, toolbar: { show: false }, fontFamily: fontFam },
-            plotOptions: { bar: { borderRadius: 6, columnWidth: '40%', colors: { ranges: [{ from: 0, to: 100000, color: '#0ea5e9' }] } } },
+            plotOptions: { bar: { borderRadius: 6, columnWidth: '40%', distributed: true } },
+            colors: ['#f59e0b', '#0ea5e9', '#10b981', '#f43f5e'],
             dataLabels: { enabled: false },
             xaxis: { 
                 categories: pelayanan.labels, 

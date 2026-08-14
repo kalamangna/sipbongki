@@ -722,6 +722,7 @@ class ComposerStaticInitfdae0817121af05f5dd76fd96d496486
         'App\\Services\\Surat\\TemplateSuratService' => __DIR__ . '/../..' . '/app/Services/Surat/TemplateSuratService.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',
+        'App\\View\\Components\\SeoMeta' => __DIR__ . '/../..' . '/app/View/Components/SeoMeta.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Barryvdh\\DomPDF\\Facade\\Pdf' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade/Pdf.php',
         'Barryvdh\\DomPDF\\PDF' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/PDF.php',

@@ -40,11 +40,15 @@
                             <option value="">-- Pilih Penandatangan --</option>
                             @foreach($penandatangans as $p)
                                 <option value="{{ $p->id }}" {{ $permohonanSurat->penandatangan_id == $p->id ? 'selected' : '' }}>
-                                    {{ $p->nama_lengkap }} ({{ $p->jabatan->nama }})
+                                    {{ $p->nama_lengkap }}
                                 </option>
                             @endforeach
                         </select>
-                        @if(empty($permohonanSurat->penandatangan_id))
+                        @if($permohonanSurat->penandatangan)
+                            <div class="mt-1.5 px-3 py-2 bg-white/50 border border-slate-200/60 rounded-lg text-xs text-slate-600">
+                                Jabatan: <span class="font-bold text-slate-800">{{ $permohonanSurat->penandatangan->jabatan->nama ?? '-' }}</span>
+                            </div>
+                        @else
                             <p class="text-xs text-rose-600 font-medium mt-1">Pilih penandatangan untuk memproses surat.</p>
                         @endif
                     </div>
