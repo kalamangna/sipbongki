@@ -1,8 +1,11 @@
 @unless($isUsaha)
+    @php
+        $isActuallyDomisili = optional($jenisSurats->firstWhere('id', old('jenis_surat_id', $selected)))->isDomisili();
+    @endphp
     <div class="form-step hidden" data-step="3">
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                <h3 class="font-bold text-slate-800">Langkah 3: Surat Keterangan Domisili</h3>
+                <h3 class="font-bold text-slate-800">Langkah 3: {{ optional($jenisSurats->firstWhere('id', old('jenis_surat_id', $selected)))->nama ?? 'Detail Permohonan' }}</h3>
             </div>
             <div class="p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -12,6 +15,7 @@
                         @error('jenis_surat_id')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                     </div>
                     
+                    @if($isActuallyDomisili)
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">Status Tempat Tinggal <span class="text-red-500">*</span></label>
                         <select name="status_tempat_tinggal" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('status_tempat_tinggal') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
@@ -46,6 +50,7 @@
                             @error('rw_domisili')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                         </div>
                     </div>
+                    @endif
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-slate-700 mb-2">Keperluan <span class="text-red-500">*</span></label>
                         <textarea name="keperluan" required rows="4" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('keperluan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" placeholder="Masukkan Keperluan">{{ old('keperluan') }}</textarea>
@@ -66,7 +71,7 @@
                 <h3 class="font-bold text-slate-800">Langkah 4: Upload Dokumen</h3>
             </div>
             <div class="p-6">
-                <p class="mb-6 text-slate-600">Unggah dokumen persyaratan berikut untuk Surat Keterangan Domisili:</p>
+                <p class="mb-6 text-slate-600">Unggah dokumen persyaratan berikut untuk {{ optional($jenisSurats->firstWhere('id', old('jenis_surat_id', $selected)))->nama ?? 'permohonan Anda' }}:</p>
                 <div class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">KTP <span class="text-red-500">*</span></label>

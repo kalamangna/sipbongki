@@ -44,7 +44,7 @@
                                 <i class="{{ $fact['icon'] }} w-5 h-5 text-primary"></i>
                             </div>
                             <div>
-                                <div class="text-[10px] text-slate-400 uppercase tracking-wider">{{ $fact['label'] }}</div>
+                                <div class="text-xs text-slate-400 uppercase tracking-wider">{{ $fact['label'] }}</div>
                                 <div class="text-sm font-semibold text-slate-700">{{ $fact['value'] }}</div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="relative">
-                <div class="absolute -inset-4 bg-gradient-to-br from-primary-light to-emerald-100 rounded-3xl -z-10"></div>
+                {{-- Decorative blob removed --}}
                 <img src="{{ asset('images/kantorsatu.png') }}"
                      alt="Kantor Kelurahan Bongki"
                      class="w-full rounded-2xl shadow-xl object-cover">
@@ -175,22 +175,22 @@
                                 <div class="grid grid-cols-2 gap-3">
                                     <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
-                                        <p class="text-[10px] text-slate-400 uppercase tracking-wider">Utara</p>
+                                        <p class="text-xs text-slate-400 uppercase tracking-wider">Utara</p>
                                         <p class="text-sm font-semibold text-slate-700">Kabupaten Bone</p>
                                     </div>
                                     <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.707-7.293l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414z" clip-rule="evenodd" /></svg>
-                                        <p class="text-[10px] text-slate-400 uppercase tracking-wider">Selatan</p>
+                                        <p class="text-xs text-slate-400 uppercase tracking-wider">Selatan</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Biringere</p>
                                     </div>
                                     <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-2.707a1 1 0 00-1.414-1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3z" clip-rule="evenodd" /></svg>
-                                        <p class="text-[10px] text-slate-400 uppercase tracking-wider">Timur</p>
+                                        <p class="text-xs text-slate-400 uppercase tracking-wider">Timur</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Balangnipa</p>
                                     </div>
                                     <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.293 9.293a1 1 0 011.414 1.414L9.414 12H13a1 1 0 110 2H9.414l-1.707 1.707a1 1 0 11-1.414-1.414l3-3-3-3z" clip-rule="evenodd" /></svg>
-                                        <p class="text-[10px] text-slate-400 uppercase tracking-wider">Barat</p>
+                                        <p class="text-xs text-slate-400 uppercase tracking-wider">Barat</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Lamatti Rilau</p>
                                     </div>
                                 </div>

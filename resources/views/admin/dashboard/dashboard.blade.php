@@ -24,7 +24,7 @@
             <i class="fa-solid fa-user-plus text-slate-400"></i> Data Penduduk
         </a>
         @endif
-        <a href="{{ route('admin.permohonan-surat.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5">
+        <a href="{{ route('permohonan.create') }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5" title="Buka form permohonan publik">
             <i class="fa-solid fa-file-signature"></i> Layanan Surat
         </a>
     </div>

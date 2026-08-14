@@ -62,7 +62,6 @@
                                     </div>
 
                                     <div id="step-1-lookup-fields">
-                                        <div id="usaha-verify-error" class="hidden mb-6 bg-red-50 border-l-4 border-red-500 p-4 text-sm text-red-700"></div>
                                         <p class="text-sm text-slate-500 mb-4">Masukkan NIK Anda untuk kami periksa di database kependudukan.</p>
                                         <div class="grid grid-cols-1 gap-6">
                                             <div>
@@ -395,7 +394,6 @@
                     const lookupNik = document.getElementById('lookup-nik');
                     const lookupTanggal = document.getElementById('lookup-tanggal_lahir');
                     const identityStep = document.getElementById('usaha-identity-step');
-                    const verifyError = document.getElementById('usaha-verify-error');
                     const verifyMessage = document.getElementById('usaha-verify-message');
                     const existingSummary = document.getElementById('usaha-existing-summary');
                     const existingHiddenFields = document.getElementById('usaha-existing-hidden-fields');
@@ -473,19 +471,49 @@
                     window.togglePublicPemohon();
 
                     function displayLookupError(message) {
-                        verifyError.textContent = message;
-                        verifyError.classList.remove('hidden');
+                        const input = document.getElementById('lookup-nik');
+                        input.classList.remove('border-slate-200', 'focus:border-primary-500', 'focus:ring-primary-500');
+                        input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                        
+                        let errorEl = input.nextElementSibling;
+                        if (!errorEl || !errorEl.classList.contains('js-validation-error')) {
+                            errorEl = document.createElement('div');
+                            errorEl.className = 'mt-1 text-sm text-red-500 js-validation-error';
+                            input.parentNode.insertBefore(errorEl, input.nextSibling);
+                        }
+                        errorEl.textContent = message;
+
+                        input.addEventListener('input', function() {
+                            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                            input.classList.add('border-slate-200', 'focus:border-primary-500', 'focus:ring-primary-500');
+                            if (errorEl && errorEl.parentNode) {
+                                errorEl.remove();
+                            }
+                        }, { once: true });
+                        
+                        setTimeout(() => {
+                            input.focus({ preventScroll: true });
+                        }, 100);
+
                         verifyMessage.classList.add('hidden');
                     }
 
                     function displayLookupMessage(message) {
                         verifyMessage.textContent = message;
                         verifyMessage.classList.remove('hidden');
-                        verifyError.classList.add('hidden');
                     }
 
                     function clearLookupMessages() {
-                        verifyError.classList.add('hidden');
+                        const input = document.getElementById('lookup-nik');
+                        if (input) {
+                            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                            input.classList.add('border-slate-200', 'focus:border-primary-500', 'focus:ring-primary-500');
+                            const errorEl = input.nextElementSibling;
+                            if (errorEl && errorEl.classList.contains('js-validation-error')) {
+                                errorEl.remove();
+                            }
+                        }
+                        
                         verifyMessage.classList.add('hidden');
                     }
 
@@ -879,8 +907,8 @@
                                 
                                 if (!input.value.trim() || !input.checkValidity()) {
                                     isValid = false;
-                                    input.classList.remove('border-slate-200', 'focus:border-primary-500');
-                                    input.classList.add('border-red-500', 'focus:border-red-500', 'ring-red-500/20');
+                                    input.classList.remove('border-slate-200', 'focus:border-primary-500', 'focus:ring-primary-500');
+                                    input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
                                     
                                     let errorEl = input.nextElementSibling;
                                     if (!errorEl || !errorEl.classList.contains('js-validation-error')) {
@@ -902,8 +930,8 @@
 
                                     // Remove error styles on input
                                     input.addEventListener('input', function() {
-                                        input.classList.remove('border-red-500', 'focus:border-red-500', 'ring-red-500/20');
-                                        input.classList.add('border-slate-200', 'focus:border-primary-500');
+                                        input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                                        input.classList.add('border-slate-200', 'focus:border-primary-500', 'focus:ring-primary-500');
                                         if (errorEl && errorEl.parentNode) {
                                             errorEl.remove();
                                         }
@@ -916,6 +944,13 @@
                                 const firstError = currentStepEl.querySelector('.js-validation-error');
                                 if (firstError) {
                                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    
+                                    // Focus automatically on the first invalid input
+                                    setTimeout(() => {
+                                        if (firstError.previousElementSibling) {
+                                            firstError.previousElementSibling.focus({ preventScroll: true });
+                                        }
+                                    }, 100);
                                 }
                                 return;
                             }
@@ -967,6 +1002,7 @@
 </div>
 
 {{-- DEV AUTO FILL BUTTON --}}
+@env('local')
 <button type="button" id="dev-autofill-btn" class="fixed bottom-6 left-6 z-50 h-11 px-4 rounded-full bg-slate-800 text-white font-mono text-xs shadow-lg hover:scale-105 hover:bg-slate-900 transition-all flex items-center gap-2 cursor-pointer border border-slate-600">
     <i class="fa-solid fa-flask"></i> Auto Fill
 </button>
@@ -1109,5 +1145,6 @@
         }
     });
 </script>
+@endenv
 
 @endsection

@@ -22,7 +22,7 @@
                         <span class="text-xl font-extrabold leading-none">
                             {{ $agenda->tanggal ? $agenda->tanggal->format('d') : '-' }}
                         </span>
-                        <span class="text-[10px] uppercase tracking-wider mt-0.5">
+                        <span class="text-xs uppercase tracking-wider mt-0.5">
                             {{ $agenda->tanggal ? $agenda->tanggal->format('M') : '' }}
                         </span>
                     </div>

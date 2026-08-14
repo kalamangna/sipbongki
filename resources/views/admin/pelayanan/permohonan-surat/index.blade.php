@@ -11,9 +11,6 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Persuratan</h2>
             <p class="text-sm text-slate-500 mt-1">Kelola data permohonan surat masuk dan status pelayanannya.</p>
         </div>
-        <a href="{{ route('admin.permohonan-surat.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-primary-500/20 focus:outline-none focus:ring-2 focus:ring-primary-500 active:scale-95 cursor-pointer focus:outline-none active:scale-95 cursor-pointer">
-            <i class="fa-solid fa-circle-plus"></i> Buat Permohonan Baru
-        </a>
     </div>
 
     {{-- Main Card --}}

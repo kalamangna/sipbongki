@@ -336,6 +336,16 @@ class PublicPermohonanController extends Controller
                     'alamat' => $request->input('alamat'),
                 ];
             }
+
+            if ($request->hasFile('dokumen_ktp')) {
+                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'public');
+            }
+            if ($request->hasFile('dokumen_kk')) {
+                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'public');
+            }
+            if ($request->hasFile('dokumen_surat_pengantar')) {
+                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'public');
+            }
         }
 
         // Hanya buat data Penduduk baru jika pemilih mengonfirmasi sebagai "Penduduk Bongki"

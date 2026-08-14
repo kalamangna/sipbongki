@@ -43,7 +43,7 @@
 
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nomor KK</p>
-                <p class="font-medium text-slate-900 text-base">{{ optional($pemohon)->no_kk ?? data_get($dataSurat, 'no_kk') ?? '-' }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ data_get($pemohon, 'kartuKeluarga.no_kk') ?? data_get($pemohon, 'no_kk') ?? data_get($dataSurat, 'no_kk') ?? '-' }}</p>
             </div>
 
             <div>

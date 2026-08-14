@@ -29,7 +29,7 @@
                             <div class="text-lg font-bold leading-none">
                                 {{ optional($berita->tanggal_publish)->format('d') ?? $berita->created_at->format('d') }}
                             </div>
-                            <div class="text-[10px] uppercase tracking-wider">
+                            <div class="text-xs uppercase tracking-wider">
                                 {{ optional($berita->tanggal_publish)->format('M') ?? $berita->created_at->format('M') }}
                             </div>
                         </div>

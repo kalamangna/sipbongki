@@ -86,9 +86,7 @@
     </div>
 
     {{-- NAVBAR --}}
-    @unless(request()->routeIs('permohonan.create'))
-        <x-public.navbar />
-    @endunless
+    <x-public.navbar />
 
     {{-- CONTENT --}}
     <main>

@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fitur (Pelayanan)**: Menambahkan dukungan pengisian formulir layanan secara manual bagi pemohon yang belum terdaftar di database kependudukan, dengan field `manual_` pada `data_surat` dan metode akses dinamis `pemohon`.
 
 ### Changed
+- **UI/UX (Pengaduan & Pelayanan)**: Menyeragamkan gaya pesan *error* validasi Langkah 1 formulir (termasuk fitur *autofocus*) agar selaras secara absolut dengan Langkah 2, serta membersihkan masalah "garis tepi berbayang ganda" yang ditimbulkan oleh sisa *class* CSS bawaan Tailwind.
+- **UI/UX (Pelayanan)**: Menyulap teks judul "Langkah 3" dan "Langkah 4" pada formulir permohonan publik menjadi dinamis dan cerdas sesuai jenis surat yang dipilih pendaftar (tidak lagi statis terpaku pada 'Surat Keterangan Domisili'). Selain itu, sistem kini secara pintar akan menyembunyikan kotak isian spesifik (seperti 'Status Tempat Tinggal') jika surat yang diajukan bukan surat berjenis domisili.
 - **UI/UX (Public)**: Merestrukturisasi antarmuka seksi Hero pada beranda publik agar patuh sepenuhnya pada `DESIGN.md` (menghilangkan elemen dekoratif tanpa makna, menyisipkan deskripsi yang terlewat, dan menyempurnakan indikator *focus* untuk aksesibilitas *keyboard*).
 - **Fitur (Pelayanan)**: Mengubah logika publik pembuatan permohonan surat sehingga data `Penduduk` (warga) baru dengan status "belum terverifikasi" hanya dibuat secara otomatis jika pendaftar secara eksplisit memilih opsi identitas warga lokal (Bongki).
 - **Surat (Template)**: Memperbarui seluruh templat cetak surat (Domisili, Usaha, Kematian, Belum Menikah, Tidak Mampu, Pindah, dll.) agar menggunakan objek data `pemohon` (menggabungkan data penduduk terdaftar atau data manual) daripada langsung mengakses relasi `penduduk`.
@@ -45,5 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Dependencies**: Menghapus package `blade-ui-kit/blade-heroicons` karena sudah sepenuhnya menggunakan Font Awesome via CDN.
 
 ### Fixed
+- **Bugfix (Admin - Detail Permohonan)**: Menambal celah kesalahan sistem dalam menarik data *Nomor Kartu Keluarga* pada halaman riwayat/detail, khusus untuk pemohon tipe "Penduduk Eksisting" (kini sukses ditarik melalui relasi yang tepat menggunakan pembantu `data_get`).
+- **Bugfix (Backend - Permohonan)**: Memperbaiki kesalahan fatal pada alur pengajuan *Surat Keterangan Umum/Lainnya* di dalam kontroler, di mana sistem sebelumnya benar-benar melompati (melewatkan) blok kode yang bertugas menyimpan dokumen unggahan pendukung (KTP/KK) ke dalam *database* dan *storage*.
 - **Database/Seeder**: Memperbarui ikon default di `JenisSuratSeeder` agar kompatibel dengan Font Awesome (`fa-solid fa-house`, `fa-solid fa-heart`).
 - **Layanan**: Memperbaiki render variabel ikon dinamis pada card layanan yang sebelumnya hilang.

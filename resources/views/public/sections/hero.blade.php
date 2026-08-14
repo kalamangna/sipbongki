@@ -26,14 +26,14 @@
                 
                 <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                     <a href="{{ $website?->hero_button_1_link ?? '#layanan' }}"
-                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition duration-300 focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
-                        <i class="fa-solid fa-paper-plane"></i>
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-base font-bold transition duration-300 shadow-md shadow-primary/20 hover:-translate-y-0.5 focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
+                        <i class="fa-solid fa-paper-plane text-lg"></i>
                         {{ $website?->hero_button_1_text ?? 'Ajukan Permohonan' }}
                     </a>
                     
                     <a href="{{ $website?->hero_button_2_link ?? '#layanan' }}"
-                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 text-sm font-semibold transition duration-300 focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
-                        <i class="fa-solid fa-grip"></i>
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-base font-bold transition duration-300 shadow-sm hover:-translate-y-0.5 focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
+                        <i class="fa-solid fa-grip text-lg"></i>
                         {{ $website?->hero_button_2_text ?? 'Lihat Layanan' }}
                     </a>
                 </div>

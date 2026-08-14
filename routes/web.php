@@ -209,7 +209,7 @@ Route::prefix('admin')
         Route::resource(
             'permohonan-surat',
             PermohonanSuratController::class
-        );
+        )->except(['create', 'store']);
 
         Route::get(
             'kartu-keluarga/penduduk/{penduduk}',
