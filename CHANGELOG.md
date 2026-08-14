@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Tata Naskah Dinas (Kop Surat & Tipografi)**: Menyempurnakan Kop Surat Kelurahan Bongki sesuai standar Tata Naskah Dinas Permendagri No. 1 Tahun 2023 menggunakan layout 3 kolom (*balanced centering*), memperbesar ukuran logo instansi, serta menambahkan spasi (*margin-top*) proporsional di atas nama jenis surat.
+- **Tata Naskah Dinas (Logika Penandatangan)**: Mengimplementasikan deteksi otomatis penandatanganan surat sesuai kaidah hukum administrasi dan tata naskah dinas untuk status Lurah Definitif (`LURAH BONGKI,`), Plt./Plh. Lurah (`Plt. LURAH BONGKI,`), serta pendelegasian Atas Nama (`a.n. LURAH BONGKI` disertai baris nama jabatan struktural penerima mandat seperti Sekretaris Lurah / Kasi).
+- **Template Persuratan**: Menambahkan kalimat pengantar resmi *"Menerangkan dengan sesungguhnya bahwa :"* pada template Surat Keterangan Domisili dan melengkapi berkas template standar Surat Keterangan Belum Memiliki Rumah (`belum-punya-rumah.blade.php`).
 - **SEO & Search Engine Indexing**: Menambahkan rute dan template XML Sitemap dinamis (`/sitemap.xml`) untuk mengindeks halaman beranda, layanan, pengaduan, berita, dan pengumuman secara real-time serta mendaftarkannya pada `public/robots.txt`.
 - **SEO (Structured Data / JSON-LD)**: Menyematkan rich snippet Schema.org `NewsArticle` pada Detail Berita dan `Article` pada Detail Pengumuman lengkap dengan tanggal publikasi, gambar cover, dan identitas penerbit (*publisher*).
 - **Fitur (Pelayanan Publik - Auto-Fill Dinamis)**: Mengembangkan fungsionalitas tombol Auto-Fill developer agar bekerja per-langkah (*step-by-step*) sesuai konteks jenis surat (Domisili, Usaha, Kematian, Orang Sama) dan menyematkan dummy upload berkas otomatis menggunakan file gambar `meta.png` via API `DataTransfer`.
@@ -24,6 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fitur (Pelayanan)**: Menambahkan dukungan pengisian formulir layanan secara manual bagi pemohon yang belum terdaftar di database kependudukan, dengan field `manual_` pada `data_surat` dan metode akses dinamis `pemohon`.
 
 ### Changed
+- **Formulir Layanan Publik (Email)**: Mengubah input email pada formulir layanan permohonan publik menjadi opsional (*optional*) serta menyelaraskan validasi frontend JavaScript step validation dan backend Laravel validation.
+- **Template Surat (Tata Letak & Tipografi)**: Memperbaiki aturan CSS perataan vertikal baris tabel surat (`table td` dan `.no-border td` `vertical-align: top`) agar alamat yang memanjang menjadi 2 baris atau lebih tidak mengalami perataan tengah secara vertikal (*center vertical*).
+- **Template Surat (Format Data)**: Menstandarisasi penulisan nama usaha menjadi huruf kapital (**UPPERCASE**) pada template Surat Keterangan Usaha dan merapikan struktur indentasi seluruh berkas template surat.
+- **Template Surat (Perbaikan Sintaks)**: Memperbaiki referensi layout `@extends('surat.layouts.surat')` dan membersihkan duplikasi kop surat pada template Surat Keterangan Pindah (`pindah.blade.php`).
 - **Keamanan & Stabilitas (Rate Limiting & Lookup NIK)**: Menyesuaikan batas *rate limiting* pencarian NIK publik menjadi 30 request/menit serta pengiriman form menjadi 10 request/menit untuk mencegah pemblokiran HTTP 429 yang prematur saat pengujian/pengisian formulir.
 - **UI/UX (Layanan Publik - Error Handling Lookup)**: Menyempurnakan mekanisme *fetch* lookup NIK dengan header `Accept: application/json`, token CSRF dinamis, serta pesan penanganan kesalahan yang presisi dan ramah pengguna untuk status HTTP 429 (Too Many Requests) dan 419 (Page Expired).
 - **SEO & Metadata**: Mengoptimalkan komponen `<x-seo-meta />` agar secara otomatis menyusun meta title, description, dan Open Graph langsung dari data identitas `WebsiteSetting` secara dinamis.
@@ -35,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Arsitektur (Tailwind CSS v4)**: Menghapus berkas usang `tailwind.config.js` dan memusatkan seluruh konfigurasi token `@theme`, `@source`, dan `@plugin` ke dalam berkas CSS aktif.
 
 ### Removed
+- **Aset (Legacy/Typo)**: Menghapus berkas typo kosong `resources/views/surat/layouts/sur at.blade.php`.
 - **Aset (Legacy CSS)**: Menghapus 4 berkas CSS lama yang tidak terpakai (`resources/css/admin.css`, `resources/css/public.css`, `resources/css/struktur.css`, `resources/css/surat.css`) sehingga direktori `resources/css/` hanya memuat 2 berkas aktif (`app.css` dan `frontend.css`).
 - **Formulir (Referensi Jenis Surat & Pengaturan)**: Menghapus input `template_view` pada jenis surat serta input SEO manual pada pengaturan website.
 - **UI/UX (Form Layanan Publik)**: Merombak alur pengisian pada Langkah 1 dengan memisahkan tombol "Cari NIK" secara eksplisit. Hasil pencarian NIK (baik ditemukan maupun tidak terdaftar) kini tampil langsung sebagai kotak informasi ramah di bawah isian form tanpa menggunakan standar pesan error validasi input merah (sehingga terasa lebih komunikatif dan ramah).

@@ -11,28 +11,25 @@
     $nip = $penandatangan->nip ?? '-';
     $jabatan = $penandatangan->jabatan->nama ?? '-';
 @endphp
+
 <p>
     Yang bertanda tangan di bawah ini :
 </p>
 
 <table class="table-identitas" style="margin-left:35px; margin-bottom:6px;">
-
     <tr>
-    <td width="180">Nama</td>
-    <td width="20">:</td>
-    <td><strong>{{ $namaPejabat }}</strong></td>
+        <td width="180">Nama</td>
+        <td width="20">:</td>
+        <td><strong>{{ $namaPejabat }}</strong></td>
     </tr>
-
     <tr>
         <td>NIP</td>
         <td>:</td>
         <td>{{ $nip }}</td>
     </tr>
-
     <tr>
         <td>Jabatan</td>
         <td>:</td>
         <td>{{ $jabatan }}</td>
     </tr>
-
 </table>

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 @php
     $judul = 'SURAT KETERANGAN BELUM MENIKAH';
 @endphp
@@ -10,23 +9,22 @@
 @include('surat.partials.nomor')
 
 @include('surat.partials.identitas-pejabat')
+
 <p style="margin-top:18px; margin-bottom:16px; margin-left:0;">
     Menerangkan dengan sesungguhnya bahwa :
 </p>
+
 <table class="no-border" style="margin-left:35px; margin-bottom:20px;">
-
     <tr>
-    <td width="180">Nama</td>
-    <td width="20">:</td>
-    <td><strong>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</strong></td>
+        <td width="180">Nama</td>
+        <td width="20">:</td>
+        <td><strong>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</strong></td>
     </tr>
-
     <tr>
         <td>NIK</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->nik }}</td>
     </tr>
-
     <tr>
         <td>Tempat / Tanggal Lahir</td>
         <td>:</td>
@@ -35,39 +33,33 @@
             {{ \Carbon\Carbon::parse($permohonan->pemohon->tanggal_lahir)->translatedFormat('d F Y') }}
         </td>
     </tr>
-
     <tr>
         <td>Jenis Kelamin</td>
         <td>:</td>
         <td>
-    {{ $permohonan->pemohon->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
-</td>
+            {{ $permohonan->pemohon->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
+        </td>
     </tr>
-
     <tr>
         <td>Agama</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->agama }}</td>
     </tr>
-
     <tr>
         <td>Pekerjaan</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->pekerjaan }}</td>
     </tr>
-
     <tr>
         <td>Alamat</td>
         <td>:</td>
-        <td>
-            {{ $permohonan->pemohon->alamat }}
-        </td>
+        <td>{{ $permohonan->pemohon->alamat }}</td>
     </tr>
     <tr>
-    <td>Lingkungan</td>
-    <td>:</td>
-    <td>{{ $permohonan->pemohon->lingkungan?->nama ?? '-' }}</td>
-</tr>
+        <td>Lingkungan</td>
+        <td>:</td>
+        <td>{{ $permohonan->pemohon->lingkungan?->nama ?? '-' }}</td>
+    </tr>
 </table>
 
 <p style="margin-left:2px; text-align:justify;">

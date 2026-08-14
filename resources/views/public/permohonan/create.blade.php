@@ -245,8 +245,8 @@
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Email  <span class="text-red-500">*</span></label>
-                                                <input required type="email" name="email" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('email') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('email') }}" placeholder="Masukkan Alamat Email">
+                                                <label class="block text-sm font-medium text-slate-700 mb-2">Email <span class="text-slate-400 font-normal text-xs">(Opsional)</span></label>
+                                                <input type="email" name="email" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('email') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('email') }}" placeholder="Contoh: nama@email.com (opsional)">
                                                 @error('email')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 

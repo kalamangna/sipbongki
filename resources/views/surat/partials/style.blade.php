@@ -35,93 +35,70 @@ body{
 =========================== */
 
 .kop{
-
     width:100%;
-
     margin-bottom:8px;
-
     padding-bottom:6px;
-
     border-bottom:3px double #000;
-
 }
 
 .kop table{
-
     width:100%;
-
     border-collapse:collapse;
-
 }
 
 .kop td{
-
     vertical-align:middle;
-
 }
 
+.kop-logo,
 .logo{
-
-    width:70px;
-
+    width:95px;
     text-align:center;
-
 }
 
+.kop-logo img,
 .logo img{
-
-    width:70px;
-
+    width:85px;
     height:auto;
-
+    display:block;
+    margin:0 auto;
 }
 
+.kop-header,
 .header{
-
     text-align:center;
-
 }
 
-.header h5{
-
-    margin:0;
-
-    font-size:10pt;
-
-    font-weight:bold;
-
-}
-
-.header h4{
-
-    margin:1px 0;
-
-    font-size:14pt;
-
-    font-weight:bold;
-
-}
-
+.kop-header h3,
 .header h3{
-
-    margin:2px 0;
-
-    font-size:16pt;
-
+    margin:0;
+    font-size:13pt;
     font-weight:bold;
-
-    letter-spacing:.5px;
-
+    line-height:1.25;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
 }
 
+.kop-header h2,
+.header h2{
+    margin:2px 0;
+    font-size:15pt;
+    font-weight:bold;
+    line-height:1.25;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.kop-header p,
 .header p{
+    margin:3px 0 0 0;
+    font-size:9.5pt;
+    font-style:italic;
+    line-height:1.3;
+}
 
-    margin:0;
-
-    font-size:10pt;
-
-    text-align:center;
-
+.kop-spacer{
+    width:95px;
 }
 
 /* ===========================
@@ -170,24 +147,33 @@ body{
 
 }
 
-.table-identitas{
+table td{
+    vertical-align:top;
+}
 
-    width:100%;
+.kop td{
+    vertical-align:middle;
+}
 
-    margin-top:6px;
-
-    margin-bottom:6px;
-
+.no-border{
     border-collapse:collapse;
+}
 
+.no-border td{
+    vertical-align:top;
+    padding:2px 0;
+}
+
+.table-identitas{
+    width:100%;
+    margin-top:6px;
+    margin-bottom:6px;
+    border-collapse:collapse;
 }
 
 .table-identitas td{
-
     padding:2px 4px;
-
     vertical-align:top;
-
 }
 
 .table-identitas td:nth-child(1){
@@ -235,11 +221,9 @@ body{
 }
 
 .ttd .jabatan{
-
     font-weight:bold;
-
-    margin-bottom:75px;
-
+    line-height:1.25;
+    margin-bottom:70px;
 }
 
 .ttd .nama{

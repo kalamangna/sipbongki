@@ -15,21 +15,16 @@
 </p>
 
 <table class="no-border" style="margin-left:35px; margin-bottom:20px;">
-
     <tr>
         <td width="180">Nama</td>
         <td width="20">:</td>
-        <td>
-            <strong>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</strong>
-        </td>
+        <td><strong>{{ strtoupper($permohonan->pemohon->nama_lengkap) }}</strong></td>
     </tr>
-
     <tr>
         <td>NIK</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->nik }}</td>
     </tr>
-
     <tr>
         <td>Tempat / Tanggal Lahir</td>
         <td>:</td>
@@ -38,7 +33,6 @@
             {{ \Carbon\Carbon::parse($permohonan->pemohon->tanggal_lahir)->translatedFormat('d F Y') }}
         </td>
     </tr>
-
     <tr>
         <td>Jenis Kelamin</td>
         <td>:</td>
@@ -46,31 +40,26 @@
             {{ $permohonan->pemohon->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
         </td>
     </tr>
-
     <tr>
         <td>Agama</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->agama }}</td>
     </tr>
-
     <tr>
         <td>Pekerjaan</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->pekerjaan }}</td>
     </tr>
-
     <tr>
         <td>Alamat</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->alamat }}</td>
     </tr>
-
     <tr>
         <td>Lingkungan</td>
         <td>:</td>
         <td>{{ $permohonan->pemohon->lingkungan?->nama ?? '-' }}</td>
     </tr>
-
 </table>
 
 <p style="margin-left:2px; text-align:justify;">
@@ -80,36 +69,28 @@
 </p>
 
 <table class="no-border" style="margin-left:35px; margin-top:12px; margin-bottom:20px;">
-
     <tr>
         <td width="180">Nama Dalam Dokumen</td>
         <td width="20">:</td>
-        <td>
-    <strong>{{ strtoupper($permohonan->data_surat['nama_lain'] ?? '-') }}</strong>
-</td>
+        <td><strong>{{ strtoupper($permohonan->data_surat['nama_lain'] ?? '-') }}</strong></td>
     </tr>
-
     <tr>
         <td>Jenis Dokumen</td>
         <td>:</td>
         <td>{{ $permohonan->data_surat['jenis_dokumen'] ?? '-' }}</td>
     </tr>
-
     <tr>
         <td>Nomor Dokumen</td>
         <td>:</td>
         <td>{{ $permohonan->data_surat['nomor_dokumen'] ?? '-' }}</td>
     </tr>
-
 </table>
 
 @if(!empty($permohonan->data_surat['keterangan_perbedaan']))
-
 <p style="margin-left:2px; text-align:justify;">
     Perbedaan penulisan identitas tersebut disebabkan karena
     {{ $permohonan->data_surat['keterangan_perbedaan'] }}.
 </p>
-
 @endif
 
 <p style="margin-left:2px; text-align:justify;">
