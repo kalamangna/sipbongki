@@ -2,9 +2,43 @@
 
 @section('seo_title', $berita->judul)
 @section('seo_description', Str::limit(strip_tags($berita->isi), 160))
+@section('seo_type', 'article')
 @if($berita->gambar)
     @section('seo_image', asset('storage/'.$berita->gambar))
 @endif
+
+@push('styles')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "{{ addslashes($berita->judul) }}",
+    "description": "{{ addslashes(Str::limit(strip_tags($berita->isi), 160)) }}",
+    "image": [
+        "{{ $berita->gambar ? asset('storage/'.$berita->gambar) : asset('images/meta.png') }}"
+    ],
+    "datePublished": "{{ optional($berita->tanggal_publish ?? $berita->created_at)->toIso8601String() }}",
+    "dateModified": "{{ $berita->updated_at->toIso8601String() }}",
+    "author": {
+        "@type": "Organization",
+        "name": "Kelurahan Bongki",
+        "url": "{{ url('/') }}"
+    },
+    "publisher": {
+        "@type": "GovernmentOrganization",
+        "name": "Kelurahan Bongki",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('images/logo.png') }}"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ url()->current() }}"
+    }
+}
+</script>
+@endpush
 
 @section('content')
 

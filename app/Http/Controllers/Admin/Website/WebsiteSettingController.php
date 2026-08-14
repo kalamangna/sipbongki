@@ -115,16 +115,6 @@ class WebsiteSettingController extends Controller
             'footer_text'       => 'nullable|string',
             'copyright'         => 'nullable|string|max:255',
 
-            /*
-            |--------------------------------------------------------------------------
-            | SEO
-            |--------------------------------------------------------------------------
-            */
-
-            'meta_title'        => 'nullable|string|max:255',
-            'meta_description'  => 'nullable|string',
-            'meta_keyword'      => 'nullable|string|max:255',
-
             'tampilkan_berita'      => 'nullable|boolean',
             'tampilkan_pengumuman'  => 'nullable|boolean',
             'tampilkan_agenda'      => 'nullable|boolean',

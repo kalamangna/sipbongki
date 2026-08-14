@@ -322,56 +322,32 @@
         </div>
 
         {{-- ============================================================
-         SEO & VISIBILITAS SECTION
+         VISIBILITAS SECTION PUBLIK
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-magnifying-glass text-primary-600 text-sm"></i>
-                <h5 class="text-sm font-bold text-slate-800">SEO & Visibilitas Section</h5>
+                <i class="fa-solid fa-eye text-primary-600 text-sm"></i>
+                <h5 class="text-sm font-bold text-slate-800">Visibilitas Section Publik</h5>
             </div>
-            <div class="p-6 grid grid-cols-1 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">Meta Title</label>
-                    <input type="text" name="meta_title"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
-                        placeholder="Judul SEO untuk homepage"
-                        value="{{ old('meta_title', $setting->meta_title ?? '') }}">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">Meta Description</label>
-                    <textarea name="meta_description" rows="3"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
-                        placeholder="Deskripsi SEO untuk homepage">{{ old('meta_description', $setting->meta_description ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">Meta Keyword</label>
-                    <input type="text" name="meta_keyword"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
-                        placeholder="kata kunci, pisahkan, dengan koma"
-                        value="{{ old('meta_keyword', $setting->meta_keyword ?? '') }}">
-                </div>
-
-                {{-- Tampilkan / Sembunyikan Section --}}
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-3">Tampilkan / Sembunyikan Section Publik</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        @foreach([
-                            ['name' => 'tampilkan_berita',     'label' => 'Berita'],
-                            ['name' => 'tampilkan_pengumuman', 'label' => 'Pengumuman'],
-                            ['name' => 'tampilkan_agenda',     'label' => 'Agenda'],
-                            ['name' => 'tampilkan_galeri',     'label' => 'Galeri'],
-                            ['name' => 'tampilkan_pengaduan',  'label' => 'Pengaduan'],
-                            ['name' => 'tampilkan_statistik',  'label' => 'Statistik'],
-                            ['name' => 'tampilkan_layanan',    'label' => 'Layanan'],
-                        ] as $cb)
-                        <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:bg-primary-50 hover:border-primary-200 transition-colors">
-                            <input type="checkbox" name="{{ $cb['name'] }}" value="1"
-                                {{ old($cb['name'], $setting->{$cb['name']} ?? true) ? 'checked' : '' }}
-                                class="w-4 h-4 rounded text-primary-600 border-slate-300 focus:ring-primary-500 focus:ring-2 focus:outline-none cursor-pointer">
-                            <span class="text-sm font-medium text-slate-700">{{ $cb['label'] }}</span>
-                        </label>
-                        @endforeach
-                    </div>
+            <div class="p-6">
+                <label class="block text-sm font-semibold text-slate-700 mb-3">Tampilkan / Sembunyikan Section pada Halaman Beranda</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    @foreach([
+                        ['name' => 'tampilkan_berita',     'label' => 'Berita'],
+                        ['name' => 'tampilkan_pengumuman', 'label' => 'Pengumuman'],
+                        ['name' => 'tampilkan_agenda',     'label' => 'Agenda'],
+                        ['name' => 'tampilkan_galeri',     'label' => 'Galeri'],
+                        ['name' => 'tampilkan_pengaduan',  'label' => 'Pengaduan'],
+                        ['name' => 'tampilkan_statistik',  'label' => 'Statistik'],
+                        ['name' => 'tampilkan_layanan',    'label' => 'Layanan'],
+                    ] as $cb)
+                    <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer hover:bg-primary-50 hover:border-primary-200 transition-colors">
+                        <input type="checkbox" name="{{ $cb['name'] }}" value="1"
+                            {{ old($cb['name'], $setting->{$cb['name']} ?? true) ? 'checked' : '' }}
+                            class="w-4 h-4 rounded text-primary-600 border-slate-300 focus:ring-primary-500 focus:ring-2 focus:outline-none cursor-pointer">
+                        <span class="text-sm font-medium text-slate-700">{{ $cb['label'] }}</span>
+                    </label>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -362,4 +362,15 @@ public function pengaduan()
     return view('public.pengaduan', compact('profil'));
 }
 
+public function sitemap()
+{
+    $beritas = Berita::where('status', 'publish')->latest('updated_at')->get();
+    $pengumumen = Pengumuman::where('status', 'publish')->latest('updated_at')->get();
+
+    $content = view('public.sitemap', compact('beritas', 'pengumumen'))->render();
+
+    return response($content, 200)
+        ->header('Content-Type', 'text/xml');
+}
+
 }

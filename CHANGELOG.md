@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **SEO & Search Engine Indexing**: Menambahkan rute dan template XML Sitemap dinamis (`/sitemap.xml`) untuk mengindeks halaman beranda, layanan, pengaduan, berita, dan pengumuman secara real-time serta mendaftarkannya pada `public/robots.txt`.
+- **SEO (Structured Data / JSON-LD)**: Menyematkan rich snippet Schema.org `NewsArticle` pada Detail Berita dan `Article` pada Detail Pengumuman lengkap dengan tanggal publikasi, gambar cover, dan identitas penerbit (*publisher*).
 - **Fitur (Pelayanan Publik - Auto-Fill Dinamis)**: Mengembangkan fungsionalitas tombol Auto-Fill developer agar bekerja per-langkah (*step-by-step*) sesuai konteks jenis surat (Domisili, Usaha, Kematian, Orang Sama) dan menyematkan dummy upload berkas otomatis menggunakan file gambar `meta.png` via API `DataTransfer`.
 - **Fitur (Pelayanan Publik - Pelacakan Status)**: Memindahkan tombol "Cek Status Permohonan" ke posisi utama di Hero Section dengan modal input nomor permohonan yang interaktif, validasi wajib, dan feedback visual yang jelas.
 - **Arsitektur (Template Cetak Surat)**: Mengimplementasikan resolusi otomatis template view cetak surat berdasarkan kode surat (`TemplateSuratService`), menghilangkan keharusan konfigurasi manual `template_view` di database.
@@ -17,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fitur (Pelayanan)**: Menambahkan dukungan pengisian formulir layanan secara manual bagi pemohon yang belum terdaftar di database kependudukan, dengan field `manual_` pada `data_surat` dan metode akses dinamis `pemohon`.
 
 ### Changed
+- **SEO & Metadata**: Mengoptimalkan komponen `<x-seo-meta />` agar secara otomatis menyusun meta title, description, dan Open Graph langsung dari data identitas `WebsiteSetting` secara dinamis.
+- **UI/UX (Admin - Pengaturan Website)**: Merapikan form Pengaturan Website menjadi khusus "Visibilitas Section Publik" dan menghapus input SEO manual yang redundan.
+- **Kebersihan Kode (Routes & Robots)**: Menghapus impor controller `Operator` yang tidak terpakai dari `routes/web.php` dan membersihkan direktif `Disallow: /operator/` pada `public/robots.txt`.
 - **UI/UX (Pelayanan Publik - Penduduk Luar Bongki)**: Menyembunyikan field `agama`, `rt`, dan `rw` pada formulir Langkah 2 untuk pemohon luar daerah serta menyesuaikan validasi backend menjadi `nullable` pada permohonan Domisili dan Usaha.
 - **UI/UX (Admin - Detail Permohonan)**: Memindahkan informasi **Jenis Surat** ke baris paling atas rincian permohonan surat bersanding dengan **Tanggal Permohonan**.
 - **UI/UX & Formulir**: Menstandarisasi seluruh format penulisan *placeholder* panduan (`placeholder="Contoh: ..."`) pada seluruh modul form admin dan referensi.
@@ -24,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - **Aset (Legacy CSS)**: Menghapus 4 berkas CSS lama yang tidak terpakai (`resources/css/admin.css`, `resources/css/public.css`, `resources/css/struktur.css`, `resources/css/surat.css`) sehingga direktori `resources/css/` hanya memuat 2 berkas aktif (`app.css` dan `frontend.css`).
-- **Formulir (Referensi Jenis Surat)**: Menghapus input `template_view` dari formulir Tambah/Edit Master Jenis Surat dan aturan validasi terkait karena sudah sepenuhnya diotomatisasi.
+- **Formulir (Referensi Jenis Surat & Pengaturan)**: Menghapus input `template_view` pada jenis surat serta input SEO manual pada pengaturan website.
 - **UI/UX (Form Layanan Publik)**: Merombak alur pengisian pada Langkah 1 dengan memisahkan tombol "Cari NIK" secara eksplisit. Hasil pencarian NIK (baik ditemukan maupun tidak terdaftar) kini tampil langsung sebagai kotak informasi ramah di bawah isian form tanpa menggunakan standar pesan error validasi input merah (sehingga terasa lebih komunikatif dan ramah).
 - **UI/UX (Form Layanan Publik)**: Menciptakan fungsionalitas *smart step skipping* (Lompatan Langkah Cerdas). Apabila NIK pemohon ditemukan (yang berarti Langkah 2 verifikasi manual tidak diperlukan), sistem akan langsung melompati Langkah 2. Menariknya, sistem secara cerdas akan mengkalkulasi ulang *progress bar*, nomor langkah, dan teks tombol secara *real-time* sehingga warga tidak pernah merasa "kehilangan langkah" (total langkah dinamis berubah dari 5 menjadi 4).
 - **UI/UX (Form Layanan Publik)**: Menonaktifkan fungsionalitas tombol *Enter* di *keyboard* saat berada di dalam formulir agar warga tidak secara tidak sengaja melompati atau men-submit formulir secara prematur.

@@ -10,7 +10,7 @@
             <div class="text-center lg:text-left">
                 <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-primary mb-6 border border-slate-200 shadow-sm uppercase tracking-wider">
                     <i class="fa-solid fa-shield-halved"></i>
-                    Sistem Informasi dan Pelayanan
+                    {{ $website?->badge ?? 'Sistem Informasi dan Pelayanan' }}
                 </span>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">

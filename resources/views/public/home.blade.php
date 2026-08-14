@@ -1,7 +1,5 @@
 @extends('layouts.public')
 
-@section('title', 'Beranda | SIP Bongki')
-
 @section('content')
 
 {{-- =====================================================

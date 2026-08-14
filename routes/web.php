@@ -20,14 +20,6 @@ use App\Http\Controllers\Admin\PengaduanController;
 
 use App\Http\Controllers\PublicPengaduanController;
 
-use App\Http\Controllers\Operator\DashboardController as OperatorDashboardController;
-use App\Http\Controllers\Operator\PendudukController as OperatorPendudukController;
-use App\Http\Controllers\Operator\KartuKeluargaController as OperatorKartuKeluargaController;
-use App\Http\Controllers\Operator\PermohonanSuratController as OperatorPermohonanSuratController;
-use App\Http\Controllers\Operator\PengaduanController as OperatorPengaduanController;
-use App\Http\Controllers\Operator\RiwayatPelayananController as OperatorRiwayatPelayananController;
-use App\Http\Controllers\Operator\LaporanController as OperatorLaporanController;
-
 use App\Http\Controllers\Admin\Website\BeritaController;
 use App\Http\Controllers\Admin\Website\AgendaController;
 use App\Http\Controllers\Admin\Website\GaleriController;
@@ -46,9 +38,11 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
     ->name('berita.show');
 
-    Route::get('/pengumuman/{slug}', 
-    [HomeController::class, 'showPengumuman']
-)->name('pengumuman.detail');
+Route::get('/pengumuman/{slug}', [HomeController::class, 'showPengumuman'])
+    ->name('pengumuman.detail');
+
+Route::get('/sitemap.xml', [HomeController::class, 'sitemap'])
+    ->name('sitemap');
 
 
 /*
