@@ -16,7 +16,7 @@
         </a>
     </div>
 
-    <form action="{{ route('admin.permohonan-surat.store') }}" method="POST" id="formPermohonan">
+    <form action="{{ route('admin.permohonan-surat.store') }}" method="POST" id="formPermohonan" enctype="multipart/form-data">
         @csrf
 
         {{-- Main Form Card --}}

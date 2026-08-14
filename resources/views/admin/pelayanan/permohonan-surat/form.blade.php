@@ -23,7 +23,8 @@
 
  <select
  name="jenis_surat_id"
- class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
+ class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm {{ isset($permohonanSurat) ? 'pointer-events-none opacity-70 bg-slate-100' : '' }}"
+ {{ isset($permohonanSurat) ? 'tabindex="-1"' : '' }}
  required>
 
  <option value="">-- Pilih Jenis Surat --</option>
@@ -55,12 +56,12 @@
     </label>
     
     <div class="flex flex-wrap gap-4 mb-4">
-        <label class="inline-flex items-center cursor-pointer">
-            <input type="radio" name="jenis_pemohon" value="terdaftar" class="text-primary-600 focus:ring-primary-500" checked onchange="togglePemohonSource()">
+        <label class="inline-flex items-center {{ isset($permohonanSurat) ? 'opacity-60 cursor-not-allowed pointer-events-none' : 'cursor-pointer' }}">
+            <input type="radio" name="jenis_pemohon" value="terdaftar" class="text-primary-600 focus:ring-primary-500" checked {{ !isset($permohonanSurat) ? 'onchange="togglePemohonSource()"' : 'tabindex="-1"' }}>
             <span class="ml-2 text-sm text-slate-700">Penduduk Bongki</span>
         </label>
-        <label class="inline-flex items-center cursor-pointer">
-            <input type="radio" name="jenis_pemohon" value="manual" class="text-primary-600 focus:ring-primary-500" {{ old('jenis_pemohon', (!empty($permohonanSurat->data_surat['manual_nama_lengkap']) ? 'manual' : 'terdaftar')) == 'manual' ? 'checked' : '' }} onchange="togglePemohonSource()">
+        <label class="inline-flex items-center {{ isset($permohonanSurat) ? 'opacity-60 cursor-not-allowed pointer-events-none' : 'cursor-pointer' }}">
+            <input type="radio" name="jenis_pemohon" value="manual" class="text-primary-600 focus:ring-primary-500" {{ old('jenis_pemohon', (!empty($permohonanSurat->data_surat['manual_nama_lengkap']) ? 'manual' : 'terdaftar')) == 'manual' ? 'checked' : '' }} {{ !isset($permohonanSurat) ? 'onchange="togglePemohonSource()"' : 'tabindex="-1"' }}>
             <span class="ml-2 text-sm text-slate-700">Penduduk Luar Bongki</span>
         </label>
     </div>
@@ -69,7 +70,8 @@
          <select
          id="penduduk_id"
          name="penduduk_id"
-         class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+         class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm {{ isset($permohonanSurat) ? 'pointer-events-none opacity-70 bg-slate-100' : '' }}"
+         {{ isset($permohonanSurat) ? 'tabindex="-1"' : '' }}>
              <option value="">-- Pilih Penduduk --</option>
              @foreach($penduduks as $penduduk)
              <option
@@ -155,7 +157,7 @@
  type="text"
  name="nama_usaha"
  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
- placeholder="Contoh : Warung Kelontong Berkah"
+ placeholder="Contoh: Warung Kelontong Berkah"
  value="{{ old('nama_usaha', $permohonanSurat->data_surat['nama_usaha'] ?? '') }}">
 
  </div>
@@ -170,7 +172,7 @@
  type="text"
  name="jenis_usaha"
  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
- placeholder="Contoh : Perdagangan Sembako"
+ placeholder="Contoh: Perdagangan Sembako"
  value="{{ old('jenis_usaha', $permohonanSurat->data_surat['jenis_usaha'] ?? '') }}">
 
  </div>
@@ -185,7 +187,7 @@
  name="alamat_usaha"
  rows="2"
  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
- placeholder="Contoh : Jl. Merdeka No. 123, RT 01/RW 02">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
+ placeholder="Contoh: Jl. Merdeka No. 123, RT 01/RW 02">{{ old('alamat_usaha', $permohonanSurat->data_surat['alamat_usaha'] ?? '') }}</textarea>
 
  </div>
 
@@ -199,7 +201,7 @@
  type="text"
  name="lama_usaha"
  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
- placeholder="Contoh : 5 Tahun"
+ placeholder="Contoh: 5 Tahun"
  value="{{ old('lama_usaha', $permohonanSurat->data_surat['lama_usaha'] ?? '') }}">
 
  </div>
@@ -214,7 +216,7 @@
  type="text"
  name="keterangan_usaha"
  class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm"
- placeholder="Contoh : Sedang berjalan / Berkembang"
+ placeholder="Contoh: Sedang berjalan / Berkembang"
  value="{{ old('keterangan_usaha', $permohonanSurat->data_surat['keterangan_usaha'] ?? '') }}">
 
  </div>
@@ -825,6 +827,62 @@
     
         <div class="mb-6">
  <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
+ <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-file-pdf text-rose-500 mr-2"></i>Dokumen Pendukung</h3>
+ </div>
+ <div class="bg-blue-50/50 border border-blue-100 rounded-xl p-4 mb-6">
+     <div class="flex gap-3 items-start">
+         <i class="fa-solid fa-circle-info text-blue-500 mt-0.5"></i>
+         <div>
+             <h4 class="text-sm font-semibold text-blue-800">Ubah Dokumen Warga (Opsional)</h4>
+             <p class="text-sm text-blue-600 mt-1">Kosongkan jika Anda tidak ingin mengubah/mengganti dokumen yang sudah diunggah oleh warga.</p>
+         </div>
+     </div>
+ </div>
+ <div>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+     @php
+         $docs = [
+             'dokumen_ktp' => 'Foto KTP Warga',
+             'dokumen_kk' => 'Foto Kartu Keluarga',
+             'dokumen_surat_pengantar' => 'Surat Pengantar RT/RW',
+         ];
+     @endphp
+
+     @foreach($docs as $field => $label)
+     <div>
+         <label class="block text-sm font-semibold text-slate-700 mb-1.5">{{ $label }}</label>
+         <input type="file" name="{{ $field }}" accept="image/jpeg,image/png,image/jpg,application/pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer">
+         @if(!empty($permohonanSurat->data_surat[$field]))
+             <div class="mt-2 text-xs text-slate-500">
+                 Tersimpan: <a href="{{ asset('storage/' . $permohonanSurat->data_surat[$field]) }}" target="_blank" class="text-primary-600 font-semibold hover:underline">Lihat Dokumen</a>
+             </div>
+         @endif
+         @error($field)
+             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+         @enderror
+     </div>
+     @endforeach
+
+     <div id="dokumen_usaha_container" style="display:none;">
+         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Foto Tempat Usaha</label>
+         <input type="file" name="dokumen_tempat_usaha" accept="image/jpeg,image/png,image/jpg,application/pdf" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-slate-50 file:text-slate-700 hover:file:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer">
+         @if(!empty($permohonanSurat->data_surat['dokumen_tempat_usaha']))
+             <div class="mt-2 text-xs text-slate-500">
+                 Tersimpan: <a href="{{ asset('storage/' . $permohonanSurat->data_surat['dokumen_tempat_usaha']) }}" target="_blank" class="text-primary-600 font-semibold hover:underline">Lihat Dokumen</a>
+             </div>
+         @endif
+         @error('dokumen_tempat_usaha')
+             <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+         @enderror
+     </div>
+
+ </div>
+ </div>
+ </div>
+
+        <div class="mb-6">
+ <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
  <h3 class="font-bold text-slate-800 text-base mb-0"><i class="fa-solid fa-circle-info text-teal-500 mr-2"></i>Informasi Tambahan</h3>
  </div>
  <div>
@@ -997,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', function () {
  'penduduk_id_kematian'
  );
  
-function toggleFields() {
+ function toggleFields() {
 
  const selectedText =
  jenisSurat.options[jenisSurat.selectedIndex]
@@ -1010,6 +1068,7 @@ function toggleFields() {
  kematianFields.style.display = 'none';
  orangSamaFields.style.display = 'none';
  domisiliFields.style.display = 'none';
+ document.getElementById('dokumen_usaha_container').style.display = 'none';
 
  pemohonContainer.style.display = 'block';
  togglePemohonSource(); // Ensures correct display based on radio
@@ -1020,7 +1079,8 @@ function toggleFields() {
 
  // Surat Usaha
  if (selectedText.includes('usaha')) {
- usahaFields.style.display = 'block';
+     usahaFields.style.display = 'block';
+     document.getElementById('dokumen_usaha_container').style.display = 'block';
  }
 
  // Surat Orang Yang Sama

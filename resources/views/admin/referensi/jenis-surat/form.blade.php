@@ -3,34 +3,27 @@
     {{-- Kode Surat --}}
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kode Surat <span class="text-red-500">*</span></label>
-        <input type="text" name="kode" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode', $jenisSurat->kode ?? '') }}" placeholder="Contoh : SKTM" required>
+        <input type="text" name="kode" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode', $jenisSurat->kode ?? '') }}" placeholder="Contoh: SKU / SKTM" required>
     </div>
 
     {{-- Kode Nomor Surat --}}
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kode Nomor Surat</label>
-        <input type="text" name="kode_nomor" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}" placeholder="Contoh : 470">
+        <input type="text" name="kode_nomor" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('kode_nomor', $jenisSurat->kode_nomor ?? '') }}" placeholder="Contoh: 500.2 / 470">
         <p class="mt-1 text-xs text-slate-500">Digunakan pada nomor surat. Contoh: 470/001/KLB/VII/2026</p>
     </div>
 
     {{-- Nomor Urut Awal --}}
     <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nomor Urut Awal</label>
-        <input type="number" min="0" name="nomor_urut" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}" placeholder="0">
+        <input type="number" min="0" name="nomor_urut" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nomor_urut', $jenisSurat->nomor_urut ?? 0) }}" placeholder="Contoh: 0">
         <p class="mt-1 text-xs text-slate-500">Nomor terakhir yang telah digunakan.</p>
     </div>
 
-    {{-- Template View --}}
-    <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Template View</label>
-        <input type="text" name="template_view" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('template_view', $jenisSurat->template_view ?? '') }}" placeholder="admin.pelayanan.surat.domisili">
-        <p class="mt-1 text-xs text-slate-500">Gunakan nama Blade Laravel. Contoh: admin.pelayanan.surat.domisili</p>
-    </div>
-
     {{-- Nama Surat --}}
-    <div class="md:col-span-2">
+    <div>
         <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Surat <span class="text-red-500">*</span></label>
-        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $jenisSurat->nama ?? '') }}" placeholder="Masukkan nama surat" required>
+        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $jenisSurat->nama ?? '') }}" placeholder="Contoh: Surat Keterangan Usaha" required>
     </div>
 
     {{-- Persyaratan Layanan --}}

@@ -307,8 +307,17 @@ break;
         'manual_jenis_kelamin', 'manual_agama', 'manual_pekerjaan', 'manual_alamat',
         'manual_rt', 'manual_rw', 'manual_no_kk'
     ]);
+
+    $uploadedFiles = [];
+    $docs = ['dokumen_ktp', 'dokumen_kk', 'dokumen_surat_pengantar', 'dokumen_tempat_usaha'];
+    foreach ($docs as $doc) {
+        if ($request->hasFile($doc)) {
+            $request->validate([$doc => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:2048']]);
+            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'public');
+        }
+    }
     
-    $validated['data_surat'] = array_merge($dataSurat, $manualFields);
+    $validated['data_surat'] = array_merge($dataSurat, $manualFields, $uploadedFiles);
 
     if (empty($validated['penduduk_id']) && empty($request->manual_nama_lengkap)) {
         return back()
@@ -643,9 +652,22 @@ public function update(
         'manual_jenis_kelamin', 'manual_agama', 'manual_pekerjaan', 'manual_alamat',
         'manual_rt', 'manual_rw', 'manual_no_kk'
     ]);
+
+    $uploadedFiles = [];
+    $docs = ['dokumen_ktp', 'dokumen_kk', 'dokumen_surat_pengantar', 'dokumen_tempat_usaha'];
+    foreach ($docs as $doc) {
+        if ($request->hasFile($doc)) {
+            $request->validate([$doc => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:2048']]);
+            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'public');
+            
+            if (!empty($permohonanSurat->data_surat[$doc])) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($permohonanSurat->data_surat[$doc]);
+            }
+        }
+    }
     
     // Merge existing data_surat so we don't lose them if they are omitted in request, then overlay new ones
-    $validated['data_surat'] = array_merge($permohonanSurat->data_surat ?? [], $dataSurat, $manualFields);
+    $validated['data_surat'] = array_merge($permohonanSurat->data_surat ?? [], $dataSurat, $manualFields, $uploadedFiles);
 
     $permohonanSurat->update($validated);
 

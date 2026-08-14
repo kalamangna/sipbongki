@@ -66,9 +66,20 @@
                                         <div class="grid grid-cols-1 gap-6">
                                             <div>
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">NIK <span class="text-red-500">*</span></label>
-                                                <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
-                                                @error('nik_lookup')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
+                                                <div class="flex gap-3 items-start">
+                                                    <div class="w-full">
+                                                        <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
+                                                        @error('nik_lookup')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
+                                                    </div>
+                                                    <button type="button" id="btn-cari-nik" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 shrink-0 cursor-pointer"><i class="fa-solid fa-search"></i> Cari NIK</button>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div id="step-1-lookup-result" class="hidden mt-6">
+                                            <div id="step-1-lookup-message" class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 text-sm text-teal-700 font-medium">
+                                                Data kependudukan berhasil ditemukan! Silakan klik Lanjutkan.
+                                            </div>
+                                            <!-- Existing summary will be moved here by JS -->
                                         </div>
                                     </div>
                                     <div id="step-1-manual-fields" style="display:none;">
@@ -77,14 +88,14 @@
                                 </div>
                             </div>
                             <div class="flex justify-end">
-                                <button type="button" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer" id="lookup-button">Lanjutkan</button>
+                                <button type="button" class="next-step hidden px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer" id="lookup-button">Lanjutkan</button>
                             </div>
                         </div>
 
                         <div class="form-step hidden" data-step="2" id="usaha-identity-step">
                             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 overflow-hidden">
                                 <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                                    <h3 class="font-bold text-slate-800">Langkah 2: Verifikasi Identitas</h3>
+                                    <h3 class="font-bold text-slate-800">Langkah 2: Isi Data Manual</h3>
                                 </div>
                                 <div class="p-6">
                                     <div id="usaha-verify-message" class="hidden mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-blue-700"></div>
@@ -138,9 +149,9 @@
                                                 @error('jenis_kelamin')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-lingkungan">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">Lingkungan <span class="text-red-500">*</span></label>
-                                                <select required name="lingkungan_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('lingkungan_id') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <select required name="lingkungan_id" id="input-lingkungan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('lingkungan_id') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Lingkungan</option>
                                                     @foreach($lingkungans as $lingkungan)
                                                         <option value="{{ $lingkungan->id }}" {{ old('lingkungan_id')==$lingkungan->id ? 'selected' : '' }}>{{ $lingkungan->nama }}</option>
@@ -162,9 +173,9 @@
                                                 @error('tanggal_lahir')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-agama">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">Agama <span class="text-red-500">*</span></label>
-                                                <select name="agama" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('agama') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <select name="agama" id="input-agama" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('agama') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Agama</option>
                                                     @foreach(['Islam','Kristen','Katolik','Hindu','Buddha','Konghucu'] as $a)
                                                         <option value="{{ $a }}" {{ old('agama')==$a ? 'selected' : '' }}>{{ $a }}</option>
@@ -173,9 +184,9 @@
                                                 @error('agama')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-status-perkawinan">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">Status Perkawinan <span class="text-red-500">*</span></label>
-                                                <select required name="status_perkawinan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('status_perkawinan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <select required name="status_perkawinan" id="input-status-perkawinan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('status_perkawinan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Status</option>
                                                     @foreach(['Belum Kawin','Kawin','Cerai Hidup','Cerai Mati'] as $s)
                                                         <option value="{{ $s }}" {{ old('status_perkawinan')==$s ? 'selected' : '' }}>{{ $s }}</option>
@@ -184,9 +195,9 @@
                                                 @error('status_perkawinan')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-pendidikan">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">Pendidikan <span class="text-red-500">*</span></label>
-                                                <select required name="pendidikan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pendidikan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <select required name="pendidikan" id="input-pendidikan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pendidikan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     @php
                                                         $pendidikanList = ['Tidak/Belum Sekolah','Belum Tamat SD/Sederajat','SD/Sederajat','SMP/Sederajat','SMA/Sederajat','Diploma I','Diploma II','Diploma III','Diploma IV/S1','S2','S3'];
                                                     @endphp
@@ -210,20 +221,20 @@
                                             </div>
 
                                             <div class="md:col-span-2">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Alamat <span class="text-red-500">*</span></label>
+                                                <label id="label-alamat" class="block text-sm font-medium text-slate-700 mb-2">Alamat <span class="text-red-500">*</span></label>
                                                 <textarea name="alamat" required rows="3" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('alamat') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
                                                 @error('alamat')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-rt">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">RT <span class="text-red-500">*</span></label>
-                                                <input type="text" name="rt" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rt') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rt') }}" placeholder="Contoh: 001">
+                                                <input type="text" name="rt" id="input-rt" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rt') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rt') }}" placeholder="Contoh: 001">
                                                 @error('rt')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
-                                            <div>
+                                            <div id="field-rw">
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">RW <span class="text-red-500">*</span></label>
-                                                <input type="text" name="rw" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rw') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rw') }}" placeholder="Contoh: 001">
+                                                <input type="text" name="rw" id="input-rw" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rw') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rw') }}" placeholder="Contoh: 001">
                                                 @error('rw')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
@@ -374,14 +385,6 @@
                                 }
                                 
                                 e.preventDefault();
-                                
-                                const currentStepEl = document.querySelector('.form-step:not(.hidden)');
-                                if (currentStepEl) {
-                                    const nextBtn = currentStepEl.querySelector('#lookup-button, .next-step, button[type="submit"]');
-                                    if (nextBtn && !nextBtn.disabled) {
-                                        nextBtn.click();
-                                    }
-                                }
                             }
                         });
                     }
@@ -442,20 +445,83 @@
                         const lookupFields = document.getElementById('step-1-lookup-fields');
                         const manualUsahaMsg = document.getElementById('step-1-manual-fields');
                         const lookupBtn = document.getElementById('lookup-button');
+                        
+                        const fieldLingkungan = document.getElementById('field-lingkungan');
+                        const fieldStatusPerkawinan = document.getElementById('field-status-perkawinan');
+                        const fieldPendidikan = document.getElementById('field-pendidikan');
+                        const fieldAgama = document.getElementById('field-agama');
+                        const fieldRt = document.getElementById('field-rt');
+                        const fieldRw = document.getElementById('field-rw');
+                        const labelAlamat = document.getElementById('label-alamat');
+                        const inputLingkungan = document.getElementById('input-lingkungan');
+                        const inputStatusPerkawinan = document.getElementById('input-status-perkawinan');
+                        const inputPendidikan = document.getElementById('input-pendidikan');
+                        const inputAgama = document.getElementById('input-agama');
+                        const inputRt = document.getElementById('input-rt');
+                        const inputRw = document.getElementById('input-rw');
 
-                        // For Usaha
+                        // For Usaha / umum
                         if (lookupFields && manualUsahaMsg) {
                             if (valUsaha === 'luar') {
                                 lookupFields.style.display = 'none';
                                 manualUsahaMsg.style.display = 'block';
                                 if (lookupNik) lookupNik.required = false;
-                                if (lookupBtn) lookupBtn.textContent = 'Lanjutkan & Isi Data Manual';
+                                if (lookupBtn) {
+                                    lookupBtn.textContent = 'Lanjutkan & Isi Data Manual';
+                                    lookupBtn.classList.remove('hidden');
+                                }
+                                if (newDataSection) newDataSection.classList.remove('hidden');
+                                enableNewDataSection();
+                                
+                                if (fieldLingkungan) fieldLingkungan.style.display = 'none';
+                                if (fieldStatusPerkawinan) fieldStatusPerkawinan.style.display = 'none';
+                                if (fieldPendidikan) fieldPendidikan.style.display = 'none';
+                                if (fieldAgama) fieldAgama.style.display = 'none';
+                                if (fieldRt) fieldRt.style.display = 'none';
+                                if (fieldRw) fieldRw.style.display = 'none';
+                                if (inputLingkungan) inputLingkungan.required = false;
+                                if (inputStatusPerkawinan) inputStatusPerkawinan.required = false;
+                                if (inputPendidikan) inputPendidikan.required = false;
+                                if (inputAgama) inputAgama.required = false;
+                                if (inputRt) inputRt.required = false;
+                                if (inputRw) inputRw.required = false;
+                                if (labelAlamat) labelAlamat.innerHTML = 'Alamat Lengkap (Sertakan Desa/Kel, Kec, Kab) <span class="text-red-500">*</span>';
                             } else {
                                 lookupFields.style.display = 'block';
                                 manualUsahaMsg.style.display = 'none';
                                 if (lookupNik) lookupNik.required = true;
-                                if (lookupBtn) lookupBtn.textContent = 'Lanjutkan';
+                                if (lookupBtn) {
+                                    lookupBtn.textContent = 'Lanjutkan';
+                                    if (window.foundPendudukData === undefined) {
+                                        lookupBtn.classList.add('hidden');
+                                    } else {
+                                        lookupBtn.classList.remove('hidden');
+                                    }
+                                }
+                                
+                                if (window.foundPendudukData === false) {
+                                    if (newDataSection) newDataSection.classList.remove('hidden');
+                                    enableNewDataSection();
+                                } else {
+                                    if (newDataSection) newDataSection.classList.add('hidden');
+                                    disableNewDataSection();
+                                }
+                                
+                                if (fieldLingkungan) fieldLingkungan.style.display = 'block';
+                                if (fieldStatusPerkawinan) fieldStatusPerkawinan.style.display = 'block';
+                                if (fieldPendidikan) fieldPendidikan.style.display = 'block';
+                                if (fieldAgama) fieldAgama.style.display = 'block';
+                                if (fieldRt) fieldRt.style.display = 'block';
+                                if (fieldRw) fieldRw.style.display = 'block';
+                                if (inputLingkungan) inputLingkungan.required = true;
+                                if (inputStatusPerkawinan) inputStatusPerkawinan.required = true;
+                                if (inputPendidikan) inputPendidikan.required = true;
+                                if (inputAgama) inputAgama.required = true;
+                                if (inputRt) inputRt.required = true;
+                                if (inputRw) inputRw.required = true;
+                                if (labelAlamat) labelAlamat.innerHTML = 'Alamat <span class="text-red-500">*</span>';
                             }
+                            updateDynamicNumbering(currentStep);
                         }
 
                         // For Domisili
@@ -534,8 +600,20 @@
                     }
 
                     function showIdentityResult(data) {
+                        const lookupBtn = document.getElementById('lookup-button');
+                        if (lookupBtn) lookupBtn.classList.remove('hidden');
+                        
+                        const lookupResultDiv = document.getElementById('step-1-lookup-result');
+                        const lookupMessageDiv = document.getElementById('step-1-lookup-message');
+
                         if (data.found) {
                             window.foundPendudukData = true;
+                            
+                            if (lookupMessageDiv) {
+                                lookupMessageDiv.className = 'bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 text-sm text-teal-700 font-medium';
+                                lookupMessageDiv.textContent = 'Data kependudukan berhasil ditemukan! Silakan klik Lanjutkan.';
+                            }
+                            
                             if (summaryNikFound) summaryNikFound.textContent = data.penduduk.nik || '-';
                             if (summaryNamaFound) summaryNamaFound.textContent = data.penduduk.nama_lengkap || '-';
                             if (summaryTempatTanggalFound) summaryTempatTanggalFound.textContent = data.penduduk.tempat_lahir + ', ' + data.penduduk.tanggal_lahir;
@@ -543,25 +621,40 @@
                             if (summaryAlamatFound) summaryAlamatFound.textContent = data.penduduk.alamat || '-';
                             if (summaryRtRwFound) summaryRtRwFound.textContent = data.penduduk.rt + '/' + data.penduduk.rw;
                             if (summaryTeleponFound) summaryTeleponFound.textContent = data.penduduk.telepon || '-';
-                            existingSummary.classList.remove('hidden');
-                            existingHiddenFields.classList.remove('hidden');
-                            newDataSection.classList.add('hidden');
+                            
+                            // Move summary to step 1
+                            if (lookupResultDiv && existingSummary) {
+                                lookupResultDiv.appendChild(existingSummary);
+                                existingSummary.classList.remove('hidden');
+                                lookupResultDiv.classList.remove('hidden');
+                            }
+
+                            if (existingHiddenFields) existingHiddenFields.classList.remove('hidden');
+                            if (newDataSection) newDataSection.classList.add('hidden');
                             disableNewDataSection();
                             setExistingFields(data.penduduk);
                             updateSummary();
-                            displayLookupMessage('Data penduduk ditemukan. Silakan lanjut ke langkah berikutnya.');
+                            updateDynamicNumbering(currentStep);
                         } else {
                             window.foundPendudukData = false;
-                            existingSummary.classList.add('hidden');
-                            existingHiddenFields.classList.add('hidden');
-                            newDataSection.classList.remove('hidden');
+                            
+                            if (lookupMessageDiv) {
+                                lookupMessageDiv.className = 'bg-red-50 border-l-4 border-red-500 p-4 mb-4 text-sm text-red-700 font-medium';
+                                lookupMessageDiv.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Data NIK belum terdaftar. Silakan klik <strong>Lanjutkan</strong> untuk mengisi form secara manual.';
+                            }
+                            
+                            if (existingSummary) existingSummary.classList.add('hidden');
+                            if (lookupResultDiv) lookupResultDiv.classList.remove('hidden');
+                            
+                            if (existingHiddenFields) existingHiddenFields.classList.add('hidden');
+                            if (newDataSection) newDataSection.classList.remove('hidden');
                             enableNewDataSection();
                             
                             // prefill nik
                             const nikManual = document.querySelector('#usaha-new-data input[name="nik"]');
                             if (nikManual && lookupNik) nikManual.value = lookupNik.value;
 
-                            displayLookupMessage('Data tidak ditemukan, silakan isi form secara manual.');
+                            updateDynamicNumbering(currentStep);
                         }
                     }
 
@@ -647,9 +740,9 @@
                             return;
                         }
                         
-                        // show a visible checking message and disable button during fetch
-                        lookupButton.disabled = true;
-                        lookupButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mencari...';
+                            const btnCari = document.getElementById('btn-cari-nik');
+                            btnCari.disabled = true;
+                            btnCari.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mencari...';
 
                         try {
                             const response = await fetch('{{ route('permohonan.lookup', [], false) }}', {
@@ -672,12 +765,7 @@
                                 return;
                             }
 
-                            // Always reveal the identity step for both found and not-found
-                            if (identityStep) {
-                                identityStep.classList.remove('hidden');
-                                currentStep = 2;
-                                showStep(currentStep);
-                            }
+                            // Show result immediately on Step 1 instead of jumping to step 2
 
                             // If server explicitly returned found=false, show new data section
                             if (data && data.found === false) {
@@ -695,9 +783,10 @@
                             console.error('lookup error', error);
                             displayLookupError('Tidak dapat memproses permintaan (Mungkin sesi Anda telah habis). Silakan muat ulang (refresh) halaman ini.');
                         } finally {
-                            if (lookupButton) {
-                                lookupButton.disabled = false;
-                                lookupButton.innerHTML = 'Lanjutkan';
+                            const btnCari = document.getElementById('btn-cari-nik');
+                            if (btnCari) {
+                                btnCari.disabled = false;
+                                btnCari.innerHTML = '<i class="fa-solid fa-search"></i> Cari NIK';
                             }
                         }
                     }
@@ -860,8 +949,8 @@
                         steps.forEach((element) => {
                             element.classList.toggle('hidden', parseInt(element.dataset.step, 10) !== step);
                         });
-                        currentStepLabel.textContent = step;
-                        progressBar.style.width = `${(step / steps.length) * 100}%`;
+                        
+                        updateDynamicNumbering(step);
 
                         if (step === steps.length) {
                             updateSummary();
@@ -878,7 +967,7 @@
                     }
 
                     if (lookupButton) {
-                        lookupButton.addEventListener('click', lookupPenduduk);
+                        document.getElementById('btn-cari-nik').addEventListener('click', lookupPenduduk);
                     }
 
                     hydrateExistingSummaryFromServerOldValues();
@@ -891,6 +980,51 @@
                             updateSummary();
                         });
                     });
+                    
+                    function updateDynamicNumbering(activeAbsoluteStep) {
+                        const isBongki = document.querySelector('input[name="jenis_pemohon"]:checked')?.value === 'bongki';
+                        const skipStep2 = isBongki && window.foundPendudukData === true;
+                        
+                        let visibleIndex = 1;
+                        let activeVisibleIndex = 1;
+                        
+                        steps.forEach((element) => {
+                            const absoluteStep = parseInt(element.dataset.step, 10);
+                            const isSkipped = (absoluteStep === 2 && skipStep2);
+                            
+                            if (!isSkipped) {
+                                // Update h3 text
+                                const h3 = element.querySelector('h3.font-bold');
+                                if (h3) {
+                                    if (!h3.dataset.originalText) {
+                                        h3.dataset.originalText = h3.textContent;
+                                    }
+                                    // replace "Langkah X:" with "Langkah Y:"
+                                    h3.textContent = h3.dataset.originalText.replace(/Langkah \d+:/, `Langkah ${visibleIndex}:`);
+                                }
+                                
+                                // Update next button text if it has "Lanjut ke Langkah X"
+                                const nextBtn = element.querySelector('.next-step');
+                                if (nextBtn && nextBtn.textContent.includes('Langkah')) {
+                                    if (!nextBtn.dataset.originalText) {
+                                        nextBtn.dataset.originalText = nextBtn.textContent;
+                                    }
+                                    nextBtn.textContent = nextBtn.dataset.originalText.replace(/Langkah \d+/, `Langkah ${visibleIndex + 1}`);
+                                }
+                                
+                                if (absoluteStep === activeAbsoluteStep) {
+                                    activeVisibleIndex = visibleIndex;
+                                }
+                                visibleIndex++;
+                            }
+                        });
+                        
+                        const totalVisible = visibleIndex - 1;
+                        currentStepLabel.textContent = activeVisibleIndex;
+                        document.getElementById('total-steps').textContent = totalVisible;
+                        
+                        progressBar.style.width = `${(activeVisibleIndex / totalVisible) * 100}%`;
+                    }
 
                     document.querySelectorAll('.next-step').forEach((button) => {
                         button.addEventListener('click', function () {
@@ -954,18 +1088,39 @@
                                 }
                                 return;
                             }
+                                // Transition logic
+                                if (currentStep === 1) {
+                                    const isBongki = document.querySelector('input[name="jenis_pemohon"]:checked')?.value === 'bongki';
+                                    
+                                    // Jika pilih bongki tapi belum cek nik
+                                    if (isBongki && window.foundPendudukData === undefined) {
+                                        displayLookupError('Silakan klik Cari NIK terlebih dahulu.');
+                                        return;
+                                    }
+                                    
+                                    // Jika ketemu, skip step 2
+                                    if (isBongki && window.foundPendudukData === true) {
+                                        steps[currentStep - 1].classList.add('hidden');
+                                        currentStep = 3;
+                                        showStep(currentStep);
+                                        return;
+                                    }
+                                }
 
-                            if (currentStep < steps.length) {
+                                steps[currentStep - 1].classList.add('hidden');
                                 currentStep++;
                                 showStep(currentStep);
-                            }
                         });
                     });
 
                     document.querySelectorAll('.prev-step').forEach((button) => {
                         button.addEventListener('click', function () {
                             if (currentStep > 1) {
-                                currentStep--;
+                                if (currentStep === 3 && document.querySelector('input[name="jenis_pemohon"]:checked')?.value === 'bongki' && window.foundPendudukData === true) {
+                                    currentStep = 1;
+                                } else {
+                                    currentStep--;
+                                }
                                 showStep(currentStep);
                             }
                         });
@@ -1003,146 +1158,259 @@
 
 {{-- DEV AUTO FILL BUTTON --}}
 @env('local')
+@php
+    $sampleBongki = \App\Models\Penduduk::where('aktif', true)->first();
+@endphp
 <button type="button" id="dev-autofill-btn" class="fixed bottom-6 left-6 z-50 h-11 px-4 rounded-full bg-slate-800 text-white font-mono text-xs shadow-lg hover:scale-105 hover:bg-slate-900 transition-all flex items-center gap-2 cursor-pointer border border-slate-600">
-    <i class="fa-solid fa-flask"></i> Auto Fill
+    <i class="fa-solid fa-flask text-amber-400"></i> Auto Fill
 </button>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const fillBtn = document.getElementById('dev-autofill-btn');
-        if (fillBtn) {
-            fillBtn.addEventListener('click', function() {
-                // Generate random data
-                const randomId = Math.floor(Math.random() * 10000);
-                const randNik = '730' + Math.floor(1000000000000 + Math.random() * 9000000000000);
-                
-                // Helper to set value only if visible and not disabled
-                const isVisible = (el) => {
-                    return el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0;
-                };
+        if (!fillBtn) return;
 
-                const setVal = (selector, value) => {
-                    const el = document.querySelector(selector);
-                    if (el && !el.value && !el.disabled && isVisible(el)) {
-                        el.value = value;
-                    }
-                };
+        const sampleBongkiNik = '{{ $sampleBongki?->nik ?? "7307010101010001" }}';
+        const metaImageUrl = '{{ asset("images/meta.png") }}';
 
-                const setSelect = (selector) => {
-                    const el = document.querySelector(selector);
-                    if (el && el.options.length > 1 && !el.disabled && isVisible(el)) {
-                        el.selectedIndex = 1; 
-                    }
-                };
-                
-                // Try to fill any currently visible text/number inputs
-                const randomNames = ['Budi Santoso', 'Siti Aminah', 'Andi Mappanyukki', 'Dewi Lestari', 'Reza Rahadian', 'Ayu Ting Ting', 'Ahmad Dahlan', 'Cut Nyak Dien'];
-                const randomCities = ['Makassar', 'Sinjai', 'Bone', 'Bulukumba', 'Gowa', 'Maros', 'Parepare'];
-                const randName = randomNames[Math.floor(Math.random() * randomNames.length)] + ' ' + randomId;
-                const randCity = randomCities[Math.floor(Math.random() * randomCities.length)];
-
-                document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="email"]').forEach(input => {
-                    if (!input.value && !input.disabled && isVisible(input)) {
-                        if (input.name === 'nik' || input.id === 'lookup-nik') {
-                            input.value = randNik;
-                        } else if (input.name === 'telepon') {
-                            input.value = '0812' + randomId + randomId;
-                        } else if (input.name === 'rt' || input.name === 'rw' || input.name === 'rt_domisili' || input.name === 'rw_domisili') {
-                            input.value = '00' + Math.floor(Math.random() * 9 + 1);
-                        } else if (input.name === 'email') {
-                            input.value = 'test' + randomId + '@example.com';
-                        } else if (input.type === 'date') {
-                            // Random date between 1970 and 2005
-                            const year = Math.floor(Math.random() * (2005 - 1970 + 1)) + 1970;
-                            const month = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
-                            const day = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-                            input.value = `${year}-${month}-${day}`;
-                        } else if (input.name === 'nama_usaha') {
-                            const usahas = ['Toko Sejahtera', 'Warung Makan Barokah', 'Kios Maju Jaya', 'CV Bintang Terang'];
-                            input.value = usahas[Math.floor(Math.random() * usahas.length)] + ' ' + randomId;
-                        } else if (input.name === 'jenis_usaha') {
-                            const jenisUsaha = ['Perdagangan Sembako', 'Jasa Konveksi', 'Kuliner', 'Pertanian'];
-                            input.value = jenisUsaha[Math.floor(Math.random() * jenisUsaha.length)];
-                        } else if (input.name === 'lama_usaha' || input.name === 'lama_tinggal') {
-                            input.value = Math.floor(Math.random() * 10 + 1) + ' Tahun';
-                        } else if (input.name === 'status_tempat_tinggal') {
-                            const statusTinggal = ['Milik Pribadi', 'Sewa', 'Kontrak', 'Menumpang'];
-                            input.value = statusTinggal[Math.floor(Math.random() * statusTinggal.length)];
-                        } else if (input.name.includes('tempat_lahir')) {
-                            input.value = randCity;
-                        } else if (input.name === 'nama_lengkap' || input.name === 'nama_pemohon' || input.name === 'nama_lain') {
-                            input.value = randName;
-                        } else if (input.name === 'tempat_meninggal') {
-                            const tempatMeninggal = ['RSUD Sinjai', 'Rumah', 'RS Wahidin', 'Puskesmas'];
-                            input.value = tempatMeninggal[Math.floor(Math.random() * tempatMeninggal.length)];
-                        } else if (input.name === 'hari_meninggal') {
-                            const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
-                            input.value = days[Math.floor(Math.random() * days.length)];
-                        } else if (input.name === 'jam_meninggal') {
-                            const hr = String(Math.floor(Math.random() * 24)).padStart(2, '0');
-                            const min = String(Math.floor(Math.random() * 60)).padStart(2, '0');
-                            input.value = `${hr}:${min}`;
-                        } else if (input.name === 'penyebab_kematian') {
-                            const penyebab = ['Sakit', 'Kecelakaan', 'Faktor Usia', 'Lainnya'];
-                            input.value = penyebab[Math.floor(Math.random() * penyebab.length)];
-                        } else if (input.name === 'hubungan_pelapor') {
-                            const hubungan = ['Anak Kandung', 'Istri', 'Suami', 'Orang Tua', 'Saudara Kandung'];
-                            input.value = hubungan[Math.floor(Math.random() * hubungan.length)];
-                        } else if (input.name === 'jenis_dokumen') {
-                            const dokumen = ['Ijazah Terakhir', 'Akta Kelahiran', 'Buku Nikah', 'Sertifikat Tanah'];
-                            input.value = dokumen[Math.floor(Math.random() * dokumen.length)];
-                        } else if (input.name === 'nomor_dokumen') {
-                            input.value = 'DOC-' + Math.floor(Math.random() * 999999);
-                        } else {
-                            input.value = 'Data ' + randomId;
-                        }
-                    }
-                });
-
-                // Try to fill any currently visible textareas
-                document.querySelectorAll('textarea').forEach(ta => {
-                    if (!ta.value && !ta.disabled && isVisible(ta)) {
-                        if (ta.name === 'keperluan') {
-                            ta.value = 'Keperluan administrasi surat nomor ' + randomId;
-                        } else if (ta.name === 'alamat' || ta.name === 'alamat_asal' || ta.name === 'alamat_domisili' || ta.name === 'alamat_usaha') {
-                            ta.value = 'Jl. Mawar No. ' + Math.floor(Math.random() * 100) + ' Lingkungan ' + randomId;
-                        } else if (ta.name === 'keterangan_perbedaan') {
-                            const ket = ['Terdapat perbedaan penulisan nama pada KTP dan Ijazah', 'Perbedaan tanggal lahir di KK dan Akta', 'Salah ketik nama orang tua'];
-                            ta.value = ket[Math.floor(Math.random() * ket.length)];
-                        } else {
-                            ta.value = 'Keterangan tambahan ' + randomId;
-                        }
-                    }
-                });
-
-                // Try to fill any currently visible selects
-                document.querySelectorAll('select').forEach(sel => {
-                    if (sel.options.length > 1 && !sel.disabled && isVisible(sel) && (!sel.value || sel.selectedIndex === 0)) {
-                        // Pick a random index from 1 to length-1 (skip the 'Pilih' default option at index 0)
-                        const randomOptionIndex = Math.floor(Math.random() * (sel.options.length - 1)) + 1;
-                        sel.selectedIndex = randomOptionIndex;
-                    }
-                });
-
-                // Try to fill any currently visible file inputs
-                const visibleFileInputs = Array.from(document.querySelectorAll('input[type="file"]')).filter(input => !input.files.length && !input.disabled && isVisible(input));
-                if (visibleFileInputs.length > 0) {
-                    fetch('/images/meta.png')
-                        .then(res => res.blob())
-                        .then(blob => {
-                            const file = new File([blob], 'meta.png', { type: blob.type || 'image/png' });
-                            const dataTransfer = new DataTransfer();
-                            dataTransfer.items.add(file);
-                            
-                            visibleFileInputs.forEach(input => {
-                                input.files = dataTransfer.files;
-                                input.dispatchEvent(new Event('change', { bubbles: true }));
-                            });
-                        })
-                        .catch(err => console.error('Auto Fill File Error:', err));
+        async function getMetaDummyFile(filename) {
+            try {
+                const response = await fetch(metaImageUrl);
+                if (!response.ok) throw new Error('Network response not ok');
+                const blob = await response.blob();
+                return new File([blob], filename || 'meta.png', { type: blob.type || 'image/png' });
+            } catch (err) {
+                // Fallback byte array if offline / direct fetch fails
+                const pngBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+                const byteCharacters = atob(pngBase64);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
-            });
+                const byteArray = new Uint8Array(byteNumbers);
+                return new File([byteArray], filename || 'meta.png', { type: 'image/png' });
+            }
         }
+
+        function setFieldValue(input, value) {
+            if (!input || input.disabled) return;
+            input.value = value;
+            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            input.classList.add('border-slate-200');
+            const errorEl = input.nextElementSibling;
+            if (errorEl && errorEl.classList.contains('js-validation-error')) {
+                errorEl.remove();
+            }
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        function setSelectValue(select, valueOrIndex) {
+            if (!select || select.disabled || select.options.length <= 1) return;
+            if (typeof valueOrIndex === 'number') {
+                select.selectedIndex = valueOrIndex;
+            } else if (valueOrIndex) {
+                select.value = valueOrIndex;
+                if (!select.value && select.options.length > 1) {
+                    select.selectedIndex = 1;
+                }
+            } else {
+                select.selectedIndex = 1;
+            }
+            select.classList.remove('border-red-500');
+            select.classList.add('border-slate-200');
+            const errorEl = select.nextElementSibling;
+            if (errorEl && errorEl.classList.contains('js-validation-error')) {
+                errorEl.remove();
+            }
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        fillBtn.addEventListener('click', function() {
+            const activeStepEl = document.querySelector('.form-step:not(.hidden)');
+            const activeStep = activeStepEl ? parseInt(activeStepEl.dataset.step, 10) : 1;
+            const randomId = Math.floor(1000 + Math.random() * 9000);
+            const isBongki = document.querySelector('input[name="jenis_pemohon"]:checked')?.value === 'bongki';
+            const isUsaha = Boolean(document.getElementById('nama_usaha'));
+            const isDomisili = Boolean(document.querySelector('input[name="rt_domisili"]') || document.querySelector('select[name="status_tempat_tinggal"]'));
+
+            // 1. STEP 1: IDENTITAS PEMOHON
+            if (activeStep === 1) {
+                const lookupNikInput = document.getElementById('lookup-nik');
+                if (lookupNikInput && lookupNikInput.offsetParent !== null) {
+                    if (isBongki) {
+                        setFieldValue(lookupNikInput, sampleBongkiNik);
+                        const btnCari = document.getElementById('btn-cari-nik');
+                        if (btnCari) {
+                            btnCari.click();
+                        }
+                    }
+                }
+            }
+
+            // 2. STEP 2: DATA MANUAL (Jika Luar Bongki atau Belum Ada di DB)
+            else if (activeStep === 2) {
+                const randomNames = ['Andi Tenri Olle', 'Muhammad Fajrin', 'Nurul Annisa', 'Hendra Pratama', 'Sri Wahyuni'];
+                const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
+                const randomNik = '730701' + Math.floor(1000000000 + Math.random() * 9000000000);
+
+                const manualNik = document.querySelector('#usaha-new-data input[name="nik"]');
+                if (manualNik) setFieldValue(manualNik, randomNik);
+
+                const manualNama = document.querySelector('#usaha-new-data input[name="nama_lengkap"]');
+                if (manualNama) setFieldValue(manualNama, randomName);
+
+                const manualJk = document.querySelector('#usaha-new-data select[name="jenis_kelamin"]');
+                if (manualJk) setSelectValue(manualJk, 'L');
+
+                const manualTempatLahir = document.querySelector('#usaha-new-data input[name="tempat_lahir"]');
+                if (manualTempatLahir) setFieldValue(manualTempatLahir, isBongki ? 'Sinjai' : 'Gowa');
+
+                const manualTglLahir = document.querySelector('#usaha-new-data input[name="tanggal_lahir"]');
+                if (manualTglLahir) setFieldValue(manualTglLahir, '1998-05-14');
+
+                const manualPekerjaan = document.querySelector('#usaha-new-data select[name="pekerjaan"]');
+                if (manualPekerjaan) setSelectValue(manualPekerjaan, 'Wiraswasta');
+
+                const manualAlamat = document.querySelector('#usaha-new-data textarea[name="alamat"]');
+                if (manualAlamat) {
+                    setFieldValue(manualAlamat, isBongki 
+                        ? 'Jl. Persatuan Raya No. ' + Math.floor(Math.random() * 50 + 1) + ', Kel. Bongki'
+                        : 'Jl. Sultan Hasanuddin No. ' + Math.floor(Math.random() * 50 + 1) + ', Kel. Sungguminasa, Kec. Somba Opu, Kab. Gowa'
+                    );
+                }
+
+                const manualTelepon = document.querySelector('#usaha-new-data input[name="telepon"]');
+                if (manualTelepon) setFieldValue(manualTelepon, '0812' + randomId + '8899');
+
+                const manualEmail = document.querySelector('#usaha-new-data input[name="email"]');
+                if (manualEmail) setFieldValue(manualEmail, 'pemohon' + randomId + '@gmail.com');
+
+                // Khusus Penduduk Bongki: isi Agama, RT, RW, Lingkungan, Status, Pendidikan
+                if (isBongki) {
+                    const manualLingkungan = document.getElementById('input-lingkungan');
+                    if (manualLingkungan) setSelectValue(manualLingkungan, 1);
+
+                    const manualAgama = document.getElementById('input-agama');
+                    if (manualAgama) setSelectValue(manualAgama, 'Islam');
+
+                    const manualStatus = document.getElementById('input-status-perkawinan');
+                    if (manualStatus) setSelectValue(manualStatus, 'Belum Kawin');
+
+                    const manualPendidikan = document.getElementById('input-pendidikan');
+                    if (manualPendidikan) setSelectValue(manualPendidikan, 'SMA/Sederajat');
+
+                    const manualRt = document.getElementById('input-rt');
+                    if (manualRt) setFieldValue(manualRt, '001');
+
+                    const manualRw = document.getElementById('input-rw');
+                    if (manualRw) setFieldValue(manualRw, '002');
+                }
+            }
+
+            // 3. STEP 3: DETAIL PERMOHONAN SESUAI KONTEKS
+            else if (activeStep === 3) {
+                if (isUsaha) {
+                    const namaUsaha = document.getElementById('nama_usaha');
+                    if (namaUsaha) setFieldValue(namaUsaha, 'Toko Sembako Barokah ' + randomId);
+
+                    const jenisUsaha = document.getElementById('jenis_usaha');
+                    if (jenisUsaha) setFieldValue(jenisUsaha, 'Perdagangan Sembako & Kelontong');
+
+                    const alamatUsaha = document.getElementById('alamat_usaha');
+                    if (alamatUsaha) setFieldValue(alamatUsaha, 'Jl. Persatuan Raya No. 45, Kel. Bongki');
+
+                    const lamaUsaha = document.getElementById('lama_usaha');
+                    if (lamaUsaha) setFieldValue(lamaUsaha, '3 Tahun');
+
+                    const keperluanUsaha = document.getElementById('keperluan');
+                    if (keperluanUsaha) setFieldValue(keperluanUsaha, 'Surat Keterangan Usaha untuk pengajuan tambahan modal usaha Kredit Usaha Rakyat (KUR)');
+                } else if (isDomisili) {
+                    const statusTinggal = document.querySelector('select[name="status_tempat_tinggal"]');
+                    if (statusTinggal) setSelectValue(statusTinggal, 'Milik Sendiri');
+
+                    const lamaTinggal = document.querySelector('input[name="lama_tinggal"]');
+                    if (lamaTinggal) setFieldValue(lamaTinggal, '4 Tahun');
+
+                    const alamatDomisili = document.querySelector('textarea[name="alamat_domisili"]');
+                    if (alamatDomisili) setFieldValue(alamatDomisili, 'Jl. Veteran No. 12, Lingkungan Bongki');
+
+                    const rtDomisili = document.querySelector('input[name="rt_domisili"]');
+                    if (rtDomisili) setFieldValue(rtDomisili, '001');
+
+                    const rwDomisili = document.querySelector('input[name="rw_domisili"]');
+                    if (rwDomisili) setFieldValue(rwDomisili, '002');
+
+                    const alamatAsal = document.querySelector('textarea[name="alamat_asal"]');
+                    if (alamatAsal) setFieldValue(alamatAsal, 'Jl. Poros Sinjai - Bulukumba KM 5, Sinjai Selatan');
+
+                    const keperluanDomisili = document.querySelector('textarea[name="keperluan"]');
+                    if (keperluanDomisili) setFieldValue(keperluanDomisili, 'Surat Keterangan Domisili untuk kelengkapan berkas administrasi kependudukan');
+                } else {
+                    // Surat Kematian
+                    const tempatMeninggal = document.querySelector('input[name="tempat_meninggal"]');
+                    if (tempatMeninggal) setFieldValue(tempatMeninggal, 'RSUD Sinjai');
+
+                    const tglMeninggal = document.querySelector('input[name="tanggal_meninggal"]');
+                    if (tglMeninggal) setFieldValue(tglMeninggal, '2026-08-10');
+
+                    const jamMeninggal = document.querySelector('input[name="jam_meninggal"]');
+                    if (jamMeninggal) setFieldValue(jamMeninggal, '09:30');
+
+                    const hariMeninggal = document.querySelector('select[name="hari_meninggal"], input[name="hari_meninggal"]');
+                    if (hariMeninggal) setFieldValue(hariMeninggal, 'Senin');
+
+                    const penyebab = document.querySelector('input[name="penyebab_kematian"]');
+                    if (penyebab) setFieldValue(penyebab, 'Sakit / Usia Lanjut');
+
+                    const hubunganPelapor = document.querySelector('select[name="hubungan_pelapor"], input[name="hubungan_pelapor"]');
+                    if (hubunganPelapor) setFieldValue(hubunganPelapor, 'Anak Kandung');
+
+                    // Surat Beda Nama / Orang Yang Sama
+                    const namaLain = document.querySelector('input[name="nama_lain"]');
+                    if (namaLain) setFieldValue(namaLain, 'Andi Muhammad Faisal');
+
+                    const jenisDokumen = document.querySelector('input[name="jenis_dokumen"]');
+                    if (jenisDokumen) setFieldValue(jenisDokumen, 'Ijazah SMA');
+
+                    const nomorDokumen = document.querySelector('input[name="nomor_dokumen"]');
+                    if (nomorDokumen) setFieldValue(nomorDokumen, 'DN-01/M-SMA/12/0045678');
+
+                    const ketPerbedaan = document.querySelector('textarea[name="keterangan_perbedaan"]');
+                    if (ketPerbedaan) setFieldValue(ketPerbedaan, 'Perbedaan penulisan nama pada KTP (Andi Muh. Faisal) dan Ijazah SMA (Andi Muhammad Faisal)');
+
+                    const keperluanUmum = document.querySelector('textarea[name="keperluan"]');
+                    if (keperluanUmum && !keperluanUmum.value) {
+                        setFieldValue(keperluanUmum, 'Kelengkapan berkas administrasi pelayanan persuratan di Kelurahan Bongki');
+                    }
+                }
+            }
+
+            // 4. STEP 4: UPLOAD DOKUMEN (Dummy Files dari public/images/meta.png)
+            else if (activeStep === 4) {
+                const fileInputs = activeStepEl ? activeStepEl.querySelectorAll('input[type="file"]') : document.querySelectorAll('input[type="file"]');
+                if (fileInputs.length > 0) {
+                    getMetaDummyFile('meta.png').then((dummyFile) => {
+                        fileInputs.forEach((input) => {
+                            if (!input.disabled) {
+                                const dt = new DataTransfer();
+                                dt.items.add(dummyFile);
+                                input.files = dt.files;
+                                input.dispatchEvent(new Event('change', { bubbles: true }));
+                            }
+                        });
+                        if (typeof updateSummary === 'function') {
+                            updateSummary();
+                        }
+                    });
+                }
+            }
+
+            // 5. UPDATE PREVIEW SUMMARY
+            if (typeof updateSummary === 'function') {
+                updateSummary();
+            }
+        });
     });
 </script>
 @endenv

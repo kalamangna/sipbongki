@@ -100,7 +100,18 @@
                 <div>
                     <p class="text-xs font-semibold text-slate-500 mb-1">Tanggal Lahir</p>
                     <div class="flex flex-wrap items-center gap-2">
-                        <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'tanggal_lahir', '-') }}</p>
+                        @php
+                            $tglSurat = data_get($dataSurat, 'tanggal_lahir');
+                            $tglSuratFormatted = '-';
+                            if ($tglSurat) {
+                                try {
+                                    $tglSuratFormatted = \Carbon\Carbon::parse($tglSurat)->translatedFormat('d F Y');
+                                } catch (\Exception $e) {
+                                    $tglSuratFormatted = $tglSurat;
+                                }
+                            }
+                        @endphp
+                        <p class="font-medium text-slate-900 text-base">{{ $tglSuratFormatted }}</p>
                         @if($pemohon !== null)
                             @php $match = $compare('tanggal_lahir'); @endphp
                             @if($match === true)

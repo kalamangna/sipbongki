@@ -25,11 +25,34 @@
         @endphp
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
-            <div class="sm:col-span-2">
-                <p class="text-xs font-semibold text-slate-500 mb-1">Nomor Permohonan</p>
-                <p class="text-2xl font-mono font-bold text-slate-900">{{ $permohonanSurat->nomor_permohonan }}</p>
+            <div class="sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 mb-1">Nomor Permohonan</p>
+                    <p class="text-2xl font-mono font-bold text-slate-900">{{ $permohonanSurat->nomor_permohonan }}</p>
+                </div>
+                <div>
+                    @if($pendudukAsli)
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                            <i class="fa-solid fa-house-user mr-1.5 text-emerald-600"></i> Penduduk Bongki
+                        </span>
+                    @else
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                            <i class="fa-solid fa-earth-americas mr-1.5 text-amber-600"></i> Penduduk Luar Bongki
+                        </span>
+                    @endif
+                </div>
             </div>
             
+            <div>
+                <p class="text-xs font-semibold text-slate-500 mb-1">Jenis Surat</p>
+                <p class="font-bold text-primary-700 text-base">{{ optional($permohonanSurat->jenisSurat)->nama ?? '-' }}</p>
+            </div>
+
+            <div>
+                <p class="text-xs font-semibold text-slate-500 mb-1">Tanggal Permohonan</p>
+                <p class="font-medium text-slate-900 text-base">{{ $permohonanSurat->tanggal_permohonan->translatedFormat('d F Y') }}</p>
+            </div>
+
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nomor Surat</p>
                 <p class="font-medium text-slate-900 text-base">
@@ -41,10 +64,16 @@
                 </p>
             </div>
 
+            @php
+                $hasVal = fn($v) => filled($v) && trim((string)$v) !== '-' && trim((string)$v) !== '';
+                $noKk = data_get($pemohon, 'kartuKeluarga.no_kk') ?? data_get($pemohon, 'no_kk') ?? data_get($dataSurat, 'no_kk');
+            @endphp
+            @if($hasVal($noKk) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nomor KK</p>
-                <p class="font-medium text-slate-900 text-base">{{ data_get($pemohon, 'kartuKeluarga.no_kk') ?? data_get($pemohon, 'no_kk') ?? data_get($dataSurat, 'no_kk') ?? '-' }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ $noKk ?: '-' }}</p>
             </div>
+            @endif
 
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Nama Lengkap</p>
@@ -64,20 +93,23 @@
                 <p class="font-mono font-medium text-slate-900 text-base">{{ optional($pemohon)->nik ?? data_get($dataSurat, 'nik') ?? '-' }}</p>
             </div>
 
-            <div>
-                <p class="text-xs font-semibold text-slate-500 mb-1">Jenis Surat</p>
-                <p class="font-medium text-slate-900 text-base">{{ optional($permohonanSurat->jenisSurat)->nama ?? '-' }}</p>
-            </div>
-
-            <div>
-                <p class="text-xs font-semibold text-slate-500 mb-1">Tanggal Permohonan</p>
-                <p class="font-medium text-slate-900 text-base">{{ $permohonanSurat->tanggal_permohonan->translatedFormat('d F Y') }}</p>
-            </div>
-
+            @php
+                $tempatLahir = optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir');
+                $tglLahir = optional($pemohon)->tanggal_lahir ?? data_get($dataSurat, 'tanggal_lahir');
+                $tglFormatted = '-';
+                if ($tglLahir) {
+                    try {
+                        $tglFormatted = \Carbon\Carbon::parse($tglLahir)->translatedFormat('d F Y');
+                    } catch (\Exception $e) {
+                        $tglFormatted = $tglLahir;
+                    }
+                }
+            @endphp
+            @if($hasVal($tempatLahir) || $hasVal($tglLahir) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Tempat, Tanggal Lahir</p>
                 <p class="font-medium text-slate-900 text-base">
-                    {{ optional($pemohon)->tempat_lahir ?? data_get($dataSurat, 'tempat_lahir') ?? '-' }}, {{ optional($pemohon)->tanggal_lahir instanceof \Carbon\Carbon ? $pemohon->tanggal_lahir->translatedFormat('d F Y') : (optional($pemohon)->tanggal_lahir ?? data_get($dataSurat, 'tanggal_lahir') ?? '-') }}
+                    {{ $tempatLahir ?: '-' }}, {{ $tglFormatted }}
                 </p>
                 @if($pendudukAsli)
                     @php 
@@ -89,36 +121,85 @@
                     @endif
                 @endif
             </div>
+            @endif
 
+            @php
+                $rawGender = optional($pemohon)->jenis_kelamin ?? data_get($dataSurat, 'jenis_kelamin') ?? null;
+                if ($rawGender === 'L') {
+                    $genderLabel = 'Laki-laki';
+                } elseif ($rawGender === 'P') {
+                    $genderLabel = 'Perempuan';
+                } else {
+                    $genderLabel = $rawGender;
+                }
+            @endphp
+            @if($hasVal($genderLabel) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Jenis Kelamin</p>
-                @php
-                    $rawGender = optional($pemohon)->jenis_kelamin ?? data_get($dataSurat, 'jenis_kelamin') ?? null;
-                    if ($rawGender === 'L') {
-                        $genderLabel = 'Laki-laki';
-                    } elseif ($rawGender === 'P') {
-                        $genderLabel = 'Perempuan';
-                    } else {
-                        $genderLabel = $rawGender ?? '-';
-                    }
-                @endphp
-                <p class="font-medium text-slate-900 text-base">{{ $genderLabel }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ $genderLabel ?: '-' }}</p>
             </div>
+            @endif
 
+            @php
+                $agamaVal = optional($pemohon)->agama ?? data_get($dataSurat, 'agama');
+            @endphp
+            @if($hasVal($agamaVal) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Agama</p>
-                <p class="font-medium text-slate-900 text-base">{{ optional($pemohon)->agama ?? data_get($dataSurat, 'agama') ?? '-' }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ $agamaVal ?: '-' }}</p>
             </div>
+            @endif
 
+            @php
+                $pekerjaanVal = optional($pemohon)->pekerjaan ?? data_get($dataSurat, 'pekerjaan');
+            @endphp
+            @if($hasVal($pekerjaanVal) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Pekerjaan</p>
-                <p class="font-medium text-slate-900 text-base">{{ optional($pemohon)->pekerjaan ?? data_get($dataSurat, 'pekerjaan') ?? '-' }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ $pekerjaanVal ?: '-' }}</p>
             </div>
+            @endif
 
+            @php
+                $teleponVal = optional($pemohon)->telepon ?? data_get($dataSurat, 'telepon');
+            @endphp
+            @if($hasVal($teleponVal) || $pendudukAsli)
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Telepon</p>
-                <p class="font-medium text-slate-900 text-base">{{ optional($pemohon)->telepon ?? data_get($dataSurat, 'telepon') ?? '-' }}</p>
+                <p class="font-medium text-slate-900 text-base">{{ $teleponVal ?: '-' }}</p>
             </div>
+            @endif
+
+            @php
+                $statusPerkawinanVal = optional($pemohon)->status_perkawinan ?? data_get($dataSurat, 'status_perkawinan');
+            @endphp
+            @if($hasVal($statusPerkawinanVal))
+            <div>
+                <p class="text-xs font-semibold text-slate-500 mb-1">Status Perkawinan</p>
+                <p class="font-medium text-slate-900 text-base">{{ $statusPerkawinanVal }}</p>
+            </div>
+            @endif
+
+            @php
+                $pendidikanVal = optional($pemohon)->pendidikan ?? data_get($dataSurat, 'pendidikan');
+            @endphp
+            @if($hasVal($pendidikanVal))
+            <div>
+                <p class="text-xs font-semibold text-slate-500 mb-1">Pendidikan</p>
+                <p class="font-medium text-slate-900 text-base">{{ $pendidikanVal }}</p>
+            </div>
+            @endif
+
+            @php
+                $rtVal = optional($pemohon)->rt ?? data_get($dataSurat, 'rt');
+                $rwVal = optional($pemohon)->rw ?? data_get($dataSurat, 'rw');
+            @endphp
+            @if(($hasVal($rtVal) || $hasVal($rwVal)) && !$isDomisili)
+            <div>
+                <p class="text-xs font-semibold text-slate-500 mb-1">RT / RW</p>
+                <p class="font-medium text-slate-900 text-base">{{ $rtVal ?: '-' }} / {{ $rwVal ?: '-' }}</p>
+            </div>
+            @endif
 
             <div>
                 <p class="text-xs font-semibold text-slate-500 mb-1">Pejabat Penandatangan</p>
@@ -185,10 +266,12 @@
                             <p class="text-xs font-semibold text-slate-500 mb-1">Lama Usaha</p>
                             <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'lama_usaha', '-') }}</p>
                         </div>
+                        @if(filled(data_get($dataSurat, 'keterangan_usaha')))
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1">Keterangan Usaha</p>
-                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'keterangan_usaha', '-') }}</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'keterangan_usaha') }}</p>
                         </div>
+                        @endif
                     </div>
                 </div>
             @elseif($isDomisili)
@@ -200,25 +283,33 @@
                         <h3 class="font-bold text-slate-800">Detail Domisili</h3>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+                        @if(filled(data_get($dataSurat, 'alamat_asal')))
                         <div class="sm:col-span-2">
                             <p class="text-xs font-semibold text-slate-500 mb-1">Alamat Asal</p>
-                            <p class="font-medium text-slate-900 text-base leading-relaxed">{{ data_get($dataSurat, 'alamat_asal') ?? '-' }}</p>
+                            <p class="font-medium text-slate-900 text-base leading-relaxed">{{ data_get($dataSurat, 'alamat_asal') }}</p>
                         </div>
+                        @endif
 
+                        @if(filled(data_get($dataSurat, 'rt')) || filled(data_get($dataSurat, 'rw')))
                         <div>
-                            <p class="text-xs font-semibold text-slate-500 mb-1">RT / RW</p>
+                            <p class="text-xs font-semibold text-slate-500 mb-1">RT / RW Domisili</p>
                             <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'rt', '-') }} / {{ data_get($dataSurat, 'rw', '-') }}</p>
                         </div>
+                        @endif
 
+                        @if(filled(data_get($dataSurat, 'lama_tinggal')))
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1">Lama Tinggal</p>
-                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'lama_tinggal', '-') }}</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'lama_tinggal') }}</p>
                         </div>
+                        @endif
 
+                        @if(filled(data_get($dataSurat, 'status_tempat_tinggal')))
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1">Status Tempat Tinggal</p>
-                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'status_tempat_tinggal', '-') }}</p>
+                            <p class="font-medium text-slate-900 text-base">{{ data_get($dataSurat, 'status_tempat_tinggal') }}</p>
                         </div>
+                        @endif
                     </div>
                 </div>
             @elseif($isKematian)

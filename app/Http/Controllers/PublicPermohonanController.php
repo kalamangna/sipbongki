@@ -146,10 +146,10 @@ class PublicPermohonanController extends Controller
 
         if ($isDomisili) {
             $request->merge([
-                'alamat_asal' => $request->input('alamat_asal') ?: $request->input('alamat'),
-                'alamat' => $request->input('alamat_domisili'),
-                'rt' => $request->input('rt_domisili'),
-                'rw' => $request->input('rw_domisili'),
+                'alamat_asal' => $request->input('alamat_asal') ?: $request->input('alamat') ?: '-',
+                'alamat' => $request->input('alamat_domisili') ?: $request->input('alamat'),
+                'rt' => $request->input('rt_domisili') ?: $request->input('rt'),
+                'rw' => $request->input('rw_domisili') ?: $request->input('rw'),
             ]);
 
             $request->validate([
@@ -159,14 +159,14 @@ class PublicPermohonanController extends Controller
                 'tempat_lahir' => ['required', 'string', 'max:100'],
                 'tanggal_lahir' => ['required', 'date'],
                 'jenis_kelamin' => ['required', 'in:L,P'],
-                'agama' => ['required', 'string', 'max:50'],
+                'agama' => ['nullable', 'string', 'max:50'],
                 'pekerjaan' => ['required', 'string', 'max:100'],
                 'telepon' => ['nullable', 'string', 'max:30'],
-                'rt' => ['required', 'string', 'max:5'],
-                'rw' => ['required', 'string', 'max:5'],
+                'rt' => ['nullable', 'string', 'max:10'],
+                'rw' => ['nullable', 'string', 'max:10'],
                 'lama_tinggal' => ['required', 'string', 'max:100'],
                 'status_tempat_tinggal' => ['required', 'string', 'max:100'],
-                'alamat_asal' => ['required', 'string', 'max:500'],
+                'alamat_asal' => ['nullable', 'string', 'max:500'],
                 'alamat' => ['required', 'string', 'max:500'],
                 'dokumen_ktp' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
                 'dokumen_kk' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
@@ -212,7 +212,7 @@ class PublicPermohonanController extends Controller
                 'tempat_lahir' => ['required', 'string', 'max:100'],
                 'tanggal_lahir' => ['required', 'date'],
                 'jenis_kelamin' => ['required', 'in:L,P'],
-                'agama' => ['required', 'string', 'max:50'],
+                'agama' => ['nullable', 'string', 'max:50'],
                 'pekerjaan' => ['required', 'string', 'max:100'],
                 'telepon' => ['nullable', 'string', 'max:30'],
                 'alamat' => ['nullable', 'string', 'max:500'],
@@ -407,43 +407,21 @@ class PublicPermohonanController extends Controller
      */
     public function checkStatus(Request $request)
     {
-        $nomor = $request->query('nomor');
-        $nik = $request->query('nik');
+        $nomor = trim($request->query('nomor', ''));
 
-        if (empty($nomor) && empty($nik)) {
-            return back()->with('error', 'Masukkan nomor permohonan atau NIK.');
+        if (empty($nomor)) {
+            return back()->with('error', 'Masukkan nomor permohonan.');
         }
 
-        // Prioritaskan pencarian berdasarkan nomor permohonan jika diberikan
-        if (!empty($nomor)) {
-            $permohonan = PermohonanSurat::where('nomor_permohonan', $nomor)->first();
+        $permohonan = PermohonanSurat::where('nomor_permohonan', $nomor)->first();
 
-            if ($permohonan) {
-                return redirect()
-                    ->route('permohonan.show', $permohonan)
-                    ->with('permohonan_page_mode', 'status');
-            }
+        if ($permohonan) {
+            return redirect()
+                ->route('permohonan.show', $permohonan)
+                ->with('permohonan_page_mode', 'status');
         }
 
-        // Jika nomor tidak ditemukan atau tidak diberikan, coba berdasarkan NIK
-        if (!empty($nik)) {
-            $permohonan = PermohonanSurat::whereHas('penduduk', function ($q) use ($nik) {
-                $q->where('nik', $nik);
-            })->latest()->first();
-
-            if (!$permohonan) {
-                // Cek juga di dalam data_surat JSON (untuk pengajuan publik tanpa penduduk terdaftar)
-                $permohonan = PermohonanSurat::whereJsonContains('data_surat->nik', $nik)->latest()->first();
-            }
-
-            if ($permohonan) {
-                return redirect()
-                    ->route('permohonan.show', $permohonan)
-                    ->with('permohonan_page_mode', 'status');
-            }
-        }
-
-        return back()->with('error', 'Permohonan tidak ditemukan.');
+        return back()->with('error', 'Permohonan dengan nomor tersebut tidak ditemukan.');
     }
 
     private function isDomisiliJenisSurat(JenisSurat $jenisSurat): bool

@@ -3,102 +3,85 @@
 namespace App\Services\Surat;
 
 use App\Models\JenisSurat;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class TemplateSuratService
 {
     /**
-     * Mengembalikan view template surat
+     * Mengembalikan view template surat secara otomatis berdasarkan kode surat
      */
-    public function getView(
-        JenisSurat $jenisSurat
-    ): string {
+    public function getView(JenisSurat $jenisSurat): string
+    {
+        $normalizedCode = strtoupper(trim($jenisSurat->kode));
+        $slugCode = Str::slug($jenisSurat->kode);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Prioritas 1
-        | Gunakan template_view dari database
-        |--------------------------------------------------------------------------
-        */
-
-        if (
-            !empty($jenisSurat->template_view)
-        ) {
-
-            return $jenisSurat->template_view;
-
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | Prioritas 2
-        | Mapping berdasarkan kode surat
-        |--------------------------------------------------------------------------
-        */
-
-        return match (strtoupper($jenisSurat->kode)) {
-
-            /*
-            |--------------------------------------------------------------------------
-            | Surat Keterangan
-            |--------------------------------------------------------------------------
-            */
-
-            'DOMISILI'
+        // 1. Mapping langsung berdasarkan kode surat resmi & aliasnya
+        $mapped = match ($normalizedCode) {
+            'DOMISILI', 'SK-002'
                 => 'surat.templates.keterangan-domisili',
 
-            'SK-002'
-                => 'surat.templates.keterangan-domisili',
-
-            'DOMISILI_USAHA'
+            'DOMISILI_USAHA', 'DOMISILI-USAHA'
                 => 'surat.templates.domisili-usaha',
 
-            'USAHA'
+            'USAHA', 'SKU'
                 => 'surat.templates.usaha',
 
-            'SKTM'
-                => 'surat.templates.sktm',
+            'SKTM', 'TIDAK_MAMPU', 'TIDAK-MAMPU'
+                => 'surat.templates.surat-keterangan-tidak-mampu',
 
-            'BELUM_MENIKAH'
-                => 'surat.templates.belum-menikah',
+            'SKBM', 'BELUM_MENIKAH', 'BELUM-MENIKAH'
+                => 'surat.templates.surat-keterangan-belum-menikah',
 
             'KEMATIAN'
                 => 'surat.templates.kematian',
 
+            'ORANG-SAMA', 'ORANG_SAMA', 'BEDA_NAMA', 'BEDA-NAMA'
+                => 'surat.templates.orang-sama',
+
             'PINDAH'
                 => 'surat.templates.pindah',
 
-            /*
-            |--------------------------------------------------------------------------
-            | Template berikut akan ditambahkan
-            |--------------------------------------------------------------------------
-            */
+            'BELUM_PUNYA_RUMAH', 'BELUM-PUNYA-RUMAH'
+                => 'surat.templates.belum-punya-rumah',
 
             'KELAHIRAN'
                 => 'surat.templates.kelahiran',
 
-            'AHLI_WARIS'
+            'AHLI_WARIS', 'AHLI-WARIS'
                 => 'surat.templates.ahli-waris',
 
             'PENGHASILAN'
                 => 'surat.templates.penghasilan',
 
-            'BEDA_NAMA'
-                => 'surat.templates.beda-nama',
-
-            'BELUM_PUNYA_RUMAH'
-                => 'surat.templates.belum-punya-rumah',
-
-            'JANDA_DUDA'
+            'JANDA_DUDA', 'JANDA-DUDA'
                 => 'surat.templates.janda-duda',
 
-            default => throw new InvalidArgumentException(
-
-                "Template surat untuk kode '{$jenisSurat->kode}' belum tersedia."
-
-            )
-
+            default => null,
         };
 
+        if ($mapped && view()->exists($mapped)) {
+            return $mapped;
+        }
+
+        // 2. Konvensi otomatis berdasarkan slug kode: surat.templates.{slug}
+        $conventionalView = "surat.templates.{$slugCode}";
+        if (view()->exists($conventionalView)) {
+            return $conventionalView;
+        }
+
+        // 3. Fallback konvensi dengan prefix: surat.templates.surat-keterangan-{slug}
+        $prefixedView = "surat.templates.surat-keterangan-{$slugCode}";
+        if (view()->exists($prefixedView)) {
+            return $prefixedView;
+        }
+
+        if ($mapped) {
+            return $mapped;
+        }
+
+        throw new InvalidArgumentException(
+            "Template surat untuk kode '{$jenisSurat->kode}' belum tersedia di direktori views (surat/templates/)."
+        );
     }
 }

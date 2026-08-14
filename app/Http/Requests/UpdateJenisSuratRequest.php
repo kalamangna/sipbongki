@@ -39,8 +39,6 @@ class UpdateJenisSuratRequest extends FormRequest
 
             'deskripsi' => 'nullable|string',
 
-            'template_view' => 'nullable|string|max:255',
-
             'kode_nomor' => 'nullable|string|max:50',
 
             'nomor_urut' => 'nullable|integer|min:0',
@@ -62,8 +60,6 @@ class UpdateJenisSuratRequest extends FormRequest
             'nama' => 'Nama Surat',
 
             'deskripsi' => 'Deskripsi',
-
-            'template_view' => 'Template View',
 
             'kode_nomor' => 'Kode Nomor Surat',
 

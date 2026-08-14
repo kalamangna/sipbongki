@@ -87,17 +87,25 @@
 
  </div>
 
- <div>
-
- <small class="text-slate-500 block">
- Tanggal Lahir
- </small>
-
- <div>
- {{ optional($pemohon)->tanggal_lahir?->translatedFormat('d F Y') ?? data_get($dataSurat, 'tanggal_lahir') ?? '-' }}
- </div>
-
- </div>
+    <div>
+        <small class="text-slate-500 block">
+            Tanggal Lahir
+        </small>
+        <div>
+            @php
+                $tglLahir = optional($pemohon)->tanggal_lahir ?? data_get($dataSurat, 'tanggal_lahir');
+                $tglFormatted = '-';
+                if ($tglLahir) {
+                    try {
+                        $tglFormatted = \Carbon\Carbon::parse($tglLahir)->translatedFormat('d F Y');
+                    } catch (\Exception $e) {
+                        $tglFormatted = $tglLahir;
+                    }
+                }
+            @endphp
+            {{ $tglFormatted }}
+        </div>
+    </div>
 
  <div class="md:col-span-2">
 

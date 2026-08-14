@@ -148,19 +148,19 @@ class PermohonanSurat extends Model
         $data = $this->data_surat ?? [];
 
         return (object) [
-            'nama_lengkap'  => $data['manual_nama_lengkap'] ?? $data['nama_lengkap'] ?? $data['nama_pemohon'] ?? '-',
-            'nik'           => $data['manual_nik'] ?? $data['nik'] ?? '-',
-            'tempat_lahir'  => $data['manual_tempat_lahir'] ?? $data['tempat_lahir'] ?? '-',
+            'nama_lengkap'  => $data['manual_nama_lengkap'] ?? $data['nama_lengkap'] ?? $data['nama_pemohon'] ?? null,
+            'nik'           => $data['manual_nik'] ?? $data['nik'] ?? null,
+            'tempat_lahir'  => $data['manual_tempat_lahir'] ?? $data['tempat_lahir'] ?? null,
             'tanggal_lahir' => $data['manual_tanggal_lahir'] ?? $data['tanggal_lahir'] ?? null,
-            'jenis_kelamin' => $data['manual_jenis_kelamin'] ?? $data['jenis_kelamin'] ?? '-',
-            'agama'         => $data['manual_agama'] ?? $data['agama'] ?? '-',
-            'pekerjaan'     => $data['manual_pekerjaan'] ?? $data['pekerjaan'] ?? '-',
-            'telepon'       => $data['manual_telepon'] ?? $data['telepon'] ?? '-',
-            'alamat'        => $data['manual_alamat'] ?? $data['alamat'] ?? '-',
-            'rt'            => $data['manual_rt'] ?? $data['rt'] ?? '-',
-            'rw'            => $data['manual_rw'] ?? $data['rw'] ?? '-',
+            'jenis_kelamin' => $data['manual_jenis_kelamin'] ?? $data['jenis_kelamin'] ?? null,
+            'agama'         => $data['manual_agama'] ?? $data['agama'] ?? null,
+            'pekerjaan'     => $data['manual_pekerjaan'] ?? $data['pekerjaan'] ?? null,
+            'telepon'       => $data['manual_telepon'] ?? $data['telepon'] ?? null,
+            'alamat'        => $data['manual_alamat'] ?? $data['alamat'] ?? null,
+            'rt'            => $data['manual_rt'] ?? $data['rt'] ?? null,
+            'rw'            => $data['manual_rw'] ?? $data['rw'] ?? null,
             'lingkungan'    => null, // mock relationship
-            'no_kk'         => $data['manual_no_kk'] ?? '-',
+            'no_kk'         => $data['manual_no_kk'] ?? $data['no_kk'] ?? null,
         ];
     }
 

@@ -92,16 +92,10 @@ class JenisSurat extends Model
     }
 
     /**
- * Template Blade surat
- */
-public function getTemplateAttribute(): string
-{
-    if (!$this->template_view) {
-        throw new \RuntimeException(
-            "Template surat untuk {$this->nama} belum ditentukan."
-        );
+     * Template Blade surat otomatis dari kode
+     */
+    public function getTemplateAttribute(): string
+    {
+        return app(\App\Services\Surat\TemplateSuratService::class)->getView($this);
     }
-
-    return $this->template_view;
-}
 }
