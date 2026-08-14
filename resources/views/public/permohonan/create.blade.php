@@ -8,7 +8,7 @@
     <div class="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-            <div class="p-8 md:p-12">
+            <div class="p-5 sm:p-8 md:p-12">
 
                 @if(session('success'))
                     <div class="mb-8 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
@@ -46,10 +46,10 @@
 
                         <div class="form-step" data-step="1">
                             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 overflow-hidden">
-                            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                                 <h3 class="font-bold text-slate-800">Langkah 1: Identitas Pemohon</h3>
                             </div>
-                                <div class="p-6">
+                                <div class="p-5 sm:p-6">
                                     <div class="flex flex-wrap gap-4 mb-6 pb-6 border-b border-slate-100">
                                         <label class="inline-flex items-center cursor-pointer">
                                             <input type="radio" name="jenis_pemohon" value="bongki" class="text-primary-600 focus:ring-primary-500" checked onchange="togglePublicPemohon()">
@@ -66,12 +66,12 @@
                                         <div class="grid grid-cols-1 gap-6">
                                             <div>
                                                 <label class="block text-sm font-medium text-slate-700 mb-2">NIK <span class="text-red-500">*</span></label>
-                                                <div class="flex gap-3 items-start">
-                                                    <div class="w-full">
+                                                <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-start">
+                                                    <div class="w-full flex-1">
                                                         <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
                                                         @error('nik_lookup')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                                     </div>
-                                                    <button type="button" id="btn-cari-nik" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 shrink-0 cursor-pointer"><i class="fa-solid fa-search"></i> Cari NIK</button>
+                                                    <button type="button" id="btn-cari-nik" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 shrink-0 cursor-pointer flex items-center justify-center gap-2"><i class="fa-solid fa-search"></i> Cari NIK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="flex justify-end">
-                                <button type="button" class="next-step hidden px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer" id="lookup-button">Lanjutkan</button>
+                                <button type="button" class="next-step hidden w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer text-center" id="lookup-button">Lanjutkan</button>
                             </div>
                         </div>
 
@@ -255,9 +255,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <button type="button" class="prev-step cursor-pointer px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors">Sebelumnya</button>
-                                <button type="button" class="next-step cursor-pointer px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5" id="usaha-identity-next">Lanjut ke Langkah 3</button>
+                            <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
+                                <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
+                                <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center" id="usaha-identity-next">Lanjut ke Langkah 3</button>
                             </div>
                         </div>
 
@@ -275,86 +275,86 @@
 
                     <div class="form-step hidden" data-step="5">
                         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-hidden">
-                            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                                 <h3 class="font-bold text-slate-800">Langkah 5: Konfirmasi Permohonan</h3>
                             </div>
                             
                             <div class="p-0">
                                 <dl class="divide-y divide-slate-100">
                                     <!-- Kelompok: Data Pemohon -->
-                                    <div class="bg-slate-50/50 px-6 py-3 border-b border-slate-100">
+                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100">
                                         <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Data Pemohon</h4>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">NIK</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nik">-</dd>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Nama Lengkap</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nama">-</dd>
                                     </div>
 
                                     <!-- Kelompok: Detail Surat -->
-                                    <div class="bg-slate-50/50 px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
+                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
                                         <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Detail Surat</h4>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Jenis Surat</dt>
                                         <dd class="mt-1 text-sm text-primary-600 sm:col-span-2 sm:mt-0 font-bold" id="summary-jenis-surat">{{ optional($selectedJenisSurat)->nama ?? '-' }}</dd>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Keperluan</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 italic" id="summary-keperluan">-</dd>
                                     </div>
                                     
                                     @if($isUsaha)
-                                        <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                             <dt class="text-sm font-medium text-slate-500">Nama Usaha</dt>
                                             <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-nama-usaha">-</dd>
                                         </div>
-                                        <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                             <dt class="text-sm font-medium text-slate-500">Jenis Usaha</dt>
                                             <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-jenis-usaha">-</dd>
                                         </div>
-                                        <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                             <dt class="text-sm font-medium text-slate-500">Alamat Usaha</dt>
                                             <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-alamat-usaha">-</dd>
                                         </div>
-                                        <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                             <dt class="text-sm font-medium text-slate-500">Lama Usaha</dt>
                                             <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-lama-usaha">-</dd>
                                         </div>
                                     @else
-                                        <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                             <dt class="text-sm font-medium text-slate-500">Alamat Domisili</dt>
                                             <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-alamat">-</dd>
                                         </div>
                                     @endif
 
                                     <!-- Kelompok: Dokumen Pendukung -->
-                                    <div class="bg-slate-50/50 px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
+                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
                                         <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Dokumen Pendukung</h4>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Upload KTP</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
                                             <i class="fa-solid fa-id-card text-slate-400"></i> <span id="summary-dokumen-ktp" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Upload KK</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
                                             <i class="fa-solid fa-users text-slate-400"></i> <span id="summary-dokumen-kk" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Surat Pengantar RT/RW</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
                                             <i class="fa-solid fa-envelope-open-text text-slate-400"></i> <span id="summary-dokumen-surat-pengantar" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
                                     @if($isUsaha)
-                                    <div class="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
                                         <dt class="text-sm font-medium text-slate-500">Foto Tempat Usaha</dt>
                                         <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
                                             <i class="fa-solid fa-image text-slate-400"></i> <span id="summary-dokumen-tempat-usaha" class="font-medium">Belum</span>
@@ -364,9 +364,9 @@
                                 </dl>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <button type="button" class="prev-step cursor-pointer px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors">Sebelumnya</button>
-                            <button type="submit" class="cursor-pointer inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5"><i class="fa-solid fa-paper-plane"></i>Kirim Permohonan</button>
+                        <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
+                            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
+                            <button type="submit" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center"><i class="fa-solid fa-paper-plane text-xs"></i>Kirim Permohonan</button>
                         </div>
                     </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Masuk - SIP Bongki')
+@section('title', 'Login - SIP Bongki')
 
 @section('content')
 
@@ -88,7 +88,7 @@
         {{-- Submit Button --}}
         <button type="submit"
                 class="w-full py-2.5 px-4 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-xl transition-colors">
-            Masuk
+            Login
         </button>
     </form>
 

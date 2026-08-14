@@ -87,7 +87,7 @@
                                   transition-all duration-200 active:scale-95
                                   focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20">
                             <i class="fa-solid fa-arrow-right"></i>
-                            Masuk
+                            Login
                         </a>
                     @endauth
 
@@ -145,7 +145,7 @@
                               transition-all duration-200 active:scale-95
                               focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 w-full">
                         <i class="fa-solid fa-arrow-right"></i>
-                        Masuk sebagai Admin / Operator
+                        Login
                     </a>
                 @endauth
             </div>

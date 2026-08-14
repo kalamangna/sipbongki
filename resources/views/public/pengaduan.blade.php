@@ -26,15 +26,15 @@
                     Pemerintah Kelurahan Bongki berkomitmen memberikan pelayanan yang cepat, transparan, dan responsif terhadap setiap pengaduan masyarakat.
                 </p>
 
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-col sm:flex-row flex-wrap gap-4">
                     <a href="#kirim-pengaduan"
-                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-base font-bold transition duration-300 shadow-md shadow-primary/20 hover:-translate-y-0.5 focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-base font-bold transition duration-300 shadow-md shadow-primary/20 hover:-translate-y-0.5 w-full sm:w-auto focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
                         <i class="fa-solid fa-comment-dots text-lg"></i>
                         Formulir Pengaduan
                     </a>
                     
                     <a href="{{ route('pengaduan.status') }}"
-                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-base font-bold transition duration-300 shadow-sm hover:-translate-y-0.5 focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-base font-bold transition duration-300 shadow-sm hover:-translate-y-0.5 w-full sm:w-auto focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
                         <i class="fa-solid fa-magnifying-glass text-lg"></i>
                         Cek Status Pengaduan
                     </a>
@@ -55,7 +55,7 @@
 
 {{-- ==========================================================
     JENIS PENGADUAN
-========================================================== --}}
+========================================================= --}}
 <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -64,7 +64,7 @@
             <p class="text-slate-600">Beberapa laporan yang dapat disampaikan masyarakat.</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             @php
                 $items = [
                     ['icon' => 'fa-solid fa-map', 'label' => 'Jalan Rusak'],
@@ -79,11 +79,11 @@
             @endphp
 
             @foreach($items as $item)
-                <div class="block w-full bg-white border border-slate-200 rounded-3xl p-6 text-center">
-                    <div class="w-16 h-16 mx-auto bg-primary-50 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="{{ $item['icon'] }} text-2xl text-primary"></i>
+                <div class="block w-full bg-white border border-slate-200 rounded-3xl p-4 sm:p-6 text-center hover:border-slate-300 transition-colors">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-primary-50 rounded-2xl flex items-center justify-center mb-4 sm:mb-5">
+                        <i class="{{ $item['icon'] }} text-xl sm:text-2xl text-primary"></i>
                     </div>
-                    <h5 class="font-bold text-slate-800 text-sm sm:text-base">{{ $item['label'] }}</h5>
+                    <h5 class="font-bold text-slate-800 text-xs sm:text-base">{{ $item['label'] }}</h5>
                 </div>
             @endforeach
         </div>
@@ -101,7 +101,7 @@
             <h2 class="text-3xl font-bold text-slate-800">Cara Menyampaikan Pengaduan</h2>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-8 text-center relative">
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center relative">
             <div class="hidden md:block absolute top-10 left-[12%] right-[12%] h-[2px] bg-slate-200 z-0"></div>
 
             <div class="relative z-10 flex flex-col items-center group">
@@ -166,7 +166,7 @@
             </div>
         @endif
 
-        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden p-6 md:p-10">
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden p-5 sm:p-8 md:p-10">
             <form action="{{ route('pengaduan.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6" id="pengaduan-form" novalidate>
                 @csrf
                 

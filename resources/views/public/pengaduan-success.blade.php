@@ -7,7 +7,7 @@
 <section class="min-h-screen py-24 bg-slate-50 pt-32 flex items-center justify-center">
     <div class="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-200 p-8 md:p-12 text-center">
+        <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-200 p-5 sm:p-8 md:p-12 text-center">
             
             <div class="w-16 h-16 mx-auto bg-emerald-50 rounded-full flex items-center justify-center mb-5 text-primary text-2xl">
                 <i class="fa-solid fa-circle-check"></i>

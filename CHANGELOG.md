@@ -8,12 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Optimasi Responsivitas Multi-Step Form Layanan**: Menyesuaikan padding kartu, tata letak baris pencarian NIK `flex-col sm:flex-row`, lebar tombol navigasi (`w-full sm:w-auto` dengan susunan *mobile-first* `flex-col-reverse sm:flex-row`), dan touch-target berkas upload pada formulir permohonan layanan (*step by step*).
+- **Optimasi Responsivitas Modul Pengaduan Publik**: Menyesuaikan padding container kartu dan tombol aksi pada halaman pengaduan (`pengaduan.blade.php`, `pengaduan-status.blade.php`, `pengaduan-status-detail.blade.php`, `pengaduan-success.blade.php`).
 - **Nomor Urut & Variasi Tema Warna Kartu Layanan**: Menambahkan badge nomor urut (`#01`, `#02`, dst.) dan tema warna harmonis unik (Emerald, Sky, Amber, Violet, Rose, Teal) pada setiap kartu di section Layanan Administrasi publik.
 - **Metrik Ringkasan Laporan Statistik Kelurahan**: Menambahkan kartu ringkasan metrik demografi (Total Penduduk, Laki-laki, Perempuan, dan Kartu Keluarga) pada modul Laporan Statistik Admin.
 - **Visualisasi Statistik Kelurahan (ApexCharts)**: Menyelaraskan tinggi wadah grafik statistik menjadi responsif `min-h-[280px]` dan tinggi render `280px` yang proporsional, memperkaya variasi warna multi-kategori (*distributed palette*) pada grafik batang horizontal dan donat, serta menyematkan ringkasan akumulatif total pada bagian tengah *donut chart*.
 - **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
 
 ### Changed
+- **Penyelarasan Label Login**: Menyeragamkan teks tombol dan judul halaman masuk menjadi **"Login"** pada Navbar Desktop, Mobile Drawer, dan Halaman Login (`auth/login.blade.php`).
 - **Filter Kompak 1 Baris pada Seluruh Modul Laporan Admin**: Merapikan formulir filter pada Laporan Kependudukan, Laporan Kartu Keluarga, dan Laporan Persuratan menjadi 1 baris horizontal yang bersih, terfokus pada field esensial (Keyword, Lingkungan, Status, Rentang Tanggal), serta melengkapi tombol Reset kondisional.
 - **Konsistensi Navigasi Modul Laporan**: Memastikan seluruh tombol *Kembali* pada modul Laporan Kependudukan, Kartu Keluarga, Persuratan, dan Statistik mengarah langsung ke `/admin/laporan` (`route('admin.laporan.index')`).
 - **Standardisasi Template Dokumen Cetak Laporan**:

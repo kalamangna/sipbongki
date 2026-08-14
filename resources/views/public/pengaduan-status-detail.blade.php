@@ -8,7 +8,7 @@
     <div class="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-200">
-            <div class="p-8 md:p-12">
+            <div class="p-5 sm:p-8 md:p-12">
                 
                 <div class="text-center mb-8 border-b border-slate-200 pb-8">
                     <div class="w-16 h-16 mx-auto bg-primary-light rounded-full flex items-center justify-center mb-4 text-primary text-xl">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-center mt-10 pt-6 border-t border-slate-100">
-                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary font-semibold hover:bg-primary-light transition-colors">
+                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary font-semibold hover:bg-primary-light transition-colors w-full sm:w-auto">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Form Pengaduan
                     </a>
