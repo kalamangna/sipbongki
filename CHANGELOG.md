@@ -8,9 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Keamanan (Proteksi Spam)**: Menambahkan implementasi *Rate Limiting* (throttle middleware) pada formulir publik (Permohonan Surat dan Pengaduan) serta fitur *lookup* untuk memblokir eksploitasi dan serangan otomatis (*bot spam/brute force*).
 - **Fitur (Pelayanan)**: Menambahkan dukungan pengisian formulir layanan secara manual bagi pemohon yang belum terdaftar di database kependudukan, dengan field `manual_` pada `data_surat` dan metode akses dinamis `pemohon`.
 
 ### Changed
+- **UI/UX (Public)**: Merestrukturisasi antarmuka seksi Hero pada beranda publik agar patuh sepenuhnya pada `DESIGN.md` (menghilangkan elemen dekoratif tanpa makna, menyisipkan deskripsi yang terlewat, dan menyempurnakan indikator *focus* untuk aksesibilitas *keyboard*).
 - **Fitur (Pelayanan)**: Mengubah logika publik pembuatan permohonan surat sehingga data `Penduduk` (warga) baru dengan status "belum terverifikasi" hanya dibuat secara otomatis jika pendaftar secara eksplisit memilih opsi identitas warga lokal (Bongki).
 - **Surat (Template)**: Memperbarui seluruh templat cetak surat (Domisili, Usaha, Kematian, Belum Menikah, Tidak Mampu, Pindah, dll.) agar menggunakan objek data `pemohon` (menggabungkan data penduduk terdaftar atau data manual) daripada langsung mengakses relasi `penduduk`.
 - **UI/UX (Admin)**: Mengoptimalkan dan menambah ragam opsi filter (pencarian) pada halaman indeks daftar Penduduk (Status Aktif), Pengaduan (Kategori dan Status), dan Permohonan Surat (Jenis Surat dan Status).

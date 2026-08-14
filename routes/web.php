@@ -67,11 +67,12 @@ Route::get('/pengaduan/status', [PublicPengaduanController::class, 'statusPage']
     ->name('pengaduan.status');
 
 Route::post('/pengaduan/status', [PublicPengaduanController::class, 'checkStatus'])
+    ->middleware('throttle:10,1')
     ->name('pengaduan.status.check');
 
 Route::post('/pengaduan',
     [PublicPengaduanController::class, 'store']
-)->name('pengaduan.store');
+)->middleware('throttle:3,1')->name('pengaduan.store');
 
 /*
 |--------------------------------------------------------------------------
@@ -82,9 +83,11 @@ Route::get('/permohonan', [\App\Http\Controllers\PublicPermohonanController::cla
     ->name('permohonan.create');
 
 Route::post('/permohonan/lookup', [\App\Http\Controllers\PublicPermohonanController::class, 'lookup'])
+    ->middleware('throttle:5,1')
     ->name('permohonan.lookup');
 
 Route::post('/permohonan', [\App\Http\Controllers\PublicPermohonanController::class, 'store'])
+    ->middleware('throttle:3,1')
     ->name('permohonan.store');
 
 Route::get('/permohonan/berhasil/{permohonanSurat}', [\App\Http\Controllers\PublicPermohonanController::class, 'show'])
@@ -92,6 +95,7 @@ Route::get('/permohonan/berhasil/{permohonanSurat}', [\App\Http\Controllers\Publ
 
 // Public: Cek status permohonan
 Route::get('/permohonan/status/check', [\App\Http\Controllers\PublicPermohonanController::class, 'checkStatus'])
+    ->middleware('throttle:10,1')
     ->name('permohonan.status.check');
 
 /*
