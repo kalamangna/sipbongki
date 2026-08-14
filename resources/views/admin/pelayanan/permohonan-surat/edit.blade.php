@@ -18,12 +18,11 @@
 
     <form action="{{ route('admin.permohonan-surat.update', $permohonanSurat->id) }}" method="POST" id="formPermohonan" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
         {{-- Main Form Card --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="p-6 md:p-8 space-y-8">
-        @method('PUT')
-        
+            <div class="p-6 md:p-8">
                 @if ($errors->any())
                     <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">
                         <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
@@ -38,12 +37,11 @@
                     </div>
                 @endif
 
-        {{-- Main Form Container --}}
-        @include('admin.pelayanan.permohonan-surat.form')
-
-        {{-- Footer Actions --}}
+                {{-- Main Form Container --}}
+                @include('admin.pelayanan.permohonan-surat.form')
             </div>
             
+            {{-- Footer Actions --}}
             <div class="bg-slate-50/50 border-t border-slate-200 px-6 md:px-8 py-4 flex items-center justify-end gap-3">
                 <a href="{{ route('admin.permohonan-surat.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm focus:outline-none">
                     Batal

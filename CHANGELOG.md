@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
 
 ### Changed
+- **Refactor & Perapian Halaman Edit Persuratan**:
+  - Menyelaraskan klasifikasi sumber data pemohon pada form persuratan admin (Penduduk Bongki Terdaftar/Belum Verifikasi vs Luar Bongki Manual). Untuk penduduk Bongki, form menampilkan kartu ringkasan data read-only yang ramping serta tombol tautan langsung ke *Edit Data Penduduk* pada modul master kependudukan.
+  - Menghapus bagian input edit Dokumen Persyaratan dari form edit persuratan admin untuk menjaga integritas dokumen asli yang diunggah warga.
+  - Menghilangkan duplikasi penayangan Nomor Permohonan pada header kartu dan menyelaraskan form menjadi 3 seksi utama yang bersih dan terstruktur.
+  - Merapikan layout, struktur HTML/Blade, dan spasi kartu form agar konsisten dengan standar antarmuka modul admin SIPBONGKI.
 - **Redesign Halaman Publik (Kepatuhan DESIGN.md)**: Merombak seluruh halaman dan seksi publik (Navbar, Footer tema gelap `bg-slate-900 text-slate-300`, Hero, Profil Kelurahan & Accordion Monografi, Katalog Layanan 3 kolom, Berita, Pengumuman, Agenda, Galeri Lightbox, dan Peta Lokasi) dengan konsistensi token Tailwind dan eliminasi ornamen dekoratif berlebih (*Less but Better*).
 - **Konsistensi Frasa Sistem**: Menyeragamkan penggunaan istilah baku **"Nomor Permohonan"** dan **"Waktu Permohonan"** di seluruh antarmuka publik, form wizard, kartu status, dan panel administrasi.
 - **Penyederhanaan Alert Konfirmasi Permohonan**: Merampingkan halaman konfirmasi permohonan publik (`show.blade.php`) dengan menghapus banner *session success* ganda dan kotak alert bertumpuk menjadi kartu informasi ringkas yang terfokus.

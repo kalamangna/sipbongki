@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\JenisSurat;
 use App\Models\Penduduk;
+use App\Models\Lingkungan;
 use App\Models\PermohonanSurat;
 use App\Models\PermohonanSuratHistory;
 use App\Models\Perangkat;
@@ -89,12 +90,15 @@ class PermohonanSuratController extends Controller
     ->orderBy('nama_lengkap')
     ->get();
 
+        $lingkungans = Lingkungan::orderBy('nama')->get();
+
         return view(
             'admin.pelayanan.permohonan-surat.create',
             compact(
                 'penduduks',
                 'jenisSurats',
-                'penandatangans'
+                'penandatangans',
+                'lingkungans'
             )
         );
     }
@@ -478,13 +482,16 @@ public function print(PermohonanSurat $permohonanSurat)
     ->orderBy('nama_lengkap')
     ->get();
 
+        $lingkungans = Lingkungan::orderBy('nama')->get();
+
         return view(
             'admin.pelayanan.permohonan-surat.edit',
             compact(
                 'permohonanSurat',
                 'penduduks',
                 'jenisSurats',
-                'penandatangans'
+                'penandatangans',
+                'lingkungans'
             )
         );
     }
@@ -691,10 +698,7 @@ public function update(
 
     return redirect()
         ->route('admin.permohonan-surat.index')
-        ->with(
-            'success',
-            'Permohonan surat berhasil diperbarui.'
-        );
+        ->with('success', 'Permohonan surat berhasil diperbarui.');
 }
 
 
