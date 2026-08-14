@@ -8,25 +8,25 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
             {{-- Jenis Pekerjaan --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Jenis Pekerjaan</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Jenis Pekerjaan</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartPekerjaan"></div>
                 </div>
             </div>
 
             {{-- Agama --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Agama</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Agama</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartAgama"></div>
                 </div>
             </div>
 
             {{-- Status Perkawinan --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Status Perkawinan</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Status Perkawinan</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartStatusNikah"></div>
                 </div>
             </div>
@@ -34,25 +34,25 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
             {{-- Kelompok Usia --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Kelompok Usia</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Kelompok Usia</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartUsia"></div>
                 </div>
             </div>
 
             {{-- Pendidikan --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Pendidikan</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Pendidikan</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartPendidikan"></div>
                 </div>
             </div>
 
             {{-- Wajib Pilih --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Wajib Pilih (>=17 Tahun)</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Wajib Pilih (>=17 Tahun)</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartWajibPilih"></div>
                 </div>
             </div>
@@ -60,17 +60,17 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {{-- RT / RW --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">RT & RW</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">RT & RW</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartRTRW"></div>
                 </div>
             </div>
 
             {{-- Lingkungan --}}
-            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col h-full">
-                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3">Lingkungan</h3>
-                <div class="flex-1 relative" style="height:260px;">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
+                <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Persebaran Penduduk Lingkungan</h3>
+                <div class="flex-1 relative min-h-[280px]">
                     <div id="chartLingkungan"></div>
                 </div>
             </div>
@@ -84,6 +84,8 @@
 document.addEventListener('DOMContentLoaded', function(){
     if (!window.ApexCharts) return;
 
+    const vibrantPalette = ['#059669', '#0284c7', '#d97706', '#7c3aed', '#e11d48', '#0d9488', '#ea580c', '#4f46e5'];
+
     const pekerjaan = @json($pekerjaanStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
     const agama = @json($agamaStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
     const statusNikah = @json($statusNikahStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
@@ -91,153 +93,206 @@ document.addEventListener('DOMContentLoaded', function(){
     const pendidikan = @json($pendidikanStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
     const lingkungan = @json($statistikLingkungan->map(fn($i)=>[$i->nama,$i->penduduk_count])->all() ?? []);
     const wajibPilih = [
-        ['Sudah 17 Tahun', Object.values(usiaObj).slice(1).reduce((sum, value) => sum + value, 0)],
-        ['Belum 17 Tahun', usiaObj['0-17'] ?? 0]
+        ['Wajib Pilih (≥17 th)', Object.values(usiaObj).slice(1).reduce((sum, value) => sum + value, 0)],
+        ['Belum Wajib (<17 th)', usiaObj['0-17'] ?? 0]
     ];
 
     const createDoughnut = (ctx, labels, data, colors, opts = {}) => {
         const options = {
             series: data,
-            chart: { type: 'donut', height: 300 },
+            chart: { type: 'donut', height: 280, fontFamily: 'Inter, sans-serif' },
             labels: labels,
             colors: colors,
             dataLabels: { enabled: false },
-            plotOptions: { pie: { donut: { size: '65%' } } },
-            legend: { position: 'bottom', markers: { radius: 12 } },
+            plotOptions: { 
+                pie: { 
+                    donut: { 
+                        size: '68%',
+                        labels: {
+                            show: true,
+                            total: {
+                                show: true,
+                                label: 'Total',
+                                fontSize: '12px',
+                                fontWeight: 700,
+                                color: '#475569',
+                                formatter: function (w) {
+                                    return w.globals.seriesTotals.reduce((a, b) => a + b, 0).toLocaleString('id-ID');
+                                }
+                            }
+                        }
+                    } 
+                } 
+            },
+            legend: { 
+                position: 'bottom', 
+                fontSize: '11px',
+                markers: { radius: 12, offsetX: -2 },
+                itemMargin: { horizontal: 6, vertical: 3 }
+            },
+            stroke: { width: 2, colors: ['#ffffff'] },
             ...opts
         };
         new ApexCharts(ctx, options).render();
     };
 
-    const createBar = (ctx, labels, data, color) => {
+    const createBar = (ctx, labels, data, colors) => {
+        const isMultiColor = Array.isArray(colors);
         const options = {
             series: [{ name: 'Jumlah', data: data }],
-            chart: { type: 'bar', height: 350, toolbar: { show: false } },
-            plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '70%' } },
-            colors: [color],
+            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+            plotOptions: { 
+                bar: { 
+                    horizontal: true, 
+                    borderRadius: 6, 
+                    barHeight: '65%',
+                    distributed: isMultiColor
+                } 
+            },
+            colors: isMultiColor ? colors : [colors],
             dataLabels: { enabled: false },
-            xaxis: { categories: labels, labels: { style: { cssClass: 'text-xs' } } },
-            grid: { strokeDashArray: 4 }
+            xaxis: { categories: labels, labels: { style: { fontSize: '11px', colors: '#64748b' } } },
+            yaxis: { labels: { style: { fontSize: '11px', colors: '#334155' } } },
+            legend: { show: false },
+            grid: { strokeDashArray: 4, borderColor: '#e2e8f0' }
         };
         new ApexCharts(ctx, options).render();
     };
 
-   // ==================== PEKERJAAN ====================
-if (document.getElementById('chartPekerjaan') && pekerjaan.length) {
-    createBar(
-        document.getElementById('chartPekerjaan'),
-        pekerjaan.map(i => i[0]),
-        pekerjaan.map(i => i[1]),
-        '#F59E0B'
-    );
-}
-
-// ==================== AGAMA ====================
-if (document.getElementById('chartAgama') && agama.length) {
-    createDoughnut(
-        document.getElementById('chartAgama'),
-        agama.map(i => i[0]),
-        agama.map(i => i[1]),
-        ['#2563EB','#10B981','#F59B0B','#EF4444','#8B5CF6','#A855F7']
-    );
-}
-
-// ==================== STATUS PERKAWINAN ====================
-if (document.getElementById('chartStatusNikah')) {
-    if (statusNikah.length) {
-        createDoughnut(
-            document.getElementById('chartStatusNikah'),
-            statusNikah.map(i => i[0]),
-            statusNikah.map(i => i[1]),
-            ['#2563EB','#10B981','#F59B0B','#8B5CF6']
-        );
-    } else {
-        createDoughnut(
-            document.getElementById('chartStatusNikah'),
-            ['Data tidak tersedia'],
-            [1],
-            ['#CBD5E1'],
-            { legend: { show: false }, tooltip: { enabled: false } }
-        );
-    }
-}
-
-// ==================== KELOMPOK USIA ====================//
-if (document.getElementById('chartUsia') && Object.keys(usiaObj).length) {
-    const usiaOptions = {
-        series: [{ name: 'Jumlah', data: Object.values(usiaObj) }],
-        chart: { type: 'bar', height: 350, toolbar: { show: false } },
-        plotOptions: { bar: { horizontal: false, borderRadius: 4, columnWidth: '60%' } },
-        colors: ['#2563EB'],
-        dataLabels: { enabled: false },
-        xaxis: { categories: Object.keys(usiaObj) },
-        grid: { strokeDashArray: 4 }
-    };
-    new ApexCharts(document.getElementById('chartUsia'), usiaOptions).render();
-}
-
-// ==================== PENDIDIKAN ====================
-if (document.getElementById('chartPendidikan')) {
-    if (pendidikan.length) {
+    // ==================== PEKERJAAN ====================
+    if (document.getElementById('chartPekerjaan') && pekerjaan.length) {
         createBar(
-            document.getElementById('chartPendidikan'),
-            pendidikan.map(i => i[0]),
-            pendidikan.map(i => i[1]),
-            '#7C3AED'
-        );
-    } else {
-        createDoughnut(
-            document.getElementById('chartPendidikan'),
-            ['Data tidak tersedia'],
-            [1],
-            ['#CBD5E1'],
-            { legend: { show: false }, tooltip: { enabled: false } }
+            document.getElementById('chartPekerjaan'),
+            pekerjaan.map(i => i[0]),
+            pekerjaan.map(i => i[1]),
+            vibrantPalette
         );
     }
-}
 
-// ==================== WAJIB PILIH ====================
-if (document.getElementById('chartWajibPilih')) {
-    createDoughnut(
-        document.getElementById('chartWajibPilih'),
-        wajibPilih.map(i => i[0]),
-        wajibPilih.map(i => i[1]),
-        ['#10B981', '#F59E0B']
-    );
-}
+    // ==================== AGAMA ====================
+    if (document.getElementById('chartAgama') && agama.length) {
+        createDoughnut(
+            document.getElementById('chartAgama'),
+            agama.map(i => i[0]),
+            agama.map(i => i[1]),
+            ['#059669', '#0284c7', '#d97706', '#7c3aed', '#e11d48', '#0d9488']
+        );
+    }
 
+    // ==================== STATUS PERKAWINAN ====================
+    if (document.getElementById('chartStatusNikah')) {
+        if (statusNikah.length) {
+            createDoughnut(
+                document.getElementById('chartStatusNikah'),
+                statusNikah.map(i => i[0]),
+                statusNikah.map(i => i[1]),
+                ['#059669', '#0284c7', '#d97706', '#7c3aed']
+            );
+        } else {
+            createDoughnut(
+                document.getElementById('chartStatusNikah'),
+                ['Data tidak tersedia'],
+                [1],
+                ['#CBD5E1'],
+                { legend: { show: false }, tooltip: { enabled: false } }
+            );
+        }
+    }
 
-// ==================== LINGKUNGAN ====================
+    // ==================== KELOMPOK USIA ====================
+    if (document.getElementById('chartUsia') && Object.keys(usiaObj).length) {
+        const usiaOptions = {
+            series: [{ name: 'Jumlah', data: Object.values(usiaObj) }],
+            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+            plotOptions: { 
+                bar: { 
+                    horizontal: false, 
+                    borderRadius: 6, 
+                    columnWidth: '55%',
+                    distributed: true
+                } 
+            },
+            colors: ['#0284c7', '#059669', '#d97706', '#7c3aed', '#ea580c'],
+            dataLabels: { enabled: false },
+            xaxis: { categories: Object.keys(usiaObj), labels: { style: { fontSize: '11px', colors: '#64748b' } } },
+            yaxis: { labels: { style: { fontSize: '11px', colors: '#334155' } } },
+            legend: { show: false },
+            grid: { strokeDashArray: 4, borderColor: '#e2e8f0' }
+        };
+        new ApexCharts(document.getElementById('chartUsia'), usiaOptions).render();
+    }
 
-if (document.getElementById('chartLingkungan') && lingkungan.length) {
-    createBar(
-        document.getElementById('chartLingkungan'),
-        lingkungan.map(i => i[0]),
-        lingkungan.map(i => i[1]),
-        '#2563EB'
-    );
-}
+    // ==================== PENDIDIKAN ====================
+    if (document.getElementById('chartPendidikan')) {
+        if (pendidikan.length) {
+            createBar(
+                document.getElementById('chartPendidikan'),
+                pendidikan.map(i => i[0]),
+                pendidikan.map(i => i[1]),
+                vibrantPalette
+            );
+        } else {
+            createDoughnut(
+                document.getElementById('chartPendidikan'),
+                ['Data tidak tersedia'],
+                [1],
+                ['#CBD5E1'],
+                { legend: { show: false }, tooltip: { enabled: false } }
+            );
+        }
+    }
 
-// ==================== RT / RW ====================
+    // ==================== WAJIB PILIH ====================
+    if (document.getElementById('chartWajibPilih')) {
+        createDoughnut(
+            document.getElementById('chartWajibPilih'),
+            wajibPilih.map(i => i[0]),
+            wajibPilih.map(i => i[1]),
+            ['#059669', '#f59e0b']
+        );
+    }
 
-const rtRw = @json($statistikRtRw->all() ?? []);
+    // ==================== LINGKUNGAN ====================
+    if (document.getElementById('chartLingkungan') && lingkungan.length) {
+        createBar(
+            document.getElementById('chartLingkungan'),
+            lingkungan.map(i => i[0]),
+            lingkungan.map(i => i[1]),
+            vibrantPalette
+        );
+    }
 
-if (document.getElementById('chartRTRW') && rtRw.length) {
-    const rtrwOptions = {
-        series: [
-            { name: 'RT', data: rtRw.map(item => item.rt) },
-            { name: 'RW', data: rtRw.map(item => item.rw) }
-        ],
-        chart: { type: 'bar', height: 350, toolbar: { show: false } },
-        plotOptions: { bar: { horizontal: false, borderRadius: 4, columnWidth: '50%' } },
-        colors: ['#2563EB', '#10B981'],
-        dataLabels: { enabled: false },
-        xaxis: { categories: rtRw.map(item => item.nama) },
-        legend: { position: 'top', markers: { radius: 12 } },
-        grid: { strokeDashArray: 4 }
-    };
-    new ApexCharts(document.getElementById('chartRTRW'), rtrwOptions).render();
-}
+    // ==================== RT / RW ====================
+    const rtRw = @json($statistikRtRw->all() ?? []);
+
+    if (document.getElementById('chartRTRW') && rtRw.length) {
+        const rtrwOptions = {
+            series: [
+                { name: 'RT', data: rtRw.map(item => item.rt) },
+                { name: 'RW', data: rtRw.map(item => item.rw) }
+            ],
+            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+            plotOptions: { 
+                bar: { 
+                    horizontal: false, 
+                    borderRadius: 6, 
+                    columnWidth: '50%' 
+                } 
+            },
+            colors: ['#059669', '#0284c7'],
+            dataLabels: { enabled: false },
+            xaxis: { categories: rtRw.map(item => item.nama), labels: { style: { fontSize: '11px', colors: '#64748b' } } },
+            yaxis: { labels: { style: { fontSize: '11px', colors: '#334155' } } },
+            legend: { 
+                position: 'top', 
+                fontSize: '12px',
+                markers: { radius: 12, offsetX: -2 },
+                itemMargin: { horizontal: 8, vertical: 4 }
+            },
+            grid: { strokeDashArray: 4, borderColor: '#e2e8f0' }
+        };
+        new ApexCharts(document.getElementById('chartRTRW'), rtrwOptions).render();
+    }
 
 });
 </script>

@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Visualisasi Statistik Kelurahan (ApexCharts)**: Menyelaraskan tinggi wadah grafik statistik menjadi responsif `min-h-[280px]` dan tinggi render `280px` yang proporsional, memperkaya variasi warna multi-kategori (*distributed palette*) pada grafik batang horizontal dan donat, serta menyematkan ringkasan akumulatif total pada bagian tengah *donut chart*.
+- **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
+
+### Changed
+- **Redesign Halaman Publik (Kepatuhan DESIGN.md)**: Merombak seluruh halaman dan seksi publik (Navbar, Footer tema gelap `bg-slate-900 text-slate-300`, Hero, Profil Kelurahan & Accordion Monografi, Katalog Layanan 3 kolom, Berita, Pengumuman, Agenda, Galeri Lightbox, dan Peta Lokasi) dengan konsistensi token Tailwind dan eliminasi ornamen dekoratif berlebih (*Less but Better*).
+- **Konsistensi Frasa Sistem**: Menyeragamkan penggunaan istilah baku **"Nomor Permohonan"** dan **"Waktu Permohonan"** di seluruh antarmuka publik, form wizard, kartu status, dan panel administrasi.
+- **Penyederhanaan Alert Konfirmasi Permohonan**: Merampingkan halaman konfirmasi permohonan publik (`show.blade.php`) dengan menghapus banner *session success* ganda dan kotak alert bertumpuk menjadi kartu informasi ringkas yang terfokus.
+- **Navigasi & Tab Cetak Surat**: Menghapus `target="_blank"` pada tombol cetak surat agar proses cetak dan preview berjalan pada tab aktif, serta memastikan tombol `← Kembali` pada lembar surat langsung mengarahkan kembali ke halaman Detail Permohonan Surat (`permohonan-surat.show`).
+- **Tipografi KOP & Isi Surat**: Menegaskan deklarasi font **Times New Roman** secara mutlak (`!important`) pada seluruh lembar cetak surat dan elemen KOP instansi agar tidak tertimpa oleh preflight Tailwind.
+- **Kebersihan Grafik Statistik**: Menonaktifkan *Data Labels* statis pada seluruh chart statistik dan membersihkan ikon badge pada judul kartu agar visual grafik tampil elegan, bersih, dan informatif saat di-hover.
 - **Tata Naskah Dinas (Kop Surat & Tipografi)**: Menyempurnakan Kop Surat Kelurahan Bongki sesuai standar Tata Naskah Dinas Permendagri No. 1 Tahun 2023 menggunakan layout 3 kolom (*balanced centering*), memperbesar ukuran logo instansi, serta menambahkan spasi (*margin-top*) proporsional di atas nama jenis surat.
 - **Tata Naskah Dinas (Logika Penandatangan)**: Mengimplementasikan deteksi otomatis penandatanganan surat sesuai kaidah hukum administrasi dan tata naskah dinas untuk status Lurah Definitif (`LURAH BONGKI,`), Plt./Plh. Lurah (`Plt. LURAH BONGKI,`), serta pendelegasian Atas Nama (`a.n. LURAH BONGKI` disertai baris nama jabatan struktural penerima mandat seperti Sekretaris Lurah / Kasi).
 - **Template Persuratan**: Menambahkan kalimat pengantar resmi *"Menerangkan dengan sesungguhnya bahwa :"* pada template Surat Keterangan Domisili dan melengkapi berkas template standar Surat Keterangan Belum Memiliki Rumah (`belum-punya-rumah.blade.php`).

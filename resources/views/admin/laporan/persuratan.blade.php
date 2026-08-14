@@ -15,7 +15,7 @@
             class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 shadow-sm transition-all active:scale-95 focus:outline-none">
             <i class="fa-solid fa-arrow-left"></i> Kembali
         </a>
-        <a href="{{ route('admin.laporan.print-persuratan', request()->query()) }}" target="_blank"
+        <a href="{{ route('admin.laporan.print-persuratan', request()->query()) }}"
             class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all active:scale-95 focus:outline-none">
             <i class="fa-solid fa-print"></i> Cetak
         </a>

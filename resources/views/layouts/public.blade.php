@@ -14,7 +14,7 @@
     <meta name="language" content="id">
     <meta name="geo.region" content="ID-SN">
     <meta name="geo.placename" content="Kelurahan Bongki, Kecamatan Sinjai Utara, Kabupaten Sinjai">
-    <meta name="theme-color" content="#1E5AA8">
+    <meta name="theme-color" content="#059669">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="canonical" href="{{ url()->current() }}">
 

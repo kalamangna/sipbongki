@@ -79,7 +79,7 @@
         {{-- STATUS DIPROSES --}}
         @if($permohonanSurat->status == 'Diproses')
         <div class="flex flex-col gap-3">
-            <a href="{{ empty($permohonanSurat->penandatangan_id) ? '#' : route('admin.permohonan-surat.print', $permohonanSurat) }}" {{ empty($permohonanSurat->penandatangan_id) ? '' : 'target="_blank"' }} class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 {{ empty($permohonanSurat->penandatangan_id) ? 'opacity-50 cursor-not-allowed pointer-events-none' : '' }}">
+            <a href="{{ empty($permohonanSurat->penandatangan_id) ? '#' : route('admin.permohonan-surat.print', $permohonanSurat) }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 {{ empty($permohonanSurat->penandatangan_id) ? 'opacity-50 cursor-not-allowed pointer-events-none' : '' }}">
                 <i class="fa-solid fa-print text-lg"></i> Preview & Cetak Surat
             </a>
             <form action="{{ route('admin.permohonan-surat.update-status', $permohonanSurat) }}" method="POST" class="w-full m-0">
@@ -95,7 +95,7 @@
         {{-- STATUS SELESAI --}}
         @if($permohonanSurat->status == 'Selesai')
         <div class="flex flex-col gap-3">
-            <a href="{{ route('admin.permohonan-surat.print', $permohonanSurat) }}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95">
+            <a href="{{ route('admin.permohonan-surat.print', $permohonanSurat) }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-600 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95">
                 <i class="fa-solid fa-print text-lg"></i> Preview & Cetak Surat
             </a>
         </div>

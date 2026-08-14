@@ -7,11 +7,11 @@
 <section class="min-h-screen py-24 bg-slate-50 pt-32 flex items-center justify-center">
     <div class="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+        <div class="bg-white rounded-3xl shadow-md overflow-hidden border border-slate-200">
             <div class="p-8 md:p-12">
                 
-                <div class="text-center mb-8 border-b border-slate-100 pb-8">
-                    <div class="w-16 h-16 mx-auto bg-primary-light rounded-full flex items-center justify-center mb-4">
+                <div class="text-center mb-8 border-b border-slate-200 pb-8">
+                    <div class="w-16 h-16 mx-auto bg-primary-light rounded-full flex items-center justify-center mb-4 text-primary text-xl">
                         <i class="fa-solid fa-file-lines"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-slate-800 mb-2">Status Pengaduan</h2>

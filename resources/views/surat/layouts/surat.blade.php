@@ -44,6 +44,10 @@
                 $backUrl = request()->routeIs('admin.*')
                     ? route('admin.laporan.penduduk')
                     : route('operator.laporan.penduduk');
+            } elseif (isset($permohonan) && $permohonan->id) {
+                $backUrl = request()->routeIs('admin.*')
+                    ? route('admin.permohonan-surat.show', $permohonan->id)
+                    : route('operator.permohonan-surat.show', $permohonan->id);
             } else {
                 $backUrl = request()->routeIs('admin.*')
                     ? route('admin.permohonan-surat.index')

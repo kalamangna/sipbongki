@@ -15,21 +15,21 @@
 
             @forelse($beritas as $berita)
 
-                <article class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <article class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
 
                     {{-- Image --}}
-                    <div class="relative overflow-hidden h-48">
+                    <div class="relative overflow-hidden aspect-[16/10] bg-slate-100">
                         <img src="{{ $berita->gambar ? asset('storage/'.$berita->gambar) : asset('images/kantor.png') }}"
                              alt="{{ $berita->judul }}"
                              loading="lazy"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
                         {{-- Date badge --}}
-                        <div class="absolute top-3 left-3 bg-primary text-white rounded-xl px-3 py-1.5 text-center shadow-lg leading-tight">
-                            <div class="text-lg font-bold leading-none">
+                        <div class="absolute top-3 left-3 bg-primary text-white rounded-xl px-3 py-1.5 text-center shadow-md leading-tight">
+                            <div class="text-base font-bold leading-none">
                                 {{ optional($berita->tanggal_publish)->format('d') ?? $berita->created_at->format('d') }}
                             </div>
-                            <div class="text-xs uppercase tracking-wider">
+                            <div class="text-[10px] font-semibold uppercase tracking-wider mt-0.5">
                                 {{ optional($berita->tanggal_publish)->format('M') ?? $berita->created_at->format('M') }}
                             </div>
                         </div>
@@ -38,15 +38,17 @@
                     {{-- Body --}}
                     <div class="flex flex-col flex-1 p-5">
                         <h3 class="text-base font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            {{ $berita->judul }}
+                            <a href="{{ route('berita.show', $berita) }}" class="hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                                {{ $berita->judul }}
+                            </a>
                         </h3>
                         <p class="text-sm text-slate-500 leading-relaxed flex-1 line-clamp-3">
                             {{ Str::limit(strip_tags($berita->isi), 140) }}
                         </p>
                         <a href="{{ route('berita.show', $berita) }}"
-                           class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
+                           class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded">
                             Baca Selengkapnya
-                            <i class="fa-solid fa-arrow-right"></i>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
 
@@ -55,9 +57,11 @@
             @empty
 
                 <div class="sm:col-span-2 lg:col-span-3 py-16 text-center text-slate-400">
-                    <i class="fa-solid fa-newspaper"></i>
-                    <h5 class="text-lg font-semibold text-slate-600 mb-1">Belum Ada Berita</h5>
-                    <p class="text-sm">Berita akan muncul setelah dipublikasikan melalui Dashboard Admin.</p>
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400 text-2xl">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-slate-700 mb-1">Belum Ada Berita</h4>
+                    <p class="text-sm text-slate-500 max-w-sm mx-auto">Berita akan muncul setelah dipublikasikan melalui Dashboard Admin.</p>
                 </div>
 
             @endforelse

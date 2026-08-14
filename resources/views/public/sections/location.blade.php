@@ -25,7 +25,7 @@
                 @endphp
 
                 @foreach($contacts as $contact)
-                    <div class="flex items-start gap-4 bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
+                    <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                         <div class="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0">
                             <i class="{{ $contact['icon'] }} w-5 h-5 text-primary"></i>
                         </div>
@@ -38,15 +38,15 @@
 
                 <a href="https://www.google.com/maps/search/?api=1&query=-5.123390,120.253400"
                    target="_blank"
-                   class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 mt-2">
-                    <i class="fa-solid fa-map"></i>
+                   class="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm shadow-md shadow-primary/20 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-2">
+                    <i class="fa-solid fa-map-location-dot"></i>
                     Buka di Google Maps
                 </a>
 
             </div>
 
             {{-- ── MAP ──────────────────────────────────── --}}
-            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-lg border border-slate-100 min-h-[400px]">
+            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-sm border border-slate-200 min-h-[400px]">
                 <iframe src="{{ $website?->google_maps }}"
                         width="100%"
                         height="100%"

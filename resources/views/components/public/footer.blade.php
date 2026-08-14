@@ -2,7 +2,7 @@
     FOOTER — Tailwind CSS (sesuai DESIGN.md)
     Primary: emerald | Accent: amber | Neutral: slate
 ═══════════════════════════════════════════════ --}}
-<footer id="kontak-footer" class="bg-gradient-to-br from-emerald-900 to-emerald-700 text-white">
+<footer id="kontak-footer" class="bg-slate-900 text-slate-300 border-t border-slate-800">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
@@ -15,15 +15,15 @@
                     <img src="{{ $website?->logo
                             ? asset('storage/'.$website->logo)
                             : asset('images/logo.png') }}"
-                         alt="Logo"
+                         alt="Logo {{ $website?->nama_kelurahan ?? 'Kelurahan Bongki' }}"
                          class="h-11 w-auto">
                     <div>
-                        <div class="font-bold text-sm">{{ $website?->nama_website ?? 'SIP Bongki' }}</div>
-                        <div class="text-xs text-white/60">Pemerintah Kelurahan Bongki</div>
+                        <div class="font-bold text-sm text-white">{{ $website?->nama_website ?? 'SIP Bongki' }}</div>
+                        <div class="text-xs text-slate-400">Pemerintah Kelurahan Bongki</div>
                     </div>
                 </div>
 
-                <p class="text-sm text-white/70 leading-relaxed">
+                <p class="text-sm text-slate-400 leading-relaxed">
                     {{ $website?->footer_text ?? 'Sistem Informasi dan Pelayanan Kelurahan Bongki yang memberikan pelayanan publik secara cepat, transparan dan profesional.' }}
                 </p>
 
@@ -31,7 +31,7 @@
 
             {{-- ── MENU ─────────────────────────── --}}
             <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white/60">Menu</h5>
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Menu Navigasi</h5>
                 <ul class="flex flex-col gap-2.5">
                     @php
                         $footerLinks = [
@@ -47,8 +47,8 @@
                     @foreach($footerLinks as $link)
                         <li>
                             <a href="{{ $link['href'] }}"
-                               class="text-sm text-white/60 hover:text-white transition-colors
-                                      focus:outline-none rounded">
+                               class="text-sm text-slate-400 hover:text-white transition-colors
+                                      focus:outline-none focus:ring-2 focus:ring-primary rounded">
                                 {{ $link['label'] }}
                             </a>
                         </li>
@@ -58,19 +58,19 @@
 
             {{-- ── LAYANAN ───────────────────────── --}}
             <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white/60">Layanan</h5>
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Layanan Populer</h5>
                 <ul class="flex flex-col gap-2.5">
                     @php
                         $jenisSurats = \App\Models\JenisSurat::where('aktif', true)->orderBy('nomor_urut')->take(6)->get();
                     @endphp
                     @forelse($jenisSurats as $jenisSurat)
                         <li>
-                            <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}" class="text-sm text-white/60 hover:text-white transition-colors">
+                            <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}" class="text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
                                 {{ $jenisSurat->nama }}
                             </a>
                         </li>
                     @empty
-                        <li class="text-sm text-white/60">Belum ada layanan</li>
+                        <li class="text-sm text-slate-500">Belum ada layanan</li>
                     @endforelse
                 </ul>
             </div>
@@ -78,34 +78,34 @@
 
             {{-- ── KONTAK ────────────────────────── --}}
             <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white/60">Kontak</h5>
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Hubungi Kami</h5>
                 <div class="flex flex-col gap-3">
                     @if($website?->alamat)
-                        <div class="flex items-start gap-2.5 text-sm text-white/70">
-                            <i class="fa-solid fa-map"></i>
-                            {{ $website->alamat }}
+                        <div class="flex items-start gap-2.5 text-sm text-slate-400">
+                            <i class="fa-solid fa-map-pin text-primary mt-0.5 shrink-0"></i>
+                            <span>{{ $website->alamat }}</span>
                         </div>
                     @endif
                     @if($website?->telepon)
-                        <div class="flex items-center gap-2.5 text-sm text-white/70">
-                            <i class="fa-solid fa-phone"></i>
-                            {{ $website->telepon }}
+                        <div class="flex items-center gap-2.5 text-sm text-slate-400">
+                            <i class="fa-solid fa-phone text-primary shrink-0"></i>
+                            <span>{{ $website->telepon }}</span>
                         </div>
                     @endif
                     @if($website?->email)
-                        <div class="flex items-center gap-2.5 text-sm text-white/70">
-                            <i class="fa-solid fa-envelope"></i>
-                            {{ $website->email }}
+                        <div class="flex items-center gap-2.5 text-sm text-slate-400">
+                            <i class="fa-solid fa-envelope text-primary shrink-0"></i>
+                            <span>{{ $website->email }}</span>
                         </div>
                     @endif
                     @if($website?->whatsapp)
                         {{-- WhatsApp: warna merek asli (hijau) sesuai DESIGN.md --}}
                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $website->whatsapp) }}"
                            target="_blank"
-                           class="flex items-center gap-2.5 text-sm text-white/70 hover:text-white transition-colors
-                                  focus:outline-none rounded">
-                            <i class="fa-solid fa-comment-dots"></i>
-                            {{ $website->whatsapp }}
+                           class="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors
+                                  focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-base shrink-0"></i>
+                            <span>{{ $website->whatsapp }}</span>
                         </a>
                     @endif
                 </div>
@@ -116,9 +116,9 @@
     </div>
 
     {{-- ── COPYRIGHT ─────────────────────────── --}}
-    <div class="border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <p class="text-center text-xs text-white/40">
+    <div class="border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <p class="text-center text-xs text-slate-500">
                 {{ $website?->copyright ?? '© '.date('Y').' Kelurahan Bongki. All rights reserved.' }}
             </p>
         </div>

@@ -77,7 +77,7 @@
                         <a href="{{ route('dashboard') }}"
                            class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
                                   transition-all duration-200 active:scale-95
-                                  focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md">
+                                  focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20">
                             <i class="fa-solid fa-gauge"></i>
                             Dashboard
                         </a>
@@ -85,7 +85,7 @@
                         <a href="{{ route('login') }}"
                            class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
                                   transition-all duration-200 active:scale-95
-                                  focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md">
+                                  focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20">
                             <i class="fa-solid fa-arrow-right"></i>
                             Masuk
                         </a>
@@ -96,7 +96,7 @@
                             aria-label="Buka menu"
                             :aria-expanded="open"
                             class="lg:hidden h-11 w-11 flex items-center justify-center rounded-xl transition-colors
-                                   focus:outline-none text-slate-700 hover:bg-slate-100">
+                                   focus:outline-none focus:ring-2 focus:ring-primary text-slate-700 hover:bg-slate-100">
                         <i class="fa-solid fa-bars" x-show="!open"></i>
                         <i class="fa-solid fa-xmark" x-show="open" style="display: none;"></i>
                     </button>
@@ -124,7 +124,7 @@
                    @click="open = false"
                    class="px-4 py-3 rounded-xl text-sm font-medium text-slate-700
                           hover:bg-primary-light hover:text-primary
-                          focus:outline-none
+                          focus:outline-none focus:ring-2 focus:ring-primary
                           transition-colors">
                     {{ $link['label'] }}
                 </a>
@@ -135,7 +135,7 @@
                     <a href="{{ route('dashboard') }}"
                        class="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold
                               transition-all duration-200 active:scale-95
-                              focus:outline-none bg-emerald-600 text-white hover:bg-emerald-700 shadow-md w-full">
+                              focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 w-full">
                         <i class="fa-solid fa-gauge"></i>
                         Ke Dashboard
                     </a>
@@ -143,7 +143,7 @@
                     <a href="{{ route('login') }}"
                        class="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold
                               transition-all duration-200 active:scale-95
-                              focus:outline-none bg-primary text-white hover:bg-primary-dark shadow-md w-full">
+                              focus:outline-none focus:ring-2 focus:ring-primary bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 w-full">
                         <i class="fa-solid fa-arrow-right"></i>
                         Masuk sebagai Admin / Operator
                     </a>

@@ -15,14 +15,14 @@
 
             @forelse($agendas as $agenda)
 
-                <div class="flex gap-4 bg-slate-50 border border-slate-100 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                <div class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
 
                     {{-- Date box --}}
-                    <div class="flex-shrink-0 w-14 h-16 rounded-xl bg-primary flex flex-col items-center justify-center text-white shadow-md">
+                    <div class="flex-shrink-0 w-14 h-16 rounded-xl bg-primary flex flex-col items-center justify-center text-white shadow-sm shadow-primary/20">
                         <span class="text-xl font-extrabold leading-none">
                             {{ $agenda->tanggal ? $agenda->tanggal->format('d') : '-' }}
                         </span>
-                        <span class="text-xs uppercase tracking-wider mt-0.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider mt-0.5">
                             {{ $agenda->tanggal ? $agenda->tanggal->format('M') : '' }}
                         </span>
                     </div>
@@ -34,12 +34,12 @@
                         </h3>
                         <div class="flex flex-col gap-1">
                             <span class="inline-flex items-center gap-1.5 text-xs text-slate-500">
-                                <i class="fa-solid fa-map"></i>
-                                {{ $agenda->lokasi ?? 'Lokasi belum ditentukan' }}
+                                <i class="fa-solid fa-map-pin text-primary text-xs shrink-0"></i>
+                                <span class="truncate">{{ $agenda->lokasi ?? 'Lokasi belum ditentukan' }}</span>
                             </span>
                             <span class="inline-flex items-center gap-1.5 text-xs text-slate-500">
-                                <i class="fa-solid fa-clock"></i>
-                                {{ $agenda->waktu ?? '-' }} WITA
+                                <i class="fa-solid fa-clock text-primary text-xs shrink-0"></i>
+                                <span>{{ $agenda->waktu ?? '-' }} WITA</span>
                             </span>
                         </div>
                     </div>
@@ -49,9 +49,11 @@
             @empty
 
                 <div class="sm:col-span-2 lg:col-span-3 py-16 text-center text-slate-400">
-                    <i class="fa-regular fa-calendar"></i>
-                    <h5 class="text-lg font-semibold text-slate-600 mb-1">Belum Ada Agenda</h5>
-                    <p class="text-sm">Agenda kegiatan akan muncul setelah ditambahkan.</p>
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400 text-2xl">
+                        <i class="fa-regular fa-calendar-xmark"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-slate-700 mb-1">Belum Ada Agenda</h4>
+                    <p class="text-sm text-slate-500 max-w-sm mx-auto">Agenda kegiatan akan ditampilkan setelah dijadwalkan oleh pihak kelurahan.</p>
                 </div>
 
             @endforelse

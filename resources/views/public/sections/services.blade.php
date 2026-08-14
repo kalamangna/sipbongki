@@ -15,13 +15,13 @@
 
             @forelse($jenisSurats ?? [] as $jenisSurat)
 
-                <div class="group flex flex-col bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
 
                     <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                        <i class="{{ $jenisSurat->icon ?? 'fa-solid fa-file-lines' }} text-primary group-hover:text-white transition-colors" style="font-size: 2rem;"></i>
+                        <i class="{{ $jenisSurat->icon ?? 'fa-solid fa-file-lines' }} text-primary group-hover:text-white transition-colors text-2xl"></i>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mb-2">
+                    <h3 class="text-base font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
                         {{ $jenisSurat->nama }}
                     </h3>
 
@@ -31,7 +31,7 @@
 
                     <div class="mt-5 pt-4 border-t border-slate-100">
                         <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}"
-                           class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors">
+                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-all duration-200 active:scale-95 shadow-sm shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                             <i class="fa-solid fa-paper-plane"></i>
                             Ajukan Permohonan
                         </a>
@@ -42,9 +42,11 @@
             @empty
 
                 <div class="sm:col-span-2 lg:col-span-3 py-16 text-center text-slate-400">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <h5 class="text-lg font-semibold text-slate-600 mb-1">Belum Ada Layanan</h5>
-                    <p class="text-sm">Jenis pelayanan akan ditampilkan setelah dipublikasikan melalui Dashboard Admin.</p>
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400 text-2xl">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <h4 class="text-base font-semibold text-slate-700 mb-1">Belum Ada Layanan</h4>
+                    <p class="text-sm text-slate-500 max-w-sm mx-auto">Jenis pelayanan akan ditampilkan setelah dipublikasikan melalui Dashboard Admin.</p>
                 </div>
 
             @endforelse

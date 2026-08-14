@@ -9,25 +9,22 @@
     box-sizing:border-box;
 }
 
-body{
+body,
+.page,
+.page *{
+    font-family:"Times New Roman", Times, serif !important;
+}
 
+body{
     margin:0;
     padding:0;
-
     color:#000;
-
-    font-family:"Times New Roman", Times, serif;
-
     font-size:12pt;
-
     line-height:1.5;
-
 }
 
 .page{
-
     width:100%;
-
 }
 
 /* ===========================
@@ -39,6 +36,7 @@ body{
     margin-bottom:8px;
     padding-bottom:6px;
     border-bottom:3px double #000;
+    font-family:"Times New Roman", Times, serif !important;
 }
 
 .kop table{
@@ -67,11 +65,13 @@ body{
 .kop-header,
 .header{
     text-align:center;
+    font-family:"Times New Roman", Times, serif !important;
 }
 
 .kop-header h3,
 .header h3{
     margin:0;
+    font-family:"Times New Roman", Times, serif !important;
     font-size:13pt;
     font-weight:bold;
     line-height:1.25;
@@ -82,6 +82,7 @@ body{
 .kop-header h2,
 .header h2{
     margin:2px 0;
+    font-family:"Times New Roman", Times, serif !important;
     font-size:15pt;
     font-weight:bold;
     line-height:1.25;
@@ -92,6 +93,7 @@ body{
 .kop-header p,
 .header p{
     margin:3px 0 0 0;
+    font-family:"Times New Roman", Times, serif !important;
     font-size:9.5pt;
     font-style:italic;
     line-height:1.3;
@@ -260,55 +262,61 @@ table td{
 =========================== */
 
 .preview-action{
-
     position:fixed;
-
     top:20px;
-
     right:30px;
-
     z-index:999;
-
+    display:flex;
+    gap:8px;
+    align-items:center;
 }
-
 
 .preview-action a,
 .preview-action button{
-
-    padding:8px 14px;
-
-    margin-left:5px;
-
-    border-radius:5px;
-
-    border:none;
-
-    font-family:Arial, sans-serif;
-
-    font-size:14px;
-
+    padding:10px 18px;
+    border-radius:12px;
+    font-family:'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size:13px;
+    font-weight:600;
     cursor:pointer;
-
     text-decoration:none;
-
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.preview-action a:active,
+.preview-action button:active{
+    transform:scale(0.96);
+}
 
 .btn-kembali{
-
-    background:#6c757d;
-
-    color:white;
-
+    background:#ffffff;
+    color:#334155;
+    border:1px solid #cbd5e1;
+    box-shadow:0 1px 3px rgba(0,0,0,0.08);
 }
 
+.btn-kembali:hover{
+    background:#f8fafc;
+    color:#0f172a;
+    border-color:#94a3b8;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);
+    transform:translateY(-1px);
+}
 
 .btn-cetak{
+    background:#059669;
+    color:#ffffff;
+    border:1px solid transparent;
+    box-shadow:0 4px 10px rgba(5,150,105,0.25);
+}
 
-    background:#0d6efd;
-
-    color:white;
-
+.btn-cetak:hover{
+    background:#047857;
+    box-shadow:0 6px 14px rgba(5,150,105,0.35);
+    transform:translateY(-1px);
 }
 
 

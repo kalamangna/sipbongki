@@ -76,7 +76,7 @@
                                             </div>
                                         </div>
                                         <div id="step-1-lookup-result" class="hidden mt-6">
-                                            <div id="step-1-lookup-message" class="bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 text-sm text-teal-700 font-medium">
+                                            <div id="step-1-lookup-message" class="bg-emerald-50 border-l-4 border-primary p-4 mb-4 text-sm text-emerald-800 font-medium rounded-r-xl">
                                                 Data kependudukan berhasil ditemukan! Silakan klik Lanjutkan.
                                             </div>
                                             <!-- Existing summary will be moved here by JS -->
@@ -276,7 +276,7 @@
                     <div class="form-step hidden" data-step="5">
                         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-hidden">
                             <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                                <h3 class="font-bold text-slate-800">Langkah 5: Konfirmasi Pengajuan</h3>
+                                <h3 class="font-bold text-slate-800">Langkah 5: Konfirmasi Permohonan</h3>
                             </div>
                             
                             <div class="p-0">
@@ -610,7 +610,7 @@
                             window.foundPendudukData = true;
                             
                             if (lookupMessageDiv) {
-                                lookupMessageDiv.className = 'bg-teal-50 border-l-4 border-teal-500 p-4 mb-4 text-sm text-teal-700 font-medium';
+                                lookupMessageDiv.className = 'bg-emerald-50 border-l-4 border-primary p-4 mb-4 text-sm text-emerald-800 font-medium rounded-r-xl';
                                 lookupMessageDiv.textContent = 'Data kependudukan berhasil ditemukan! Silakan klik Lanjutkan.';
                             }
                             

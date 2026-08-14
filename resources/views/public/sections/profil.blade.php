@@ -65,7 +65,7 @@
         <div class="grid lg:grid-cols-2 gap-8 items-start">
 
             {{-- Profil Kelurahan --}}
-            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-sm">
 
                 <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-4">
                     <i class="fa-solid fa-circle-info"></i>
@@ -150,15 +150,15 @@
                             'label' => 'Monografi Kelurahan',
                             'body'  => '
                                 <div class="grid grid-cols-1 gap-3">
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
                                         <p class="text-xs font-semibold text-slate-500 mb-1">Gambaran Umum</p>
                                         <p class="text-sm text-slate-600">Kelurahan di Kecamatan Sinjai Utara yang berkomitmen memberikan pelayanan publik profesional dan berorientasi pada kepuasan masyarakat.</p>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
                                         <p class="text-xs font-semibold text-slate-500 mb-1">Kondisi Geografis</p>
                                         <p class="text-sm text-slate-600">Lokasi strategis yang mudah dijangkau dari pusat pemerintahan, pendidikan, kesehatan, dan perdagangan.</p>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
                                         <p class="text-xs font-semibold text-slate-500 mb-1">Potensi Wilayah</p>
                                         <p class="text-sm text-slate-600">Memiliki potensi pada sektor perdagangan, jasa, UMKM, dan sumber daya manusia yang aktif dalam pembangunan.</p>
                                     </div>
@@ -173,22 +173,22 @@
                             'label' => 'Batas Wilayah',
                             'body'  => '
                                 <div class="grid grid-cols-2 gap-3">
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider">Utara</p>
                                         <p class="text-sm font-semibold text-slate-700">Kabupaten Bone</p>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.707-7.293l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414z" clip-rule="evenodd" /></svg>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider">Selatan</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Biringere</p>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-2.707a1 1 0 00-1.414-1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3z" clip-rule="evenodd" /></svg>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider">Timur</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Balangnipa</p>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
                                         <svg class="w-6 h-6 text-slate-400 mx-auto mb-1 block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.293 9.293a1 1 0 011.414 1.414L9.414 12H13a1 1 0 110 2H9.414l-1.707 1.707a1 1 0 11-1.414-1.414l3-3-3-3z" clip-rule="evenodd" /></svg>
                                         <p class="text-xs text-slate-400 uppercase tracking-wider">Barat</p>
                                         <p class="text-sm font-semibold text-slate-700">Kel. Lamatti Rilau</p>
@@ -226,7 +226,7 @@
                         <div x-show="open === '{{ $item['id'] }}'"
                              x-collapse
                              class="text-sm md:text-base text-slate-600 leading-relaxed">
-                            <div class="px-5 pb-5 pt-2 border-t border-slate-100/60">
+                            <div class="px-5 pb-5 pt-2 border-t border-slate-200">
                                 {!! $item['body'] !!}
                             </div>
                         </div>
