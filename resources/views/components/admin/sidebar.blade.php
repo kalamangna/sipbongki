@@ -136,9 +136,9 @@
     <div class="p-4 border-t border-slate-200">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-sm font-medium transition-colors focus:outline-none">
+            <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-sm font-medium transition-colors focus:outline-none cursor-pointer">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Keluar</span>
+                <span>Logout</span>
             </button>
         </form>
     </div>

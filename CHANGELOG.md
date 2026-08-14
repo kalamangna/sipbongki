@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
 
 ### Changed
+- **Redesain & Standarisasi Halaman Edit Profil Admin**: Merombak tampilan `profile/edit.blade.php` agar 100% konsisten dengan antarmuka form admin (Tailwind CSS, kartu ringkasan akun statis tanpa sticky, card headers bersih tanpa ikon dekoratif berlebih, input fields terstandarisasi, dan footer tombol simpan sejajar kanan).
+- **Penyelarasan Skema Data & Validasi Profil Pengguna**: Menyesuaikan `ProfileUpdateRequest` dan `ProfileController` dengan skema riil tabel `users` (`name` & `username`, tanpa field `email`).
+- **Penyempurnaan Dropdown Profil & Tombol Logout**: Menampilkan nama lengkap pengguna secara utuh pada pemicu dropdown di navbar admin, menyempurnakan menu navigasi profil, dan menyeragamkan teks tombol keluar menjadi **"Logout"** pada navbar dan sidebar admin.
 - **Penyelarasan Label Login**: Menyeragamkan teks tombol dan judul halaman masuk menjadi **"Login"** pada Navbar Desktop, Mobile Drawer, dan Halaman Login (`auth/login.blade.php`).
 - **Filter Kompak 1 Baris pada Seluruh Modul Laporan Admin**: Merapikan formulir filter pada Laporan Kependudukan, Laporan Kartu Keluarga, dan Laporan Persuratan menjadi 1 baris horizontal yang bersih, terfokus pada field esensial (Keyword, Lingkungan, Status, Rentang Tanggal), serta melengkapi tombol Reset kondisional.
 - **Konsistensi Navigasi Modul Laporan**: Memastikan seluruh tombol *Kembali* pada modul Laporan Kependudukan, Kartu Keluarga, Persuratan, dan Statistik mengarah langsung ke `/admin/laporan` (`route('admin.laporan.index')`).
