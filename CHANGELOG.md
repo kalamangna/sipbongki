@@ -49,5 +49,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - **Bugfix (Admin - Detail Permohonan)**: Menambal celah kesalahan sistem dalam menarik data *Nomor Kartu Keluarga* pada halaman riwayat/detail, khusus untuk pemohon tipe "Penduduk Eksisting" (kini sukses ditarik melalui relasi yang tepat menggunakan pembantu `data_get`).
 - **Bugfix (Backend - Permohonan)**: Memperbaiki kesalahan fatal pada alur pengajuan *Surat Keterangan Umum/Lainnya* di dalam kontroler, di mana sistem sebelumnya benar-benar melompati (melewatkan) blok kode yang bertugas menyimpan dokumen unggahan pendukung (KTP/KK) ke dalam *database* dan *storage*.
+- **Keamanan (Backend - Permohonan)**: Menyuntikkan aturan validasi unggahan yang ketat (format file dan limit maksimal 2MB) pada seluruh form permohonan. Ini mencegah formulir lolos secara diam-diam (*silent fail*)—yang berujung pada dokumen "kosong" di halaman admin—ketika batas `upload_max_filesize` server PHP terlampaui.
 - **Database/Seeder**: Memperbarui ikon default di `JenisSuratSeeder` agar kompatibel dengan Font Awesome (`fa-solid fa-house`, `fa-solid fa-heart`).
 - **Layanan**: Memperbaiki render variabel ikon dinamis pada card layanan yang sebelumnya hilang.

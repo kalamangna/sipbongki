@@ -168,6 +168,9 @@ class PublicPermohonanController extends Controller
                 'status_tempat_tinggal' => ['required', 'string', 'max:100'],
                 'alamat_asal' => ['required', 'string', 'max:500'],
                 'alamat' => ['required', 'string', 'max:500'],
+                'dokumen_ktp' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+                'dokumen_kk' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+                'dokumen_surat_pengantar' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
             ]);
 
             $dataSurat = [
@@ -308,6 +311,9 @@ class PublicPermohonanController extends Controller
                     'pendidikan' => ['nullable', 'string', 'max:100'],
                     'pekerjaan' => ['nullable', 'string', 'max:100'],
                     'email' => ['nullable', 'email', 'max:255'],
+                    'dokumen_ktp' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+                    'dokumen_kk' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+                    'dokumen_surat_pengantar' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
                 ]);
 
                 $dataSurat = [
