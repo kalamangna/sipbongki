@@ -731,6 +731,14 @@
                         const nik = lookupNik.value.trim();
                         const form = document.getElementById('permohonan-form');
                         
+                        if (!form.elements['jenis_surat_id']?.value) {
+                            const errorDiv = document.getElementById('jenis_surat_error');
+                            if (errorDiv) errorDiv.classList.remove('hidden');
+                            displayLookupError('Silakan pilih jenis surat terlebih dahulu sebelum mencari NIK.');
+                            form.elements['jenis_surat_id'].focus();
+                            return;
+                        }
+
                         if (!nik) {
                             displayLookupError('Masukkan NIK sebelum melanjutkan.');
                             return;
@@ -751,6 +759,7 @@
                                 headers: {
                                     'Content-Type': 'application/json',
                                     'Accept': 'application/json',
+                                    'X-Requested-With': 'XMLHttpRequest',
                                     'X-CSRF-TOKEN': csrfToken
                                 },
                                 body: JSON.stringify({

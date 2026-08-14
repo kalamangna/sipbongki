@@ -382,10 +382,19 @@ break;
 
         ]);
 
-         return view(
-        'admin.pelayanan.permohonan-surat.show',
-        compact('permohonanSurat')
-    );
+        $penandatangans = \App\Models\Perangkat::with('jabatan')
+            ->where('aktif', true)
+            ->whereHas('jabatan', function ($q) {
+                $q->where('aktif', true)->where('is_penandatangan', true);
+            })
+            ->orderBy('jabatan_id')
+            ->orderBy('nama_lengkap')
+            ->get();
+
+        return view(
+            'admin.pelayanan.permohonan-surat.show',
+            compact('permohonanSurat', 'penandatangans')
+        );
 }
 
 /**
@@ -805,6 +814,26 @@ if (
         return redirect()
             ->route('admin.permohonan-surat.show', $permohonanSurat)
             ->with('success', 'Catatan petugas berhasil disimpan.');
+    }
+
+    /**
+     * Update penandatangan surat.
+     */
+    public function updatePenandatangan(
+        Request $request,
+        PermohonanSurat $permohonanSurat
+    ) {
+        $request->validate([
+            'penandatangan_id' => 'required|exists:perangkats,id',
+        ]);
+
+        $permohonanSurat->update([
+            'penandatangan_id' => $request->penandatangan_id,
+        ]);
+
+        return redirect()
+            ->route('admin.permohonan-surat.show', $permohonanSurat)
+            ->with('success', 'Pejabat penandatangan berhasil dipilih.');
     }
 
     /**

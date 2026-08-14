@@ -237,6 +237,11 @@ Route::resource(
             [PermohonanSuratController::class, 'updateNote']
         )->name('permohonan-surat.update-note');
 
+        Route::patch(
+            'permohonan-surat/{permohonanSurat}/penandatangan',
+            [PermohonanSuratController::class, 'updatePenandatangan']
+        )->name('permohonan-surat.update-penandatangan');
+
 
         /*
         |--------------------------------------------------------------------------

@@ -28,12 +28,27 @@
 
         <hr class="border-slate-100 my-5">
 
-        @if(empty($permohonanSurat->penandatangan_id) && in_array($permohonanSurat->status, ['Menunggu', 'Diproses']))
-            <div class="mb-4 p-3 bg-rose-50 border border-rose-200 rounded-xl">
-                <div class="flex gap-2 text-rose-700">
-                    <i class="fa-solid fa-triangle-exclamation mt-0.5"></i>
-                    <p class="text-xs font-medium">Anda harus memilih Pejabat Penandatangan melalui menu <b>Edit Permohonan</b> sebelum dapat memproses atau menyelesaikan surat ini.</p>
-                </div>
+        @if(in_array($permohonanSurat->status, ['Menunggu', 'Diproses']))
+            <div class="mb-4 p-4 rounded-xl border {{ empty($permohonanSurat->penandatangan_id) ? 'bg-rose-50 border-rose-200' : 'bg-slate-50 border-slate-200' }}">
+                <form action="{{ route('admin.permohonan-surat.update-penandatangan', $permohonanSurat) }}" method="POST">
+                    @csrf @method('PATCH')
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-semibold {{ empty($permohonanSurat->penandatangan_id) ? 'text-rose-700' : 'text-slate-700' }}">
+                            <i class="fa-solid fa-signature mr-1"></i> Pejabat Penandatangan
+                        </label>
+                        <select name="penandatangan_id" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" required onchange="this.form.submit()">
+                            <option value="">-- Pilih Penandatangan --</option>
+                            @foreach($penandatangans as $p)
+                                <option value="{{ $p->id }}" {{ $permohonanSurat->penandatangan_id == $p->id ? 'selected' : '' }}>
+                                    {{ $p->nama_lengkap }} ({{ $p->jabatan->nama }})
+                                </option>
+                            @endforeach
+                        </select>
+                        @if(empty($permohonanSurat->penandatangan_id))
+                            <p class="text-xs text-rose-600 font-medium mt-1">Pilih penandatangan untuk memproses surat.</p>
+                        @endif
+                    </div>
+                </form>
             </div>
         @endif
 
@@ -43,7 +58,7 @@
             <form action="{{ route('admin.permohonan-surat.update-status', $permohonanSurat) }}" method="POST" class="w-full m-0">
                 @csrf @method('PATCH')
                 <input type="hidden" name="status" value="Diproses">
-                <button type="submit" @if(empty($permohonanSurat->penandatangan_id)) disabled @endif class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" onclick="return confirm('Proses permohonan ini?')">
+                <button type="submit" @if(empty($permohonanSurat->penandatangan_id)) disabled @endif class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
                     <i class="fa-solid fa-play-circle text-lg"></i> Proses Permohonan
                 </button>
             </form>
