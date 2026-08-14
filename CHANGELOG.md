@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Penguatan Keamanan Komprehensif (Security Hardening)**:
+  - Membuat `SecurityHelper` dan Blade directives `@maskNik`, `@maskPhone`, dan `@maskEmail` untuk penyensoran data pribadi (*PII masking*) pada halaman pelacakan status publik (`permohonan/show.blade.php` dan `pengaduan-status-detail.blade.php`).
+  - Membuat rute dokumen terproteksi (`admin/pelayanan/permohonan-surat/{permohonanSurat}/dokumen/{jenis}`) dengan middleware otorisasi admin untuk mencegah pengunduhan berkas sensitif (KTP/KK) oleh pihak yang tidak berwenang.
+  - Menerapkan `SecurityHeadersMiddleware` secara global di `bootstrap/app.php` (`X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `X-XSS-Protection: 1; mode=block`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`).
+  - Mengetatkan *rate limiting* pada endpoint pencarian NIK menjadi `throttle:10,1` per IP dan menyematkan bidang *honeypot anti-spam* (`form_hp_check`) pada formulir publik permohonan surat dan pengaduan masyarakat.
+- **Optimasi SEO Komprehensif & Schema.org JSON-LD**:
+  - Menyematkan Structured Data Schema.org lengkap: `WebSite` & `GovernmentOrganization` (Beranda), `NewsArticle` & `BreadcrumbList` (Detail Berita), `Article` & `BreadcrumbList` (Detail Pengumuman), serta `GovernmentService` (Permohonan Surat dan Pengaduan).
+  - Melengkapi meta tag OpenGraph dan Twitter Cards dengan `og:site_name`, `og:locale` (`id_ID`), `og:image:alt`, `article:published_time`, serta otomatisasi cuplikan gambar.
+  - Memperkaya XML Sitemap (`/sitemap.xml`) dengan namespace Google Image Sitemap (`xmlns:image`) untuk pengindeksan gambar berita dan pengumuman.
+  - Memperbarui `robots.txt` dengan aturan perlindungan privasi data warga (memblokir URL status tracking dan folder admin).
+- **Tampilan Rinci Data Kependudukan Terverifikasi**: Menampilkan data demografi lengkap (NIK monospace, Nama, Tempat & Tanggal Lahir, Jenis Kelamin, Agama, Pekerjaan, Alamat, RT/RW, dan No. Telepon) dalam format kartu grid terstruktur saat NIK berhasil ditemukan pada form permohonan surat.
+- **Alert Status Dinamis Halaman Permohonan**: Menyesuaikan kotak notifikasi dan ikon header pada halaman status permohonan publik (`show.blade.php`) secara kontekstual berbasis status aktif (*Menunggu*, *Diproses*, *Selesai*, *Ditolak*).
+- **Global Button Cursor Pointer**: Menambahkan aturan styling global `cursor: pointer` pada seluruh elemen `button`, input tipe tombol, dan `[role='button']` di `app.css` dan `frontend.css`.
+
+### Changed
+- **Optimasi Judul & Deskripsi SEO**: Meringkas format judul halaman publik menjadi `{Judul Halaman} | SIP Bongki` dan merapikan meta description agar berada pada panjang ideal SERP (110–155 karakter).
+- **Standarisasi Gaya Input File**: Menyeragamkan tampilan elemen `<input type="file">` di seluruh modul formulir admin (Perangkat, Berita, Galeri, Pengumuman, Pengaturan Website) dan formulir publik.
+- **Penyempurnaan Auto-Fill Developer**: Meningkatkan skrip dev autofill formulir permohonan dan pengaduan untuk pengujian multi-step dinamis lokal.
 - **Optimasi Responsivitas Multi-Step Form Layanan**: Menyesuaikan padding kartu, tata letak baris pencarian NIK `flex-col sm:flex-row`, lebar tombol navigasi (`w-full sm:w-auto` dengan susunan *mobile-first* `flex-col-reverse sm:flex-row`), dan touch-target berkas upload pada formulir permohonan layanan (*step by step*).
 - **Optimasi Responsivitas Modul Pengaduan Publik**: Menyesuaikan padding container kartu dan tombol aksi pada halaman pengaduan (`pengaduan.blade.php`, `pengaduan-status.blade.php`, `pengaduan-status-detail.blade.php`, `pengaduan-success.blade.php`).
 - **Nomor Urut & Variasi Tema Warna Kartu Layanan**: Menambahkan badge nomor urut (`#01`, `#02`, dst.) dan tema warna harmonis unik (Emerald, Sky, Amber, Violet, Rose, Teal) pada setiap kartu di section Layanan Administrasi publik.
@@ -15,7 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Visualisasi Statistik Kelurahan (ApexCharts)**: Menyelaraskan tinggi wadah grafik statistik menjadi responsif `min-h-[280px]` dan tinggi render `280px` yang proporsional, memperkaya variasi warna multi-kategori (*distributed palette*) pada grafik batang horizontal dan donat, serta menyematkan ringkasan akumulatif total pada bagian tengah *donut chart*.
 - **Desain Floating Control Cetak Surat**: Memodernisasi tombol aksi floating `← Kembali` dan `🖨 Cetak` pada template surat cetak menggunakan font `Inter`, sudut `rounded-xl`, dan palet warna Slate & Emerald yang selaras dengan sistem desain SIPBONGKI.
 
-### Changed
+### Removed
+- **Pembersihan Berkas Usang & Scaffolding Starter**: Menghapus 10 berkas parsial usang pada modul permohonan persuratan admin (`alert`, `applicant-card`, `breadcrumb`, `footer`, `form-data-card`, `header`, `purpose-card`, `request-card`, `status-card`, `system-card`) yang telah disatukan ke dalam `single-card.blade.php`, serta menghapus berkas bawaan starter Breeze yang tidak digunakan (`dashboard.blade.php`, `layouts/app.blade.php`, `layouts/navigation.blade.php`, dan `AppLayout.php`).
 - **Redesain & Standarisasi Halaman Edit Profil Admin**: Merombak tampilan `profile/edit.blade.php` agar 100% konsisten dengan antarmuka form admin (Tailwind CSS, kartu ringkasan akun statis tanpa sticky, card headers bersih tanpa ikon dekoratif berlebih, input fields terstandarisasi, dan footer tombol simpan sejajar kanan).
 - **Penyelarasan Skema Data & Validasi Profil Pengguna**: Menyesuaikan `ProfileUpdateRequest` dan `ProfileController` dengan skema riil tabel `users` (`name` & `username`, tanpa field `email`).
 - **Penyempurnaan Dropdown Profil & Tombol Logout**: Menampilkan nama lengkap pengguna secara utuh pada pemicu dropdown di navbar admin, menyempurnakan menu navigasi profil, dan menyeragamkan teks tombol keluar menjadi **"Logout"** pada navbar dan sidebar admin.

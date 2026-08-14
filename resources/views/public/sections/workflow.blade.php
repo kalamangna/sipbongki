@@ -4,53 +4,66 @@
 <section id="alur-pelayanan" class="py-24 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-16 max-w-2xl mx-auto">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-semibold uppercase tracking-wider mb-4">
+        <div class="text-center mb-14 max-w-2xl mx-auto">
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">
                 Alur Pelayanan
             </span>
-            <h2 class="text-3xl font-bold text-slate-800 mb-4">Tahapan Permohonan</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Tahapan Permohonan</h2>
         </div>
 
         <div class="relative">
-            {{-- Connecting Line (Desktop) --}}
-            <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
-
-            <div class="grid lg:grid-cols-4 gap-8 relative z-10">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
 
                 {{-- STEP 1 --}}
-                <div class="relative bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center hover:shadow-xl hover:-translate-y-1 transition-all group">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold shadow-lg shadow-sky-500/30">01</div>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-sky-50 flex items-center justify-center mb-4 group-hover:bg-sky-100 transition-colors">
-                        <i class="fa-solid fa-file-signature text-2xl text-sky-600"></i>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-sky-100 text-sky-700 text-xs font-bold font-mono">01</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Langkah 1</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800">Ajukan Permohonan</h3>
+                    <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-1.5">Ajukan Permohonan</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Pilih jenis layanan dan lengkapi data permohonan surat secara online.</p>
                 </div>
 
                 {{-- STEP 2 --}}
-                <div class="relative bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center hover:shadow-xl hover:-translate-y-1 transition-all group">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold shadow-lg shadow-amber-500/30">02</div>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-amber-50 flex items-center justify-center mb-4 group-hover:bg-amber-100 transition-colors">
-                        <i class="fa-solid fa-list-check text-2xl text-amber-600"></i>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold font-mono">02</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Langkah 2</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800">Verifikasi Data</h3>
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-1.5">Verifikasi Berkas</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Petugas kelurahan memeriksa keabsahan dan kelengkapan berkas pemohon.</p>
                 </div>
 
                 {{-- STEP 3 --}}
-                <div class="relative bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center hover:shadow-xl hover:-translate-y-1 transition-all group">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-violet-500 text-white flex items-center justify-center font-bold shadow-lg shadow-violet-500/30">03</div>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-violet-50 flex items-center justify-center mb-4 group-hover:bg-violet-100 transition-colors">
-                        <i class="fa-solid fa-gears text-2xl text-violet-600"></i>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold font-mono">03</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Langkah 3</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800">Proses Surat</h3>
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-1.5">Proses Surat</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Penerbitan format resmi dan penandatanganan oleh pejabat yang berwenang.</p>
                 </div>
 
                 {{-- STEP 4 --}}
-                <div class="relative bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center hover:shadow-xl hover:-translate-y-1 transition-all group">
-                    <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold shadow-lg shadow-emerald-500/30">04</div>
-                    <div class="w-16 h-16 mx-auto rounded-full bg-emerald-50 flex items-center justify-center mb-4 group-hover:bg-emerald-100 transition-colors">
-                        <i class="fa-solid fa-circle-check text-2xl text-emerald-600"></i>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 text-center flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 text-xs font-bold font-mono">04</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Langkah 4</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800">Surat Selesai</h3>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 mb-1.5">Surat Selesai</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Dokumen surat selesai diproses dan siap diambil atau diunduh langsung.</p>
                 </div>
 
             </div>

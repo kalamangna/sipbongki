@@ -1,5 +1,21 @@
 @extends('layouts.public')
 
+@push('schema')
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SIP Bongki - Kelurahan Bongki",
+    "url": "{{ url('/') }}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ url('/#layanan') }}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+@endpush
+
 @section('content')
 
 {{-- =====================================================

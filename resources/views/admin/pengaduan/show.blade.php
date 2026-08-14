@@ -31,10 +31,7 @@
             
             {{-- Informasi Pengaduan --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800 text-sm">Informasi Pengaduan</h3>
                 </div>
                 <div class="p-0">
@@ -85,10 +82,7 @@
 
             {{-- Uraian --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800 text-sm">Uraian Pengaduan</h3>
                 </div>
                 <div class="p-6 text-slate-700 leading-relaxed text-sm">
@@ -103,10 +97,7 @@
             
             {{-- Status & Penanganan --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800 text-sm">Penanganan</h3>
                 </div>
                 
@@ -185,10 +176,7 @@
 
             {{-- Foto --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                        <i class="fa-solid fa-image"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800 text-sm">Foto Bukti</h3>
                 </div>
                 <div class="p-6 flex justify-center bg-slate-50/30">

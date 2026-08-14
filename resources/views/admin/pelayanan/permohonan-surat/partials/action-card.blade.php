@@ -1,8 +1,5 @@
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
-    <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
-            <i class="fa-solid fa-bolt"></i>
-        </div>
+    <div class="px-6 py-4 border-b border-slate-100">
         <h3 class="font-bold text-slate-800">Aksi & Status</h3>
     </div>
     <div class="p-6">

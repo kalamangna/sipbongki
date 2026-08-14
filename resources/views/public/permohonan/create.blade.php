@@ -1,6 +1,49 @@
 @extends('layouts.public')
 
-@section('title', 'Ajukan Permohonan')
+@section('title', 'Permohonan Surat')
+@section('seo_title', 'Permohonan Surat')
+@section('seo_description', 'Layanan resmi pengajuan surat keterangan Kelurahan Bongki secara online. Proses cepat, praktis, dan transparan bagi warga.')
+
+@push('schema')
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@type": "GovernmentService",
+    "name": "Layanan Permohonan Surat Online Kelurahan Bongki",
+    "serviceType": "Pelayanan Administrasi Kependudukan & Surat Keterangan",
+    "provider": {
+        "@type": "GovernmentOrganization",
+        "name": "Pemerintah Kelurahan Bongki",
+        "url": "{{ url('/') }}"
+    },
+    "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Kelurahan Bongki, Kecamatan Sinjai Utara, Kabupaten Sinjai"
+    },
+    "url": "{{ url()->current() }}"
+}
+</script>
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "{{ url('/') }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Permohonan Surat",
+            "item": "{{ url()->current() }}"
+        }
+    ]
+}
+</script>
+@endpush
 
 @section('content')
 
@@ -25,6 +68,10 @@
 
                 <form method="POST" novalidate action="{{ route('permohonan.store') }}" enctype="multipart/form-data" id="permohonan-form">
                     @csrf
+                    {{-- Honeypot Anti-Bot Field --}}
+                    <div class="hidden" aria-hidden="true" style="display:none !important; position:absolute; left:-9999px;">
+                        <input type="text" name="form_hp_check" value="" tabindex="-1" autocomplete="off">
+                    </div>
 
                     <div class="mb-10">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
@@ -71,7 +118,7 @@
                                                         <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
                                                         @error('nik_lookup')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                                     </div>
-                                                    <button type="button" id="btn-cari-nik" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 shrink-0 cursor-pointer flex items-center justify-center gap-2"><i class="fa-solid fa-search"></i> Cari NIK</button>
+                                                    <button type="button" id="btn-cari-nik" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shrink-0 cursor-pointer flex items-center justify-center gap-2"><i class="fa-solid fa-search"></i> Cari NIK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="flex justify-end">
-                                <button type="button" class="next-step hidden w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer text-center" id="lookup-button">Lanjutkan</button>
+                                <button type="button" class="next-step hidden w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer text-center" id="lookup-button">Lanjutkan</button>
                             </div>
                         </div>
 
@@ -100,12 +147,50 @@
                                 <div class="p-6">
                                     <div id="usaha-verify-message" class="hidden mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-blue-700"></div>
 
-                                    <div id="usaha-existing-summary" class="hidden">
-                                        <ul class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                            <li class="flex flex-col sm:flex-row"><strong class="sm:w-1/3 text-slate-700">NIK:</strong> <span class="sm:w-2/3 text-slate-800" id="summary-nik-found"></span></li>
-                                            <li class="flex flex-col sm:flex-row"><strong class="sm:w-1/3 text-slate-700">Nama Lengkap:</strong> <span class="sm:w-2/3 text-slate-800" id="summary-nama-found"></span></li>
-                                            <li class="flex flex-col sm:flex-row"><strong class="sm:w-1/3 text-slate-700">Alamat:</strong> <span class="sm:w-2/3 text-slate-800" id="summary-alamat-found"></span></li>
-                                        </ul>
+                                    <div id="usaha-existing-summary" class="hidden mb-6">
+                                        <div class="p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                                            <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200 text-slate-800 font-bold text-sm">
+                                                <i class="fa-solid fa-id-card text-primary"></i> Data Kependudukan Terverifikasi
+                                            </div>
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">NIK</span>
+                                                    <span class="text-slate-900 font-semibold font-mono text-sm" id="summary-nik-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Nama Lengkap</span>
+                                                    <span class="text-slate-900 font-semibold" id="summary-nama-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Tempat, Tanggal Lahir</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-tempat-tanggal-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Jenis Kelamin</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-jenis-kelamin-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Agama</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-agama-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Pekerjaan</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-pekerjaan-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs sm:col-span-2">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Alamat</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-alamat-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">RT / RW</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-rt-rw-found">-</span>
+                                                </div>
+                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
+                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">No. Telepon / WhatsApp</span>
+                                                    <span class="text-slate-900 font-medium" id="summary-telepon-found">-</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div id="usaha-existing-hidden-fields" class="hidden">
@@ -256,8 +341,8 @@
                                 </div>
                             </div>
                             <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-                                <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
-                                <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center" id="usaha-identity-next">Lanjut ke Langkah 3</button>
+                                <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+                                <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center" id="usaha-identity-next">Lanjut ke Langkah 3</button>
                             </div>
                         </div>
 
@@ -365,8 +450,8 @@
                             </div>
                         </div>
                         <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-                            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
-                            <button type="submit" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center"><i class="fa-solid fa-paper-plane text-xs"></i>Kirim Permohonan</button>
+                            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+                            <button type="submit" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-md shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center"><i class="fa-solid fa-paper-plane text-xs"></i>Kirim Permohonan</button>
                         </div>
                     </div>
 
@@ -406,6 +491,8 @@
                     const summaryNamaFound = document.getElementById('summary-nama-found');
                     const summaryTempatTanggalFound = document.getElementById('summary-tempat-tanggal-found');
                     const summaryJenisKelaminFound = document.getElementById('summary-jenis-kelamin-found');
+                    const summaryAgamaFound = document.getElementById('summary-agama-found');
+                    const summaryPekerjaanFound = document.getElementById('summary-pekerjaan-found');
                     const summaryAlamatFound = document.getElementById('summary-alamat-found');
                     const summaryRtRwFound = document.getElementById('summary-rt-rw-found');
                     const summaryTeleponFound = document.getElementById('summary-telepon-found');
@@ -616,10 +703,12 @@
                             
                             if (summaryNikFound) summaryNikFound.textContent = data.penduduk.nik || '-';
                             if (summaryNamaFound) summaryNamaFound.textContent = data.penduduk.nama_lengkap || '-';
-                            if (summaryTempatTanggalFound) summaryTempatTanggalFound.textContent = data.penduduk.tempat_lahir + ', ' + data.penduduk.tanggal_lahir;
-                            if (summaryJenisKelaminFound) summaryJenisKelaminFound.textContent = data.penduduk.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan';
+                            if (summaryTempatTanggalFound) summaryTempatTanggalFound.textContent = (data.penduduk.tempat_lahir || '-') + ', ' + (data.penduduk.tanggal_lahir || '-');
+                            if (summaryJenisKelaminFound) summaryJenisKelaminFound.textContent = data.penduduk.jenis_kelamin === 'L' ? 'Laki-laki' : (data.penduduk.jenis_kelamin === 'P' ? 'Perempuan' : '-');
+                            if (summaryAgamaFound) summaryAgamaFound.textContent = data.penduduk.agama || '-';
+                            if (summaryPekerjaanFound) summaryPekerjaanFound.textContent = data.penduduk.pekerjaan || '-';
                             if (summaryAlamatFound) summaryAlamatFound.textContent = data.penduduk.alamat || '-';
-                            if (summaryRtRwFound) summaryRtRwFound.textContent = data.penduduk.rt + '/' + data.penduduk.rw;
+                            if (summaryRtRwFound) summaryRtRwFound.textContent = (data.penduduk.rt || '-') + ' / ' + (data.penduduk.rw || '-');
                             if (summaryTeleponFound) summaryTeleponFound.textContent = data.penduduk.telepon || '-';
                             
                             // Move summary to step 1
@@ -669,6 +758,8 @@
                         const existingTempatLahir = document.getElementById('existing-tempat-lahir')?.value || '';
                         const existingTanggalLahir = document.getElementById('existing-tanggal-lahir')?.value || '';
                         const existingJenisKelamin = document.getElementById('existing-jenis-kelamin')?.value || '';
+                        const existingAgama = document.getElementById('existing-agama')?.value || '';
+                        const existingPekerjaan = document.getElementById('existing-pekerjaan')?.value || '';
                         const existingAlamat = document.getElementById('existing-alamat')?.value || '';
                         const existingRt = document.getElementById('existing-rt')?.value || '';
                         const existingRw = document.getElementById('existing-rw')?.value || '';
@@ -682,8 +773,10 @@
                         if (summaryNamaFound) summaryNamaFound.textContent = existingNama || '-';
                         if (summaryTempatTanggalFound) summaryTempatTanggalFound.textContent = (existingTempatLahir || '-') + ', ' + (existingTanggalLahir || '-');
                         if (summaryJenisKelaminFound) summaryJenisKelaminFound.textContent = existingJenisKelamin === 'L' ? 'Laki-laki' : (existingJenisKelamin === 'P' ? 'Perempuan' : '-');
+                        if (summaryAgamaFound) summaryAgamaFound.textContent = existingAgama || '-';
+                        if (summaryPekerjaanFound) summaryPekerjaanFound.textContent = existingPekerjaan || '-';
                         if (summaryAlamatFound) summaryAlamatFound.textContent = existingAlamat || '-';
-                        if (summaryRtRwFound) summaryRtRwFound.textContent = (existingRt || '-') + '/' + (existingRw || '-');
+                        if (summaryRtRwFound) summaryRtRwFound.textContent = (existingRt || '-') + ' / ' + (existingRw || '-');
                         if (summaryTeleponFound) summaryTeleponFound.textContent = existingTelepon || '-';
 
                         const hasServerErrors = {{ $errors->any() ? 'true' : 'false' }};
@@ -1185,11 +1278,8 @@
 
 {{-- DEV AUTO FILL BUTTON --}}
 @env('local')
-@php
-    $sampleBongki = \App\Models\Penduduk::where('aktif', true)->first();
-@endphp
 <button type="button" id="dev-autofill-btn" class="fixed bottom-6 left-6 z-50 h-11 px-4 rounded-full bg-slate-800 text-white font-mono text-xs shadow-lg hover:scale-105 hover:bg-slate-900 transition-all flex items-center gap-2 cursor-pointer border border-slate-600">
-    <i class="fa-solid fa-flask text-amber-400"></i> Auto Fill
+    <i class="fa-solid fa-flask text-amber-400"></i> Auto Fill Step
 </button>
 
 <script>
@@ -1197,7 +1287,6 @@
         const fillBtn = document.getElementById('dev-autofill-btn');
         if (!fillBtn) return;
 
-        const sampleBongkiNik = '{{ $sampleBongki?->nik ?? "7307010101010001" }}';
         const metaImageUrl = '{{ asset("images/meta.png") }}';
 
         async function getMetaDummyFile(filename) {
@@ -1207,22 +1296,20 @@
                 const blob = await response.blob();
                 return new File([blob], filename || 'meta.png', { type: blob.type || 'image/png' });
             } catch (err) {
-                // Fallback byte array if offline / direct fetch fails
                 const pngBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
                 const byteCharacters = atob(pngBase64);
                 const byteNumbers = new Array(byteCharacters.length);
                 for (let i = 0; i < byteCharacters.length; i++) {
                     byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
-                const byteArray = new Uint8Array(byteNumbers);
-                return new File([byteArray], filename || 'meta.png', { type: 'image/png' });
+                return new File([new Uint8Array(byteNumbers)], filename || 'meta.png', { type: 'image/png' });
             }
         }
 
         function setFieldValue(input, value) {
             if (!input || input.disabled) return;
             input.value = value;
-            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500', 'border-red-300');
             input.classList.add('border-slate-200');
             const errorEl = input.nextElementSibling;
             if (errorEl && errorEl.classList.contains('js-validation-error')) {
@@ -1235,7 +1322,7 @@
         function setSelectValue(select, valueOrIndex) {
             if (!select || select.disabled || select.options.length <= 1) return;
             if (typeof valueOrIndex === 'number') {
-                select.selectedIndex = valueOrIndex;
+                select.selectedIndex = Math.min(valueOrIndex, select.options.length - 1);
             } else if (valueOrIndex) {
                 select.value = valueOrIndex;
                 if (!select.value && select.options.length > 1) {
@@ -1244,7 +1331,7 @@
             } else {
                 select.selectedIndex = 1;
             }
-            select.classList.remove('border-red-500');
+            select.classList.remove('border-red-500', 'border-red-300');
             select.classList.add('border-slate-200');
             const errorEl = select.nextElementSibling;
             if (errorEl && errorEl.classList.contains('js-validation-error')) {
@@ -1258,15 +1345,29 @@
             const activeStep = activeStepEl ? parseInt(activeStepEl.dataset.step, 10) : 1;
             const randomId = Math.floor(1000 + Math.random() * 9000);
             const isBongki = document.querySelector('input[name="jenis_pemohon"]:checked')?.value === 'bongki';
-            const isUsaha = Boolean(document.getElementById('nama_usaha'));
-            const isDomisili = Boolean(document.querySelector('input[name="rt_domisili"]') || document.querySelector('select[name="status_tempat_tinggal"]'));
+
+            // Nama & Data Acak Indonesia
+            const maleNames = ['Andi Baso Pratama', 'Muhammad Fajrin', 'Hendra Saputra', 'Ahmad Ridwan', 'Faisal Akbar', 'Reza Pahlevi', 'Budi Santoso', 'Ilham Maulana'];
+            const femaleNames = ['Andi Tenri Olle', 'Nurul Annisa', 'Sri Wahyuni', 'Dewi Sartika', 'Putri Ayu Wandira', 'Rina Marlina', 'Fitri Handayani', 'Siti Rahmah'];
+            const isMale = Math.random() > 0.4;
+            const randomName = isMale 
+                ? maleNames[Math.floor(Math.random() * maleNames.length)]
+                : femaleNames[Math.floor(Math.random() * femaleNames.length)];
+            const randomGender = isMale ? 'L' : 'P';
+            const randomNik = '730701' + Math.floor(1000000000 + Math.random() * 9000000000);
+            const birthPlaces = ['Sinjai', 'Makassar', 'Gowa', 'Bone', 'Bulukumba', 'Maros'];
+            const randomBirthPlace = birthPlaces[Math.floor(Math.random() * birthPlaces.length)];
+            const randomBirthYear = Math.floor(1985 + Math.random() * 18);
+            const randomBirthMonth = String(Math.floor(1 + Math.random() * 12)).padStart(2, '0');
+            const randomBirthDay = String(Math.floor(1 + Math.random() * 28)).padStart(2, '0');
+            const randomBirthDate = `${randomBirthYear}-${randomBirthMonth}-${randomBirthDay}`;
 
             // 1. STEP 1: IDENTITAS PEMOHON
             if (activeStep === 1) {
                 const lookupNikInput = document.getElementById('lookup-nik');
                 if (lookupNikInput && lookupNikInput.offsetParent !== null) {
                     if (isBongki) {
-                        setFieldValue(lookupNikInput, sampleBongkiNik);
+                        setFieldValue(lookupNikInput, randomNik);
                         const btnCari = document.getElementById('btn-cari-nik');
                         if (btnCari) {
                             btnCari.click();
@@ -1275,145 +1376,124 @@
                 }
             }
 
-            // 2. STEP 2: DATA MANUAL (Jika Luar Bongki atau Belum Ada di DB)
+            // 2. STEP 2: DATA MANUAL PEMOHON
             else if (activeStep === 2) {
-                const randomNames = ['Andi Tenri Olle', 'Muhammad Fajrin', 'Nurul Annisa', 'Hendra Pratama', 'Sri Wahyuni'];
-                const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
-                const randomNik = '730701' + Math.floor(1000000000 + Math.random() * 9000000000);
+                // Cari semua input di Step 2
+                const step2Inputs = activeStepEl.querySelectorAll('input:not([type="hidden"]), select, textarea');
+                step2Inputs.forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (!name) return;
 
-                const manualNik = document.querySelector('#usaha-new-data input[name="nik"]');
-                if (manualNik) setFieldValue(manualNik, randomNik);
-
-                const manualNama = document.querySelector('#usaha-new-data input[name="nama_lengkap"]');
-                if (manualNama) setFieldValue(manualNama, randomName);
-
-                const manualJk = document.querySelector('#usaha-new-data select[name="jenis_kelamin"]');
-                if (manualJk) setSelectValue(manualJk, 'L');
-
-                const manualTempatLahir = document.querySelector('#usaha-new-data input[name="tempat_lahir"]');
-                if (manualTempatLahir) setFieldValue(manualTempatLahir, isBongki ? 'Sinjai' : 'Gowa');
-
-                const manualTglLahir = document.querySelector('#usaha-new-data input[name="tanggal_lahir"]');
-                if (manualTglLahir) setFieldValue(manualTglLahir, '1998-05-14');
-
-                const manualPekerjaan = document.querySelector('#usaha-new-data select[name="pekerjaan"]');
-                if (manualPekerjaan) setSelectValue(manualPekerjaan, 'Wiraswasta');
-
-                const manualAlamat = document.querySelector('#usaha-new-data textarea[name="alamat"]');
-                if (manualAlamat) {
-                    setFieldValue(manualAlamat, isBongki 
-                        ? 'Jl. Persatuan Raya No. ' + Math.floor(Math.random() * 50 + 1) + ', Kel. Bongki'
-                        : 'Jl. Sultan Hasanuddin No. ' + Math.floor(Math.random() * 50 + 1) + ', Kel. Sungguminasa, Kec. Somba Opu, Kab. Gowa'
-                    );
-                }
-
-                const manualTelepon = document.querySelector('#usaha-new-data input[name="telepon"]');
-                if (manualTelepon) setFieldValue(manualTelepon, '0812' + randomId + '8899');
-
-                const manualEmail = document.querySelector('#usaha-new-data input[name="email"]');
-                if (manualEmail) setFieldValue(manualEmail, 'pemohon' + randomId + '@gmail.com');
-
-                // Khusus Penduduk Bongki: isi Agama, RT, RW, Lingkungan, Status, Pendidikan
-                if (isBongki) {
-                    const manualLingkungan = document.getElementById('input-lingkungan');
-                    if (manualLingkungan) setSelectValue(manualLingkungan, 1);
-
-                    const manualAgama = document.getElementById('input-agama');
-                    if (manualAgama) setSelectValue(manualAgama, 'Islam');
-
-                    const manualStatus = document.getElementById('input-status-perkawinan');
-                    if (manualStatus) setSelectValue(manualStatus, 'Belum Kawin');
-
-                    const manualPendidikan = document.getElementById('input-pendidikan');
-                    if (manualPendidikan) setSelectValue(manualPendidikan, 'SMA/Sederajat');
-
-                    const manualRt = document.getElementById('input-rt');
-                    if (manualRt) setFieldValue(manualRt, '001');
-
-                    const manualRw = document.getElementById('input-rw');
-                    if (manualRw) setFieldValue(manualRw, '002');
-                }
-            }
-
-            // 3. STEP 3: DETAIL PERMOHONAN SESUAI KONTEKS
-            else if (activeStep === 3) {
-                if (isUsaha) {
-                    const namaUsaha = document.getElementById('nama_usaha');
-                    if (namaUsaha) setFieldValue(namaUsaha, 'Toko Sembako Barokah ' + randomId);
-
-                    const jenisUsaha = document.getElementById('jenis_usaha');
-                    if (jenisUsaha) setFieldValue(jenisUsaha, 'Perdagangan Sembako & Kelontong');
-
-                    const alamatUsaha = document.getElementById('alamat_usaha');
-                    if (alamatUsaha) setFieldValue(alamatUsaha, 'Jl. Persatuan Raya No. 45, Kel. Bongki');
-
-                    const lamaUsaha = document.getElementById('lama_usaha');
-                    if (lamaUsaha) setFieldValue(lamaUsaha, '3 Tahun');
-
-                    const keperluanUsaha = document.getElementById('keperluan');
-                    if (keperluanUsaha) setFieldValue(keperluanUsaha, 'Surat Keterangan Usaha untuk pengajuan tambahan modal usaha Kredit Usaha Rakyat (KUR)');
-                } else if (isDomisili) {
-                    const statusTinggal = document.querySelector('select[name="status_tempat_tinggal"]');
-                    if (statusTinggal) setSelectValue(statusTinggal, 'Milik Sendiri');
-
-                    const lamaTinggal = document.querySelector('input[name="lama_tinggal"]');
-                    if (lamaTinggal) setFieldValue(lamaTinggal, '4 Tahun');
-
-                    const alamatDomisili = document.querySelector('textarea[name="alamat_domisili"]');
-                    if (alamatDomisili) setFieldValue(alamatDomisili, 'Jl. Veteran No. 12, Lingkungan Bongki');
-
-                    const rtDomisili = document.querySelector('input[name="rt_domisili"]');
-                    if (rtDomisili) setFieldValue(rtDomisili, '001');
-
-                    const rwDomisili = document.querySelector('input[name="rw_domisili"]');
-                    if (rwDomisili) setFieldValue(rwDomisili, '002');
-
-                    const alamatAsal = document.querySelector('textarea[name="alamat_asal"]');
-                    if (alamatAsal) setFieldValue(alamatAsal, 'Jl. Poros Sinjai - Bulukumba KM 5, Sinjai Selatan');
-
-                    const keperluanDomisili = document.querySelector('textarea[name="keperluan"]');
-                    if (keperluanDomisili) setFieldValue(keperluanDomisili, 'Surat Keterangan Domisili untuk kelengkapan berkas administrasi kependudukan');
-                } else {
-                    // Surat Kematian
-                    const tempatMeninggal = document.querySelector('input[name="tempat_meninggal"]');
-                    if (tempatMeninggal) setFieldValue(tempatMeninggal, 'RSUD Sinjai');
-
-                    const tglMeninggal = document.querySelector('input[name="tanggal_meninggal"]');
-                    if (tglMeninggal) setFieldValue(tglMeninggal, '2026-08-10');
-
-                    const jamMeninggal = document.querySelector('input[name="jam_meninggal"]');
-                    if (jamMeninggal) setFieldValue(jamMeninggal, '09:30');
-
-                    const hariMeninggal = document.querySelector('select[name="hari_meninggal"], input[name="hari_meninggal"]');
-                    if (hariMeninggal) setFieldValue(hariMeninggal, 'Senin');
-
-                    const penyebab = document.querySelector('input[name="penyebab_kematian"]');
-                    if (penyebab) setFieldValue(penyebab, 'Sakit / Usia Lanjut');
-
-                    const hubunganPelapor = document.querySelector('select[name="hubungan_pelapor"], input[name="hubungan_pelapor"]');
-                    if (hubunganPelapor) setFieldValue(hubunganPelapor, 'Anak Kandung');
-
-                    // Surat Beda Nama / Orang Yang Sama
-                    const namaLain = document.querySelector('input[name="nama_lain"]');
-                    if (namaLain) setFieldValue(namaLain, 'Andi Muhammad Faisal');
-
-                    const jenisDokumen = document.querySelector('input[name="jenis_dokumen"]');
-                    if (jenisDokumen) setFieldValue(jenisDokumen, 'Ijazah SMA');
-
-                    const nomorDokumen = document.querySelector('input[name="nomor_dokumen"]');
-                    if (nomorDokumen) setFieldValue(nomorDokumen, 'DN-01/M-SMA/12/0045678');
-
-                    const ketPerbedaan = document.querySelector('textarea[name="keterangan_perbedaan"]');
-                    if (ketPerbedaan) setFieldValue(ketPerbedaan, 'Perbedaan penulisan nama pada KTP (Andi Muh. Faisal) dan Ijazah SMA (Andi Muhammad Faisal)');
-
-                    const keperluanUmum = document.querySelector('textarea[name="keperluan"]');
-                    if (keperluanUmum && !keperluanUmum.value) {
-                        setFieldValue(keperluanUmum, 'Kelengkapan berkas administrasi pelayanan persuratan di Kelurahan Bongki');
+                    if (name === 'nik') setFieldValue(input, randomNik);
+                    else if (name === 'nama_lengkap') setFieldValue(input, randomName);
+                    else if (name === 'jenis_kelamin') setSelectValue(input, randomGender);
+                    else if (name === 'tempat_lahir') setFieldValue(input, randomBirthPlace);
+                    else if (name === 'tanggal_lahir') setFieldValue(input, randomBirthDate);
+                    else if (name === 'pekerjaan') {
+                        if (input.options && input.options.length > 2) {
+                            const optIdx = Math.floor(1 + Math.random() * (input.options.length - 1));
+                            setSelectValue(input, optIdx);
+                        } else {
+                            setSelectValue(input, 'Wiraswasta');
+                        }
                     }
-                }
+                    else if (name === 'lingkungan_id') {
+                        if (input.options && input.options.length > 1) {
+                            const optIdx = Math.floor(1 + Math.random() * (input.options.length - 1));
+                            setSelectValue(input, optIdx);
+                        }
+                    }
+                    else if (name === 'agama') setSelectValue(input, 'Islam');
+                    else if (name === 'status_perkawinan') setSelectValue(input, Math.random() > 0.5 ? 'Belum Kawin' : 'Kawin');
+                    else if (name === 'pendidikan') {
+                        if (input.options && input.options.length > 1) {
+                            const optIdx = Math.floor(1 + Math.random() * (input.options.length - 1));
+                            setSelectValue(input, optIdx);
+                        }
+                    }
+                    else if (name === 'rt') setFieldValue(input, '00' + Math.floor(1 + Math.random() * 5));
+                    else if (name === 'rw') setFieldValue(input, '00' + Math.floor(1 + Math.random() * 3));
+                    else if (name === 'alamat') {
+                        const streets = ['Jl. Persatuan Raya', 'Jl. Bhayangkara', 'Jl. Veteran', 'Jl. Kemakmuran', 'Jl. Sam Ratulangi', 'Jl. Sultan Hasanuddin'];
+                        const street = streets[Math.floor(Math.random() * streets.length)];
+                        setFieldValue(input, `${street} No. ${Math.floor(1 + Math.random() * 60)}, Kel. Bongki`);
+                    }
+                    else if (name === 'telepon') setFieldValue(input, '0812' + randomId + String(Math.floor(1000 + Math.random() * 9000)));
+                    else if (name === 'email') setFieldValue(input, `pemohon.${randomId}@gmail.com`);
+                });
             }
 
-            // 4. STEP 4: UPLOAD DOKUMEN (Dummy Files dari public/images/meta.png)
+            // 3. STEP 3: DETAIL PERMOHONAN SESUAI FORM
+            else if (activeStep === 3) {
+                const businessTypes = ['Perdagangan Sembako & Kelontong', 'Kuliner & Minuman Tradisional', 'Jasa Bengkel Sepeda Motor', 'Jasa Penjahit Pakaian', 'Kios Buah & Sayur', 'Jasa Percetakan & Fotocopy'];
+                const businessNames = ['Toko Berkah Sejahtera', 'Warung Makan Barokah', 'Bengkel Motor Jaya', 'Kios Sumber Rejeki', 'Usaha Mandiri Utama', 'Kedai Kopi Nusantara'];
+                const randomBusiness = businessTypes[Math.floor(Math.random() * businessTypes.length)];
+                const randomStore = businessNames[Math.floor(Math.random() * businessNames.length)] + ' ' + (randomId % 100);
+
+                const step3Inputs = activeStepEl.querySelectorAll('input:not([type="hidden"]), select, textarea');
+                step3Inputs.forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (!name) return;
+
+                    // Form Usaha
+                    if (name === 'nama_usaha') setFieldValue(input, randomStore);
+                    else if (name === 'jenis_usaha') setFieldValue(input, randomBusiness);
+                    else if (name === 'alamat_usaha') setFieldValue(input, `Jl. Persatuan Raya No. ${Math.floor(1 + Math.random() * 80)}, Kel. Bongki`);
+                    else if (name === 'lama_usaha') setFieldValue(input, `${Math.floor(1 + Math.random() * 7)} Tahun`);
+                    
+                    // Form Domisili
+                    else if (name === 'status_tempat_tinggal') {
+                        const statusOptions = ['Milik Sendiri', 'Kontrak', 'Kos', 'Menumpang'];
+                        setSelectValue(input, statusOptions[Math.floor(Math.random() * statusOptions.length)]);
+                    }
+                    else if (name === 'lama_tinggal') setFieldValue(input, `${Math.floor(2 + Math.random() * 8)} Tahun`);
+                    else if (name === 'alamat_domisili') setFieldValue(input, `Jl. Veteran No. ${Math.floor(1 + Math.random() * 60)}, Lingkungan Bongki`);
+                    else if (name === 'rt_domisili') setFieldValue(input, '00' + Math.floor(1 + Math.random() * 5));
+                    else if (name === 'rw_domisili') setFieldValue(input, '00' + Math.floor(1 + Math.random() * 3));
+                    else if (name === 'alamat_asal') setFieldValue(input, `Jl. Poros Sinjai - Bulukumba KM ${Math.floor(3 + Math.random() * 10)}, Sinjai Selatan`);
+
+                    // Form Kematian
+                    else if (name === 'tempat_meninggal') setFieldValue(input, 'RSUD Sinjai');
+                    else if (name === 'tanggal_meninggal') setFieldValue(input, '2026-08-' + String(Math.floor(1 + Math.random() * 10)).padStart(2, '0'));
+                    else if (name === 'jam_meninggal') setFieldValue(input, '09:30');
+                    else if (name === 'hari_meninggal') setFieldValue(input, 'Senin');
+                    else if (name === 'penyebab_kematian') setFieldValue(input, 'Sakit / Usia Lanjut');
+                    else if (name === 'hubungan_pelapor') setFieldValue(input, 'Anak Kandung');
+
+                    // Form Beda Nama / Dokumen Lainnya
+                    else if (name === 'nama_lain') setFieldValue(input, 'Andi Muhammad ' + randomName);
+                    else if (name === 'jenis_dokumen') setFieldValue(input, 'Ijazah Pendidikan');
+                    else if (name === 'nomor_dokumen') setFieldValue(input, 'DN-01/M-SMA/12/' + randomId);
+                    else if (name === 'keterangan_perbedaan') setFieldValue(input, 'Perbedaan ejaan penulisan nama pada KTP dan Ijazah.');
+
+                    // Keperluan umum / spesifik
+                    else if (name === 'keperluan') {
+                        const purposes = [
+                            'Persyaratan kelengkapan administrasi dan pengajuan berkas resmi',
+                            'Pengajuan permohonan modal usaha Kredit Usaha Rakyat (KUR) Bank',
+                            'Kelengkapan berkas pendaftaran dan verifikasi administrasi kependudukan',
+                            'Pengurusan surat pengantar dan administrasi instansi terkait'
+                        ];
+                        setFieldValue(input, purposes[Math.floor(Math.random() * purposes.length)]);
+                    }
+                    // Fallback generic untuk input teks lain yang masih kosong
+                    else if (!input.value) {
+                        if (input.tagName.toLowerCase() === 'select') {
+                            if (input.options.length > 1) {
+                                setSelectValue(input, Math.floor(1 + Math.random() * (input.options.length - 1)));
+                            }
+                        } else if (input.type === 'number') {
+                            setFieldValue(input, String(Math.floor(1500000 + Math.random() * 3500000)));
+                        } else if (input.type === 'date') {
+                            setFieldValue(input, '2026-08-10');
+                        } else {
+                            setFieldValue(input, 'Keterangan ' + randomId);
+                        }
+                    }
+                });
+            }
+
+            // 4. STEP 4: UPLOAD DOKUMEN LAMPIRAN
             else if (activeStep === 4) {
                 const fileInputs = activeStepEl ? activeStepEl.querySelectorAll('input[type="file"]') : document.querySelectorAll('input[type="file"]');
                 if (fileInputs.length > 0) {
@@ -1423,6 +1503,8 @@
                                 const dt = new DataTransfer();
                                 dt.items.add(dummyFile);
                                 input.files = dt.files;
+                                input.classList.remove('border-red-500', 'border-red-300');
+                                input.classList.add('border-slate-200');
                                 input.dispatchEvent(new Event('change', { bubbles: true }));
                             }
                         });

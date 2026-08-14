@@ -71,6 +71,10 @@ class PublicPermohonanController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->filled('form_hp_check')) {
+            return back()->with('error', 'Permintaan terindikasi spam.');
+        }
+
         $existingIdentity = [
             'existing_penduduk_id' => $request->input('existing_penduduk_id'),
             'existing_nik' => $request->input('existing_nik'),

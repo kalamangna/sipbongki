@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\WebsiteSetting;
 use App\Models\Pengaduan;
 use App\Models\PermohonanSurat;
+use App\Models\Penduduk;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\View;
@@ -76,6 +77,19 @@ View::composer([
         return "<?php echo ({$expression}) === 'L' ? 'Laki-laki' : (({$expression}) === 'P' ? 'Perempuan' : (empty({$expression}) && ({$expression}) !== '0' ? '-' : e({$expression}))); ?>";
     });
 
+    // Blade directives to mask sensitive PII data
+    Blade::directive('maskNik', function ($expression) {
+        return "<?php echo \App\Helpers\SecurityHelper::maskNik({$expression}); ?>";
+    });
+
+    Blade::directive('maskPhone', function ($expression) {
+        return "<?php echo \App\Helpers\SecurityHelper::maskPhone({$expression}); ?>";
+    });
+
+    Blade::directive('maskEmail', function ($expression) {
+        return "<?php echo \App\Helpers\SecurityHelper::maskEmail({$expression}); ?>";
+    });
+
 /*
 |--------------------------------------------------------------------------
 | Notifikasi Admin dan Operator
@@ -89,10 +103,12 @@ View::composer([
 
     $jumlahPermohonanBaru = PermohonanSurat::where('status', 'Menunggu')->count();
     $jumlahPengaduanBaru = Pengaduan::where('status', 'Baru')->count();
+    $jumlahPendudukTidakAktif = Penduduk::where('aktif', false)->count();
 
     $view->with('jumlahPermohonanBaru', $jumlahPermohonanBaru);
     $view->with('jumlahPengaduanBaru', $jumlahPengaduanBaru);
-    $view->with('jumlahNotifikasi', $jumlahPermohonanBaru + $jumlahPengaduanBaru);
+    $view->with('jumlahPendudukTidakAktif', $jumlahPendudukTidakAktif);
+    $view->with('jumlahNotifikasi', $jumlahPermohonanBaru + $jumlahPengaduanBaru + $jumlahPendudukTidakAktif);
 
 });
     

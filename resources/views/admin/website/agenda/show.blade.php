@@ -61,10 +61,7 @@
         {{-- Kanan (Col-1) --}}
         <div class="lg:col-span-1 space-y-6">
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden sticky top-6">
-                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800 text-sm">Informasi Pelaksanaan</h3>
                 </div>
                 <div class="p-6 space-y-5">

@@ -2,11 +2,8 @@
 
     {{-- KIRI: Informasi Utama --}}
     <div class="h-full">
-        <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
-            <h3 class="font-bold text-slate-800 text-base mb-0">
-                <i class="fa-solid fa-user-tie text-primary-600 mr-2"></i>
-                Informasi Utama
-            </h3>
+        <div class="pb-3 border-b border-slate-100 mb-6">
+            <h3 class="font-bold text-slate-800 text-base">Informasi Utama</h3>
         </div>
 
         <div class="space-y-6">
@@ -82,7 +79,7 @@
                         @endif
                     </div>
                     <div class="flex-1">
-                        <input type="file" id="foto" name="foto" accept="image/*" class="w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 transition-colors">
+                        <input type="file" id="foto" name="foto" accept="image/*" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer">
                         <p class="mt-1 text-xs text-slate-500">Format: JPG, PNG (Maks: 2MB). Kosongkan jika tidak ingin mengubah foto.</p>
                     </div>
                 </div>
@@ -95,11 +92,8 @@
     <div class="space-y-6">
         
         <div>
-            <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
-                <h3 class="font-bold text-slate-800 text-base mb-0">
-                    <i class="fa-solid fa-address-book text-amber-500 mr-2"></i>
-                    Data Pribadi
-                </h3>
+            <div class="pb-3 border-b border-slate-100 mb-6">
+                <h3 class="font-bold text-slate-800 text-base">Data Pribadi</h3>
             </div>
             <div class="space-y-6">
                 
@@ -153,11 +147,8 @@
         </div>
         
         <div>
-            <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
-                <h3 class="font-bold text-slate-800 text-base mb-0">
-                    <i class="fa-solid fa-file-signature text-emerald-500 mr-2"></i>
-                    Status & Keputusan
-                </h3>
+            <div class="pb-3 border-b border-slate-100 mb-6">
+                <h3 class="font-bold text-slate-800 text-base">Status & Keputusan</h3>
             </div>
             <div class="space-y-6">
                 

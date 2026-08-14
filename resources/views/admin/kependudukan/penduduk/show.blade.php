@@ -34,10 +34,7 @@
             
             {{-- Data Pribadi --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100">
                     <h3 class="font-bold text-slate-800">Identitas Pribadi</h3>
                 </div>
                 <div class="p-6">
@@ -86,10 +83,7 @@
 
             {{-- Status Perkawinan & Keluarga --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-                        <i class="fa-solid fa-people-roof"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100">
                     <h3 class="font-bold text-slate-800">Status & Keluarga</h3>
                 </div>
                 <div class="p-6">
@@ -136,10 +130,7 @@
             
             {{-- Alamat & Lingkungan --}}
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100">
                     <h3 class="font-bold text-slate-800">Alamat</h3>
                 </div>
                 <div class="p-6">

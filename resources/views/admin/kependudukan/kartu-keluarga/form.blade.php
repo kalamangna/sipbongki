@@ -3,11 +3,8 @@
 =========================== --}}
 
 <div>
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2 mb-6">
-        <h3 class="font-bold text-slate-800 text-base mb-0">
-            <i class="fa-solid fa-address-card text-primary-600 mr-2"></i>
-            Data Kartu Keluarga
-        </h3>
+    <div class="pb-3 border-b border-slate-100 mb-6">
+        <h3 class="font-bold text-slate-800 text-base mb-0">Data Kartu Keluarga</h3>
     </div>
 
     <div>
@@ -90,10 +87,7 @@
 <div>
 
     <div class="pb-3 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
-        <h3 class="font-bold text-slate-800 text-base mb-0">
-            <i class="fa-solid fa-users text-sky-600 mr-2"></i>
-            Anggota Keluarga
-        </h3>
+        <h3 class="font-bold text-slate-800 text-base mb-0">Anggota Keluarga</h3>
         
         <button type="button" data-modal-target="modalAnggota" data-modal-toggle="modalAnggota" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
             <i class="fa-solid fa-plus"></i> Tambah Anggota

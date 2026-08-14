@@ -3,9 +3,9 @@
     $siteName = $setting?->nama_website ?: 'SIP Bongki';
     $kelurahanName = $setting?->nama_kelurahan ?: 'Kelurahan Bongki';
 
-    $defaultTitle = "{$siteName} | Sistem Informasi dan Pelayanan {$kelurahanName}";
+    $defaultTitle = "{$siteName} - {$kelurahanName}";
     $defaultDescription = $setting?->deskripsi 
-        ?: "Website resmi {$kelurahanName} yang menyediakan layanan publik digital, statistik kependudukan, berita, agenda, pengumuman, galeri, dan informasi pemerintahan.";
+        ?: "Portal resmi {$kelurahanName}, Sinjai Utara. Layanan administrasi surat online, pengaduan warga, data kependudukan, dan informasi publik.";
     $defaultKeywords = "{$kelurahanName}, {$siteName}, Pelayanan Publik, Sinjai Utara, Sinjai";
     $defaultImage = asset('images/meta.png');
 
@@ -19,10 +19,13 @@
         $title = $defaultTitle;
     }
 
-    $description = View::hasSection('seo_description') ? View::getSection('seo_description') : $defaultDescription;
+    $rawDescription = View::hasSection('seo_description') ? View::getSection('seo_description') : $defaultDescription;
+    $description = \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($rawDescription))), 155);
     $keywords = View::hasSection('seo_keywords') ? View::getSection('seo_keywords') : $defaultKeywords;
     $image = View::hasSection('seo_image') ? View::getSection('seo_image') : $defaultImage;
     $type = View::hasSection('seo_type') ? View::getSection('seo_type') : 'website';
+    $publishedTime = View::hasSection('seo_published_time') ? View::getSection('seo_published_time') : null;
+    $author = View::hasSection('seo_author') ? View::getSection('seo_author') : $kelurahanName;
     $url = url()->current();
 @endphp
 
@@ -33,21 +36,29 @@
 @if($keywords)
 <meta name="keywords" content="{{ $keywords }}">
 @endif
+<meta name="author" content="{{ $author }}">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="{{ $type }}">
+<meta property="og:site_name" content="{{ $siteName }}">
+<meta property="og:locale" content="id_ID">
 <meta property="og:url" content="{{ $url }}">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $description }}">
 @if($image)
 <meta property="og:image" content="{{ $image }}">
+<meta property="og:image:alt" content="{{ $title }}">
+@endif
+@if($publishedTime && $type === 'article')
+<meta property="article:published_time" content="{{ $publishedTime }}">
+<meta property="article:author" content="{{ $author }}">
 @endif
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="{{ $url }}">
-<meta property="twitter:title" content="{{ $title }}">
-<meta property="twitter:description" content="{{ $description }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ $url }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
 @if($image)
-<meta property="twitter:image" content="{{ $image }}">
+<meta name="twitter:image" content="{{ $image }}">
 @endif

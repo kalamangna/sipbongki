@@ -77,7 +77,7 @@ Route::get('/permohonan', [\App\Http\Controllers\PublicPermohonanController::cla
     ->name('permohonan.create');
 
 Route::post('/permohonan/lookup', [\App\Http\Controllers\PublicPermohonanController::class, 'lookup'])
-    ->middleware('throttle:30,1')
+    ->middleware('throttle:10,1')
     ->name('permohonan.lookup');
 
 Route::post('/permohonan', [\App\Http\Controllers\PublicPermohonanController::class, 'store'])
@@ -89,7 +89,7 @@ Route::get('/permohonan/berhasil/{permohonanSurat}', [\App\Http\Controllers\Publ
 
 // Public: Cek status permohonan
 Route::get('/permohonan/status/check', [\App\Http\Controllers\PublicPermohonanController::class, 'checkStatus'])
-    ->middleware('throttle:30,1')
+    ->middleware('throttle:20,1')
     ->name('permohonan.status.check');
 
 /*
@@ -258,6 +258,11 @@ Route::resource(
             'permohonan-surat/{permohonanSurat}/print',
             [PermohonanSuratController::class, 'print']
         )->name('permohonan-surat.print');
+
+        Route::get(
+            'permohonan-surat/{permohonanSurat}/dokumen/{jenis}',
+            [PermohonanSuratController::class, 'viewDocument']
+        )->name('permohonan-surat.document');
 
 
         /*

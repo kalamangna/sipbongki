@@ -381,22 +381,13 @@ public function persuratan(Request $request)
     */
 
     if ($request->filled('keyword')) {
-
         $keyword = $request->keyword;
-
         $query->where(function ($q) use ($keyword) {
-
             $q->where('nomor_permohonan', 'like', "%{$keyword}%")
-              ->orWhere('nomor_surat', 'like', "%{$keyword}%")
               ->orWhereHas('penduduk', function ($qq) use ($keyword) {
-
-                    $qq->where('nama_lengkap', 'like', "%{$keyword}%")
-                       ->orWhere('nik', 'like', "%{$keyword}%");
-
+                    $qq->where('nama_lengkap', 'like', "%{$keyword}%");
               });
-
         });
-
     }
 
     /*

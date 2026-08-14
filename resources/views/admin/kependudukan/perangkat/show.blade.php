@@ -66,10 +66,7 @@
         {{-- Kolom Kanan: Data Profil --}}
         <div class="lg:col-span-2 space-y-6">
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-                <div class="px-6 py-5 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
-                    <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
-                        <i class="fa-solid fa-id-card-clip"></i>
-                    </div>
+                <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800">Identitas Kepegawaian</h3>
                 </div>
                 

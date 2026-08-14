@@ -38,6 +38,9 @@ class PublicPengaduanController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->filled('form_hp_check')) {
+            return back()->with('error', 'Permintaan terindikasi spam.');
+        }
 
         $request->validate([
 

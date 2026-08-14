@@ -8,8 +8,7 @@
             
             {{-- ── LEFT: CONTENT ──────────────────── --}}
             <div class="text-center lg:text-left">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-primary mb-6 border border-slate-200 shadow-sm uppercase tracking-wider">
-                    <i class="fa-solid fa-shield-halved"></i>
+                <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-primary mb-6 border border-slate-200 shadow-sm uppercase tracking-wider">
                     {{ $website?->badge ?? 'Sistem Informasi dan Pelayanan' }}
                 </span>
                 
@@ -26,14 +25,14 @@
                 
                 <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                     <a href="{{ $website?->hero_button_1_link ?? '#layanan' }}"
-                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-base font-bold transition duration-300 shadow-md shadow-primary/20 hover:-translate-y-0.5 focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
+                       class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white text-base font-bold transition-all duration-200 shadow-md shadow-primary/20 hover:-translate-y-0.5 active:scale-95 focus:ring-2 focus:ring-primary focus:outline-none focus:ring-offset-2">
                         <i class="fa-solid fa-paper-plane text-lg"></i>
                         {{ $website?->hero_button_1_text ?? 'Ajukan Permohonan' }}
                     </a>
                     
                     <button type="button"
                             onclick="document.getElementById('cekStatusModal').classList.remove('hidden')"
-                            class="cursor-pointer inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-base font-bold transition duration-300 shadow-sm hover:-translate-y-0.5 focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
+                            class="cursor-pointer inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-base font-bold transition-all duration-200 shadow-sm hover:-translate-y-0.5 active:scale-95 focus:ring-2 focus:ring-slate-400 focus:outline-none focus:ring-offset-2">
                         <i class="fa-solid fa-magnifying-glass text-lg text-primary"></i>
                         Cek Status Permohonan
                     </button>
@@ -122,7 +121,8 @@
         <div class="flex items-center justify-between mb-5">
             <h5 class="text-lg font-bold text-slate-800">Cek Status Permohonan</h5>
             <button onclick="document.getElementById('cekStatusModal').classList.add('hidden')"
-                    class="cursor-pointer w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">
+                    aria-label="Tutup modal"
+                    class="cursor-pointer w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -137,7 +137,7 @@
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1.5">Nomor Permohonan <span class="text-red-500">*</span></label>
                     <input type="text" name="nomor" required
-                           class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+                           class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
                            placeholder="Contoh: PMH-20260814123456">
                 </div>
             </div>
@@ -145,11 +145,11 @@
             <div class="flex gap-3 mt-6">
                 <button type="button"
                         onclick="document.getElementById('cekStatusModal').classList.add('hidden')"
-                        class="cursor-pointer flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors">
+                        class="cursor-pointer flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2">
                     Batal
                 </button>
                 <button type="submit"
-                        class="cursor-pointer flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold transition-colors">
+                        class="cursor-pointer flex-1 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-semibold shadow-sm shadow-primary/20 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Cek Status
                 </button>
             </div>

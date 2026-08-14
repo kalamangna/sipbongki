@@ -1,4 +1,9 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /login
+Disallow: /permohonan/berhasil/
+Disallow: /permohonan/status/
+Disallow: /pengaduan/status/
+Allow: /
 
 Sitemap: /sitemap.xml

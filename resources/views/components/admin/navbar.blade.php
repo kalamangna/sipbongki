@@ -4,6 +4,7 @@
     $totalNotifications = 0;
     if (isset($jumlahPengaduanBaru)) $totalNotifications += $jumlahPengaduanBaru;
     if (isset($jumlahPermohonanBaru)) $totalNotifications += $jumlahPermohonanBaru;
+    if (isset($jumlahPendudukTidakAktif)) $totalNotifications += $jumlahPendudukTidakAktif;
 @endphp
 
 <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-4 lg:px-8 shrink-0">
@@ -46,6 +47,17 @@
                             <span class="bg-amber-50 text-amber-600 py-0.5 px-2.5 rounded-full text-[10px] font-extrabold">{{ $jumlahPermohonanBaru }}</span>
                         @endif
                     </a>
+                    @if(isset($jumlahPendudukTidakAktif) && $jumlahPendudukTidakAktif > 0)
+                    <a href="{{ route('admin.penduduk.index', ['aktif' => '0']) }}" class="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-primary-600 transition-colors focus:outline-none">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-user-xmark text-slate-400"></i> Penduduk Tidak Aktif</span>
+                        <span class="bg-rose-50 text-rose-600 py-0.5 px-2.5 rounded-full text-[10px] font-extrabold">{{ $jumlahPendudukTidakAktif }}</span>
+                    </a>
+                    @endif
+                    @if($totalNotifications == 0)
+                    <div class="px-4 py-3 text-center text-xs text-slate-400">
+                        Tidak ada pemberitahuan baru
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -13,6 +13,77 @@
         </div>
     </div>
 
+    {{-- STATS CARDS --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6">
+        {{-- Menunggu --}}
+        <a href="{{ route('admin.permohonan-surat.index', array_merge(request()->except(['page']), ['status' => request('status') === 'Menunggu' ? null : 'Menunggu'])) }}" 
+           class="bg-white rounded-2xl p-5 ring-1 transition-all hover:-translate-y-0.5 hover:shadow-md block {{ request('status') === 'Menunggu' ? 'ring-amber-500 shadow-md ring-2' : 'ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]' }}">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Menunggu</p>
+                    <div class="flex items-baseline gap-2 mt-0.5">
+                        <span class="text-2xl font-bold text-slate-900">{{ number_format($stats['menunggu']) }}</span>
+                        <span class="text-xs text-slate-400 font-medium">Permohonan</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {{-- Diproses --}}
+        <a href="{{ route('admin.permohonan-surat.index', array_merge(request()->except(['page']), ['status' => request('status') === 'Diproses' ? null : 'Diproses'])) }}" 
+           class="bg-white rounded-2xl p-5 ring-1 transition-all hover:-translate-y-0.5 hover:shadow-md block {{ request('status') === 'Diproses' ? 'ring-sky-500 shadow-md ring-2' : 'ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]' }}">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Diproses</p>
+                    <div class="flex items-baseline gap-2 mt-0.5">
+                        <span class="text-2xl font-bold text-slate-900">{{ number_format($stats['diproses']) }}</span>
+                        <span class="text-xs text-slate-400 font-medium">Permohonan</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {{-- Selesai --}}
+        <a href="{{ route('admin.permohonan-surat.index', array_merge(request()->except(['page']), ['status' => request('status') === 'Selesai' ? null : 'Selesai'])) }}" 
+           class="bg-white rounded-2xl p-5 ring-1 transition-all hover:-translate-y-0.5 hover:shadow-md block {{ request('status') === 'Selesai' ? 'ring-emerald-500 shadow-md ring-2' : 'ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]' }}">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Selesai</p>
+                    <div class="flex items-baseline gap-2 mt-0.5">
+                        <span class="text-2xl font-bold text-slate-900">{{ number_format($stats['selesai']) }}</span>
+                        <span class="text-xs text-slate-400 font-medium">Permohonan</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {{-- Ditolak --}}
+        <a href="{{ route('admin.permohonan-surat.index', array_merge(request()->except(['page']), ['status' => request('status') === 'Ditolak' ? null : 'Ditolak'])) }}" 
+           class="bg-white rounded-2xl p-5 ring-1 transition-all hover:-translate-y-0.5 hover:shadow-md block {{ request('status') === 'Ditolak' ? 'ring-rose-500 shadow-md ring-2' : 'ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]' }}">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Ditolak</p>
+                    <div class="flex items-baseline gap-2 mt-0.5">
+                        <span class="text-2xl font-bold text-slate-900">{{ number_format($stats['ditolak']) }}</span>
+                        <span class="text-xs text-slate-400 font-medium">Permohonan</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
     {{-- Main Card --}}
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         
@@ -21,28 +92,28 @@
             <form method="GET" class="flex flex-col md:flex-row gap-3">
                 <div class="flex-1 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Nomor / Nama Pemohon..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari No. Permohonan atau Nama Pemohon..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm">
                 </div>
                 <div class="w-full md:w-48">
+                    <select name="jenis_pemohon" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
+                        <option value="">Jenis Pemohon</option>
+                        <option value="bongki" {{ request('jenis_pemohon') == 'bongki' ? 'selected' : '' }}>Penduduk Bongki</option>
+                        <option value="luar" {{ request('jenis_pemohon') == 'luar' ? 'selected' : '' }}>Penduduk Luar Bongki</option>
+                    </select>
+                </div>
+
+                <div class="w-full md:w-48">
                     <select name="jenis_surat_id" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
-                        <option value="">Semua Jenis Surat</option>
+                        <option value="">Jenis Surat</option>
                         @foreach($jenisSurats as $js)
                             <option value="{{ $js->id }}" {{ request('jenis_surat_id') == $js->id ? 'selected' : '' }}>{{ $js->nama }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="w-full md:w-44">
-                    <select name="jenis_pemohon" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
-                        <option value="">Semua Kategori</option>
-                        <option value="bongki" {{ request('jenis_pemohon') == 'bongki' ? 'selected' : '' }}>Penduduk Bongki</option>
-                        <option value="luar" {{ request('jenis_pemohon') == 'luar' ? 'selected' : '' }}>Penduduk Luar</option>
-                    </select>
-                </div>
-
                 <div class="w-full md:w-40">
                     <select name="status" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm">
-                        <option value="">Semua Status</option>
+                        <option value="">Status</option>
                         <option value="Menunggu" {{ request('status') == 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
                         <option value="Diproses" {{ request('status') == 'Diproses' ? 'selected' : '' }}>Diproses</option>
                         <option value="Selesai" {{ request('status') == 'Selesai' ? 'selected' : '' }}>Selesai</option>
@@ -54,10 +125,10 @@
                     <button type="submit" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
-                    @if(request('search') || request('jenis_surat_id') || request('status') || request('jenis_pemohon'))
+                    @if(request('search') || request('jenis_surat_id') || request('jenis_pemohon') || request('status'))
                         <a href="{{ route('admin.permohonan-surat.index') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
-    <i class="fa-solid fa-rotate-left"></i>
-</a>
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </a>
                     @endif
                 </div>
             </form>
@@ -69,10 +140,10 @@
                 <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/80">
                     <tr>
                         <th width="70" class="px-6 py-4 border-b border-slate-100 text-center">No</th>
-                        <th class="px-6 py-4 border-b border-slate-100">No. Permohonan</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Tanggal</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Pemohon</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Jenis Surat</th>
+                        <th class="px-6 py-4 border-b border-slate-100 whitespace-nowrap">No. Permohonan</th>
+                        <th class="px-6 py-4 border-b border-slate-100 whitespace-nowrap">Tanggal</th>
+                        <th class="px-6 py-4 border-b border-slate-100 whitespace-nowrap">Pemohon</th>
+                        <th class="px-6 py-4 border-b border-slate-100 whitespace-nowrap">Jenis Surat</th>
                         <th class="px-6 py-4 border-b border-slate-100 text-center">Status</th>
                         <th width="200" class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
                     </tr>
@@ -81,13 +152,40 @@
                     @forelse($permohonans as $permohonan)
                     <tr class="hover:bg-slate-50/80 transition-colors">
                         <td class="px-6 py-4 text-center">{{ $permohonans->firstItem() + $loop->index }}</td>
-                        <td class="px-6 py-4 font-mono font-medium text-slate-900">{{ $permohonan->nomor_permohonan }}</td>
-                        <td class="px-6 py-4">{{ $permohonan->tanggal_permohonan->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4 font-bold text-slate-900">
-                            {{ $permohonan->pemohon->nama_lengkap ?? '-' }}
+                        <td class="px-6 py-4 font-mono font-medium text-slate-900 whitespace-nowrap">{{ $permohonan->nomor_permohonan }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $permohonan->tanggal_permohonan->format('d/m/Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="font-bold text-slate-900">
+                                {{ optional($permohonan->penduduk)->nama_lengkap ?? data_get($permohonan->data_surat, 'nama_lengkap') ?? '-' }}
+                            </div>
+                            <div class="mt-1">
+                                @if($permohonan->penduduk_id)
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 ring-1 ring-emerald-500/30">
+                                        <i class="fa-solid fa-circle-check text-[10px] text-emerald-600"></i>
+                                        Penduduk Bongki
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 ring-1 ring-amber-500/30">
+                                        <i class="fa-solid fa-circle-info text-[10px] text-amber-600"></i>
+                                        Penduduk Luar Bongki
+                                    </span>
+                                @endif
+                            </div>
                         </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @php
+                                $colorThemes = [
+                                    0 => 'bg-emerald-50 text-emerald-600 border-emerald-200', // 1. Keterangan Usaha (Emerald khas Tailwind)
+                                    1 => 'bg-rose-50 text-rose-600 border-rose-200',          // 2. Belum Menikah (Rose khas Tailwind)
+                                    2 => 'bg-sky-50 text-sky-600 border-sky-200',             // 3. Domisili (Sky khas Tailwind)
+                                    3 => 'bg-slate-50 text-slate-600 border-slate-200',       // 4. Kematian (Slate khas Tailwind)
+                                    4 => 'bg-indigo-50 text-indigo-600 border-indigo-200',    // 5. Orang Yang Sama (Indigo khas Tailwind)
+                                    5 => 'bg-amber-50 text-amber-600 border-amber-200',       // 6. Tidak Mampu (Amber khas Tailwind)
+                                ];
+                                $jenisIndex = isset($jenisSurats) ? $jenisSurats->values()->search(fn($item) => $item->id === $permohonan->jenis_surat_id) : 0;
+                                $badgeTheme = $colorThemes[($jenisIndex !== false ? $jenisIndex : 0) % count($colorThemes)];
+                            @endphp
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold border {{ $badgeTheme }}">
                                 {{ optional($permohonan->jenisSurat)->nama ?? '-' }}
                             </span>
                         </td>

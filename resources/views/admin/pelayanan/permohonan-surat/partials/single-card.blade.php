@@ -21,12 +21,7 @@
 {{-- 1. INFORMASI SURAT --}}
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
     <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
-                <i class="fa-solid fa-file-lines"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Informasi Surat</h3>
-        </div>
+        <h3 class="font-bold text-slate-800">Informasi Surat</h3>
         <div class="text-xs font-mono font-semibold text-slate-600">
             #{{ $permohonanSurat->nomor_permohonan }}
         </div>
@@ -62,20 +57,23 @@
 {{-- 2. DATA PEMOHON --}}
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
     <div class="px-6 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Data Pemohon</h3>
-        </div>
-        <div>
+        <h3 class="font-bold text-slate-800">Data Pemohon</h3>
+        <div class="flex items-center gap-2">
             @if($pendudukAsli)
-                <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 ring-1 ring-emerald-500/30">
+                    <i class="fa-solid fa-circle-check text-[10px] text-emerald-600"></i>
                     Penduduk Bongki
                 </span>
+                @if(optional($pemohon)->aktif === false || optional($pemohon)->aktif === 0)
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 ring-1 ring-rose-500/30">
+                        <i class="fa-solid fa-circle-exclamation text-[10px] text-rose-600"></i>
+                        Perlu Verifikasi
+                    </span>
+                @endif
             @else
-                <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
-                    Penduduk Luar
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 ring-1 ring-amber-500/30">
+                    <i class="fa-solid fa-circle-info text-[10px] text-amber-600"></i>
+                    Penduduk Luar Bongki
                 </span>
             @endif
         </div>
@@ -211,26 +209,14 @@
 {{-- 3. DETAIL KHUSUS SURAT --}}
 @if($isUsaha || $isDomisili || $isKematian || $isOrangSama)
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
-    <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+    <div class="px-6 py-4 border-b border-slate-100">
         @if($isUsaha)
-            <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-                <i class="fa-solid fa-store"></i>
-            </div>
             <h3 class="font-bold text-slate-800">Detail Usaha</h3>
         @elseif($isDomisili)
-            <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
-                <i class="fa-solid fa-map-location-dot"></i>
-            </div>
             <h3 class="font-bold text-slate-800">Detail Domisili</h3>
         @elseif($isKematian)
-            <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
-                <i class="fa-solid fa-book-skull"></i>
-            </div>
             <h3 class="font-bold text-slate-800">Detail Kematian</h3>
         @elseif($isOrangSama)
-            <div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
-                <i class="fa-solid fa-users-viewfinder"></i>
-            </div>
             <h3 class="font-bold text-slate-800">Detail Orang Yang Sama</h3>
         @endif
     </div>
@@ -342,10 +328,7 @@
 
 {{-- 4. LAMPIRAN DOKUMEN --}}
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
-    <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-rose-600">
-            <i class="fa-solid fa-file-pdf"></i>
-        </div>
+    <div class="px-6 py-4 border-b border-slate-100">
         <h3 class="font-bold text-slate-800">Lampiran Dokumen</h3>
     </div>
     <div class="p-6">
@@ -363,7 +346,7 @@
 
             @foreach($files as $field => $label)
                 @if(!empty($dataSurat[$field]))
-                    <a href="{{ asset('storage/' . $dataSurat[$field]) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-primary-200 text-primary-700 hover:bg-primary-50 shadow-sm transition-all focus:outline-none" target="_blank" rel="noopener">
+                    <a href="{{ route('admin.permohonan-surat.document', [$permohonanSurat, $field]) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-primary-200 text-primary-700 hover:bg-primary-50 shadow-sm transition-all focus:outline-none" target="_blank" rel="noopener">
                         <i class="fa-solid fa-file-pdf"></i> Lihat {{ $label }}
                     </a>
                 @else

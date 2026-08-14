@@ -1,15 +1,16 @@
 @extends('layouts.public')
 
 @section('seo_title', $berita->judul)
-@section('seo_description', Str::limit(strip_tags($berita->isi), 160))
+@section('seo_description', Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($berita->isi))), 150))
 @section('seo_type', 'article')
 @section('seo_image', $berita->gambar ? asset('storage/'.$berita->gambar) : asset('images/meta.png'))
+@section('seo_published_time', optional($berita->tanggal_publish ?? $berita->created_at)->toIso8601String())
 
-@push('styles')
+@push('schema')
 <script type="application/ld+json">
 {
     "@@context": "https://schema.org",
-    "@@type": "NewsArticle",
+    "@type": "NewsArticle",
     "headline": "{{ addslashes($berita->judul) }}",
     "description": "{{ addslashes(Str::limit(strip_tags($berita->isi), 160)) }}",
     "image": [
@@ -18,22 +19,48 @@
     "datePublished": "{{ optional($berita->tanggal_publish ?? $berita->created_at)->toIso8601String() }}",
     "dateModified": "{{ $berita->updated_at->toIso8601String() }}",
     "author": {
-        "@@type": "Organization",
-        "name": "Kelurahan Bongki",
+        "@type": "Organization",
+        "name": "Pemerintah Kelurahan Bongki",
         "url": "{{ url('/') }}"
     },
     "publisher": {
-        "@@type": "GovernmentOrganization",
+        "@type": "GovernmentOrganization",
         "name": "Kelurahan Bongki",
         "logo": {
-            "@@type": "ImageObject",
+            "@type": "ImageObject",
             "url": "{{ asset('images/logo.png') }}"
         }
     },
     "mainEntityOfPage": {
-        "@@type": "WebPage",
-        "@@id": "{{ url()->current() }}"
+        "@type": "WebPage",
+        "@id": "{{ url()->current() }}"
     }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "{{ url('/') }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Berita",
+            "item": "{{ url('/#berita') }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ addslashes($berita->judul) }}",
+            "item": "{{ url()->current() }}"
+        }
+    ]
 }
 </script>
 @endpush
@@ -93,15 +120,15 @@
                         <span class="text-sm font-bold text-slate-700">Bagikan artikel ini:</span>
                         <div class="flex items-center gap-3">
                             <a href="https://api.whatsapp.com/send?text={{ urlencode($berita->judul . ' ' . request()->url()) }}" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors shadow-sm" title="Bagikan ke WhatsApp">
+                               class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
                             </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors shadow-sm" title="Bagikan ke Facebook">
+                               class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
                                 <i class="fa-brands fa-facebook-f text-lg"></i>
                             </a>
                             <button onclick="navigator.clipboard.writeText('{{ request()->url() }}'); alert('Tautan berhasil disalin!');" 
-                                    class="w-10 h-10 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-colors shadow-sm" title="Salin Tautan">
+                                    class="cursor-pointer w-10 h-10 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" title="Salin Tautan" aria-label="Salin tautan artikel">
                                 <i class="fa-solid fa-link text-lg"></i>
                             </button>
                         </div>
@@ -111,7 +138,7 @@
                 {{-- Back Button --}}
                 <div class="mt-4 mb-8 lg:mb-0">
                     <a href="{{ route('home') }}#berita"
-                       class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Beranda
                     </a>

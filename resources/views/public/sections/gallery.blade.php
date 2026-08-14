@@ -13,7 +13,7 @@
 
         {{-- Header --}}
         <div class="text-center mb-14">
-            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-50 text-primary-600 mb-4">Galeri</span>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Galeri</span>
             <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Dokumentasi Kegiatan</h2>
         </div>
 
@@ -22,7 +22,7 @@
 
             @forelse($galeris as $galeri)
 
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100 border border-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100 border border-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                      tabindex="0"
                      role="button"
                      aria-label="Lihat gambar: {{ $galeri->judul }}"

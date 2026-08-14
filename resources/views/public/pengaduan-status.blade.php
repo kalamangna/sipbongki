@@ -41,14 +41,14 @@
                         <input type="text"
                                name="kode"
                                id="kode"
-                               class="w-full rounded-xl border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 shadow-sm px-4 py-3 text-lg tracking-wide uppercase transition-shadow placeholder:normal-case placeholder:text-sm placeholder:text-slate-400"
+                               class="w-full rounded-xl border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary shadow-sm px-4 py-3 text-lg tracking-wide uppercase transition-shadow placeholder:normal-case placeholder:text-sm placeholder:text-slate-400"
                                placeholder="Contoh: ADU-20260808-ABC12"
                                value="{{ old('kode') }}"
                                required>
                     </div>
 
                     <div>
-                        <button type="submit" class="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-base shadow-md shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                        <button type="submit" class="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-base shadow-md shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Cek Status
                         </button>
@@ -56,7 +56,7 @@
                 </form>
 
                 <div class="text-center mt-8 pt-6 border-t border-slate-200">
-                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Form Pengaduan
                     </a>

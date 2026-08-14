@@ -34,7 +34,7 @@
 
                     <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-slate-50">
                         <span class="sm:w-1/3 text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1 sm:mb-0">NIK Pelapor</span>
-                        <span class="sm:w-2/3 text-slate-800">{{ $pengaduan->nik_pelapor ?? '-' }}</span>
+                        <span class="sm:w-2/3 text-slate-800 font-mono">@maskNik($pengaduan->nik_pelapor)</span>
                     </div>
 
                     <div class="flex flex-col sm:flex-row sm:items-center py-3 border-b border-slate-50">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-center mt-10 pt-6 border-t border-slate-100">
-                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary font-semibold hover:bg-primary-light transition-colors w-full sm:w-auto">
+                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 w-full sm:w-auto">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Form Pengaduan
                     </a>

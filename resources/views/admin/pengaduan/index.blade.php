@@ -22,13 +22,13 @@
             {{-- Pencarian --}}
             <div class="flex-1 relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari kode, nama, uraian..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm transition-all">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Kode, Nama Pelapor, atau Uraian..." class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10 pr-4 py-2.5 shadow-sm transition-all">
             </div>
 
             {{-- Filter Kategori --}}
             <div class="w-full md:w-48">
                 <select name="kategori" class="w-full bg-white border border-slate-200 text-slate-700 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm transition-all cursor-pointer">
-                    <option value="">Semua Kategori</option>
+                    <option value="">Kategori</option>
                     @foreach($kategoris as $kat)
                         <option value="{{ $kat }}" @selected(request('kategori') == $kat)>{{ $kat }}</option>
                     @endforeach
@@ -38,7 +38,7 @@
             {{-- Filter Status --}}
             <div class="w-full md:w-40">
                 <select name="status" class="w-full bg-white border border-slate-200 text-slate-700 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm transition-all cursor-pointer">
-                    <option value="">Semua Status</option>
+                    <option value="">Status</option>
                     <option value="Baru" @selected(request('status') == 'Baru')>Baru</option>
                     <option value="Diproses" @selected(request('status') == 'Diproses')>Diproses</option>
                     <option value="Selesai" @selected(request('status') == 'Selesai')>Selesai</option>

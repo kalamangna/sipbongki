@@ -12,7 +12,7 @@
             type="search"
             name="search"
             class="form-control"
-            placeholder="Cari data...">
+            placeholder="Cari Data...">
 
     </div>
 

@@ -26,19 +26,20 @@
     <script type="application/ld+json">
     {
         "@@context":"https://schema.org",
-        "@@type":"GovernmentOrganization",
+        "@type":"GovernmentOrganization",
         "name":"Kelurahan Bongki",
         "url":"{{ url('/') }}",
         "logo":"{{ asset('images/logo.png') }}",
         "description":"Website resmi Kelurahan Bongki yang menyediakan layanan publik digital, statistik kependudukan, berita, agenda, pengumuman, galeri, dan informasi pemerintahan.",
         "address":{
-            "@@type":"PostalAddress",
+            "@type":"PostalAddress",
             "addressLocality":"Sinjai Utara",
             "addressRegion":"Sulawesi Selatan",
             "addressCountry":"ID"
         }
     }
     </script>
+    @stack('schema')
 
 
     {{-- Google Font --}}

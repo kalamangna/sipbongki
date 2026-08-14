@@ -30,7 +30,7 @@
         <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
             <form method="GET" class="flex flex-col md:flex-row gap-3">
                 <div class="flex-1">
-                    <input type="text" name="search" value="{{ $search }}" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm" placeholder="Cari nama jabatan...">
+                    <input type="text" name="search" value="{{ $search }}" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm" placeholder="Cari Nama Jabatan...">
                 </div>
                 
                 <div class="flex gap-2">

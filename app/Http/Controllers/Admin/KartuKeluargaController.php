@@ -13,45 +13,49 @@ class KartuKeluargaController extends Controller
 {
 public function index(Request $request)
 {
-    $keyword = $request->keyword;
+    $keyword = trim($request->keyword ?? '');
+    $lingkungan = $request->lingkungan;
+    $aktif = $request->aktif;
 
     $kartuKeluargas = KartuKeluarga::with([
         'kepalaKeluarga',
         'lingkungan',
         'anggota',
     ])
-
-    ->when($keyword, function ($query) use ($keyword) {
-
-        $query->where('no_kk', 'like', "%{$keyword}%")
-
-            ->orWhereHas('kepalaKeluarga', function ($q) use ($keyword) {
-
-                $q->where('nik', 'like', "%{$keyword}%")
-                  ->orWhere('nama_lengkap', 'like', "%{$keyword}%");
-
-            })
-
-            ->orWhereHas('anggota', function ($q) use ($keyword) {
-
-                $q->where('nik', 'like', "%{$keyword}%")
-                  ->orWhere('nama_lengkap', 'like', "%{$keyword}%");
-
-            });
-
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('no_kk', 'like', "%{$keyword}%")
+                ->orWhereHas('kepalaKeluarga', function ($q) use ($keyword) {
+                    $q->where('nama_lengkap', 'like', "%{$keyword}%");
+                });
+        })
+    ->when($lingkungan, function ($query) use ($lingkungan) {
+        $query->where('lingkungan_id', $lingkungan);
     })
-
+    ->when($request->has('aktif') && $aktif !== '' && $aktif !== null, function ($query) use ($aktif) {
+        $query->where('aktif', $aktif);
+    })
     ->latest()
-
     ->paginate(10)
-
     ->withQueryString();
+
+    $lingkungans = Lingkungan::orderBy('nama')->get();
+
+    // Statistik Kartu Keluarga
+    $totalSemua = KartuKeluarga::count();
+    $totalAktif = KartuKeluarga::where('aktif', 1)->count();
+    $totalTidakAktif = KartuKeluarga::where('aktif', 0)->count();
 
     return view(
         'admin.kependudukan.kartu-keluarga.index',
         compact(
             'kartuKeluargas',
-            'keyword'
+            'keyword',
+            'lingkungan',
+            'lingkungans',
+            'aktif',
+            'totalSemua',
+            'totalAktif',
+            'totalTidakAktif'
         )
     );
 }

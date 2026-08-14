@@ -21,7 +21,7 @@ class PendudukController extends Controller
     */
 public function index(Request $request)
 {
-    $search = trim($request->search);
+    $search = trim($request->search ?? '');
     $lingkungan = $request->lingkungan;
     $aktif = $request->aktif;
     $sort = $request->sort ?? 'nama_lengkap';
@@ -46,6 +46,11 @@ public function index(Request $request)
 
     $lingkungans = Lingkungan::orderBy('nama')->get();
 
+    // Statistik Penduduk
+    $totalSemua = Penduduk::count();
+    $totalAktif = Penduduk::where('aktif', 1)->count();
+    $totalTidakAktif = Penduduk::where('aktif', 0)->count();
+
     return view(
         'admin.kependudukan.penduduk.index',
         compact(
@@ -55,7 +60,10 @@ public function index(Request $request)
             'lingkungan',
             'aktif',
             'sort',
-            'direction'
+            'direction',
+            'totalSemua',
+            'totalAktif',
+            'totalTidakAktif'
         )
     );
 }

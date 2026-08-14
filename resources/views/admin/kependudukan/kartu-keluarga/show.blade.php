@@ -31,10 +31,7 @@
         
         {{-- Card: Informasi KK --}}
         <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
-                <div class="w-8 h-8 rounded-full bg-primary-50 flex items-center justify-center text-primary-600">
-                    <i class="fa-solid fa-address-card"></i>
-                </div>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h3 class="font-bold text-slate-800">Identitas Kartu Keluarga</h3>
             </div>
             <div class="p-6">
@@ -76,10 +73,7 @@
         {{-- Card: Status & Sistem --}}
         <div class="space-y-6">
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-3 bg-slate-50/50">
-                    <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-600">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
+                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                     <h3 class="font-bold text-slate-800">Status Data</h3>
                 </div>
                 <div class="p-6">
@@ -119,9 +113,7 @@
     {{-- Daftar Anggota Keluarga --}}
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
         <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-            <h3 class="font-bold text-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-users text-slate-400"></i> Daftar Anggota Keluarga
-            </h3>
+            <h3 class="font-bold text-slate-800">Daftar Anggota Keluarga</h3>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left text-slate-600">

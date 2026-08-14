@@ -5,14 +5,14 @@
 @section('content')
 
 {{-- HEADER --}}
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
     <div>
-        <h3 class="text-2xl font-bold text-slate-800 mb-1">Edit Website</h3>
-        <p class="text-sm text-slate-500">Perbarui identitas dan informasi website SIP Bongki</p>
+        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Edit Website</h2>
+        <p class="text-sm text-slate-500 mt-1">Perbarui identitas dan informasi website SIP Bongki.</p>
     </div>
     <a href="{{ route('admin.website.pengaturan.index') }}"
-        class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 shadow-sm transition-all active:scale-95 cursor-pointer focus:outline-none">
-        <i class="fa-solid fa-arrow-left"></i> Kembali
+       class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+        <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
     </a>
 </div>
 
@@ -22,15 +22,16 @@
 
     {{-- VALIDASI ERROR --}}
     @if($errors->any())
-    <div class="mb-6 bg-red-50 border border-red-200 text-red-700 rounded-2xl px-6 py-4">
-        <div class="flex items-center gap-2 font-semibold mb-2">
-            <i class="fa-solid fa-circle-exclamation"></i> Terdapat kesalahan input
+    <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">
+        <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
+        <div>
+            <h4 class="text-sm font-bold text-red-800">Mohon periksa kembali input Anda:</h4>
+            <ul class="text-sm text-red-600 mt-1 list-disc list-inside">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <ul class="list-disc list-inside text-sm space-y-1">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
     </div>
     @endif
 
@@ -40,8 +41,7 @@
          IDENTITAS WEBSITE
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-building text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Identitas Website</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -72,8 +72,7 @@
          LOGO & FAVICON
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-image text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Logo & Favicon</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -86,7 +85,7 @@
                     </div>
                     @endif
                     <input type="file" name="logo" accept="image/*"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-4 py-3 transition-colors shadow-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer">
                     <p class="text-xs text-slate-400 mt-1.5">Format: JPG, PNG, SVG. Maks 2MB.</p>
                 </div>
                 {{-- Favicon --}}
@@ -98,7 +97,7 @@
                     </div>
                     @endif
                     <input type="file" name="favicon" accept="image/*"
-                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-4 py-3 transition-colors shadow-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                        class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer">
                     <p class="text-xs text-slate-400 mt-1.5">Format: ICO, PNG. Disarankan 32×32 pixel.</p>
                 </div>
             </div>
@@ -108,8 +107,7 @@
          HERO LANDING PAGE
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-star text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Hero Landing Page</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -147,8 +145,7 @@
          GAMBAR HERO
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-panorama text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Gambar Hero</h5>
             </div>
             <div class="p-6">
@@ -159,7 +156,7 @@
                 </div>
                 @endif
                 <input type="file" name="gambar_hero" accept="image/*"
-                    class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 px-4 py-3 transition-colors shadow-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                    class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer">
                 <p class="text-xs text-slate-400 mt-1.5">Disarankan ukuran 1200 × 900 pixel. Maks 5MB.</p>
             </div>
         </div>
@@ -168,8 +165,7 @@
          TOMBOL HERO
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-computer-mouse text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Tombol Hero</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -208,8 +204,7 @@
          KONTAK WEBSITE
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-phone text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Kontak Website</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -261,8 +256,7 @@
          MEDIA SOSIAL
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-share-nodes text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Media Sosial</h5>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -300,8 +294,7 @@
          FOOTER WEBSITE
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-rectangle-list text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Footer Website</h5>
             </div>
             <div class="p-6 grid grid-cols-1 gap-6">
@@ -325,8 +318,7 @@
          VISIBILITAS SECTION PUBLIK
         ============================================================ --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
-                <i class="fa-solid fa-eye text-primary-600 text-sm"></i>
+            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Visibilitas Section Publik</h5>
             </div>
             <div class="p-6">
@@ -357,12 +349,12 @@
     {{-- FORM FOOTER --}}
     <div class="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-slate-200">
         <a href="{{ route('admin.website.pengaturan.index') }}"
-            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 shadow-sm transition-all active:scale-95 cursor-pointer focus:outline-none">
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-slate-200 shadow-sm focus:outline-none">
             Batal
         </a>
         <button type="submit"
-            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95 cursor-pointer focus:outline-none">
-            <i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan
+            class="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-xl transition-all bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:-translate-y-0.5 shadow-primary-500/20 focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer">
+            <i class="fa-solid fa-save"></i> Simpan Pengaturan
         </button>
     </div>
 

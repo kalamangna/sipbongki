@@ -52,7 +52,7 @@
                     {{-- Gambar --}}
                     <div class="md:col-span-2 lg:col-span-2">
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Gambar (Opsional)</label>
-                        <input type="file" name="gambar" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 transition-colors shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                        <input type="file" name="gambar" accept="image/*" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer">
                         <p class="text-xs text-slate-500 mt-2">Format: JPG, JPEG, PNG. Maksimal 2MB.</p>
                     </div>
 

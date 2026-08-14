@@ -35,8 +35,7 @@ class PermohonanSuratController extends Controller
                 $query->where(function ($q) use ($search) {
                     $q->where('nomor_permohonan', 'like', "%{$search}%")
                       ->orWhereHas('penduduk', function ($subq) use ($search) {
-                          $subq->where('nama_lengkap', 'like', "%{$search}%")
-                               ->orWhere('nik', 'like', "%{$search}%");
+                          $subq->where('nama_lengkap', 'like', "%{$search}%");
                       });
                 });
             })
@@ -59,6 +58,13 @@ class PermohonanSuratController extends Controller
 
         $jenisSurats = JenisSurat::orderBy('nama')->get();
 
+        $stats = [
+            'menunggu' => PermohonanSurat::where('status', 'Menunggu')->count(),
+            'diproses' => PermohonanSurat::where('status', 'Diproses')->count(),
+            'selesai' => PermohonanSurat::where('status', 'Selesai')->count(),
+            'ditolak' => PermohonanSurat::where('status', 'Ditolak')->count(),
+        ];
+
         return view(
             'admin.pelayanan.permohonan-surat.index',
             compact(
@@ -67,7 +73,8 @@ class PermohonanSuratController extends Controller
                 'jenis_surat_id',
                 'status',
                 'jenis_pemohon',
-                'jenisSurats'
+                'jenisSurats',
+                'stats'
             )
         );
     }
@@ -847,6 +854,40 @@ if (
         return redirect()
             ->route('admin.permohonan-surat.show', $permohonanSurat)
             ->with('success', 'Pejabat penandatangan berhasil dipilih.');
+    }
+
+    /**
+     * Tampilkan atau unduh dokumen permohonan secara aman.
+     */
+    public function viewDocument(PermohonanSurat $permohonanSurat, string $jenis)
+    {
+        $allowedDocs = ['dokumen_ktp', 'dokumen_kk', 'dokumen_surat_pengantar', 'dokumen_tempat_usaha'];
+        if (!in_array($jenis, $allowedDocs, true)) {
+            abort(404, 'Jenis dokumen tidak valid.');
+        }
+
+        $filePath = data_get($permohonanSurat->data_surat, $jenis);
+        if (empty($filePath)) {
+            abort(404, 'Dokumen belum diunggah.');
+        }
+
+        // Cek di disk local (private)
+        if (\Illuminate\Support\Facades\Storage::disk('local')->exists($filePath)) {
+            return response()->file(\Illuminate\Support\Facades\Storage::disk('local')->path($filePath), [
+                'X-Content-Type-Options' => 'nosniff',
+                'Cache-Control' => 'private, no-cache, no-store, must-revalidate',
+            ]);
+        }
+
+        // Fallback cek di disk public (legacy upload)
+        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($filePath)) {
+            return response()->file(\Illuminate\Support\Facades\Storage::disk('public')->path($filePath), [
+                'X-Content-Type-Options' => 'nosniff',
+                'Cache-Control' => 'private, no-cache, no-store, must-revalidate',
+            ]);
+        }
+
+        abort(404, 'Berkas fisik dokumen tidak ditemukan di server.');
     }
 
     /**

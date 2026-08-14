@@ -12,53 +12,59 @@
 
         @php
             $colorThemes = [
+                // 0: Keterangan Usaha (Emerald khas Tailwind)
                 [
                     'icon_bg'      => 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white',
                     'icon_color'   => 'text-emerald-600 group-hover:text-white',
-                    'badge'        => 'bg-emerald-50 text-emerald-700 border-emerald-100',
+                    'badge'        => 'bg-emerald-50 text-emerald-600 border-emerald-200',
                     'btn'          => 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20 focus:ring-emerald-500',
                     'hover_border' => 'hover:border-emerald-300',
-                    'hover_title'  => 'group-hover:text-emerald-700',
+                    'hover_title'  => 'group-hover:text-emerald-600',
                 ],
-                [
-                    'icon_bg'      => 'bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white',
-                    'icon_color'   => 'text-sky-600 group-hover:text-white',
-                    'badge'        => 'bg-sky-50 text-sky-700 border-sky-100',
-                    'btn'          => 'bg-sky-600 hover:bg-sky-700 shadow-sky-600/20 focus:ring-sky-500',
-                    'hover_border' => 'hover:border-sky-300',
-                    'hover_title'  => 'group-hover:text-sky-700',
-                ],
-                [
-                    'icon_bg'      => 'bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white',
-                    'icon_color'   => 'text-amber-600 group-hover:text-white',
-                    'badge'        => 'bg-amber-50 text-amber-700 border-amber-100',
-                    'btn'          => 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/20 focus:ring-amber-500',
-                    'hover_border' => 'hover:border-amber-300',
-                    'hover_title'  => 'group-hover:text-amber-700',
-                ],
-                [
-                    'icon_bg'      => 'bg-violet-50 text-violet-600 group-hover:bg-violet-600 group-hover:text-white',
-                    'icon_color'   => 'text-violet-600 group-hover:text-white',
-                    'badge'        => 'bg-violet-50 text-violet-700 border-violet-100',
-                    'btn'          => 'bg-violet-600 hover:bg-violet-700 shadow-violet-600/20 focus:ring-violet-500',
-                    'hover_border' => 'hover:border-violet-300',
-                    'hover_title'  => 'group-hover:text-violet-700',
-                ],
+                // 1: Surat Keterangan Belum Menikah (Rose khas Tailwind)
                 [
                     'icon_bg'      => 'bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white',
                     'icon_color'   => 'text-rose-600 group-hover:text-white',
-                    'badge'        => 'bg-rose-50 text-rose-700 border-rose-100',
+                    'badge'        => 'bg-rose-50 text-rose-600 border-rose-200',
                     'btn'          => 'bg-rose-600 hover:bg-rose-700 shadow-rose-600/20 focus:ring-rose-500',
                     'hover_border' => 'hover:border-rose-300',
-                    'hover_title'  => 'group-hover:text-rose-700',
+                    'hover_title'  => 'group-hover:text-rose-600',
                 ],
+                // 2: Surat Keterangan Domisili (Sky khas Tailwind)
                 [
-                    'icon_bg'      => 'bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white',
-                    'icon_color'   => 'text-teal-600 group-hover:text-white',
-                    'badge'        => 'bg-teal-50 text-teal-700 border-teal-100',
-                    'btn'          => 'bg-teal-600 hover:bg-teal-700 shadow-teal-600/20 focus:ring-teal-500',
-                    'hover_border' => 'hover:border-teal-300',
-                    'hover_title'  => 'group-hover:text-teal-700',
+                    'icon_bg'      => 'bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white',
+                    'icon_color'   => 'text-sky-600 group-hover:text-white',
+                    'badge'        => 'bg-sky-50 text-sky-600 border-sky-200',
+                    'btn'          => 'bg-sky-600 hover:bg-sky-700 shadow-sky-600/20 focus:ring-sky-500',
+                    'hover_border' => 'hover:border-sky-300',
+                    'hover_title'  => 'group-hover:text-sky-600',
+                ],
+                // 3: Surat Keterangan Kematian (Slate khas Tailwind)
+                [
+                    'icon_bg'      => 'bg-slate-50 text-slate-600 group-hover:bg-slate-600 group-hover:text-white',
+                    'icon_color'   => 'text-slate-600 group-hover:text-white',
+                    'badge'        => 'bg-slate-50 text-slate-600 border-slate-200',
+                    'btn'          => 'bg-slate-600 hover:bg-slate-700 shadow-slate-600/20 focus:ring-slate-500',
+                    'hover_border' => 'hover:border-slate-300',
+                    'hover_title'  => 'group-hover:text-slate-600',
+                ],
+                // 4: Surat Keterangan Orang Yang Sama (Indigo khas Tailwind)
+                [
+                    'icon_bg'      => 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white',
+                    'icon_color'   => 'text-indigo-600 group-hover:text-white',
+                    'badge'        => 'bg-indigo-50 text-indigo-600 border-indigo-200',
+                    'btn'          => 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/20 focus:ring-indigo-500',
+                    'hover_border' => 'hover:border-indigo-300',
+                    'hover_title'  => 'group-hover:text-indigo-600',
+                ],
+                // 5: Surat Keterangan Tidak Mampu (Amber khas Tailwind)
+                [
+                    'icon_bg'      => 'bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white',
+                    'icon_color'   => 'text-amber-600 group-hover:text-white',
+                    'badge'        => 'bg-amber-50 text-amber-600 border-amber-200',
+                    'btn'          => 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/20 focus:ring-amber-500',
+                    'hover_border' => 'hover:border-amber-300',
+                    'hover_title'  => 'group-hover:text-amber-600',
                 ],
             ];
         @endphp

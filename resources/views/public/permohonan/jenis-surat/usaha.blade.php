@@ -35,8 +35,8 @@
             </div>
         </div>
         <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
-            <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center">Lanjut ke Langkah 4</button>
+            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+            <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center">Lanjut ke Langkah 4</button>
         </div>
     </div>
 
@@ -50,22 +50,22 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">KTP <span class="text-red-500">*</span></label>
-                        <input required type="file" name="dokumen_ktp" class="w-full file:mr-3 sm:file:mr-4 file:py-2.5 file:px-3 sm:file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 transition-colors border border-slate-200 rounded-xl cursor-pointer text-xs sm:text-sm text-slate-500 @error('dokumen_ktp') border-red-300 @enderror">
+                        <input required type="file" name="dokumen_ktp" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer @error('dokumen_ktp') border-red-300 @enderror">
                         @error('dokumen_ktp')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">KK <span class="text-red-500">*</span></label>
-                        <input required type="file" name="dokumen_kk" class="w-full file:mr-3 sm:file:mr-4 file:py-2.5 file:px-3 sm:file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 transition-colors border border-slate-200 rounded-xl cursor-pointer text-xs sm:text-sm text-slate-500 @error('dokumen_kk') border-red-300 @enderror">
+                        <input required type="file" name="dokumen_kk" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer @error('dokumen_kk') border-red-300 @enderror">
                         @error('dokumen_kk')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">Surat Pengantar RT/RW <span class="text-red-500">*</span></label>
-                        <input required type="file" name="dokumen_surat_pengantar" class="w-full file:mr-3 sm:file:mr-4 file:py-2.5 file:px-3 sm:file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 transition-colors border border-slate-200 rounded-xl cursor-pointer text-xs sm:text-sm text-slate-500 @error('dokumen_surat_pengantar') border-red-300 @enderror">
+                        <input required type="file" name="dokumen_surat_pengantar" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer @error('dokumen_surat_pengantar') border-red-300 @enderror">
                         @error('dokumen_surat_pengantar')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-2">Foto Tempat Usaha <span class="text-red-500">*</span></label>
-                        <input required type="file" name="dokumen_tempat_usaha" class="w-full file:mr-3 sm:file:mr-4 file:py-2.5 file:px-3 sm:file:px-4 file:rounded-xl file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 transition-colors border border-slate-200 rounded-xl cursor-pointer text-xs sm:text-sm text-slate-500 @error('dokumen_tempat_usaha') border-red-300 @enderror">
+                        <input required type="file" name="dokumen_tempat_usaha" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 transition-colors shadow-sm cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-light file:text-primary hover:file:bg-primary/20 file:cursor-pointer @error('dokumen_tempat_usaha') border-red-300 @enderror">
                         @error('dokumen_tempat_usaha')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                     </div>
                 </div>
@@ -75,8 +75,8 @@
             </div>
         </div>
         <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors text-center">Sebelumnya</button>
-            <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 text-center">Lanjut ke Langkah 5</button>
+            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+            <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center">Lanjut ke Langkah 5</button>
         </div>
     </div>
 @endif

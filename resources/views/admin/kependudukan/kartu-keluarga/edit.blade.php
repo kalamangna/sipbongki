@@ -18,11 +18,11 @@
 
     <form action="{{ route('admin.kartu-keluarga.update', $kartuKeluarga->id) }}" method="POST" enctype="multipart/form-data" id="formKartuKeluarga">
         @csrf
+        @method('PUT')
 
         {{-- Main Form Card --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="p-6 md:p-8 space-y-8">
-        @method('PUT')
         
                 @if ($errors->any())
                     <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">

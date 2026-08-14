@@ -50,7 +50,7 @@
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
             <input type="text" name="keyword"
                 class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-9 pr-3.5 py-2.5 transition-colors placeholder:text-slate-400"
-                placeholder="Cari nama atau NIK..."
+                placeholder="Cari Nama atau NIK..."
                 value="{{ request('keyword') }}">
         </div>
 
@@ -58,7 +58,7 @@
         <div class="w-full sm:w-48 xl:w-52 shrink-0">
             <select name="lingkungan"
                 class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-3.5 py-2.5 transition-colors">
-                <option value="">Semua Lingkungan</option>
+                <option value="">Lingkungan</option>
                 @foreach($lingkungans as $lingkungan)
                     <option value="{{ $lingkungan->id }}" @selected(request('lingkungan') == $lingkungan->id)>
                         {{ $lingkungan->nama }}
@@ -71,7 +71,7 @@
         <div class="w-full sm:w-36 xl:w-40 shrink-0">
             <select name="status"
                 class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-3.5 py-2.5 transition-colors">
-                <option value="">Semua Status</option>
+                <option value="">Status</option>
                 <option value="1" @selected(request('status') === '1')>Aktif</option>
                 <option value="0" @selected(request('status') === '0')>Tidak Aktif</option>
             </select>

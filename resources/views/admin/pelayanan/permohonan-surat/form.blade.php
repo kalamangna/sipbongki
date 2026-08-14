@@ -1,9 +1,6 @@
 {{-- 1. INFORMASI UTAMA & PEMOHON --}}
 <div class="mb-8">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-primary-50 text-primary flex items-center justify-center text-xs">
-            <i class="fa-solid fa-file-lines"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Informasi Utama & Pemohon</h3>
     </div>
 
@@ -62,54 +59,29 @@
                     {{-- PENDUDUK BONGKI --}}
                     <div class="bg-slate-50/70 border border-slate-200/90 rounded-xl p-4 shadow-sm">
                         <div class="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-200/80">
-                            <span class="text-xs font-bold text-slate-700">Identitas Pemohon (Penduduk Bongki)</span>
-                            <div>
-                                @if($penduduk->aktif)
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                        <i class="fa-solid fa-circle-check mr-1.5 text-emerald-500"></i> Terdaftar
-                                    </span>
-                                @else
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200">
-                                        <i class="fa-solid fa-clock mr-1.5 text-sky-500"></i> Belum Verifikasi
+                            <span class="text-xs font-bold text-slate-700">Identitas Pemohon</span>
+                            <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 ring-1 ring-emerald-500/30">
+                                    <i class="fa-solid fa-circle-check text-[10px] text-emerald-600"></i>
+                                    Penduduk Bongki
+                                </span>
+                                @if(optional($penduduk)->aktif === false || optional($penduduk)->aktif === 0)
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 ring-1 ring-rose-500/30">
+                                        <i class="fa-solid fa-circle-exclamation text-[10px] text-rose-600"></i>
+                                        Perlu Verifikasi
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-left">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
                             <div class="bg-white p-3 rounded-lg border border-slate-200/80">
                                 <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">NIK</span>
                                 <span class="font-mono font-bold text-slate-900 text-sm">{{ $penduduk->nik ?: ($dataSurat['manual_nik'] ?? '-') }}</span>
                             </div>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200/80 sm:col-span-2">
+                            <div class="bg-white p-3 rounded-lg border border-slate-200/80">
                                 <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">Nama Lengkap</span>
                                 <span class="font-bold text-slate-900 text-sm">{{ $penduduk->nama_lengkap ?: ($dataSurat['manual_nama_lengkap'] ?? '-') }}</span>
-                            </div>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200/80">
-                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">Jenis Kelamin</span>
-                                @php $jk = $penduduk->jenis_kelamin ?: ($dataSurat['manual_jenis_kelamin'] ?? '-'); @endphp
-                                <span class="font-medium text-slate-800 text-xs">{{ $jk === 'L' ? 'Laki-laki' : ($jk === 'P' ? 'Perempuan' : $jk) }}</span>
-                            </div>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200/80">
-                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">Tempat, Tgl Lahir</span>
-                                @php 
-                                    $tglLahir = optional($penduduk->tanggal_lahir)->translatedFormat('d M Y') ?: ($dataSurat['manual_tanggal_lahir'] ?? '-');
-                                    $tempatLahir = $penduduk->tempat_lahir ?: ($dataSurat['manual_tempat_lahir'] ?? '-');
-                                @endphp
-                                <span class="font-medium text-slate-800 text-xs">{{ $tempatLahir }}, {{ $tglLahir }}</span>
-                            </div>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200/80">
-                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">No. Telepon / WA</span>
-                                <span class="font-medium text-slate-800 text-xs">{{ $penduduk->telepon ?: ($dataSurat['telepon'] ?? ($dataSurat['manual_telepon'] ?? '-')) }}</span>
-                            </div>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200/80 sm:col-span-3">
-                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block mb-0.5">Alamat & Lingkungan</span>
-                                <span class="font-medium text-slate-800 text-xs">
-                                    {{ $penduduk->alamat ?: ($dataSurat['manual_alamat'] ?? '-') }} 
-                                    @if($penduduk->lingkungan || !empty($penduduk->rt) || !empty($penduduk->rw))
-                                        <span class="text-slate-500">(Lingkungan {{ optional($penduduk->lingkungan)->nama ?? '-' }}, RT {{ $penduduk->rt ?: ($dataSurat['manual_rt'] ?? '-') }} / RW {{ $penduduk->rw ?: ($dataSurat['manual_rw'] ?? '-') }})</span>
-                                    @endif
-                                </span>
                             </div>
                         </div>
 
@@ -127,41 +99,43 @@
                     {{-- PENDUDUK LUAR BONGKI (MANUAL) --}}
                     <input type="hidden" name="jenis_pemohon" value="manual">
 
-                    <div class="bg-amber-50/40 border border-amber-200/80 rounded-xl p-4 shadow-sm">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-amber-200/70">
-                            <span class="text-xs font-bold text-slate-800">Identitas Pemohon (Warga Luar Bongki)</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-300">
-                                <i class="fa-solid fa-location-dot mr-1.5 text-amber-600"></i> Pengisian Manual
+                    <div class="bg-slate-50/70 border border-slate-200/90 rounded-xl p-4 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-200/80">
+                            <span class="text-xs font-bold text-slate-800">Identitas Pemohon</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 ring-1 ring-amber-500/30">
+                                <i class="fa-solid fa-circle-info text-[10px] text-amber-600"></i>
+                                Penduduk Luar Bongki
                             </span>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
-                                <input type="text" name="manual_nama_lengkap" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_nama_lengkap', $dataSurat['manual_nama_lengkap'] ?? '') }}" required>
+                                <input type="text" name="manual_nama_lengkap" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_nama_lengkap', $dataSurat['manual_nama_lengkap'] ?? $dataSurat['nama_lengkap'] ?? $dataSurat['nama_pemohon'] ?? $dataSurat['nama_pemilik'] ?? $dataSurat['nama'] ?? '') }}" required>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 mb-1">NIK <span class="text-red-500">*</span></label>
-                                <input type="text" name="manual_nik" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none font-mono" value="{{ old('manual_nik', $dataSurat['manual_nik'] ?? '') }}" required>
+                                <input type="text" name="manual_nik" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none font-mono" value="{{ old('manual_nik', $dataSurat['manual_nik'] ?? $dataSurat['nik'] ?? '') }}" required>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 mb-1">Jenis Kelamin</label>
+                                @php $currentJk = old('manual_jenis_kelamin', $dataSurat['manual_jenis_kelamin'] ?? $dataSurat['jenis_kelamin'] ?? ''); @endphp
                                 <select name="manual_jenis_kelamin" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none">
                                     <option value="">-- Pilih --</option>
-                                    <option value="L" @selected(old('manual_jenis_kelamin', $dataSurat['manual_jenis_kelamin'] ?? '') == 'L')>Laki-laki</option>
-                                    <option value="P" @selected(old('manual_jenis_kelamin', $dataSurat['manual_jenis_kelamin'] ?? '') == 'P')>Perempuan</option>
+                                    <option value="L" @selected($currentJk == 'L')>Laki-laki</option>
+                                    <option value="P" @selected($currentJk == 'P')>Perempuan</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 mb-1">Tempat, Tanggal Lahir</label>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <input type="text" name="manual_tempat_lahir" placeholder="Tempat" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_tempat_lahir', $dataSurat['manual_tempat_lahir'] ?? '') }}">
-                                    <input type="date" name="manual_tanggal_lahir" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_tanggal_lahir', $dataSurat['manual_tanggal_lahir'] ?? '') }}">
+                                    <input type="text" name="manual_tempat_lahir" placeholder="Tempat" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_tempat_lahir', $dataSurat['manual_tempat_lahir'] ?? $dataSurat['tempat_lahir'] ?? '') }}">
+                                    <input type="date" name="manual_tanggal_lahir" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none" value="{{ old('manual_tanggal_lahir', $dataSurat['manual_tanggal_lahir'] ?? $dataSurat['tanggal_lahir'] ?? '') }}">
                                 </div>
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Asal Lengkap</label>
-                                <textarea name="manual_alamat" rows="2" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none">{{ old('manual_alamat', $dataSurat['manual_alamat'] ?? '') }}</textarea>
+                                <textarea name="manual_alamat" rows="2" class="w-full bg-white border border-slate-200 text-sm rounded-xl px-3.5 py-2 focus:ring-2 focus:ring-primary focus:outline-none">{{ old('manual_alamat', $dataSurat['manual_alamat'] ?? $dataSurat['alamat'] ?? $dataSurat['alamat_asal'] ?? $dataSurat['alamat_domisili'] ?? '') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -237,10 +211,7 @@
 {{-- 2. FORM KHUSUS SPESIFIK JENIS SURAT --}}
 {{-- Data Usaha (SKU) --}}
 <div id="usaha-fields" class="mb-8" style="display:none;">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-store"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Rincian Data Usaha</h3>
     </div>
 
@@ -270,10 +241,7 @@
 
 {{-- Data Kematian --}}
 <div id="kematian-fields" class="mb-8" style="display:none;">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-ribbon"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Rincian Kematian & Pelapor</h3>
     </div>
 
@@ -339,10 +307,7 @@
 
 {{-- Data Orang Yang Sama --}}
 <div id="orang-sama-fields" class="mb-8" style="display:none;">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-id-card-clip"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Rincian Dokumen Orang Yang Sama</h3>
     </div>
 
@@ -368,10 +333,7 @@
 
 {{-- Data Domisili --}}
 <div id="domisili-fields" class="mb-8" style="display:none;">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-house-chimney-user"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Rincian Domisili</h3>
     </div>
 
@@ -402,10 +364,7 @@
 
 {{-- 3. INFORMASI PENANDATANGAN & KEPERLUAN --}}
 <div class="mb-4">
-    <div class="pb-3 border-b border-slate-100 flex items-center gap-2.5 mb-5">
-        <div class="w-7 h-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center text-xs">
-            <i class="fa-solid fa-signature"></i>
-        </div>
+    <div class="pb-3 border-b border-slate-100 mb-5">
         <h3 class="font-bold text-slate-800 text-sm tracking-tight">Penandatangan & Keperluan Surat</h3>
     </div>
 
