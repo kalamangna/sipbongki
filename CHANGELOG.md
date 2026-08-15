@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Integrasi Rich Text Editor (TinyMCE) Modul Berita**: Mengintegrasikan editor visual TinyMCE pada form tambah dan edit berita admin dengan toolbar formatting lengkap, serta menyelaraskan styling dan spasi paragraf pada halaman detail berita publik dan admin.
 - **Penguatan Keamanan Komprehensif (Security Hardening)**:
   - Membuat `SecurityHelper` dan Blade directives `@maskNik`, `@maskPhone`, dan `@maskEmail` untuk penyensoran data pribadi (*PII masking*) pada halaman pelacakan status publik (`permohonan/show.blade.php` dan `pengaduan-status-detail.blade.php`).
   - Membuat rute dokumen terproteksi (`admin/pelayanan/permohonan-surat/{permohonanSurat}/dokumen/{jenis}`) dengan middleware otorisasi admin untuk mencegah pengunduhan berkas sensitif (KTP/KK) oleh pihak yang tidak berwenang.

@@ -31,7 +31,7 @@
     {{-- Berita --}}
     @foreach($beritas as $berita)
     <url>
-        <loc>{{ route('berita.show', $berita) }}</loc>
+        <loc>{{ route('berita.show', $berita->slug) }}</loc>
         <lastmod>{{ optional($berita->updated_at ?? $berita->tanggal_publish ?? $berita->created_at)->toIso8601String() }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

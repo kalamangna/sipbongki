@@ -54,8 +54,12 @@
                         @endif
                     </div>
 
-                    <div class="prose prose-slate max-w-none text-slate-700 leading-loose text-justify">
-                        {!! nl2br(e($berita->isi)) !!}
+                    <div class="berita-content text-slate-700 text-base">
+                        @if(preg_match('/<[a-z][\s\S]*>/i', $berita->isi))
+                            {!! $berita->isi !!}
+                        @else
+                            {!! nl2br(e($berita->isi)) !!}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -100,3 +104,49 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    .berita-content p {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+    .berita-content p:last-child {
+        margin-bottom: 0;
+    }
+    .berita-content h1, .berita-content h2, .berita-content h3, .berita-content h4 {
+        font-weight: 700;
+        color: #0f172a;
+        margin-top: 1.75rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+    }
+    .berita-content ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .berita-content ol {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .berita-content blockquote {
+        border-left: 4px solid #059669;
+        padding-left: 1rem;
+        font-style: italic;
+        color: #475569;
+        margin: 1.25rem 0;
+    }
+    .berita-content img {
+        border-radius: 0.75rem;
+        max-width: 100%;
+        height: auto;
+        margin: 1.5rem 0;
+    }
+    .berita-content a {
+        color: #059669;
+        text-decoration: underline;
+    }
+</style>
+@endpush

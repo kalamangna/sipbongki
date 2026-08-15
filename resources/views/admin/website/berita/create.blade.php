@@ -45,7 +45,7 @@
                 {{-- Isi --}}
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Isi Berita</label>
-                    <textarea name="isi" rows="10" placeholder="Tuliskan isi berita..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('isi') }}</textarea>
+                    <textarea id="isi" name="isi" rows="12" placeholder="Tuliskan isi berita lengkap..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('isi') }}</textarea>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -78,7 +78,7 @@
                 <a href="{{ route('admin.website.berita.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm transition-all focus:outline-none">
                     Batal
                 </a>
-                <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all focus:outline-none cursor-pointer">
                     <i class="fa-solid fa-save"></i> Simpan Berita
                 </button>
             </div>
@@ -86,3 +86,26 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/tinymce@6.8.3/tinymce.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        tinymce.init({
+            selector: '#isi',
+            height: 380,
+            menubar: false,
+            branding: false,
+            promotion: false,
+            plugins: 'lists link image table code visualblocks wordcount autoresize',
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | link table | removeformat code',
+            content_style: 'body { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 16px; color: #334155; } p { margin-top: 0; margin-bottom: 0.75rem; }',
+            setup: function (editor) {
+                editor.on('change keyup', function () {
+                    editor.save();
+                });
+            }
+        });
+    });
+</script>
+@endpush

@@ -38,14 +38,14 @@
                     {{-- Body --}}
                     <div class="flex flex-col flex-1 p-5">
                         <h3 class="text-base font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            <a href="{{ route('berita.show', $berita) }}" class="hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                            <a href="{{ route('berita.show', $berita->slug) }}" class="hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
                                 {{ $berita->judul }}
                             </a>
                         </h3>
                         <p class="text-sm text-slate-500 leading-relaxed flex-1 line-clamp-3">
                             {{ Str::limit(strip_tags($berita->isi), 140) }}
                         </p>
-                        <a href="{{ route('berita.show', $berita) }}"
+                        <a href="{{ route('berita.show', $berita->slug) }}"
                            class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded">
                             Baca Selengkapnya
                             <i class="fa-solid fa-arrow-right text-xs"></i>
