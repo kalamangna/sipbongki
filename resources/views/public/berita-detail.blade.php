@@ -119,7 +119,7 @@
                     <div class="px-6 md:px-10 py-5 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <span class="text-sm font-bold text-slate-700">Bagikan artikel ini:</span>
                         <div class="flex items-center gap-3">
-                            <a href="https://api.whatsapp.com/send?text={{ urlencode($berita->judul . ' ' . request()->url()) }}" target="_blank" 
+                            <a href="https://api.whatsapp.com/send?text={{ urlencode(request()->url()) }}" target="_blank" 
                                class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
                             </a>
