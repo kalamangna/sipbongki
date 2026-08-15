@@ -319,8 +319,22 @@ $lingkungans = Lingkungan::withCount('penduduk')
 
     }
 
-public function showBerita(Berita $berita)
+public function showBerita($slug)
 {
+    $berita = Berita::where('slug', $slug)->first();
+
+    // Fallback kompatibilitas: jika diakses via ID lama, redirect 301 ke slug resmi
+    if (! $berita && is_numeric($slug)) {
+        $beritaById = Berita::find($slug);
+        if ($beritaById && $beritaById->status === 'publish') {
+            return redirect()->route('berita.show', $beritaById->slug, 301);
+        }
+    }
+
+    if (! $berita || $berita->status !== 'publish') {
+        abort(404);
+    }
+
     $profil = WebsiteSetting::first();
 
     $beritaTerbaru = Berita::where('status', 'publish')

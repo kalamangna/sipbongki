@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Global Button Cursor Pointer**: Menambahkan aturan styling global `cursor: pointer` pada seluruh elemen `button`, input tipe tombol, dan `[role='button']` di `app.css` dan `frontend.css`.
 
 ### Changed
+- **SEO-Friendly URL Slug Berita Publik & Fallback Kompatibilitas**: Mengubah struktur URL rute berita publik (`/berita/{slug}`) agar menggunakan slug judul berita yang ramah SEO, menyetel `getRouteKeyName()` pada model `Berita`, memvalidasi status `publish`, serta menyematkan *HTTP 301 Permanent Redirect fallback* otomatis jika tautan lama berbasis ID angka diakses.
 - **Format Tautan Bagikan WhatsApp (Public)**: Memperbarui tautan bagikan WhatsApp pada halaman detail berita dan detail pengumuman menjadi hanya memuat URL halaman agar *rich link preview* (gambar cover, judul, dan ringkasan) otomatis digenerate dengan rapi oleh WhatsApp tanpa duplikasi teks judul.
 - **Optimasi Judul & Deskripsi SEO**: Meringkas format judul halaman publik menjadi `{Judul Halaman} | SIP Bongki` dan merapikan meta description agar berada pada panjang ideal SERP (110–155 karakter).
 - **Standarisasi Gaya Input File**: Menyeragamkan tampilan elemen `<input type="file">` di seluruh modul formulir admin (Perangkat, Berita, Galeri, Pengumuman, Pengaturan Website) dan formulir publik.

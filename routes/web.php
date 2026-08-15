@@ -35,7 +35,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
-Route::get('/berita/{berita}', [HomeController::class, 'showBerita'])
+Route::get('/berita/{slug}', [HomeController::class, 'showBerita'])
     ->name('berita.show');
 
 Route::get('/pengumuman/{slug}', [HomeController::class, 'showPengumuman'])

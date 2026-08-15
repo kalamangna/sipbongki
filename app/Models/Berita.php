@@ -30,4 +30,12 @@ class Berita extends Model
         'tanggal_publish' => 'date',
 
     ];
+
+    /**
+     * Menggunakan slug sebagai route key binding
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
