@@ -18,13 +18,13 @@
         </h2>
         <p class="text-sm text-slate-500 mt-1">Berikut adalah ringkasan data kelurahan per tanggal <span class="font-medium text-slate-700">{{ now()->translatedFormat('d F Y') }}</span></p>
     </div>
-    <div class="flex flex-wrap items-center gap-3">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
         @if(in_array(auth()->user()->role, ['admin', 'operator']))
-        <a href="{{ route('admin.penduduk.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-700 border border-slate-200 shadow-sm hover:bg-slate-50 hover:text-primary-600 transition-all">
+        <a href="{{ route('admin.penduduk.create') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-700 border border-slate-200 shadow-sm hover:bg-slate-50 hover:text-primary-600 transition-all w-full sm:w-auto active:scale-95">
             <i class="fa-solid fa-user-plus text-slate-400"></i> Data Penduduk
         </a>
         @endif
-        <a href="{{ route('permohonan.create') }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5" title="Buka form permohonan publik">
+        <a href="{{ route('permohonan.create') }}" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5 w-full sm:w-auto active:scale-95" title="Buka form permohonan publik">
             <i class="fa-solid fa-file-signature"></i> Layanan Surat
         </a>
     </div>

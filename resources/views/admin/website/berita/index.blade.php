@@ -10,7 +10,7 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Data Berita</h2>
             <p class="text-sm text-slate-500 mt-1">Kelola informasi dan berita publik SIP Bongki.</p>
         </div>
-        <a href="{{ route('admin.website.berita.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+        <a href="{{ route('admin.website.berita.create') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
             <i class="fa-solid fa-circle-plus"></i> Tambah Berita
         </a>
     </div>
@@ -18,15 +18,15 @@
     {{-- Main Card --}}
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-slate-600">
+            <table class="w-full text-sm text-left text-slate-600 min-w-[700px]">
                 <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/80">
                     <tr>
-                        <th width="70" class="px-6 py-4 border-b border-slate-100 text-center">No</th>
-                        <th width="120" class="px-6 py-4 border-b border-slate-100 text-center">Gambar</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Judul Berita</th>
-                        <th class="px-6 py-4 border-b border-slate-100 text-center">Status</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Tanggal Publish</th>
-                        <th width="150" class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
+                        <th width="70" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">No</th>
+                        <th width="120" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Gambar</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">Judul Berita</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Status</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">Tanggal Publish</th>
+                        <th width="140" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">

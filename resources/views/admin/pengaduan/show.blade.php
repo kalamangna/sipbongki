@@ -10,14 +10,14 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Pengaduan</h2>
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap laporan masyarakat.</p>
         </div>
-        <div class="flex flex-wrap gap-2">
-            <a href="{{ route('admin.pengaduan.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <a href="{{ route('admin.pengaduan.index') }}" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
                 <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-            <form action="{{ route('admin.pengaduan.destroy', $pengaduan) }}" method="POST" class="inline m-0" onsubmit="return confirm('Yakin ingin menghapus pengaduan ini?');">
+            <form action="{{ route('admin.pengaduan.destroy', $pengaduan) }}" method="POST" class="w-full sm:w-auto inline m-0" onsubmit="return confirm('Yakin ingin menghapus pengaduan ini?');">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm focus:outline-none hover:-translate-y-0.5">
+                <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all bg-rose-600 text-white hover:bg-rose-700 shadow-sm focus:outline-none hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-trash"></i> Hapus
                 </button>
             </form>

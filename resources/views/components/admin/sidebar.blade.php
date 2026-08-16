@@ -1,6 +1,14 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200 shrink-0">
-        <span class="font-bold text-xl text-primary-600">SIP Bongki</span>
+        <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-primary-600 text-white flex items-center justify-center font-bold text-sm shadow-sm shadow-primary-500/20">
+                <i class="fa-solid fa-landmark text-xs"></i>
+            </span>
+            <span class="font-bold text-lg text-slate-900 tracking-tight">SIP <span class="text-primary-600">Bongki</span></span>
+        </div>
+        <button type="button" data-drawer-hide="logo-sidebar" aria-controls="logo-sidebar" class="lg:hidden text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl focus:outline-none transition-colors">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
     </div>
 
     <nav class="flex-1 overflow-y-auto p-4 space-y-6">

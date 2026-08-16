@@ -6,21 +6,21 @@
 <div class="w-full">
 
     {{-- Header Section --}}
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Detail Kartu Keluarga</h2>
             <p class="text-sm text-slate-500 mt-1">Informasi lengkap KK No. <span class="font-mono font-semibold text-slate-700">{{ $kartuKeluarga->no_kk }}</span></p>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
-            <a href="{{ route('admin.kartu-keluarga.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            <a href="{{ route('admin.kartu-keluarga.index') }}" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
                 <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
             </a>
-            <a href="{{ route('admin.kartu-keluarga.edit', $kartuKeluarga) }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+            <a href="{{ route('admin.kartu-keluarga.edit', $kartuKeluarga) }}" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-amber-50 text-amber-600 hover:bg-amber-100 border border-amber-200 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
                 <i class="fa-solid fa-pen-to-square"></i> Edit
             </a>
-            <form action="{{ route('admin.kartu-keluarga.destroy', $kartuKeluarga) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus Kartu Keluarga ini?')">
+            <form action="{{ route('admin.kartu-keluarga.destroy', $kartuKeluarga) }}" method="POST" class="w-full sm:w-auto inline mb-0" onsubmit="return confirm('Yakin ingin menghapus Kartu Keluarga ini?')">
                 @csrf @method('DELETE')
-                <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20 focus:outline-none cursor-pointer">
+                <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition-all hover:-translate-y-0.5 shadow-rose-500/20 focus:outline-none active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-trash"></i> Hapus
                 </button>
             </form>
@@ -116,38 +116,38 @@
             <h3 class="font-bold text-slate-800">Daftar Anggota Keluarga</h3>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-slate-600">
+            <table class="w-full text-sm text-left text-slate-600 min-w-[650px]">
                 <thead class="text-xs font-semibold text-slate-500 uppercase bg-white">
                     <tr>
-                        <th width="50" class="px-6 py-4 border-b border-slate-100 text-center">No</th>
-                        <th class="px-6 py-4 border-b border-slate-100">NIK</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Nama Lengkap</th>
-                        <th class="px-6 py-4 border-b border-slate-100">TTL</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Hubungan</th>
-                        <th class="px-6 py-4 border-b border-slate-100 text-center">L/P</th>
-                        <th width="80" class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
+                        <th width="50" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">No</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">NIK</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">Nama Lengkap</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">TTL</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">Hubungan</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">L/P</th>
+                        <th width="80" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($kartuKeluarga->anggota as $anggota)
                         <tr class="hover:bg-slate-50/80 transition-colors {{ $anggota->id === $kartuKeluarga->kepala_keluarga_id ? 'bg-primary-50/30' : '' }}">
-                            <td class="px-6 py-4 text-center font-medium">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4 font-mono text-xs">{{ $anggota->nik }}</td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4 text-center font-medium">{{ $loop->iteration }}</td>
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4 font-mono text-xs">{{ $anggota->nik }}</td>
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4">
                                 <p class="font-bold text-slate-900">{{ $anggota->nama_lengkap }}</p>
                                 @if($anggota->id === $kartuKeluarga->kepala_keluarga_id)
                                     <span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold bg-primary-100 text-primary-700 uppercase tracking-wider">Kepala Keluarga</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4">
                                 {{ $anggota->tempat_lahir ?? '-' }},<br>
                                 <span class="text-xs text-slate-500">{{ $anggota->tanggal_lahir ? $anggota->tanggal_lahir->translatedFormat('d M Y') : '-' }}</span>
                             </td>
-                            <td class="px-6 py-4 font-medium text-slate-700">{{ $anggota->hubungan_keluarga ?? '-' }}</td>
-                            <td class="px-6 py-4 text-center">
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4 font-medium text-slate-700">{{ $anggota->hubungan_keluarga ?? '-' }}</td>
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4 text-center">
                                 @gender($anggota->jenis_kelamin)
                             </td>
-                            <td class="px-6 py-4 text-center">
+                            <td class="px-4 sm:px-6 py-3.5 sm:py-4 text-center">
                                 <a href="{{ route('admin.penduduk.show', $anggota->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 transition-colors focus:outline-none" title="Lihat Profil">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>

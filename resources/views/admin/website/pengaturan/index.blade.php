@@ -11,7 +11,7 @@
         <p class="text-sm text-slate-500">Kelola identitas dan informasi utama website</p>
     </div>
     <a href="{{ route('admin.website.pengaturan.edit') }}"
-        class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95 cursor-pointer focus:outline-none">
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all active:scale-95 cursor-pointer focus:outline-none">
         <i class="fa-solid fa-pen-to-square"></i> Edit Pengaturan
     </a>
 </div>
@@ -21,7 +21,7 @@
     {{-- LOGO --}}
     <div class="lg:col-span-1">
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+            <div class="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Logo Website</h5>
             </div>
             <div class="p-6 flex items-center justify-center min-h-40">
@@ -41,7 +41,7 @@
     {{-- INFORMASI WEBSITE --}}
     <div class="lg:col-span-2">
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden h-full">
-            <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+            <div class="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/50">
                 <h5 class="text-sm font-bold text-slate-800">Informasi Website</h5>
             </div>
             <div class="divide-y divide-slate-100">
@@ -54,8 +54,8 @@
                     ['label' => 'Jam Pelayanan',   'value' => $setting->jam_pelayanan ?? '-'],
                     ['label' => 'Alamat',          'value' => $setting->alamat ?? '-'],
                 ] as $row)
-                <div class="flex px-6 py-3 text-sm">
-                    <span class="w-40 shrink-0 font-medium text-slate-500">{{ $row['label'] }}</span>
+                <div class="flex flex-col sm:flex-row px-4 sm:px-6 py-3 text-sm gap-1 sm:gap-0">
+                    <span class="w-full sm:w-40 shrink-0 font-medium text-slate-500">{{ $row['label'] }}</span>
                     <span class="text-slate-800">{{ $row['value'] }}</span>
                 </div>
                 @endforeach

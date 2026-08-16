@@ -10,7 +10,7 @@
             <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Data Jenis Surat</h2>
             <p class="text-sm text-slate-500 mt-1">Master Data Jenis Surat Kelurahan Bongki.</p>
         </div>
-        <a href="{{ route('admin.jenis-surat.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none">
+        <a href="{{ route('admin.jenis-surat.create') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none active:scale-95 cursor-pointer">
             <i class="fa-solid fa-circle-plus"></i> Tambah Jenis Surat
         </a>
     </div>
@@ -27,18 +27,18 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         
         {{-- Filters --}}
-        <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
+        <div class="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/50">
             <form method="GET" class="flex flex-col md:flex-row gap-3">
                 <div class="flex-1">
                     <input type="text" name="search" value="{{ $search }}" class="w-full bg-white border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-2.5 shadow-sm" placeholder="Cari Kode atau Nama Surat...">
                 </div>
                 
-                <div class="flex gap-2">
-                    <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-slate-500">
+                <div class="flex items-center gap-2">
+                    <button type="submit" class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-slate-800 text-white hover:bg-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
                     @if($search)
-                        <a href="{{ route('admin.jenis-surat.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none" title="Reset Filter">
+                        <a href="{{ route('admin.jenis-surat.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none cursor-pointer active:scale-95" title="Reset Filter">
                             <i class="fa-solid fa-rotate-left"></i>
                         </a>
                     @endif
@@ -48,14 +48,14 @@
 
         {{-- Table --}}
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-slate-600">
+            <table class="w-full text-sm text-left text-slate-600 min-w-[650px]">
                 <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/80">
                     <tr>
-                        <th width="70" class="px-6 py-4 border-b border-slate-100 text-center">No</th>
-                        <th width="150" class="px-6 py-4 border-b border-slate-100">Kode</th>
-                        <th class="px-6 py-4 border-b border-slate-100">Nama Surat</th>
-                        <th width="120" class="px-6 py-4 border-b border-slate-100 text-center">Status</th>
-                        <th width="100" class="px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
+                        <th width="70" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">No</th>
+                        <th width="150" class="px-4 sm:px-6 py-4 border-b border-slate-100">Kode</th>
+                        <th class="px-4 sm:px-6 py-4 border-b border-slate-100">Nama Surat</th>
+                        <th width="120" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Status</th>
+                        <th width="100" class="px-4 sm:px-6 py-4 border-b border-slate-100 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">

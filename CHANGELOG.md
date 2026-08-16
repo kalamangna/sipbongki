@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Dukungan Role Pimpinan & Migrasi Skema Database**: Menambahkan peran `'pimpinan'` pada tipe data ENUM kolom `role` di tabel `users` (`database/migrations/2026_08_16_213730_update_role_enum_add_pimpinan_to_users_table.php`) untuk menyelesaikan error *Data truncated* saat pendaftaran user pimpinan.
+- **Optimalisasi Responsivitas Halaman Admin (Mobile-First)**:
+  - Menyempurnakan drawer navigasi mobile dengan penambahan tombol tutup (*close drawer*), backdrop blur responsif, dan auto-close drawer saat link navigasi diklik pada `components/admin/sidebar.blade.php`.
+  - Menyelaraskan seluruh tabel data di modul Kependudukan (Penduduk, KK, Aparatur), Pelayanan (Permohonan Surat, Riwayat Pelayanan), Pengaduan, Website (Berita, Pengumuman, Agenda, Galeri), Referensi (Lingkungan, Jabatan, Jenis Surat), User Management, dan Laporan dengan wadah *scroll horizontal* yang mulus (`overflow-x-auto` dengan `min-w` 650px–850px) dan padding sel adaptif (`px-4 sm:px-6 py-3.5 sm:py-4`).
+  - Menstandarisasi tata letak toolbar filter dan search box (`flex-col sm:flex-row`, `w-full sm:w-auto`) agar mudah digunakan pada layar smartphone.
+  - Menyeragamkan seluruh tombol aksi formulir (Batal, Simpan, Kembali) menjadi responsif *mobile-first* (`w-full sm:w-auto` dengan `flex-col-reverse sm:flex-row`), padding card adaptif `p-4 sm:p-6 md:p-8`, serta micro-interaction `active:scale-95 cursor-pointer`.
 - **Standarisasi Form Requests & Validasi Terpusat**:
   - Membuat Form Request `StoreUserRequest` & `UpdateUserRequest` untuk validasi pengguna admin, format username `alpha_dash`, dan proteksi anti-lockout akun sendiri.
   - Membuat Form Request `StoreKartuKeluargaRequest` & `UpdateKartuKeluargaRequest` dengan validasi ketat 16 digit angka No. KK (`digits:16|unique`), relasi kepala keluarga, dan lingkungan.
