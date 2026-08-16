@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Penyempurnaan & Sentralisasi Sistem Alert Admin**:
+  - Mengoptimalkan komponen global `components/admin/alert.blade.php` dengan transisi *fade-out* dan *collapse* halus menggunakan Vanilla JavaScript murni tanpa ketergantungan script eksternal.
+  - Menyelaraskan durasi *auto-hide* menjadi 3,5 detik untuk notifikasi Sukses (`success`/`status`) & Info (`info`), serta mempertahankan status persisten untuk pesan Error (`error`) & Peringatan (`warning`).
+  - Membersihkan alert statis duplikat di halaman Manajemen Pengguna (`admin/pengaturan/user/index.blade.php`) dan Edit Profil Admin (`profile/edit.blade.php`).
 - **Dukungan Role Pimpinan & Migrasi Skema Database**: Menambahkan peran `'pimpinan'` pada tipe data ENUM kolom `role` di tabel `users` (`database/migrations/2026_08_16_213730_update_role_enum_add_pimpinan_to_users_table.php`) untuk menyelesaikan error *Data truncated* saat pendaftaran user pimpinan.
 - **Optimalisasi Responsivitas Halaman Admin (Mobile-First)**:
   - Menyempurnakan drawer navigasi mobile dengan penambahan tombol tutup (*close drawer*), backdrop blur responsif, dan auto-close drawer saat link navigasi diklik pada `components/admin/sidebar.blade.php`.

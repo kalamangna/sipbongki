@@ -15,15 +15,7 @@
         </a>
     </div>
 
- @if(session('success'))
- <div class="p-4 mb-4 text-sm text-emerald-800 rounded-xl bg-emerald-50 border border-emerald-200">{{ session('success') }}</div>
- @endif
-
- @if(session('error'))
- <div class="p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200">{{ session('error') }}</div>
- @endif
-
- <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/50">
             <form method="GET" class="flex flex-col md:flex-row gap-3">
                 <div class="flex-1">
