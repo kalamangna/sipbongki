@@ -23,21 +23,6 @@
         {{-- Main Form Card --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="p-6 md:p-8">
-                
-                @if ($errors->any())
-                    <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">
-                        <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
-                        <div>
-                            <h4 class="text-sm font-bold text-red-800">Mohon periksa kembali input Anda:</h4>
-                            <ul class="text-sm text-red-600 mt-1 list-disc list-inside">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endif
-
                 @include('admin.kependudukan.penduduk.form')
 
             </div>

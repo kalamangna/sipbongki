@@ -83,13 +83,6 @@
                                 {{ $perangkat->nip ?? '-' }}
                             </p>
                         </div>
-                        
-                        <div>
-                            <p class="text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Nomor Induk Aparatur Desa (NIAD)</p>
-                            <p class="font-mono font-medium text-slate-900 text-base">
-                                {{ $perangkat->niap ?? '-' }}
-                            </p>
-                        </div>
 
                         <div>
                             <p class="text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">Tempat, Tanggal Lahir</p>

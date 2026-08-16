@@ -15,18 +15,11 @@
                 @error('nama_lengkap')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
-            {{-- NIP & NIAP (Grid 2 kolom di layar cukup besar) --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">NIP</label>
-                    <input type="text" name="nip" placeholder="Contoh: 19800101 201001 1 001" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nip', $perangkat->nip ?? '') }}">
-                    @error('nip')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">NIAP (Non-PNS)</label>
-                    <input type="text" name="niap" placeholder="Contoh: 12345678" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('niap', $perangkat->niap ?? '') }}">
-                    @error('niap')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
-                </div>
+            {{-- NIP --}}
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5">NIP (Nomor Induk Pegawai)</label>
+                <input type="text" name="nip" placeholder="Contoh: 19800101 201001 1 001" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nip', $perangkat->nip ?? '') }}">
+                @error('nip')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
             {{-- Jabatan --}}

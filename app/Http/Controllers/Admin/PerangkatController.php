@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePerangkatRequest;
+use App\Http\Requests\UpdatePerangkatRequest;
 use App\Models\Jabatan;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
@@ -50,44 +52,21 @@ class PerangkatController extends Controller
     /**
      * Simpan perangkat baru
      */
-    public function store(Request $request)
+    public function store(StorePerangkatRequest $request)
     {
-        $data = $this->validateData($request);
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Upload Foto
-        |--------------------------------------------------------------------------
-        */
+        $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-
-            $data['foto'] = $request
-                ->file('foto')
-                ->store('perangkat', 'public');
-
+            $data['foto'] = $request->file('foto')->store('perangkat', 'public');
         }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Status Aktif
-        |--------------------------------------------------------------------------
-        */
 
         $data['aktif'] = $request->has('aktif');
 
-
         Perangkat::create($data);
-
 
         return redirect()
             ->route('admin.perangkat.index')
-            ->with(
-                'success',
-                'Data perangkat berhasil ditambahkan.'
-            );
+            ->with('success', 'Data perangkat berhasil ditambahkan.');
     }
 
 
@@ -130,57 +109,24 @@ class PerangkatController extends Controller
     /**
      * Update perangkat
      */
-    public function update(Request $request, Perangkat $perangkat)
+    public function update(UpdatePerangkatRequest $request, Perangkat $perangkat)
     {
-        $data = $this->validateData($request);
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update Foto
-        |--------------------------------------------------------------------------
-        */
+        $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-
-
-            if (
-                $perangkat->foto &&
-                Storage::disk('public')
-                    ->exists($perangkat->foto)
-            ) {
-
-                Storage::disk('public')
-                    ->delete($perangkat->foto);
-
+            if ($perangkat->foto && Storage::disk('public')->exists($perangkat->foto)) {
+                Storage::disk('public')->delete($perangkat->foto);
             }
-
-
-            $data['foto'] = $request
-                ->file('foto')
-                ->store('perangkat', 'public');
-
+            $data['foto'] = $request->file('foto')->store('perangkat', 'public');
         }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Status Aktif
-        |--------------------------------------------------------------------------
-        */
 
         $data['aktif'] = $request->has('aktif');
 
-
         $perangkat->update($data);
 
-
         return redirect()
-            ->route('admin.perangkat.show', $perangkat)
-            ->with(
-                'success',
-                'Data perangkat berhasil diperbarui.'
-            );
+            ->route('admin.perangkat.index')
+            ->with('success', 'Data perangkat berhasil diperbarui.');
     }
 
 
@@ -189,90 +135,14 @@ class PerangkatController extends Controller
      */
     public function destroy(Perangkat $perangkat)
     {
-
-
-        if (
-            $perangkat->foto &&
-            Storage::disk('public')
-                ->exists($perangkat->foto)
-        ) {
-
-            Storage::disk('public')
-                ->delete($perangkat->foto);
-
+        if ($perangkat->foto && Storage::disk('public')->exists($perangkat->foto)) {
+            Storage::disk('public')->delete($perangkat->foto);
         }
-
 
         $perangkat->delete();
 
-
         return redirect()
             ->route('admin.perangkat.index')
-            ->with(
-                'success',
-                'Data perangkat berhasil dihapus.'
-            );
-    }
-
-
-    /**
-     * Validasi data perangkat
-     */
-    private function validateData(Request $request)
-    {
-        return $request->validate([
-
-            'nama_lengkap'
-                => 'required|string|max:255',
-
-            'nip'
-                => 'nullable|string|max:30',
-
-            'jabatan_id'
-                => 'nullable|exists:jabatans,id',
-            
-                'jabatan_struktur_id'
-            => 'nullable|exists:jabatans,id',
-
-            'level'
-                => 'required|integer|min:1|max:5',
-
-            'jenis_kelamin'
-                => 'nullable|in:L,P',
-
-            'tempat_lahir'
-                => 'nullable|string|max:100',
-
-            'tanggal_lahir'
-                => 'nullable|date',
-
-            'pendidikan'
-                => 'nullable|string|max:100',
-
-            'telepon'
-                => 'nullable|string|max:20',
-
-            'email'
-                => 'nullable|email|max:255',
-
-            'alamat'
-                => 'nullable|string',
-
-            'tanggal_mulai_jabatan'
-                => 'nullable|date',
-
-            'tanggal_selesai_jabatan'
-                => 'nullable|date',
-
-            'foto'
-                => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-
-            'aktif'
-                => 'nullable|boolean',
-
-            'keterangan'
-                => 'nullable|string',
-
-        ]);
+            ->with('success', 'Data perangkat berhasil dihapus.');
     }
 }

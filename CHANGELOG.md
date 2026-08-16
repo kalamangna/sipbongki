@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Standarisasi Form Requests & Validasi Terpusat**:
+  - Membuat Form Request `StoreUserRequest` & `UpdateUserRequest` untuk validasi pengguna admin, format username `alpha_dash`, dan proteksi anti-lockout akun sendiri.
+  - Membuat Form Request `StoreKartuKeluargaRequest` & `UpdateKartuKeluargaRequest` dengan validasi ketat 16 digit angka No. KK (`digits:16|unique`), relasi kepala keluarga, dan lingkungan.
+  - Membuat Form Request `StorePerangkatRequest` & `UpdatePerangkatRequest` dengan validasi berkas foto, level organisasi, dan periode masa jabatan.
+- **Pesan Validasi Bahasa Indonesia & UI Feedback Inline**: Menyeragamkan penanganan pesan kesalahan formulir (User, Kartu Keluarga, Aparatur, Penduduk) agar tampil bersih dan presisi tepat di bawah masing-masing kolom input (*inline validation*) serta membersihkan kotak alert error global di bagian atas formulir.
 - **Integrasi Rich Text Editor (TinyMCE) Modul Berita**: Mengintegrasikan editor visual TinyMCE pada form tambah dan edit berita admin dengan toolbar formatting lengkap, serta menyelaraskan styling dan spasi paragraf pada halaman detail berita publik dan admin.
 - **Penguatan Keamanan Komprehensif (Security Hardening)**:
   - Membuat `SecurityHelper` dan Blade directives `@maskNik`, `@maskPhone`, dan `@maskEmail` untuk penyensoran data pribadi (*PII masking*) pada halaman pelacakan status publik (`permohonan/show.blade.php` dan `pengaduan-status-detail.blade.php`).

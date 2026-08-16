@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreKartuKeluargaRequest;
+use App\Http\Requests\UpdateKartuKeluargaRequest;
 use App\Models\KartuKeluarga;
 use App\Models\Lingkungan;
 use App\Models\Penduduk;
@@ -90,34 +92,14 @@ public function index(Request $request)
     ]);
 }
 
-    public function store(Request $request)
+    public function store(StoreKartuKeluargaRequest $request)
     {
-        $request->validate([
-            'no_kk' => 'required|size:16|unique:kartu_keluargas',
-            'kepala_keluarga_id' => 'nullable|exists:penduduks,id',
-            'alamat' => 'nullable',
-            'rt' => 'nullable|max:3',
-            'rw' => 'nullable|max:3',
-            'lingkungan_id' => 'nullable|exists:lingkungans,id',
-            'anggota' => 'nullable|array',
-
-'anggota.*.penduduk_id' => [
-    'required',
-    'exists:penduduks,id',
-],
-
-'anggota.*.hubungan' => [
-    'required',
-    'string',
-    'max:100',
-],
-
-]);
+        $validated = $request->validated();
         $selected = collect($request->input('anggota', []))
-    ->pluck('penduduk_id')
-    ->toArray();
+            ->pluck('penduduk_id')
+            ->toArray();
 
-$kepala = $request->kepala_keluarga_id;
+        $kepala = $request->kepala_keluarga_id;
 
 $idsToCheck = $selected;
 
@@ -221,32 +203,12 @@ if ($kepala && !in_array($kepala, $idsToCheck)) {
 
 
     public function update(
-    Request $request,
-    KartuKeluarga $kartuKeluarga
-) {
-    $request->validate([
-        'no_kk' => 'required|size:16|unique:kartu_keluargas,no_kk,' . $kartuKeluarga->id,
-        'kepala_keluarga_id' => 'nullable|exists:penduduks,id',
-        'alamat' => 'nullable',
-        'rt' => 'nullable|max:3',
-        'rw' => 'nullable|max:3',
-        'lingkungan_id' => 'nullable|exists:lingkungans,id',
+        UpdateKartuKeluargaRequest $request,
+        KartuKeluarga $kartuKeluarga
+    ) {
+        $validated = $request->validated();
 
-        'anggota' => 'nullable|array',
-
-        'anggota.*.penduduk_id' => [
-            'required',
-            'exists:penduduks,id',
-        ],
-
-        'anggota.*.hubungan' => [
-            'required',
-            'string',
-            'max:100',
-        ],
-    ]);
-
-    DB::beginTransaction();
+        DB::beginTransaction();
 
     try {
 

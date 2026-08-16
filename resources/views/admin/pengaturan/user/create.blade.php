@@ -18,51 +18,52 @@
         @csrf
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             <div class="p-6 md:p-8">
-                @if ($errors->any())
-                    <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 flex gap-3 items-start">
-                        <i class="fa-solid fa-circle-exclamation text-red-500 mt-0.5"></i>
-                        <div>
-                            <h4 class="text-sm font-bold text-red-800">Mohon periksa kembali input Anda:</h4>
-                            <ul class="text-sm text-red-600 mt-1 list-disc list-inside">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap <span class="text-rose-500">*</span></label>
+                        <input type="text" name="name" class="w-full bg-slate-50 border @error('name') border-rose-300 bg-rose-50/20 focus:ring-rose-500 focus:border-rose-500 @else border-slate-200 focus:ring-primary-500 focus:border-primary-500 @enderror text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 px-4 py-3 transition-colors shadow-sm" placeholder="Masukkan nama lengkap" value="{{ old('name') }}" required>
+                        @error('name')
+                            <p class="text-xs text-rose-600 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>
+                        @enderror
                     </div>
-                @endif
 
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama</label>
-                <input type="text" name="name" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Masukkan nama lengkap" value="{{ old('name') }}" required>
-            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Username <span class="text-rose-500">*</span></label>
+                        <input type="text" name="username" class="w-full bg-slate-50 border @error('username') border-rose-300 bg-rose-50/20 focus:ring-rose-500 focus:border-rose-500 @else border-slate-200 focus:ring-primary-500 focus:border-primary-500 @enderror text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 px-4 py-3 transition-colors shadow-sm" placeholder="Masukkan username (tanpa spasi)" value="{{ old('username') }}" required>
+                        @error('username')
+                            <p class="text-xs text-rose-600 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>
+                        @enderror
+                    </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Username</label>
-                <input type="text" name="username" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Masukkan username unik" value="{{ old('username') }}" required>
-            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Role</label>
+                        <select name="role" class="w-full bg-slate-50 border @error('role') border-rose-300 bg-rose-50/20 focus:ring-rose-500 focus:border-rose-500 @else border-slate-200 focus:ring-primary-500 focus:border-primary-500 @enderror text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 px-4 py-3 transition-colors shadow-sm" required>
+                            <option value="" disabled selected>Pilih hak akses</option>
+                            <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="operator" {{ old('role') === 'operator' ? 'selected' : '' }}>Operator</option>
+                            <option value="pimpinan" {{ old('role') === 'pimpinan' ? 'selected' : '' }}>Pimpinan</option>
+                        </select>
+                        @error('role')
+                            <p class="text-xs text-rose-600 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>
+                        @enderror
+                    </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Role</label>
-                <select name="role" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" required>
-                    <option value="" disabled selected>Pilih hak akses</option>
-                    <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="operator" {{ old('role') === 'operator' ? 'selected' : '' }}>Operator</option>
-                    <option value="pimpinan" {{ old('role') === 'pimpinan' ? 'selected' : '' }}>Pimpinan</option>
-                </select>
-            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Password <span class="text-rose-500">*</span></label>
+                        <input type="password" name="password" class="w-full bg-slate-50 border @error('password') border-rose-300 bg-rose-50/20 focus:ring-rose-500 focus:border-rose-500 @else border-slate-200 focus:ring-primary-500 focus:border-primary-500 @enderror text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 px-4 py-3 transition-colors shadow-sm" placeholder="Minimal 8 karakter" required>
+                        @error('password')
+                            <p class="text-xs text-rose-600 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>
+                        @enderror
+                    </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Password</label>
-                <input type="password" name="password" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Minimal 8 karakter" required>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Konfirmasi Password</label>
-                <input type="password" name="password_confirmation" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" placeholder="Ketik ulang password" required>
-            </div>
- </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Konfirmasi Password <span class="text-rose-500">*</span></label>
+                        <input type="password" name="password_confirmation" class="w-full bg-slate-50 border @error('password_confirmation') border-rose-300 bg-rose-50/20 focus:ring-rose-500 focus:border-rose-500 @else border-slate-200 focus:ring-primary-500 focus:border-primary-500 @enderror text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 px-4 py-3 transition-colors shadow-sm" placeholder="Ketik ulang password" required>
+                        @error('password_confirmation')
+                            <p class="text-xs text-rose-600 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
 
             </div>
             

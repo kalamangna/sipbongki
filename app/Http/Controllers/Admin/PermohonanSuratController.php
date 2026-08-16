@@ -717,11 +717,12 @@ public function update(
         PermohonanSurat $permohonanSurat
     ) {
         $request->validate([
-
             'status' => 'required|in:Menunggu,Diproses,Selesai,Ditolak',
-
             'catatan' => 'nullable|string|max:1000',
-
+        ], [
+            'status.required' => 'Status permohonan wajib dipilih.',
+            'status.in' => 'Status permohonan tidak valid.',
+            'catatan.max' => 'Catatan pelayanan maksimal 1000 karakter.',
         ]);
 
         $statusSekarang = $permohonanSurat->status;
@@ -756,7 +757,7 @@ public function update(
         }
 
         if (($statusBaru === 'Diproses' || $statusBaru === 'Selesai') && empty($permohonanSurat->penandatangan_id)) {
-            return back()->with('error', 'Pejabat penandatangan belum dipilih. Silakan klik tombol Edit Permohonan terlebih dahulu untuk memilih penandatangan.');
+            return back()->with('error', 'Pejabat penandatangan belum dipilih. Silakan pilih penandatangan terlebih dahulu.');
         }
 
 if (
@@ -817,6 +818,8 @@ if (
     ) {
         $request->validate([
             'catatan' => 'nullable|string|max:1000',
+        ], [
+            'catatan.max' => 'Catatan pelayanan maksimal 1000 karakter.',
         ]);
 
         $permohonanSurat->update([
@@ -833,7 +836,7 @@ if (
 
         return redirect()
             ->route('admin.permohonan-surat.show', $permohonanSurat)
-            ->with('success', 'Catatan petugas berhasil disimpan.');
+            ->with('success', 'Catatan pelayanan berhasil diperbarui.');
     }
 
     /**

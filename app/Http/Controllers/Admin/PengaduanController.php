@@ -81,19 +81,20 @@ class PengaduanController extends Controller
      */
     public function update(Request $request, Pengaduan $pengaduan)
     {
-        $request->validate([
+        $validated = $request->validate([
             'status' => 'required|in:Baru,Diproses,Selesai',
-            'catatan' => 'nullable|string'
+            'catatan' => 'nullable|string|max:1000'
+        ], [
+            'status.required' => 'Status pengaduan wajib dipilih.',
+            'status.in' => 'Status pengaduan tidak valid.',
+            'catatan.max' => 'Catatan petugas maksimal 1000 karakter.',
         ]);
 
-        $pengaduan->update([
-            'status' => $request->status,
-            'catatan' => $request->catatan,
-        ]);
+        $pengaduan->update($validated);
 
         return redirect()
-            ->route('admin.pengaduan.index')
-            ->with('success', 'Status pengaduan berhasil diperbarui.');
+            ->route('admin.pengaduan.show', $pengaduan)
+            ->with('success', 'Status dan catatan pengaduan berhasil diperbarui.');
     }
 
     /**

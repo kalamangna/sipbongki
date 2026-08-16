@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,15 +34,9 @@ class UserController extends Controller
         return view('admin.pengaturan.user.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:50', 'unique:users,username'],
-            'role' => ['required', 'in:admin,operator,pimpinan'],
-            'password' => ['required', 'confirmed', 'min:8'],
-        ]);
-
+        $validated = $request->validated();
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
@@ -53,14 +49,14 @@ class UserController extends Controller
         return view('admin.pengaturan.user.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:50', 'unique:users,username,' . $user->id],
-            'role' => ['required', 'in:admin,operator,pimpinan'],
-            'password' => ['nullable', 'confirmed', 'min:8'],
-        ]);
+        $validated = $request->validated();
+
+        // Proteksi: admin tidak dapat mencabut hak akses admin miliknya sendiri
+        if (auth()->id() === $user->id && $validated['role'] !== 'admin') {
+            return back()->withInput()->with('error', 'Anda tidak dapat mengubah peran akun Anda sendiri menjadi selain Admin.');
+        }
 
         if (blank($validated['password'] ?? null)) {
             unset($validated['password']);
