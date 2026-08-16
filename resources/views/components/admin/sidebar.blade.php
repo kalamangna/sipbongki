@@ -1,4 +1,4 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen h-[100dvh] max-h-[100dvh] min-h-0 transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200 shrink-0">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 focus:outline-none rounded-lg group" aria-label="Dashboard SIP Bongki">
             @if(isset($website) && $website?->logo)
@@ -25,7 +25,7 @@
         </button>
     </div>
 
-    <nav class="flex-1 overflow-y-auto p-4 space-y-6">
+    <nav class="flex-1 overflow-y-auto min-h-0 p-4 space-y-6 pb-10">
 
         {{-- DASHBOARD --}}
         <div>
@@ -155,7 +155,7 @@
 
     </nav>
 
-    <div class="p-4 border-t border-slate-200">
+    <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-sm font-medium transition-colors focus:outline-none cursor-pointer">

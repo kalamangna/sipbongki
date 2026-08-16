@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Optimalisasi Scroll Drawer Navigasi Sidebar Mobile**: Menerapkan `h-[100dvh]`, `max-h-[100dvh]`, `min-h-0`, dan padding bawah `pb-10` pada `components/admin/sidebar.blade.php` sehingga seluruh menu navigasi hingga menu paling bawah (Pengaturan > Pengguna) dapat discroll penuh dan diakses dengan mudah pada perangkat smartphone.
 - **Penyelarasan Identitas Brand Sidebar Admin**: Menyelaraskan header sidebar admin (`components/admin/sidebar.blade.php`) agar 100% identik dengan header navbar publik (menggunakan logo gambar instansi proporsional dan tipografi 2 baris nama website & kelurahan).
 - **Optimalisasi Scroll Viewport Mobile & Posisi Footer**: Memperbaiki tata letak scroll pada `layouts/admin.blade.php` dengan menyatukan elemen `<footer>` ke dalam alur scroll `<main>` dan menerapkan `h-[100dvh]` dinamis agar footer dapat dijangkau dan terlihat utuh di seluruh browser smartphone tanpa terpotong oleh *address bar*.
 - **Penyempurnaan & Sentralisasi Sistem Alert Admin**:
