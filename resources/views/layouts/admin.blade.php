@@ -40,7 +40,7 @@
 
         {{-- Main Scrollable Content --}}
         <main class="flex-1 overflow-y-auto bg-slate-50 flex flex-col justify-between min-h-0">
-            <div class="p-4 md:p-6 lg:p-8 flex-1">
+            <div class="p-4 sm:p-6 md:p-8 pb-20 sm:pb-12 flex-1">
                 <div class="max-w-7xl mx-auto">
                     {{-- Breadcrumb --}}
                     @hasSection('breadcrumb')
