@@ -1,11 +1,25 @@
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200 shrink-0">
-        <div class="flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-xl bg-primary-600 text-white flex items-center justify-center font-bold text-sm shadow-sm shadow-primary-500/20">
-                <i class="fa-solid fa-landmark text-xs"></i>
-            </span>
-            <span class="font-bold text-lg text-slate-900 tracking-tight">SIP <span class="text-primary-600">Bongki</span></span>
-        </div>
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 focus:outline-none rounded-lg group" aria-label="Dashboard SIP Bongki">
+            @if(isset($website) && $website?->logo)
+                <img src="{{ asset('storage/'.$website->logo) }}"
+                     alt="Logo {{ $website->nama_kelurahan ?? 'Kelurahan Bongki' }}"
+                     class="h-10 w-auto object-contain">
+            @else
+                <img src="{{ asset('images/logo.png') }}"
+                     alt="Logo Kelurahan Bongki"
+                     class="h-10 w-auto object-contain">
+            @endif
+
+            <div class="leading-tight">
+                <div class="text-sm font-bold text-slate-800 tracking-tight group-hover:text-primary-600 transition-colors">
+                    {{ $website?->nama_website ?? 'SIP Bongki' }}
+                </div>
+                <div class="text-xs text-slate-500 font-medium">
+                    {{ $website?->nama_kelurahan ?? 'Kelurahan Bongki' }}
+                </div>
+            </div>
+        </a>
         <button type="button" data-drawer-hide="logo-sidebar" aria-controls="logo-sidebar" class="lg:hidden text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl focus:outline-none transition-colors">
             <i class="fa-solid fa-xmark text-lg"></i>
         </button>

@@ -28,36 +28,38 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-screen overflow-hidden">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-screen h-[100dvh] overflow-hidden">
 
     {{-- Sidebar --}}
     @include('components.admin.sidebar')
 
     {{-- Main Wrapper --}}
-    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+    <div class="flex-1 flex flex-col min-h-0 h-full overflow-hidden">
         {{-- Navbar --}}
         @include('components.admin.navbar')
 
-        {{-- Main Content --}}
-        <main class="flex-1 overflow-y-auto bg-slate-50 p-4 md:p-6 lg:p-8">
-            <div class="max-w-7xl mx-auto">
-                {{-- Breadcrumb --}}
-                @hasSection('breadcrumb')
-                    @yield('breadcrumb')
-                @else
-                    @include('components.admin.breadcrumb')
-                @endif
+        {{-- Main Scrollable Content --}}
+        <main class="flex-1 overflow-y-auto bg-slate-50 flex flex-col justify-between min-h-0">
+            <div class="p-4 md:p-6 lg:p-8 flex-1">
+                <div class="max-w-7xl mx-auto">
+                    {{-- Breadcrumb --}}
+                    @hasSection('breadcrumb')
+                        @yield('breadcrumb')
+                    @else
+                        @include('components.admin.breadcrumb')
+                    @endif
 
-                {{-- Flash Message --}}
-                @include('components.admin.alert')
-               
-                {{-- Page Content --}}
-                @yield('content')
+                    {{-- Flash Message --}}
+                    @include('components.admin.alert')
+                   
+                    {{-- Page Content --}}
+                    @yield('content')
+                </div>
             </div>
-        </main>
 
-        {{-- Footer --}}
-        @include('components.admin.footer')
+            {{-- Footer --}}
+            @include('components.admin.footer')
+        </main>
     </div>
 
     <!-- Flowbite JS -->

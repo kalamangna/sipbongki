@@ -1,3 +1,3 @@
-<footer class="px-6 py-3 border-t border-gray-200 bg-white text-xs text-gray-400 text-center">
+<footer class="px-4 sm:px-6 py-3.5 border-t border-slate-200 bg-white text-xs text-slate-400 text-center shrink-0">
     &copy; {{ date('Y') }} SIP Bongki &mdash; Kelurahan Bongki
 </footer>

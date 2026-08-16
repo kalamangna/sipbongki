@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Penyelarasan Identitas Brand Sidebar Admin**: Menyelaraskan header sidebar admin (`components/admin/sidebar.blade.php`) agar 100% identik dengan header navbar publik (menggunakan logo gambar instansi proporsional dan tipografi 2 baris nama website & kelurahan).
+- **Optimalisasi Scroll Viewport Mobile & Posisi Footer**: Memperbaiki tata letak scroll pada `layouts/admin.blade.php` dengan menyatukan elemen `<footer>` ke dalam alur scroll `<main>` dan menerapkan `h-[100dvh]` dinamis agar footer dapat dijangkau dan terlihat utuh di seluruh browser smartphone tanpa terpotong oleh *address bar*.
 - **Penyempurnaan & Sentralisasi Sistem Alert Admin**:
   - Mengoptimalkan komponen global `components/admin/alert.blade.php` dengan transisi *fade-out* dan *collapse* halus menggunakan Vanilla JavaScript murni tanpa ketergantungan script eksternal.
   - Menyelaraskan durasi *auto-hide* menjadi 3,5 detik untuk notifikasi Sukses (`success`/`status`) & Info (`info`), serta mempertahankan status persisten untuk pesan Error (`error`) & Peringatan (`warning`).
