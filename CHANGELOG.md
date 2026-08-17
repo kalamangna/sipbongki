@@ -8,6 +8,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Integrasi Resmi Tailwind Typography (`@tailwindcss/typography`)**:
+  - Menginstal paket `@tailwindcss/typography` dan mendaftarkan `@plugin "@tailwindcss/typography"` pada `resources/css/app.css` dan `resources/css/frontend.css`.
+  - Menerapkan utilitas `prose prose-slate max-w-none` pada halaman detail berita dan detail pengumuman untuk rendering konten artikel yang rapi, adaptif, dan mendukung format paragraf/jeda baris editor secara otomatis.
+- **Interaktivitas Kartu Beranda (Full Clickable Cards)**:
+  - Mengubah elemen pembungkus kartu Berita (`sections/news.blade.php`), Pengumuman (`sections/pengumuman.blade.php`), dan Layanan (`sections/services.blade.php`) menjadi tautan interaktif penuh (*anchor card*) yang dapat diklik di seluruh area dengan fokus aksesibilitas keyboard (`focus:ring-2 focus:ring-primary`).
+- **Optimalisasi Aksesibilitas & Responsivitas Section Publik**:
+  - Menambahkan dukungan tampilan gambar/ilustrasi di perangkat seluler pada bagian Hero dan halaman Pengaduan.
+  - Menyesuaikan rasio aspek responsif kartu galeri (`aspect-[16/9] sm:aspect-[4/3]`) dan kartu fakta profil (`grid-cols-1 min-[360px]:grid-cols-2`).
+  - Memperbaiki kontainer iframe Google Maps pada bagian Lokasi (`h-[320px] lg:h-auto`) agar tidak kollaps di layar ponsel dan menyematkan atribut `title` aksesibilitas.
+  - Menambahkan pemotongan teks aman (`truncate`) pada brand navbar publik untuk layar sempit (<360px).
+
+### Changed
+- **Penyelarasan Sistem Desain & Konsolidasi CSS (DESIGN.md)**:
+  - Membersihkan duplikasi impor `@tailwind` dan `@import "tailwindcss"` serta menyatukan blok `@theme` dan `@layer base` pada `app.css` dan `frontend.css`.
+  - Menghapus aturan `h1-h6 { @apply text-slate-900; }` global di `frontend.css` agar tidak menimpa kelas warna utilitas heading.
+  - Menyeragamkan warna tombol CTA kartu layanan menjadi token tema `bg-primary`.
+  - Memperbarui label penulis metadata berita dan pengumuman menjadi **Admin Bongki**.
+  - Meningkatkan kontras teks judul kolom footer (`Menu Navigasi`, `Layanan Populer`, `Hubungi Kami`) menjadi `text-white font-bold` dan item tautan menjadi `text-slate-300 hover:text-white`.
+  - Menyelaraskan tata letak kolom kontak footer di tablet (`sm:col-span-2 lg:col-span-1`).
+- **Penyempurnaan Responsivitas Admin Dashboard & Kependudukan**:
+  - Menambahkan `min-w-[500px]` dan `min-w-[700px]` pada tabel Permohonan Terbaru dan Penduduk Baru Terdaftar di Dashboard Admin.
+  - Menyelaraskan *breakpoint* grid statistik dashboard dari `xl:` ke `lg:` untuk kenyamanan layar tablet.
+  - Menyeragamkan tombol Cari dan Reset pada filter tabel penduduk agar simetris di ponsel (`flex-1 md:flex-none`).
 - **Optimalisasi Scroll Drawer Navigasi Sidebar Mobile**: Menerapkan `h-[100dvh]`, `max-h-[100dvh]`, `min-h-0`, dan padding bawah `pb-10` pada `components/admin/sidebar.blade.php` sehingga seluruh menu navigasi hingga menu paling bawah (Pengaturan > Pengguna) dapat discroll penuh dan diakses dengan mudah pada perangkat smartphone.
 - **Penyelarasan Identitas Brand Sidebar Admin**: Menyelaraskan header sidebar admin (`components/admin/sidebar.blade.php`) agar 100% identik dengan header navbar publik (menggunakan logo gambar instansi proporsional dan tipografi 2 baris nama website & kelurahan).
 - **Optimalisasi Scroll Viewport Mobile & Posisi Footer**: Memperbaiki tata letak scroll pada `layouts/admin.blade.php` dengan menyatukan elemen `<footer>` ke dalam alur scroll `<main>`, menerapkan `h-[100dvh]` dinamis, serta memberikan *bottom clearance* `pb-20 sm:pb-12` agar seluruh konten dan formulir paling bawah dapat dijangkau dan terlihat utuh di smartphone tanpa terpotong oleh *address bar*.

@@ -93,8 +93,8 @@
                         <i class="fa-solid fa-magnifying-glass"></i> Cari
                     </button>
                     @if($search || $lingkungan || $aktif !== null)
-                        <a href="{{ route('admin.penduduk.index') }}" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none active:scale-95" title="Reset Filter">
-                            <i class="fa-solid fa-rotate-left"></i>
+                        <a href="{{ route('admin.penduduk.index') }}" class="flex-1 md:flex-none inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all focus:outline-none active:scale-95" title="Reset Filter">
+                            <i class="fa-solid fa-rotate-left mr-1.5"></i> Reset
                         </a>
                     @endif
                 </div>

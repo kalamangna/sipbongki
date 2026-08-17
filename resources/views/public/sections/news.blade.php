@@ -15,7 +15,8 @@
 
             @forelse($beritas as $berita)
 
-                <article class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                <a href="{{ route('berita.show', $berita->slug) }}"
+                   class="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
                     {{-- Image --}}
                     <div class="relative overflow-hidden aspect-[16/10] bg-slate-100">
@@ -38,21 +39,18 @@
                     {{-- Body --}}
                     <div class="flex flex-col flex-1 p-5">
                         <h3 class="text-base font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            <a href="{{ route('berita.show', $berita->slug) }}" class="hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
-                                {{ $berita->judul }}
-                            </a>
+                            {{ $berita->judul }}
                         </h3>
                         <p class="text-sm text-slate-500 leading-relaxed flex-1 line-clamp-3">
                             {{ Str::limit(strip_tags($berita->isi), 140) }}
                         </p>
-                        <a href="{{ route('berita.show', $berita->slug) }}"
-                           class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                        <span class="inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-200">
                             Baca Selengkapnya
                             <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+                        </span>
                     </div>
 
-                </article>
+                </a>
 
             @empty
 

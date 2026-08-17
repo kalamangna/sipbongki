@@ -83,9 +83,9 @@
                 </div>
             </div>
 
-            <div class="relative hidden lg:block">
+            <div class="relative flex justify-center lg:block">
                 <img src="{{ asset('images/ilustrations/pengaduan.png') }}"
-                     class="relative z-10 w-full max-w-lg mx-auto object-contain drop-shadow-sm"
+                     class="relative z-10 w-full max-w-xs sm:max-w-sm lg:max-w-lg mx-auto object-contain drop-shadow-sm"
                      alt="Ilustrasi Pengaduan Masyarakat">
             </div>
 

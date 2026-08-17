@@ -6,7 +6,7 @@
             <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Data Penduduk & Wilayah</h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
             {{-- Jenis Pekerjaan --}}
             <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow">
                 <h3 class="text-base font-bold text-slate-800 mb-4 border-b border-slate-200/80 pb-3">Jenis Pekerjaan</h3>

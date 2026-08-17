@@ -90,10 +90,10 @@
 {{-- ============================================================
  MAIN CONTENT GRID
 ============================================================ --}}
-<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     
     {{-- Chart Pelayanan --}}
-    <div class="xl:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
         <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
             <h5 class="text-base font-bold text-slate-900">Statistik Pelayanan</h5>
             <button onclick="downloadChart()" type="button" class="group flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-primary-600 transition-all">
@@ -153,10 +153,10 @@
 {{-- ============================================================
  TABEL PERMOHONAN & DATA LAIN
 ============================================================ --}}
-<div class="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
     
     {{-- Tabel Permohonan --}}
-    <div class="xl:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
             <h5 class="text-base font-bold text-slate-900">Permohonan Terbaru</h5>
             <a href="{{ route('admin.permohonan-surat.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors flex items-center gap-1 group">
@@ -164,7 +164,7 @@
             </a>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-slate-600">
+            <table class="w-full text-sm text-left text-slate-600 min-w-[500px]">
                 <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50">
                     <tr>
                         <th class="px-6 py-4 border-b border-slate-100">Pemohon</th>
@@ -327,7 +327,7 @@
         </a>
     </div>
     <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-slate-600">
+        <table class="w-full text-sm text-left text-slate-600 min-w-[700px]">
             <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50">
                 <tr>
                     <th class="px-6 py-4 border-b border-slate-100">Data Diri</th>

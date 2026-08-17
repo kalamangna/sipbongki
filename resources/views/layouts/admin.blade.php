@@ -28,7 +28,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-screen h-[100dvh] overflow-hidden">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-[100dvh] overflow-hidden">
 
     {{-- Sidebar --}}
     @include('components.admin.sidebar')
@@ -40,7 +40,7 @@
 
         {{-- Main Scrollable Content --}}
         <main class="flex-1 overflow-y-auto bg-slate-50 flex flex-col justify-between min-h-0">
-            <div class="p-4 sm:p-6 md:p-8 pb-20 sm:pb-12 flex-1">
+            <div class="p-4 sm:p-6 md:p-8 pb-6 flex-1">
                 <div class="max-w-7xl mx-auto">
                     {{-- Breadcrumb --}}
                     @hasSection('breadcrumb')

@@ -1,4 +1,4 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen h-[100dvh] max-h-[100dvh] min-h-0 transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-[100dvh] max-h-[100dvh] min-h-0 transition-transform -translate-x-full lg:translate-x-0 lg:static bg-white border-r border-slate-200 flex flex-col shadow-xl lg:shadow-none" aria-label="Sidebar">
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200 shrink-0">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 focus:outline-none rounded-lg group" aria-label="Dashboard SIP Bongki">
             @if(isset($website) && $website?->logo)

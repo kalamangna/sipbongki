@@ -22,7 +22,7 @@
 
             @forelse($galeris as $galeri)
 
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-slate-100 border border-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                <div class="group relative overflow-hidden rounded-2xl aspect-[16/9] sm:aspect-[4/3] bg-slate-100 border border-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                      tabindex="0"
                      role="button"
                      aria-label="Lihat gambar: {{ $galeri->judul }}"

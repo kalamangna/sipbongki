@@ -15,7 +15,7 @@
 
             @forelse($agendas as $agenda)
 
-                <div class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                <div class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
 
                     {{-- Date box --}}
                     <div class="flex-shrink-0 w-14 h-16 rounded-xl bg-primary flex flex-col items-center justify-center text-white shadow-sm shadow-primary/20">

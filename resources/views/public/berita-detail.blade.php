@@ -71,12 +71,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Breadcrumb --}}
-        <nav class="flex items-center gap-2 text-sm text-slate-500 mb-8">
-            <a href="{{ route('home') }}" class="hover:text-primary transition-colors">Beranda</a>
+        <nav class="flex items-center gap-2 text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Beranda</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <a href="{{ route('home') }}#berita" class="hover:text-primary transition-colors">Berita</a>
+            <a href="{{ route('home') }}#berita" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Berita</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <span class="text-slate-400">Detail Berita</span>
+            <span class="text-slate-400" aria-current="page">Detail Berita</span>
         </nav>
 
         <div class="grid lg:grid-cols-12 gap-10 items-start">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
                         <i class="fa-solid fa-circle-user text-primary"></i>
-                        <span class="font-medium">Pemerintah Kel. Bongki</span>
+                        <span class="font-medium">Admin Bongki</span>
                     </div>
                 </div>
 
@@ -111,11 +111,17 @@
                         </div>
                     @endif
 
-                    <div class="p-6 md:p-10 berita-content text-slate-700 text-base">
+                    <div class="p-6 md:p-10 prose prose-slate max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-2xl leading-relaxed [&_br]:block [&_br]:mt-3">
                         @if(preg_match('/<[a-z][\s\S]*>/i', $berita->isi))
                             {!! $berita->isi !!}
                         @else
-                            {!! nl2br(e($berita->isi)) !!}
+                            @php
+                                $paragraphs = preg_split('/\n{2,}/', trim($berita->isi));
+                                echo implode('', array_map(
+                                    fn($p) => '<p>' . nl2br(e(trim($p))) . '</p>',
+                                    array_filter($paragraphs, fn($p) => trim($p) !== '')
+                                ));
+                            @endphp
                         @endif
                     </div>
 
@@ -161,7 +167,7 @@
                     
                     <div class="flex flex-col gap-4">
                         @forelse($beritaTerbaru ?? [] as $terbaru)
-                            <a href="{{ route('berita.show', $terbaru->slug) }}" class="group flex gap-4 items-start">
+                            <a href="{{ route('berita.show', $terbaru->slug) }}" class="group flex gap-4 items-start focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
                                 <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 shadow-inner">
                                     <img src="{{ $terbaru->gambar ? asset('storage/'.$terbaru->gambar) : asset('images/kantor.png') }}" 
                                          alt="{{ $terbaru->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -189,66 +195,3 @@
     </div>
 </section>
 @endsection
-
-@push('styles')
-<style>
-    .berita-content p {
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-    }
-    .berita-content p:last-child {
-        margin-bottom: 0;
-    }
-    .berita-content h1, .berita-content h2, .berita-content h3, .berita-content h4 {
-        font-weight: 700;
-        color: #0f172a;
-        margin-top: 1.75rem;
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-    }
-    .berita-content h1 { font-size: 1.65rem; }
-    .berita-content h2 { font-size: 1.4rem; }
-    .berita-content h3 { font-size: 1.2rem; }
-    .berita-content ul {
-        list-style-type: disc;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    .berita-content ol {
-        list-style-type: decimal;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    .berita-content li {
-        margin-bottom: 0.35rem;
-        line-height: 1.7;
-    }
-    .berita-content blockquote {
-        border-left: 4px solid #059669;
-        padding-left: 1rem;
-        font-style: italic;
-        color: #475569;
-        margin: 1.25rem 0;
-    }
-    .berita-content img {
-        border-radius: 1rem;
-        max-width: 100%;
-        height: auto;
-        margin: 1.5rem 0;
-    }
-    .berita-content table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.25rem 0;
-    }
-    .berita-content table th,
-    .berita-content table td {
-        border: 1px solid #e2e8f0;
-        padding: 0.6rem 0.85rem;
-    }
-    .berita-content a {
-        color: #059669;
-        text-decoration: underline;
-    }
-</style>
-@endpush

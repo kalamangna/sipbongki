@@ -77,7 +77,8 @@
                     $theme = $colorThemes[$loop->index % count($colorThemes)];
                 @endphp
 
-                <div class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 {{ $theme['hover_border'] }} transition-all duration-300">
+                <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}"
+                   class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-primary/40 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
                     {{-- Top bar: Icon + Nomor Card --}}
                     <div class="flex items-center justify-between mb-5">
@@ -89,7 +90,7 @@
                         </span>
                     </div>
 
-                    <h3 class="text-base font-bold text-slate-800 mb-2 {{ $theme['hover_title'] }} transition-colors">
+                    <h3 class="text-base font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
                         {{ $jenisSurat->nama }}
                     </h3>
 
@@ -98,14 +99,13 @@
                     </p>
 
                     <div class="mt-5 pt-4 border-t border-slate-100">
-                        <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}"
-                           class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl {{ $theme['btn'] }} text-white text-sm font-semibold transition-all duration-200 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">
+                        <span class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-primary group-hover:bg-primary-700 text-white text-sm font-semibold transition-colors duration-200 shadow-sm">
                             <i class="fa-solid fa-paper-plane text-xs"></i>
                             Ajukan Permohonan
-                        </a>
+                        </span>
                     </div>
 
-                </div>
+                </a>
 
             @empty
 

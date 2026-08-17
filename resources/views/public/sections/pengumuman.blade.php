@@ -15,7 +15,8 @@
 
             @forelse($pengumumen as $pengumuman)
 
-                <article class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden">
+                <a href="{{ route('pengumuman.detail', $pengumuman->slug) }}"
+                   class="group flex flex-col bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
 
                     {{-- Accent bar --}}
                     <div class="absolute top-0 left-0 w-1.5 h-full bg-primary rounded-l-2xl"></div>
@@ -28,10 +29,7 @@
 
                     {{-- Title --}}
                     <h3 class="text-base font-bold text-slate-800 mb-2 line-clamp-2 group-hover:text-primary transition-colors ml-2">
-                        <a href="{{ route('pengumuman.detail', $pengumuman->slug) }}"
-                           class="hover:underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-primary rounded">
-                            {{ $pengumuman->judul }}
-                        </a>
+                        {{ $pengumuman->judul }}
                     </h3>
 
                     {{-- Excerpt --}}
@@ -39,13 +37,12 @@
                         {{ \Illuminate\Support\Str::limit(strip_tags($pengumuman->isi), 120) }}
                     </p>
 
-                    <a href="{{ route('pengumuman.detail', $pengumuman->slug) }}"
-                       class="inline-flex items-center gap-1.5 mt-4 ml-2 text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                    <span class="inline-flex items-center gap-1.5 mt-4 ml-2 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-200">
                         Baca Selengkapnya
                         <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
+                    </span>
 
-                </article>
+                </a>
 
             @empty
 

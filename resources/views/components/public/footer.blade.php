@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <p class="text-sm text-slate-400 leading-relaxed">
+                <p class="text-sm text-slate-300 leading-relaxed">
                     {{ $website?->footer_text ?? 'Sistem Informasi dan Pelayanan Kelurahan Bongki yang memberikan pelayanan publik secara cepat, transparan dan profesional.' }}
                 </p>
 
@@ -31,7 +31,7 @@
 
             {{-- ── MENU ─────────────────────────── --}}
             <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Menu Navigasi</h5>
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white">Menu Navigasi</h5>
                 <ul class="flex flex-col gap-2.5">
                     @php
                         $footerLinks = [
@@ -47,7 +47,7 @@
                     @foreach($footerLinks as $link)
                         <li>
                             <a href="{{ $link['href'] }}"
-                               class="text-sm text-slate-400 hover:text-white transition-colors
+                               class="text-sm text-slate-300 hover:text-white transition-colors
                                       focus:outline-none focus:ring-2 focus:ring-primary rounded">
                                 {{ $link['label'] }}
                             </a>
@@ -58,14 +58,14 @@
 
             {{-- ── LAYANAN ───────────────────────── --}}
             <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Layanan Populer</h5>
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white">Layanan Populer</h5>
                 <ul class="flex flex-col gap-2.5">
                     @php
                         $jenisSurats = \App\Models\JenisSurat::where('aktif', true)->orderBy('nomor_urut')->take(6)->get();
                     @endphp
                     @forelse($jenisSurats as $jenisSurat)
                         <li>
-                            <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}" class="text-sm text-slate-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                            <a href="{{ route('permohonan.create', ['jenis' => $jenisSurat->id]) }}" class="text-sm text-slate-300 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
                                 {{ $jenisSurat->nama }}
                             </a>
                         </li>
@@ -77,24 +77,24 @@
 
 
             {{-- ── KONTAK ────────────────────────── --}}
-            <div>
-                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-slate-400">Hubungi Kami</h5>
+            <div class="sm:col-span-2 lg:col-span-1">
+                <h5 class="font-bold text-xs mb-4 uppercase tracking-wider text-white">Hubungi Kami</h5>
                 <div class="flex flex-col gap-3">
                     @if($website?->alamat)
-                        <div class="flex items-start gap-2.5 text-sm text-slate-400">
-                            <i class="fa-solid fa-map-pin text-primary mt-0.5 shrink-0"></i>
+                        <div class="flex items-start gap-2.5 text-sm text-slate-300">
+                            <i class="fa-solid fa-map-pin text-primary-400 mt-0.5 shrink-0"></i>
                             <span>{{ $website->alamat }}</span>
                         </div>
                     @endif
                     @if($website?->telepon)
-                        <div class="flex items-center gap-2.5 text-sm text-slate-400">
-                            <i class="fa-solid fa-phone text-primary shrink-0"></i>
+                        <div class="flex items-center gap-2.5 text-sm text-slate-300">
+                            <i class="fa-solid fa-phone text-primary-400 shrink-0"></i>
                             <span>{{ $website->telepon }}</span>
                         </div>
                     @endif
                     @if($website?->email)
-                        <div class="flex items-center gap-2.5 text-sm text-slate-400">
-                            <i class="fa-solid fa-envelope text-primary shrink-0"></i>
+                        <div class="flex items-center gap-2.5 text-sm text-slate-300">
+                            <i class="fa-solid fa-envelope text-primary-400 shrink-0"></i>
                             <span>{{ $website->email }}</span>
                         </div>
                     @endif
@@ -102,7 +102,7 @@
                         {{-- WhatsApp: warna merek asli (hijau) sesuai DESIGN.md --}}
                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $website->whatsapp) }}"
                            target="_blank"
-                           class="flex items-center gap-2.5 text-sm text-slate-400 hover:text-white transition-colors
+                           class="flex items-center gap-2.5 text-sm text-slate-300 hover:text-white transition-colors
                                   focus:outline-none focus:ring-2 focus:ring-primary rounded">
                             <i class="fa-brands fa-whatsapp text-emerald-400 text-base shrink-0"></i>
                             <span>{{ $website->whatsapp }}</span>

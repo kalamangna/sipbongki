@@ -12,7 +12,7 @@
                     {{ $website?->badge ?? 'Sistem Informasi dan Pelayanan' }}
                 </span>
                 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-snug mb-6">
                     {{ $website?->judul_hero ?? 'Kelurahan' }}
                     <span class="text-primary">
                         {{ $website?->subjudul_hero ?? 'Bongki' }}
@@ -67,12 +67,12 @@
             </div>
 
             {{-- ── RIGHT: IMAGE ────────────────────── --}}
-            <div class="relative hidden lg:flex justify-end">
+            <div class="relative flex justify-center lg:justify-end">
                 <img src="{{ (!empty($website?->gambar_hero))
                         ? asset('storage/'.$website->gambar_hero)
                         : asset('images/kantor.png') }}"
                      alt="Kantor Kelurahan Bongki"
-                     class="w-full rounded-2xl shadow-md object-cover border border-slate-200">
+                     class="w-full lg:w-auto rounded-2xl shadow-md object-cover border border-slate-200 aspect-video lg:aspect-auto max-h-80 lg:max-h-none">
             </div>
 
         </div>

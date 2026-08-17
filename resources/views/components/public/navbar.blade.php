@@ -26,11 +26,11 @@
                          class="h-11 w-auto">
                 @endif
 
-                <div class="leading-tight">
-                    <div class="text-sm font-bold transition-colors duration-300 text-slate-800">
+                <div class="leading-tight min-w-0">
+                    <div class="text-sm font-bold transition-colors duration-300 text-slate-800 truncate max-w-[140px] sm:max-w-none">
                         {{ $website?->nama_website ?? 'SIP Bongki' }}
                     </div>
-                    <div class="text-xs transition-colors duration-300 text-slate-500">
+                    <div class="text-xs transition-colors duration-300 text-slate-500 truncate max-w-[140px] sm:max-w-none">
                         {{ $website?->nama_kelurahan ?? 'Kelurahan Bongki' }}
                     </div>
                 </div>

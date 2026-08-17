@@ -71,12 +71,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Breadcrumb --}}
-        <nav class="flex items-center gap-2 text-sm text-slate-500 mb-8">
-            <a href="{{ route('home') }}" class="hover:text-primary transition-colors">Beranda</a>
+        <nav class="flex items-center gap-2 text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Beranda</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <a href="{{ route('home') }}#pengumuman" class="hover:text-primary transition-colors">Pengumuman</a>
+            <a href="{{ route('home') }}#pengumuman" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Pengumuman</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <span class="text-slate-400">Detail Pengumuman</span>
+            <span class="text-slate-400" aria-current="page">Detail Pengumuman</span>
         </nav>
 
         <div class="grid lg:grid-cols-12 gap-10 items-start">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
                         <i class="fa-solid fa-circle-user text-primary"></i>
-                        <span class="font-medium">Pemerintah Kel. Bongki</span>
+                        <span class="font-medium">Admin Bongki</span>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
                         </div>
                     @endif
 
-                    <div class="p-6 md:p-10 prose prose-slate max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-2xl">
+                    <div class="p-6 md:p-10 prose prose-slate max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-2xl leading-relaxed">
                         {!! $pengumuman->isi !!}
                     </div>
 
@@ -157,7 +157,7 @@
                     
                     <div class="flex flex-col gap-4">
                         @forelse($pengumumanTerbaru ?? [] as $terbaru)
-                            <a href="{{ route('pengumuman.detail', $terbaru->slug) }}" class="group flex gap-4 items-start">
+                            <a href="{{ route('pengumuman.detail', $terbaru->slug) }}" class="group flex gap-4 items-start focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
                                 <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 shadow-inner flex items-center justify-center">
                                     @if($terbaru->gambar)
                                         <img src="{{ asset('storage/'.$terbaru->gambar) }}" 

@@ -29,7 +29,7 @@
                 </p>
 
                 {{-- Quick facts --}}
-                <div class="grid grid-cols-2 gap-3 mt-6">
+                <div class="grid grid-cols-1 min-[360px]:grid-cols-2 gap-3 mt-6">
                     @foreach([
                         ['icon' => 'fa-solid fa-map',        'label' => 'Luas Wilayah',    'value' => '4,81 Km²'],
                         ['icon' => 'fa-solid fa-grip',  'label' => 'Lingkungan',       'value' => '4 Lingkungan'],

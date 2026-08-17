@@ -46,11 +46,12 @@
             </div>
 
             {{-- ── MAP ──────────────────────────────────── --}}
-            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-sm border border-slate-200 min-h-[400px]">
+            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-sm border border-slate-200 h-[320px] lg:h-auto lg:min-h-[400px]">
                 <iframe src="{{ $website?->google_maps }}"
+                        title="Peta Lokasi Kelurahan Bongki"
                         width="100%"
                         height="100%"
-                        style="border:0; min-height:400px;"
+                        style="border:0; display:block; min-height:320px;"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="strict-origin-when-cross-origin">
