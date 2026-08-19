@@ -29,7 +29,6 @@
 
         {{-- DASHBOARD --}}
         <div>
-            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1 dark:text-slate-500">Dashboard</p>
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium focus:outline-none {{ request()->routeIs('admin.dashboard') ? 'bg-primary-50 text-primary-600 dark:bg-primary-950/60 dark:text-primary-400 dark:ring-1 dark:ring-primary-800/50' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/70 dark:hover:text-slate-200' }}">
                 <i class="fa-solid fa-gauge-high w-4 text-center"></i>
                 <span>Dashboard</span>

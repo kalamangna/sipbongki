@@ -7,12 +7,12 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {{-- Jenis Surat --}}
         <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5 dark:text-slate-300">
                 Jenis Surat <span class="text-red-500">*</span>
             </label>
             <select
                 name="jenis_surat_id"
-                class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-3.5 py-2.5 transition-colors shadow-sm {{ isset($permohonanSurat) ? 'pointer-events-none opacity-80 bg-slate-100' : '' }}"
+                class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-3.5 py-2.5 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 {{ isset($permohonanSurat) ? 'pointer-events-none opacity-80 bg-slate-100 dark:bg-slate-900/60' : '' }}"
                 {{ isset($permohonanSurat) ? 'tabindex="-1"' : '' }}
                 required>
                 <option value="">-- Pilih Jenis Surat --</option>
@@ -29,7 +29,7 @@
 
         {{-- Tanggal Permohonan --}}
         <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5 dark:text-slate-300">
                 Tanggal Permohonan <span class="text-red-500">*</span>
             </label>
             <input

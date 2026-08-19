@@ -84,13 +84,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     if (!window.ApexCharts) return;
 
-    const isDark = document.documentElement.classList.contains('dark');
     const vibrantPalette = ['#059669', '#0284c7', '#d97706', '#7c3aed', '#e11d48', '#0d9488', '#ea580c', '#4f46e5'];
-
-    const textColor = isDark ? '#94a3b8' : '#64748b';
-    const headingColor = isDark ? '#cbd5e1' : '#334155';
-    const gridColor = isDark ? '#334155' : '#e2e8f0';
-    const strokeColor = isDark ? '#0f172a' : '#ffffff';
 
     const pekerjaan = @json($pekerjaanStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
     const agama = @json($agamaStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
@@ -98,209 +92,246 @@ document.addEventListener('DOMContentLoaded', function(){
     const usiaObj = @json($usiaStat ?? []);
     const pendidikan = @json($pendidikanStat->map(fn($i)=>[$i->nama,$i->total])->all() ?? []);
     const lingkungan = @json($statistikLingkungan->map(fn($i)=>[$i->nama,$i->penduduk_count])->all() ?? []);
+    const rtRw = @json($statistikRtRw->all() ?? []);
     const wajibPilih = [
         ['Wajib Pilih (≥17 th)', Object.values(usiaObj).slice(1).reduce((sum, value) => sum + value, 0)],
         ['Belum Wajib (<17 th)', usiaObj['0-17'] ?? 0]
     ];
 
-    const createDoughnut = (ctx, labels, data, colors, opts = {}) => {
-        const options = {
-            series: data,
-            chart: { type: 'donut', height: 280, fontFamily: 'Inter, sans-serif' },
-            labels: labels,
-            colors: colors,
-            dataLabels: { enabled: false },
-            plotOptions: { 
-                pie: { 
-                    donut: { 
-                        size: '68%',
-                        labels: {
-                            show: true,
-                            total: {
+    const chartInstances = {};
+
+    function renderAllCharts() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const textColor = isDark ? '#94a3b8' : '#64748b';
+        const headingColor = isDark ? '#cbd5e1' : '#334155';
+        const gridColor = isDark ? '#334155' : '#e2e8f0';
+        const strokeColor = isDark ? '#0f172a' : '#ffffff';
+        const themeMode = isDark ? 'dark' : 'light';
+
+        const createOrUpdateDoughnut = (id, labels, data, colors, opts = {}) => {
+            const ctx = document.getElementById(id);
+            if (!ctx) return;
+            if (!data || data.length === 0 || data.every(v => v === 0)) {
+                ctx.innerHTML = '<div class="flex items-center justify-center h-56 text-slate-400 text-sm italic">Belum ada data</div>';
+                return;
+            }
+
+            const options = {
+                series: data,
+                chart: { 
+                    type: 'donut', 
+                    height: 280, 
+                    fontFamily: 'Inter, sans-serif', 
+                    background: 'transparent',
+                    foreColor: textColor
+                },
+                theme: { mode: themeMode },
+                tooltip: { 
+                    theme: themeMode,
+                    y: { formatter: val => val !== undefined ? `${val.toLocaleString('id-ID')} Jiwa` : '' }
+                },
+                labels: labels,
+                colors: colors,
+                dataLabels: { enabled: false },
+                plotOptions: { 
+                    pie: { 
+                        donut: { 
+                            size: '68%',
+                            labels: {
                                 show: true,
-                                label: 'Total',
-                                fontSize: '12px',
-                                fontWeight: 700,
-                                color: isDark ? '#cbd5e1' : '#475569',
-                                formatter: function (w) {
-                                    return w.globals.seriesTotals.reduce((a, b) => a + b, 0).toLocaleString('id-ID');
+                                name: {
+                                    show: true,
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: textColor,
+                                    offsetY: 20
+                                },
+                                value: {
+                                    show: true,
+                                    fontSize: '22px',
+                                    fontWeight: 800,
+                                    color: isDark ? '#f8fafc' : '#0f172a',
+                                    offsetY: -10
+                                },
+                                total: {
+                                    show: true,
+                                    label: 'Total',
+                                    fontSize: '12px',
+                                    fontWeight: 700,
+                                    color: isDark ? '#cbd5e1' : '#475569',
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0).toLocaleString('id-ID');
+                                    }
                                 }
                             }
-                        }
+                        } 
                     } 
-                } 
-            },
-            legend: { 
-                position: 'bottom', 
-                fontSize: '11px',
-                labels: { colors: textColor },
-                markers: { radius: 12, offsetX: -2 },
-                itemMargin: { horizontal: 6, vertical: 3 }
-            },
-            stroke: { width: 2, colors: [strokeColor] },
-            ...opts
+                },
+                legend: { 
+                    position: 'bottom', 
+                    fontSize: '11px',
+                    labels: { colors: textColor },
+                    markers: { radius: 12, offsetX: -2 },
+                    itemMargin: { horizontal: 6, vertical: 3 }
+                },
+                stroke: { width: 2, colors: [strokeColor] },
+                ...opts
+            };
+
+            if (chartInstances[id]) {
+                chartInstances[id].destroy();
+            }
+            chartInstances[id] = new ApexCharts(ctx, options);
+            chartInstances[id].render();
         };
-        new ApexCharts(ctx, options).render();
-    };
 
-    const createBar = (ctx, labels, data, colors) => {
-        const isMultiColor = Array.isArray(colors);
-        const options = {
-            series: [{ name: 'Jumlah', data: data }],
-            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-            plotOptions: { 
-                bar: { 
-                    horizontal: true, 
-                    borderRadius: 6, 
-                    barHeight: '65%',
-                    distributed: isMultiColor
-                } 
-            },
-            colors: isMultiColor ? colors : [colors],
-            dataLabels: { enabled: false },
-            xaxis: { categories: labels, labels: { style: { fontSize: '11px', colors: textColor } } },
-            yaxis: { labels: { style: { fontSize: '11px', colors: headingColor } } },
-            legend: { show: false },
-            grid: { strokeDashArray: 4, borderColor: gridColor }
+        const createOrUpdateBar = (id, labels, data, colors, isHorizontal = true) => {
+            const ctx = document.getElementById(id);
+            if (!ctx) return;
+            if (!data || data.length === 0 || data.every(v => v === 0)) {
+                ctx.innerHTML = '<div class="flex items-center justify-center h-56 text-slate-400 text-sm italic">Belum ada data</div>';
+                return;
+            }
+
+            const isMultiColor = Array.isArray(colors);
+            const options = {
+                series: [{ name: 'Jumlah', data: data }],
+                chart: { 
+                    type: 'bar', 
+                    height: 280, 
+                    toolbar: { show: false }, 
+                    fontFamily: 'Inter, sans-serif', 
+                    background: 'transparent',
+                    foreColor: textColor
+                },
+                theme: { mode: themeMode },
+                tooltip: { 
+                    theme: themeMode,
+                    y: { formatter: val => val !== undefined ? `${val.toLocaleString('id-ID')} Jiwa` : '' }
+                },
+                plotOptions: { 
+                    bar: { 
+                        horizontal: isHorizontal, 
+                        borderRadius: 6, 
+                        barHeight: isHorizontal ? '65%' : undefined,
+                        columnWidth: !isHorizontal ? '55%' : undefined,
+                        distributed: isMultiColor
+                    } 
+                },
+                colors: isMultiColor ? colors : [colors],
+                dataLabels: { enabled: false },
+                xaxis: { categories: labels, labels: { style: { fontSize: '11px', colors: textColor } } },
+                yaxis: { labels: { style: { fontSize: '11px', colors: headingColor } } },
+                legend: { show: false },
+                grid: { strokeDashArray: 4, borderColor: gridColor }
+            };
+
+            if (chartInstances[id]) {
+                chartInstances[id].destroy();
+            }
+            chartInstances[id] = new ApexCharts(ctx, options);
+            chartInstances[id].render();
         };
-        new ApexCharts(ctx, options).render();
-    };
 
-    // ==================== PEKERJAAN ====================
-    if (document.getElementById('chartPekerjaan') && pekerjaan.length) {
-        createBar(
-            document.getElementById('chartPekerjaan'),
-            pekerjaan.map(i => i[0]),
-            pekerjaan.map(i => i[1]),
-            vibrantPalette
-        );
-    }
+        // ==================== PEKERJAAN ====================
+        if (pekerjaan.length) {
+            createOrUpdateBar('chartPekerjaan', pekerjaan.map(i => i[0]), pekerjaan.map(i => i[1]), vibrantPalette, true);
+        }
 
-    // ==================== AGAMA ====================
-    if (document.getElementById('chartAgama') && agama.length) {
-        createDoughnut(
-            document.getElementById('chartAgama'),
-            agama.map(i => i[0]),
-            agama.map(i => i[1]),
-            ['#059669', '#0284c7', '#d97706', '#7c3aed', '#e11d48', '#0d9488']
-        );
-    }
+        // ==================== AGAMA ====================
+        if (agama.length) {
+            createOrUpdateDoughnut('chartAgama', agama.map(i => i[0]), agama.map(i => i[1]), ['#059669', '#0284c7', '#d97706', '#7c3aed', '#e11d48', '#0d9488']);
+        }
 
-    // ==================== STATUS PERKAWINAN ====================
-    if (document.getElementById('chartStatusNikah')) {
+        // ==================== STATUS PERKAWINAN ====================
         if (statusNikah.length) {
-            createDoughnut(
-                document.getElementById('chartStatusNikah'),
-                statusNikah.map(i => i[0]),
-                statusNikah.map(i => i[1]),
-                ['#059669', '#0284c7', '#d97706', '#7c3aed']
-            );
+            createOrUpdateDoughnut('chartStatusNikah', statusNikah.map(i => i[0]), statusNikah.map(i => i[1]), ['#059669', '#0284c7', '#d97706', '#7c3aed']);
         } else {
-            createDoughnut(
-                document.getElementById('chartStatusNikah'),
-                ['Data tidak tersedia'],
-                [1],
-                ['#CBD5E1'],
-                { legend: { show: false }, tooltip: { enabled: false } }
-            );
+            createOrUpdateDoughnut('chartStatusNikah', ['Data tidak tersedia'], [1], ['#CBD5E1'], { legend: { show: false }, tooltip: { enabled: false } });
         }
-    }
 
-    // ==================== KELOMPOK USIA ====================
-    if (document.getElementById('chartUsia') && Object.keys(usiaObj).length) {
-        const usiaOptions = {
-            series: [{ name: 'Jumlah', data: Object.values(usiaObj) }],
-            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-            plotOptions: { 
-                bar: { 
-                    horizontal: false, 
-                    borderRadius: 6, 
-                    columnWidth: '55%',
-                    distributed: true
-                } 
-            },
-            colors: ['#0284c7', '#059669', '#d97706', '#7c3aed', '#ea580c'],
-            dataLabels: { enabled: false },
-            xaxis: { categories: Object.keys(usiaObj), labels: { style: { fontSize: '11px', colors: textColor } } },
-            yaxis: { labels: { style: { fontSize: '11px', colors: headingColor } } },
-            legend: { show: false },
-            grid: { strokeDashArray: 4, borderColor: gridColor }
-        };
-        new ApexCharts(document.getElementById('chartUsia'), usiaOptions).render();
-    }
+        // ==================== KELOMPOK USIA ====================
+        if (Object.keys(usiaObj).length) {
+            createOrUpdateBar('chartUsia', Object.keys(usiaObj), Object.values(usiaObj), ['#0284c7', '#059669', '#d97706', '#7c3aed', '#ea580c'], false);
+        }
 
-    // ==================== PENDIDIKAN ====================
-    if (document.getElementById('chartPendidikan')) {
+        // ==================== PENDIDIKAN ====================
         if (pendidikan.length) {
-            createBar(
-                document.getElementById('chartPendidikan'),
-                pendidikan.map(i => i[0]),
-                pendidikan.map(i => i[1]),
-                vibrantPalette
-            );
+            createOrUpdateBar('chartPendidikan', pendidikan.map(i => i[0]), pendidikan.map(i => i[1]), vibrantPalette, true);
         } else {
-            createDoughnut(
-                document.getElementById('chartPendidikan'),
-                ['Data tidak tersedia'],
-                [1],
-                ['#CBD5E1'],
-                { legend: { show: false }, tooltip: { enabled: false } }
-            );
+            createOrUpdateDoughnut('chartPendidikan', ['Data tidak tersedia'], [1], ['#CBD5E1'], { legend: { show: false }, tooltip: { enabled: false } });
+        }
+
+        // ==================== WAJIB PILIH ====================
+        createOrUpdateDoughnut('chartWajibPilih', wajibPilih.map(i => i[0]), wajibPilih.map(i => i[1]), ['#059669', '#f59e0b']);
+
+        // ==================== LINGKUNGAN ====================
+        if (lingkungan.length) {
+            createOrUpdateBar('chartLingkungan', lingkungan.map(i => i[0]), lingkungan.map(i => i[1]), vibrantPalette, true);
+        }
+
+        // ==================== RT / RW ====================
+        if (rtRw.length) {
+            const ctx = document.getElementById('chartRTRW');
+            if (ctx) {
+                const rtrwOptions = {
+                    series: [
+                        { name: 'RT', data: rtRw.map(item => item.rt) },
+                        { name: 'RW', data: rtRw.map(item => item.rw) }
+                    ],
+                    chart: { 
+                        type: 'bar', 
+                        height: 280, 
+                        toolbar: { show: false }, 
+                        fontFamily: 'Inter, sans-serif', 
+                        background: 'transparent',
+                        foreColor: textColor
+                    },
+                    theme: { mode: themeMode },
+                    tooltip: { 
+                        theme: themeMode,
+                        y: { formatter: val => val !== undefined ? `${val.toLocaleString('id-ID')} Unit` : '' }
+                    },
+                    plotOptions: { 
+                        bar: { 
+                            horizontal: false, 
+                            borderRadius: 6, 
+                            columnWidth: '50%' 
+                        } 
+                    },
+                    colors: ['#059669', '#0284c7'],
+                    dataLabels: { enabled: false },
+                    xaxis: { categories: rtRw.map(item => item.nama), labels: { style: { fontSize: '11px', colors: textColor } } },
+                    yaxis: { labels: { style: { fontSize: '11px', colors: headingColor } } },
+                    legend: { 
+                        position: 'top', 
+                        fontSize: '12px',
+                        labels: { colors: textColor },
+                        markers: { radius: 12, offsetX: -2 },
+                        itemMargin: { horizontal: 8, vertical: 4 }
+                    },
+                    grid: { strokeDashArray: 4, borderColor: gridColor }
+                };
+
+                if (chartInstances['chartRTRW']) {
+                    chartInstances['chartRTRW'].destroy();
+                }
+                chartInstances['chartRTRW'] = new ApexCharts(ctx, rtrwOptions);
+                chartInstances['chartRTRW'].render();
+            }
         }
     }
 
-    // ==================== WAJIB PILIH ====================
-    if (document.getElementById('chartWajibPilih')) {
-        createDoughnut(
-            document.getElementById('chartWajibPilih'),
-            wajibPilih.map(i => i[0]),
-            wajibPilih.map(i => i[1]),
-            ['#059669', '#f59e0b']
-        );
-    }
+    renderAllCharts();
 
-    // ==================== LINGKUNGAN ====================
-    if (document.getElementById('chartLingkungan') && lingkungan.length) {
-        createBar(
-            document.getElementById('chartLingkungan'),
-            lingkungan.map(i => i[0]),
-            lingkungan.map(i => i[1]),
-            vibrantPalette
-        );
-    }
-
-    // ==================== RT / RW ====================
-    const rtRw = @json($statistikRtRw->all() ?? []);
-
-    if (document.getElementById('chartRTRW') && rtRw.length) {
-        const rtrwOptions = {
-            series: [
-                { name: 'RT', data: rtRw.map(item => item.rt) },
-                { name: 'RW', data: rtRw.map(item => item.rw) }
-            ],
-            chart: { type: 'bar', height: 280, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-            plotOptions: { 
-                bar: { 
-                    horizontal: false, 
-                    borderRadius: 6, 
-                    columnWidth: '50%' 
-                } 
-            },
-            colors: ['#059669', '#0284c7'],
-            dataLabels: { enabled: false },
-            xaxis: { categories: rtRw.map(item => item.nama), labels: { style: { fontSize: '11px', colors: textColor } } },
-            yaxis: { labels: { style: { fontSize: '11px', colors: headingColor } } },
-            legend: { 
-                position: 'top', 
-                fontSize: '12px',
-                labels: { colors: textColor },
-                markers: { radius: 12, offsetX: -2 },
-                itemMargin: { horizontal: 8, vertical: 4 }
-            },
-            grid: { strokeDashArray: 4, borderColor: gridColor }
-        };
-        new ApexCharts(document.getElementById('chartRTRW'), rtrwOptions).render();
-    }
-
+    // Reaktif saat tema di-toggle di navbar
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.attributeName === 'class') {
+                renderAllCharts();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 });
 </script>

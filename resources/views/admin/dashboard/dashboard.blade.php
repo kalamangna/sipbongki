@@ -6,212 +6,202 @@
 @section('content')
 
 {{-- ============================================================
- HERO SECTION
+     HEADER SECTION
 ============================================================ --}}
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
     <div>
         <h2 class="text-2xl font-bold text-slate-900 tracking-tight dark:text-slate-100">
             Selamat Datang, {{ auth()->user()->name }}
-            <span class="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-50 text-primary-700 capitalize border border-primary-100 dark:bg-primary-950/60 dark:text-primary-300 dark:border-primary-800">
-                {{ auth()->user()->role }}
-            </span>
         </h2>
-        <p class="text-sm text-slate-500 mt-1 dark:text-slate-400">Berikut adalah ringkasan data kelurahan per tanggal <span class="font-medium text-slate-700 dark:text-slate-300">{{ now()->translatedFormat('d F Y') }}</span></p>
+        <p class="text-xs text-slate-500 mt-1 dark:text-slate-400">
+            Per {{ now()->translatedFormat('d F Y') }}
+        </p>
     </div>
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
-        @if(in_array(auth()->user()->role, ['admin', 'operator']))
-        <a href="{{ route('admin.penduduk.create') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-700 border border-slate-200 shadow-sm hover:bg-slate-50 hover:text-primary-600 transition-all w-full sm:w-auto active:scale-95 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-primary-400">
-            <i class="fa-solid fa-user-plus text-slate-400"></i> Data Penduduk
+    <div class="flex flex-wrap items-center gap-2.5">
+        @if(in_array(auth()->user()->role, ['admin', 'pimpinan']))
+        <a href="{{ route('admin.laporan.statistik') }}" class="group inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-white text-slate-700 border border-slate-200 shadow-sm hover:bg-slate-50 hover:text-primary-600 transition-all active:scale-95 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-primary-400">
+            <i class="fa-solid fa-chart-pie text-slate-400 group-hover:text-primary-600 dark:text-slate-400 dark:group-hover:text-primary-400 transition-colors"></i> Statistik
         </a>
         @endif
-        <a href="{{ route('permohonan.create') }}" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-md shadow-primary-500/20 hover:bg-primary-700 hover:shadow-primary-500/30 transition-all hover:-translate-y-0.5 w-full sm:w-auto active:scale-95" title="Buka form permohonan publik">
-            <i class="fa-solid fa-file-signature"></i> Layanan Surat
+        <a href="{{ route('permohonan.create') }}" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary-600 text-white shadow-sm hover:bg-primary-700 transition-all active:scale-95">
+            <i class="fa-solid fa-plus"></i> Permohonan
         </a>
     </div>
 </div>
 
 {{-- ============================================================
- STATISTIC CARDS
+     STATISTIC CARDS (KPI)
 ============================================================ --}}
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
     {{-- Total Penduduk --}}
-    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow dark:bg-slate-900 dark:ring-slate-800">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center text-xl shrink-0 dark:bg-primary-950/60 dark:text-primary-400">
-                <i class="fa-solid fa-users"></i>
-            </div>
+    <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between">
             <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5 dark:text-slate-400">Total Penduduk</p>
-                <p class="text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPenduduk) }}</p>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 dark:text-slate-400">Total Penduduk</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPenduduk) }}</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg shrink-0 dark:bg-emerald-950/60 dark:text-emerald-400">
+                <i class="fa-solid fa-users"></i>
             </div>
         </div>
     </div>
 
     {{-- Kartu Keluarga --}}
-    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow dark:bg-slate-900 dark:ring-slate-800">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0 dark:bg-emerald-950/60 dark:text-emerald-400">
-                <i class="fa-solid fa-address-card"></i>
-            </div>
+    <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between">
             <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5 dark:text-slate-400">Kartu Keluarga</p>
-                <p class="text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalKK) }}</p>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 dark:text-slate-400">Kartu Keluarga</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalKK) }}</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg shrink-0 dark:bg-sky-950/60 dark:text-sky-400">
+                <i class="fa-solid fa-address-card"></i>
             </div>
         </div>
     </div>
 
-    {{-- Aparat Kelurahan --}}
-    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow dark:bg-slate-900 dark:ring-slate-800">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0 dark:bg-amber-950/60 dark:text-amber-400">
-                <i class="fa-solid fa-user-tie"></i>
-            </div>
+    {{-- Aparatur Kelurahan --}}
+    <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between">
             <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5 dark:text-slate-400">Aparat Kelurahan</p>
-                <p class="text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPerangkat) }}</p>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 dark:text-slate-400">Aparatur</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPerangkat) }}</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg shrink-0 dark:bg-amber-950/60 dark:text-amber-400">
+                <i class="fa-solid fa-user-tie"></i>
             </div>
         </div>
     </div>
 
     {{-- Permohonan Surat --}}
-    <div class="bg-white rounded-2xl p-5 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] hover:shadow-md transition-shadow dark:bg-slate-900 dark:ring-slate-800">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl shrink-0 dark:bg-rose-950/60 dark:text-rose-400">
-                <i class="fa-solid fa-file-signature"></i>
-            </div>
+    <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between">
             <div>
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-0.5 dark:text-slate-400">Permohonan</p>
-                <p class="text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPermohonan) }}</p>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 dark:text-slate-400">Permohonan Surat</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-100">{{ number_format($totalPermohonan) }}</p>
+            </div>
+            <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg shrink-0 dark:bg-rose-950/60 dark:text-rose-400">
+                <i class="fa-solid fa-file-signature"></i>
             </div>
         </div>
     </div>
 </div>
 
 {{-- ============================================================
- MAIN CONTENT GRID
+     VISUAL INSIGHTS (CHARTS)
 ============================================================ --}}
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
     
-    {{-- Chart Pelayanan --}}
-    <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
-        <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-800">
-            <h5 class="text-base font-bold text-slate-900 dark:text-slate-100">Statistik Pelayanan</h5>
-            <button onclick="downloadChart()" type="button" class="group flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-primary-600 transition-all dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-primary-400">
+    {{-- Chart Pelayanan Surat --}}
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Pelayanan Surat</h3>
+            <button onclick="downloadChart()" type="button" class="group flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-slate-600 bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 hover:text-primary-600 transition-all dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-primary-400">
                 <i class="fa-solid fa-download text-slate-400 group-hover:text-primary-500 transition-colors"></i> Export
             </button>
         </div>
-        <div class="p-6 flex-1">
-            <div id="chartPelayanan"></div>
+        <div class="p-5 flex-1 flex flex-col justify-center">
+            <div id="chartPelayanan" class="w-full"></div>
         </div>
     </div>
 
-    {{-- Aktivitas & Akses Cepat --}}
-    <div class="flex flex-col gap-6">
-        
-        {{-- Quick Access --}}
-        <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] dark:bg-slate-900 dark:ring-slate-800">
-            <h5 class="text-sm font-bold text-slate-900 mb-4 dark:text-slate-100">Akses Cepat</h5>
-            <div class="grid grid-cols-2 gap-3">
-                @if(in_array(auth()->user()->role, ['admin', 'operator']))
-                <a href="{{ route('admin.penduduk.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-primary-50 border border-transparent hover:border-primary-100 transition-all dark:bg-slate-800/80 dark:hover:bg-primary-950/40 dark:hover:border-primary-900/60">
-                    <div class="w-10 h-10 rounded-full bg-white text-primary-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform dark:bg-slate-700 dark:text-primary-400"><i class="fa-solid fa-users"></i></div>
-                    <span class="text-xs font-semibold text-slate-700 group-hover:text-primary-700 dark:text-slate-300 dark:group-hover:text-primary-400">Penduduk</span>
-                </a>
-                @endif
-                <a href="{{ route('admin.permohonan-surat.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-amber-50 border border-transparent hover:border-amber-100 transition-all dark:bg-slate-800/80 dark:hover:bg-amber-950/40 dark:hover:border-amber-900/60">
-                    <div class="w-10 h-10 rounded-full bg-white text-amber-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform dark:bg-slate-700 dark:text-amber-400"><i class="fa-solid fa-envelope-open-text"></i></div>
-                    <span class="text-xs font-semibold text-slate-700 group-hover:text-amber-700 dark:text-slate-300 dark:group-hover:text-amber-400">Surat</span>
-                </a>
-                @if(in_array(auth()->user()->role, ['admin', 'pimpinan']))
-                <a href="{{ route('admin.laporan.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-sky-50 border border-transparent hover:border-sky-100 transition-all dark:bg-slate-800/80 dark:hover:bg-sky-950/40 dark:hover:border-sky-900/60">
-                    <div class="w-10 h-10 rounded-full bg-white text-sky-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform dark:bg-slate-700 dark:text-sky-400"><i class="fa-solid fa-print"></i></div>
-                    <span class="text-xs font-semibold text-slate-700 group-hover:text-sky-700 dark:text-slate-300 dark:group-hover:text-sky-400">Laporan</span>
-                </a>
-                @endif
-                @if(auth()->user()->role === 'admin')
-                <a href="{{ route('admin.website.berita.index') }}" class="group flex flex-col items-center justify-center gap-2 p-4 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-transparent hover:border-emerald-100 transition-all dark:bg-slate-800/80 dark:hover:bg-emerald-950/40 dark:hover:border-emerald-900/60">
-                    <div class="w-10 h-10 rounded-full bg-white text-emerald-600 shadow-sm flex items-center justify-center text-lg group-hover:scale-110 transition-transform dark:bg-slate-700 dark:text-emerald-400"><i class="fa-solid fa-newspaper"></i></div>
-                    <span class="text-xs font-semibold text-slate-700 group-hover:text-emerald-700 dark:text-slate-300 dark:group-hover:text-emerald-400">Berita</span>
-                </a>
-                @endif
-            </div>
+    {{-- Komposisi Penduduk Donut --}}
+    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Komposisi Penduduk</h3>
+            <a href="{{ route('admin.laporan.statistik') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors dark:text-primary-400">
+                Detail
+            </a>
         </div>
-
-        {{-- Demographics Chart --}}
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1 flex flex-col dark:bg-slate-900 dark:border-slate-800">
-            <div class="px-6 py-5 border-b border-slate-100 dark:border-slate-800">
-                <h5 class="text-sm font-bold text-slate-900 dark:text-slate-100">Komposisi Penduduk</h5>
-            </div>
-            <div class="p-6 flex-1 flex items-center justify-center">
-                <div id="chartPenduduk" class="w-full" style="min-height:230px;"></div>
-            </div>
+        <div class="p-5 flex-1 flex flex-col justify-center items-center">
+            <div id="chartPenduduk" class="w-full flex justify-center"></div>
         </div>
-
     </div>
+
 </div>
 
 {{-- ============================================================
- TABEL PERMOHONAN & DATA LAIN
+     OPERASIONAL & DISTRIBUSI WILAYAH
 ============================================================ --}}
-<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     
-    {{-- Tabel Permohonan --}}
-    <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden dark:bg-slate-900 dark:border-slate-800">
-        <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-800">
-            <h5 class="text-base font-bold text-slate-900 dark:text-slate-100">Permohonan Terbaru</h5>
+    {{-- Tabel Permohonan Surat Terbaru --}}
+    <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Permohonan Terbaru</h3>
             <a href="{{ route('admin.permohonan-surat.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors flex items-center gap-1 group dark:text-primary-400 dark:hover:text-primary-300">
                 Lihat Semua <i class="fa-solid fa-arrow-right-long text-[10px] group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-slate-600 min-w-[500px] dark:text-slate-300">
-                <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50 dark:bg-slate-800/80 dark:text-slate-400">
+        <div class="overflow-x-auto flex-1">
+            <table class="w-full text-sm text-left text-slate-600 min-w-[480px] dark:text-slate-300">
+                <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/70 dark:bg-slate-800/60 dark:text-slate-400">
                     <tr>
-                        <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Pemohon</th>
-                        <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Jenis Surat</th>
-                        <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Status</th>
+                        <th class="px-5 py-3 border-b border-slate-100 dark:border-slate-800">Pemohon</th>
+                        <th class="px-5 py-3 border-b border-slate-100 dark:border-slate-800">Surat</th>
+                        <th class="px-5 py-3 border-b border-slate-100 dark:border-slate-800">Status</th>
+                        <th class="px-5 py-3 border-b border-slate-100 text-right dark:border-slate-800">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                     @forelse($permohonanTerbaru as $item)
                     <tr class="hover:bg-slate-50/80 transition-colors dark:hover:bg-slate-800/50">
-                        <td class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap dark:text-slate-100">{{ optional($item->pemohon)->nama_lengkap ?? data_get($item->data_surat, 'nama_lengkap') ?? '-' }}</td>
-                        <td class="px-6 py-4 text-slate-600 dark:text-slate-300">{{ optional($item->jenisSurat)->nama ?? '-' }}</td>
-                        <td class="px-6 py-4">
+                        <td class="px-5 py-3">
+                            <p class="font-semibold text-slate-900 dark:text-slate-100">{{ optional($item->pemohon)->nama_lengkap ?? data_get($item->data_surat, 'nama_lengkap') ?? '-' }}</p>
+                            <p class="text-xs text-slate-400 dark:text-slate-500">{{ $item->created_at?->diffForHumans() }}</p>
+                        </td>
+                        <td class="px-5 py-3 text-slate-600 dark:text-slate-300">
+                            <span class="font-medium">{{ optional($item->jenisSurat)->nama ?? '-' }}</span>
+                        </td>
+                        <td class="px-5 py-3">
                             @if($item->status == 'Menunggu')
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 tracking-wide dark:bg-amber-950/60 dark:text-amber-300">{{ $item->status }}</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300">{{ $item->status }}</span>
                             @elseif($item->status == 'Diproses')
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-700 tracking-wide dark:bg-sky-950/60 dark:text-sky-300">{{ $item->status }}</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">{{ $item->status }}</span>
                             @elseif($item->status == 'Selesai')
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 tracking-wide dark:bg-emerald-950/60 dark:text-emerald-300">{{ $item->status }}</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">{{ $item->status }}</span>
                             @else
-                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700 tracking-wide dark:bg-rose-950/60 dark:text-rose-300">{{ $item->status }}</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300">{{ $item->status }}</span>
                             @endif
+                        </td>
+                        <td class="px-5 py-3 text-right">
+                            <a href="{{ route('admin.permohonan-surat.show', $item) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-primary-600 hover:text-primary-700 hover:underline dark:text-primary-400">
+                                Proses <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </a>
                         </td>
                     </tr>
                     @empty
-                    <tr><td colspan="3" class="px-6 py-8 text-center text-sm text-slate-400">Belum ada data permohonan.</td></tr>
+                    <tr>
+                        <td colspan="4" class="px-5 py-8 text-center text-sm text-slate-400">
+                            <i class="fa-regular fa-folder-open text-2xl text-slate-300 mb-2 block dark:text-slate-600"></i>
+                            Belum ada permohonan.
+                        </td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
-    {{-- Statistik Lingkungan --}}
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden dark:bg-slate-900 dark:border-slate-800">
-        <div class="px-6 py-5 border-b border-slate-100 dark:border-slate-800">
-            <h5 class="text-sm font-bold text-slate-900 dark:text-slate-100">Distribusi Penduduk</h5>
+    {{-- Distribusi Penduduk per Lingkungan --}}
+    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col dark:bg-slate-900 dark:border-slate-800">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Distribusi Wilayah</h3>
+            @if(auth()->user()->role === 'admin')
+            <a href="{{ route('admin.lingkungan.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors dark:text-primary-400">
+                Kelola
+            </a>
+            @endif
         </div>
-        <div class="p-6">
-            @forelse($lingkungan as $item)
+        <div class="p-5 flex-1 flex flex-col justify-center space-y-3.5">
+            @forelse($lingkungan->take(5) as $item)
                 @php $persen = $totalPenduduk > 0 ? ($item->penduduk_count / $totalPenduduk) * 100 : 0; @endphp
-                <div class="mb-5 last:mb-0">
-                    <div class="flex justify-between text-xs font-semibold mb-2">
+                <div>
+                    <div class="flex justify-between text-xs font-semibold mb-1">
                         <span class="text-slate-700 dark:text-slate-300">{{ $item->nama }}</span>
-                        <span class="text-slate-900 dark:text-slate-100">{{ number_format($item->penduduk_count) }}</span>
+                        <span class="text-slate-900 dark:text-slate-100">{{ number_format($item->penduduk_count) }} Jiwa <span class="text-slate-400 font-normal">({{ round($persen, 1) }}%)</span></span>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden dark:bg-slate-800">
-                        <div class="bg-primary-500 h-1.5 rounded-full" style="width: {{ $persen }}%"></div>
+                        <div class="bg-primary-500 h-1.5 rounded-full transition-all duration-500" style="width: {{ $persen }}%"></div>
                     </div>
                 </div>
             @empty
@@ -222,200 +212,160 @@
 
 </div>
 
-
-{{-- ============================================================
- DEMOGRAFI & STATISTIK TAMBAHAN
-============================================================ --}}
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-    
-    {{-- Pekerjaan --}}
-    <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] dark:bg-slate-900 dark:ring-slate-800">
-        <h6 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-5 dark:text-slate-400">Pekerjaan</h6>
-        @if($pekerjaanStat->isNotEmpty())
-            <div class="space-y-4">
-            @foreach($pekerjaanStat->take(5) as $item)
-                @php $pct = $totalPenduduk > 0 ? ($item->total / $totalPenduduk) * 100 : 0; @endphp
-                <div>
-                    <div class="flex justify-between text-xs font-semibold mb-1.5">
-                        <span class="text-slate-700 truncate pr-2 dark:text-slate-300">{{ $item->nama }}</span>
-                        <span class="text-slate-900 shrink-0 dark:text-slate-100">{{ $item->total }}</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden dark:bg-slate-800">
-                        <div class="bg-sky-500 h-1.5 rounded-full" style="width: {{ $pct }}%"></div>
-                    </div>
-                </div>
-            @endforeach
-            </div>
-        @else
-            <p class="text-sm text-slate-400">Belum ada data.</p>
-        @endif
-    </div>
-
-    {{-- Agama --}}
-    <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] dark:bg-slate-900 dark:ring-slate-800">
-        <h6 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-5 dark:text-slate-400">Agama</h6>
-        @if($agamaStat->isNotEmpty())
-            <div class="space-y-4">
-            @foreach($agamaStat as $item)
-                @php $pct = $totalPenduduk > 0 ? ($item->total / $totalPenduduk) * 100 : 0; @endphp
-                <div>
-                    <div class="flex justify-between text-xs font-semibold mb-1.5">
-                        <span class="text-slate-700 dark:text-slate-300">{{ $item->nama }}</span>
-                        <span class="text-slate-900 dark:text-slate-100">{{ $item->total }}</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden dark:bg-slate-800">
-                        <div class="bg-emerald-500 h-1.5 rounded-full" style="width: {{ $pct }}%"></div>
-                    </div>
-                </div>
-            @endforeach
-            </div>
-        @else
-            <p class="text-sm text-slate-400">Belum ada data.</p>
-        @endif
-    </div>
-
-    {{-- Status Perkawinan --}}
-    <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] dark:bg-slate-900 dark:ring-slate-800">
-        <h6 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-5 dark:text-slate-400">Status Perkawinan</h6>
-        @if($statusNikahStat->isNotEmpty())
-            <div class="space-y-4">
-            @foreach($statusNikahStat as $item)
-                @php $pct = $totalPenduduk > 0 ? ($item->total / $totalPenduduk) * 100 : 0; @endphp
-                <div>
-                    <div class="flex justify-between text-xs font-semibold mb-1.5">
-                        <span class="text-slate-700 dark:text-slate-300">{{ $item->nama }}</span>
-                        <span class="text-slate-900 dark:text-slate-100">{{ $item->total }}</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden dark:bg-slate-800">
-                        <div class="bg-amber-500 h-1.5 rounded-full" style="width: {{ $pct }}%"></div>
-                    </div>
-                </div>
-            @endforeach
-            </div>
-        @else
-            <p class="text-sm text-slate-400">Belum ada data.</p>
-        @endif
-    </div>
-
-    {{-- Kelompok Usia --}}
-    <div class="bg-white rounded-3xl p-6 ring-1 ring-slate-200/60 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] dark:bg-slate-900 dark:ring-slate-800">
-        <h6 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-5 dark:text-slate-400">Kelompok Usia</h6>
-        @if(array_sum($usiaStat) > 0)
-            <div class="flex flex-col gap-3">
-            @foreach($usiaStat as $usia => $jumlah)
-                <div class="flex justify-between items-center px-3 py-2 bg-slate-50 rounded-xl dark:bg-slate-800">
-                    <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">{{ $usia }}</span>
-                    <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">{{ number_format($jumlah) }}</span>
-                </div>
-            @endforeach
-            </div>
-        @else
-            <p class="text-sm text-slate-400">Belum ada data.</p>
-        @endif
-    </div>
-
-</div>
-
-{{-- ============================================================
- PENDUDUK TERBARU
-============================================================ --}}
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8 dark:bg-slate-900 dark:border-slate-800">
-    <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-800">
-        <h5 class="text-base font-bold text-slate-900 dark:text-slate-100">Penduduk Baru Terdaftar</h5>
-        <a href="{{ route('admin.penduduk.index') }}" class="text-xs font-semibold text-primary-600 hover:text-primary-700 transition-colors flex items-center gap-1 group dark:text-primary-400 dark:hover:text-primary-300">
-            Lihat Semua <i class="fa-solid fa-arrow-right-long text-[10px] group-hover:translate-x-1 transition-transform"></i>
-        </a>
-    </div>
-    <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-slate-600 min-w-[700px] dark:text-slate-300">
-            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50 dark:bg-slate-800/80 dark:text-slate-400">
-                <tr>
-                    <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Data Diri</th>
-                    <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">NIK / KK</th>
-                    <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Alamat</th>
-                    <th class="px-6 py-4 border-b border-slate-100 dark:border-slate-800">Status</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                @forelse($pendudukTerbaru as $item)
-                <tr class="hover:bg-slate-50/80 transition-colors dark:hover:bg-slate-800/50">
-                    <td class="px-6 py-4">
-                        <p class="font-bold text-slate-900 dark:text-slate-100">{{ $item->nama_lengkap }}</p>
-                        <p class="text-xs text-slate-500 mt-0.5 dark:text-slate-400">@gender($item->jenis_kelamin) &bull; {{ $item->tanggal_lahir?->translatedFormat('d M Y') ?? '-' }}</p>
-                    </td>
-                    <td class="px-6 py-4">
-                        <p class="font-mono text-xs text-slate-600 font-medium dark:text-slate-300">{{ $item->nik }}</p>
-                        <p class="text-[11px] text-slate-400 mt-0.5 dark:text-slate-500">KK: {{ optional($item->kartuKeluarga)->no_kk ?? optional($item->kartuKeluarga)->nomor_kk ?? '-' }}</p>
-                    </td>
-                    <td class="px-6 py-4 text-slate-600 dark:text-slate-300">{{ optional($item->lingkungan)->nama ?? '-' }}</td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 tracking-wide dark:bg-slate-800 dark:text-slate-300">{{ $item->status_perkawinan ?? 'N/A' }}</span>
-                    </td>
-                </tr>
-                @empty
-                <tr><td colspan="4" class="px-6 py-8 text-center text-sm text-slate-400">Belum ada data penduduk.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-</div>
-
 @php
  $bulanIndonesia = [
- 'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret',
- 'April' => 'April', 'May' => 'Mei', 'June' => 'Juni',
- 'July' => 'Juli', 'August' => 'Agustus', 'September' => 'September',
- 'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember',
+     'January' => 'Januari', 'February' => 'Februari', 'March' => 'Maret',
+     'April' => 'April', 'May' => 'Mei', 'June' => 'Juni',
+     'July' => 'Juli', 'August' => 'Agustus', 'September' => 'September',
+     'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember',
  ];
  $bulan = $bulanIndonesia[date('F')];
 @endphp
 
+@endsection
+
+@push('scripts')
 <script>
 let pelayananChart;
+let pendudukChart;
 
 document.addEventListener('DOMContentLoaded', function () {
-    const fontFam = 'Inter, ui-sans-serif, system-ui, -apple-system, sans-serif';
+    if (!window.ApexCharts) return;
 
-    // CHART PELAYANAN
     const pelayanan = @json($chartPelayanan);
     const pelayananEl = document.getElementById('chartPelayanan');
-
-    if (pelayananEl && pelayanan) {
-        pelayananChart = new ApexCharts(pelayananEl, {
-            series: [{ name: 'Jumlah', data: pelayanan.data }],
-            chart: { type: 'bar', height: 320, toolbar: { show: false }, fontFamily: fontFam },
-            plotOptions: { bar: { borderRadius: 6, columnWidth: '40%', distributed: true } },
-            colors: ['#f59e0b', '#0ea5e9', '#10b981', '#f43f5e'],
-            dataLabels: { enabled: false },
-            xaxis: { 
-                categories: pelayanan.labels, 
-                axisBorder: { show: false }, 
-                axisTicks: { show: false },
-                labels: { style: { colors: '#64748b', fontWeight: 500 } }
-            },
-            yaxis: { labels: { formatter: val => Math.round(val), style: { colors: '#64748b', fontWeight: 500 } } },
-            grid: { borderColor: '#f1f5f9', strokeDashArray: 4, padding: { top: 0, right: 0, bottom: 0, left: 10 } },
-            legend: { show: false }
-        });
-        pelayananChart.render();
-    }
-
-    // CHART KOMPOSISI PENDUDUK
     const chartJK = @json($chartJK);
     const pendudukEl = document.getElementById('chartPenduduk');
 
-    if (pendudukEl && chartJK) {
-        new ApexCharts(pendudukEl, {
-            series: chartJK.data,
-            chart: { type: 'donut', height: 260, fontFamily: fontFam },
-            labels: chartJK.labels,
-            colors: ['#0ea5e9', '#ec4899'],
-            plotOptions: { pie: { donut: { size: '75%', labels: { show: true, name: { color: '#64748b', fontSize: '11px', fontWeight: 600, offsetY: 20 }, value: { color: '#0f172a', fontSize: '24px', fontWeight: 800, offsetY: -10 }, total: { show: true, label: 'TOTAL', fontSize: '11px', fontWeight: 700, color: '#94a3b8' } } } } },
-            legend: { show: false },
-            dataLabels: { enabled: false },
-            stroke: { show: false }
-        }).render();
+    function renderCharts() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const textColor = isDark ? '#94a3b8' : '#64748b';
+        const headingColor = isDark ? '#cbd5e1' : '#334155';
+        const gridColor = isDark ? '#334155' : '#e2e8f0';
+        const strokeColor = isDark ? '#0f172a' : '#ffffff';
+        const themeMode = isDark ? 'dark' : 'light';
+
+        // CHART PELAYANAN
+        if (pelayananEl && pelayanan) {
+            const options = {
+                series: [{ name: 'Jumlah', data: pelayanan.data }],
+                chart: { 
+                    type: 'bar', 
+                    height: 320, 
+                    toolbar: { show: false }, 
+                    fontFamily: 'Inter, sans-serif',
+                    background: 'transparent',
+                    foreColor: textColor
+                },
+                theme: { mode: themeMode },
+                tooltip: { 
+                    theme: themeMode,
+                    y: { formatter: val => val !== undefined ? `${val.toLocaleString('id-ID')} Permohonan` : '' }
+                },
+                plotOptions: { 
+                    bar: { 
+                        horizontal: false,
+                        borderRadius: 6, 
+                        columnWidth: '45%', 
+                        distributed: true 
+                    } 
+                },
+                colors: ['#f59e0b', '#0ea5e9', '#10b981', '#f43f5e'],
+                dataLabels: { enabled: false },
+                xaxis: { 
+                    categories: pelayanan.labels, 
+                    axisBorder: { show: false }, 
+                    axisTicks: { show: false },
+                    labels: { style: { fontSize: '11px', colors: textColor } }
+                },
+                yaxis: { labels: { formatter: val => Math.round(val), style: { fontSize: '11px', colors: headingColor } } },
+                grid: { borderColor: gridColor, strokeDashArray: 4, padding: { top: 0, right: 0, bottom: 0, left: 10 } },
+                legend: { show: false }
+            };
+
+            if (pelayananChart) {
+                pelayananChart.destroy();
+            }
+            pelayananChart = new ApexCharts(pelayananEl, options);
+            pelayananChart.render();
+        }
+
+        // CHART KOMPOSISI PENDUDUK
+        if (pendudukEl && chartJK) {
+            const options = {
+                series: chartJK.data,
+                chart: { 
+                    type: 'donut', 
+                    height: 260, 
+                    fontFamily: 'Inter, sans-serif',
+                    background: 'transparent',
+                    foreColor: textColor
+                },
+                theme: { mode: themeMode },
+                tooltip: { 
+                    theme: themeMode,
+                    y: { formatter: val => val !== undefined ? `${val.toLocaleString('id-ID')} Jiwa` : '' }
+                },
+                labels: chartJK.labels,
+                colors: ['#0ea5e9', '#ec4899'],
+                plotOptions: { 
+                    pie: { 
+                        donut: { 
+                            size: '68%', 
+                            labels: { 
+                                show: true, 
+                                name: { 
+                                    show: true,
+                                    fontSize: '11px', 
+                                    fontWeight: 600, 
+                                    color: textColor,
+                                    offsetY: 20 
+                                }, 
+                                value: { 
+                                    show: true,
+                                    fontSize: '22px', 
+                                    fontWeight: 800, 
+                                    color: isDark ? '#f8fafc' : '#0f172a',
+                                    offsetY: -10 
+                                }, 
+                                total: { 
+                                    show: true, 
+                                    label: 'TOTAL', 
+                                    fontSize: '12px', 
+                                    fontWeight: 700, 
+                                    color: isDark ? '#cbd5e1' : '#475569',
+                                    formatter: function (w) {
+                                        return w.globals.seriesTotals.reduce((a, b) => a + b, 0).toLocaleString('id-ID');
+                                    }
+                                } 
+                            } 
+                        } 
+                    } 
+                },
+                legend: { show: false },
+                dataLabels: { enabled: false },
+                stroke: { show: true, width: 2, colors: [strokeColor] }
+            };
+
+            if (pendudukChart) {
+                pendudukChart.destroy();
+            }
+            pendudukChart = new ApexCharts(pendudukEl, options);
+            pendudukChart.render();
+        }
     }
+
+    renderCharts();
+
+    // Reaktif saat tema di-toggle di navbar
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.attributeName === 'class') {
+                renderCharts();
+            }
+        });
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 });
 
 async function downloadChart() {
@@ -429,5 +379,4 @@ async function downloadChart() {
     } catch (e) { alert('Gagal mengunduh grafik'); }
 }
 </script>
-
-@endsection
+@endpush

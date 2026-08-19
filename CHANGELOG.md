@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Penyederhanaan & Redesain Dasbor Admin (Clean & Focused Executive Dashboard)**:
+  - Mengeliminasi widget redundan pada dasbor (4 kartu progres demografi pekerjaan/agama/status/usia yang telah tersedia lengkap di Laporan Statistik, widget Akses Cepat yang duplikat dengan sidebar, dan tabel riwayat pendaftaran penduduk di dasar halaman).
+  - Menyusun struktur tata letak seimbang grid 2/3 + 1/3 (Baris KPI $\rightarrow$ Baris Grafik Visual Pelayanan & Donut Komposisi Penduduk $\rightarrow$ Baris Antrean Operasional Permohonan Surat Terbaru & Distribusi Wilayah Lingkungan).
+  - Menyederhanakan teks antarmuka (*copywriting*) menjadi padat, lugas, dan profesional (*to the point*).
+  - Menghapus card legend tambahan di bawah grafik agar tampilan dasbor lebih lapang dan bersih.
+  - Memperbesar tombol aksi cepat *Statistik* dan *+ Permohonan* pada header dasbor ke ukuran standar yang nyaman (`px-4 py-2.5 text-sm`).
+  - Menghapus judul grup teks `Dashboard` pada navigasi sidebar admin.
+- **Standarisasi Tooltip Native ApexCharts & Sinkronisasi Mode Gelap**:
+  - Menghapus fungsi custom tooltip HTML dan mengembalikan konfigurasi murni bawaan (*native*) resmi pustaka ApexCharts di seluruh halaman (`dashboard.blade.php`, `admin/laporan/statistik.blade.php`, dan `public/sections/statistics.blade.php`).
+  - Menerapkan siklus reaktif pergantian tema instan pada grafik melalui pengikatan `MutationObserver` dan lifecycle `.destroy()` + instansiasi ulang.
+  - Mengaudit dan menyelaraskan rasio kontras warna tombol, kartu statistik, dan ikon di seluruh mode gelap aplikasi.
 - **Implementasi Mode Gelap Komprehensif (Full Application-Wide Dark Mode)**:
   - Mengonfigurasi direktif Tailwind CSS v4 `@custom-variant dark (&:where(.dark, .dark *));` pada `resources/css/app.css` dan `resources/css/frontend.css`.
   - Menambahkan script inline Anti-FOUC (*Flash of Unstyled Content*) di `<head>` seluruh layout master (`layouts/admin.blade.php`, `layouts/public.blade.php`, `layouts/auth.blade.php`) untuk transisi tema yang instan tanpa kedipan putih.
