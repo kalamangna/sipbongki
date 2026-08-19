@@ -22,7 +22,7 @@
         {{-- Theme Switcher --}}
         <button type="button"
                 x-data="{
-                    darkMode: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+                    darkMode: localStorage.theme === 'dark',
                     toggle() {
                         this.darkMode = !this.darkMode;
                         if (this.darkMode) {

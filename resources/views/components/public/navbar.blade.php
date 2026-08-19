@@ -7,7 +7,7 @@
      x-data="{
         open: false,
         scrolled: false,
-        darkMode: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+        darkMode: localStorage.theme === 'dark',
         toggleTheme() {
             this.darkMode = !this.darkMode;
             if (this.darkMode) {

@@ -36,6 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Menghapus komponen `resources/views/components/admin/breadcrumb.blade.php` dan seluruh panggilannya di panel administrasi untuk menciptakan antarmuka kerja yang lebih bersih, fokus, dan lapang.
 
 ### Changed
+- **Konfigurasi Tema Default Light Mode**:
+  - Menyetel tema awal aplikasi menjadi default **Light Mode (Mode Terang)** secara baku di seluruh layout master (`layouts/public.blade.php`, `layouts/admin.blade.php`, `layouts/auth.blade.php`) dan inisialisasi state navbar Alpine.js (`darkMode: localStorage.theme === 'dark'`), dengan tetap mempertahankan pilihan pengguna jika secara manual beralih ke Mode Gelap.
 - **Pencegahan Akses Registrasi Publik**:
   - Mengarahkan rute `GET /register` (`RegisteredUserController::create`) secara aman ke `/login` untuk menegaskan bahwa pembuatan akun sepenuhnya dikelola secara terpusat oleh Administrator.
 
