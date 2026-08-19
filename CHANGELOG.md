@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Menyematkan kartu aksi modal konfirmasi interaktif dengan Alpine.js pada `admin/pelayanan/permohonan-surat/partials/action-card.blade.php` yang mewajibkan input alasan rollback dan mencatat jejak audit ke tabel `permohonan_surat_histories`.
 - **Artisan Command Pruning Berkas Lampiran Lama & Penjadwalan Otomatis**:
   - Membuat Artisan command `permohonan:prune-documents {--days=180} {--dry-run}` (`app/Console/Commands/PrunePermohonanDocuments.php`) untuk membersihkan berkas fisik KTP, KK, dan surat pengantar dari permohonan yang telah berstatus `Selesai` atau `Ditolak` melampaui batas masa retensi.
-  - Mendaftarkan scheduler harian otomatis pada pukul 02:00 dini hari di `routes/console.php`.
+  - Mendaftarkan scheduler harian otomatis pada pukul 02:00 dini hari di `routes/console.php` dengan pencatatan riwayat eksekusi terpusat ke berkas `storage/logs/prune.log`.
 - **Sistem Cache Data Publik & Invalidation Otomatis**:
   - Menerapkan `Cache::remember()` pada `HomeController` (Statistik & Demografi, Berita, Pengumuman, Agenda, Galeri, Jenis Surat, Struktur Organisasi, Profil Website, dan Riwayat Pelayanan Terbaru) serta View Composer di `AppServiceProvider` guna meminimalkan beban query database pada lalu lintas publik.
   - Mengintegrasikan *event hook* Eloquent `booted()` (`saved` & `deleted`) pada model `Berita`, `Pengumuman`, `Agenda`, `Galeri`, `WebsiteSetting`, `JenisSurat`, `Jabatan`, `Perangkat`, `Penduduk`, `KartuKeluarga`, dan `PermohonanSurat` untuk invalidasi cache otomatis seketika data diperbarui oleh admin.

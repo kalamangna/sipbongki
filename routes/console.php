@@ -12,5 +12,6 @@ use Illuminate\Support\Facades\Schedule;
 Schedule::command('permohonan:prune-documents --days=180')
     ->daily()
     ->at('02:00')
+    ->appendOutputTo(storage_path('logs/prune.log'))
     ->runInBackground();
 

@@ -48,8 +48,9 @@ class PrunePermohonanDocuments extends Command
         }
 
         $cutoffDate = now()->subDays($days);
+        $nowStr = now()->format('Y-m-d H:i:s');
 
-        $this->info("Memeriksa permohonan berstatus Selesai/Ditolak sebelum {$cutoffDate->format('Y-m-d H:i:s')} (retensi {$days} hari)...");
+        $this->info("[{$nowStr}] Memeriksa permohonan berstatus Selesai/Ditolak sebelum {$cutoffDate->format('Y-m-d H:i:s')} (retensi {$days} hari)...");
         if ($isDryRun) {
             $this->warn('[DRY-RUN MODE] Tidak ada berkas yang akan dihapus secara nyata.');
         }
