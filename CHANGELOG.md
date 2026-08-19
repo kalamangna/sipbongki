@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Optimalisasi Mode Gelap & Formulir Autentikasi (`/login`)**:
+  - Menambahkan tombol sakelar tema (*Theme Switcher Toggle*) melayang dan tombol kembali ke *Beranda* di bagian atas layout autentikasi (`layouts/auth.blade.php`).
+  - Mengintegrasikan plugin `@tailwindcss/forms` pada `resources/css/app.css` dan menambahkan deklarasi standar W3C `color-scheme: light` & `color-scheme: dark` pada layer base untuk rendering formulir bawaan yang sempurna di mode gelap.
+  - Memperbaiki kolom input pada seluruh halaman autentikasi (`login.blade.php`, `forgot-password.blade.php`, `reset-password.blade.php`, `confirm-password.blade.php`) dengan menghapus `focus:bg-white` agar input tetap gelap (`dark:bg-slate-800`) saat aktif, terfokus, maupun saat *autofocus* awal.
+  - Menambahkan ikon Font Awesome `fa-right-to-bracket` pada tombol submit Login.
+  - Menstandarisasi tampilan konten artikel berita admin (`admin/website/berita/show.blade.php`) menggunakan kelas resmi Tailwind Typography `prose prose-slate dark:prose-invert` dan menghapus blok style kustom.
+  - Membersihkan seluruh kode CSS kustom manual pada `resources/css/app.css` dan `resources/css/frontend.css` sehingga konfigurasi styling 100% murni berbasis token dan direktif resmi Tailwind CSS v4.
 - **Penyederhanaan & Redesain Dasbor Admin (Clean & Focused Executive Dashboard)**:
   - Mengeliminasi widget redundan pada dasbor (4 kartu progres demografi pekerjaan/agama/status/usia yang telah tersedia lengkap di Laporan Statistik, widget Akses Cepat yang duplikat dengan sidebar, dan tabel riwayat pendaftaran penduduk di dasar halaman).
   - Menyusun struktur tata letak seimbang grid 2/3 + 1/3 (Baris KPI $\rightarrow$ Baris Grafik Visual Pelayanan & Donut Komposisi Penduduk $\rightarrow$ Baris Antrean Operasional Permohonan Surat Terbaru & Distribusi Wilayah Lingkungan).

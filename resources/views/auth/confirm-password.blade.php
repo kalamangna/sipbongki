@@ -28,7 +28,7 @@
                    name="password"
                    required
                    autofocus
-                   class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:border-primary-600 focus:ring-1 focus:ring-primary-600 outline-none transition-colors">
+                   class="w-full px-4 py-2.5 bg-slate-50 border @error('password') border-rose-500 dark:border-rose-500 @else border-slate-200 dark:border-slate-700 @enderror rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors shadow-sm">
             @error('password')
                 <p class="text-xs text-rose-600 dark:text-rose-400 mt-1.5">{{ $message }}</p>
             @enderror

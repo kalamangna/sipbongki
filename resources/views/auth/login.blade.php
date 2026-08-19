@@ -4,28 +4,30 @@
 
 @section('content')
 
-<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-10 dark:bg-slate-900 dark:border-slate-800">
+<div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 sm:p-8 md:p-10 dark:bg-slate-900 dark:border-slate-800">
 
     {{-- System Header / Logo --}}
     <div class="text-center mb-8">
-        <img src="{{ asset('images/logo.png') }}"
-             alt="Logo Kelurahan Bongki"
-             class="w-16 h-16 object-contain mx-auto mb-4">
-        <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">SIP Bongki</h1>
+        <div class="w-16 h-16 mx-auto bg-primary-light dark:bg-primary-950/60 rounded-2xl flex items-center justify-center mb-4 text-primary dark:text-primary-400 p-2.5 shadow-sm border border-slate-100 dark:border-slate-800">
+            <img src="{{ asset('images/logo.png') }}"
+                 alt="Logo Kelurahan Bongki"
+                 class="h-11 w-auto">
+        </div>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">SIP Bongki</h1>
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Sistem Informasi & Pelayanan Kelurahan</p>
     </div>
 
     {{-- Alerts --}}
     @if(session('status'))
-        <div class="mb-6 p-3 rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 text-sm flex items-start gap-2">
-            <i class="fa-solid fa-circle-check mt-0.5"></i>
+        <div class="mb-6 p-4 rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 text-sm flex items-start gap-2.5 border border-emerald-100 dark:border-emerald-900/60 shadow-sm">
+            <i class="fa-solid fa-circle-check text-base mt-0.5 shrink-0"></i>
             <span>{{ session('status') }}</span>
         </div>
     @endif
 
     @if($errors->any())
-        <div class="mb-6 p-3 rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 text-sm flex items-start gap-2">
-            <i class="fa-solid fa-circle-exclamation mt-0.5"></i>
+        <div class="mb-6 p-4 rounded-2xl bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 text-sm flex items-start gap-2.5 border border-rose-100 dark:border-rose-900/60 shadow-sm">
+            <i class="fa-solid fa-circle-exclamation text-base mt-0.5 shrink-0"></i>
             <span>{{ $errors->first() }}</span>
         </div>
     @endif
@@ -45,7 +47,7 @@
                    value="{{ old('username') }}"
                    required
                    autofocus
-                   class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:border-primary-600 focus:ring-1 focus:ring-primary-600 outline-none transition-colors">
+                   class="w-full px-4 py-2.5 bg-slate-50 border @error('username') border-rose-500 dark:border-rose-500 @else border-slate-200 dark:border-slate-700 @enderror rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors shadow-sm">
             @error('username')
                 <p class="text-xs text-rose-600 dark:text-rose-400 mt-1.5">{{ $message }}</p>
             @enderror
@@ -61,7 +63,7 @@
                        type="password"
                        name="password"
                        required
-                       class="w-full pl-4 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 focus:bg-white dark:focus:bg-slate-800 focus:border-primary-600 focus:ring-1 focus:ring-primary-600 outline-none transition-colors">
+                       class="w-full pl-4 pr-10 py-2.5 bg-slate-50 border @error('password') border-rose-500 dark:border-rose-500 @else border-slate-200 dark:border-slate-700 @enderror rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors shadow-sm">
                 <button type="button"
                         onclick="togglePasswordVisibility()"
                         class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none cursor-pointer"
@@ -87,8 +89,9 @@
 
         {{-- Submit Button --}}
         <button type="submit"
-                class="w-full py-2.5 px-4 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-xl transition-colors shadow-sm cursor-pointer active:scale-95">
-            Login
+                class="w-full flex items-center justify-center gap-2 py-2.5 px-4 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-xl transition-all shadow-sm cursor-pointer active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+            <i class="fa-solid fa-right-to-bracket text-sm"></i>
+            <span>Login</span>
         </button>
     </form>
 

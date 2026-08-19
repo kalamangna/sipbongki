@@ -54,7 +54,7 @@
                         @endif
                     </div>
 
-                    <div class="berita-content text-slate-700 dark:text-slate-300 text-base">
+                    <div class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary dark:prose-a:text-primary-400 prose-img:rounded-xl leading-relaxed text-slate-700 dark:text-slate-300">
                         @if(preg_match('/<[a-z][\s\S]*>/i', $berita->isi))
                             {!! $berita->isi !!}
                         @else
@@ -104,55 +104,3 @@
     </div>
 </div>
 @endsection
-
-@push('styles')
-<style>
-    .berita-content p {
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-    }
-    .berita-content p:last-child {
-        margin-bottom: 0;
-    }
-    .berita-content h1, .berita-content h2, .berita-content h3, .berita-content h4 {
-        font-weight: 700;
-        color: #0f172a;
-        margin-top: 1.75rem;
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-    }
-    .dark .berita-content h1, .dark .berita-content h2, .dark .berita-content h3, .dark .berita-content h4 {
-        color: #f1f5f9;
-    }
-    .berita-content ul {
-        list-style-type: disc;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    .berita-content ol {
-        list-style-type: decimal;
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    .berita-content blockquote {
-        border-left: 4px solid #059669;
-        padding-left: 1rem;
-        font-style: italic;
-        color: #475569;
-        margin: 1.25rem 0;
-    }
-    .dark .berita-content blockquote {
-        color: #94a3b8;
-    }
-    .berita-content img {
-        border-radius: 0.75rem;
-        max-width: 100%;
-        height: auto;
-        margin: 1.5rem 0;
-    }
-    .berita-content a {
-        color: #059669;
-        text-decoration: underline;
-    }
-</style>
-@endpush
