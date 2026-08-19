@@ -2,16 +2,14 @@
 
     {{-- Nama Jabatan --}}
     <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Jabatan <span class="text-red-500">*</span></label>
-        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('nama', $jabatan->nama ?? '') }}" placeholder="Masukkan nama jabatan" required>
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Nama Jabatan <span class="text-red-500">*</span></label>
+        <input type="text" name="nama" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500" value="{{ old('nama', $jabatan->nama ?? '') }}" placeholder="Masukkan nama jabatan" required>
     </div>
-
-
 
     {{-- Parent Jabatan --}}
     <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Parent Jabatan</label>
-        <select name="parent_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Parent Jabatan</label>
+        <select name="parent_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100">
             <option value="">-- Tidak Ada --</option>
             @foreach($parentJabatans as $parent)
                 <option value="{{ $parent->id }}" @selected(old('parent_id', $jabatan->parent_id ?? '') == $parent->id)>
@@ -23,30 +21,30 @@
 
     {{-- Urutan --}}
     <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Urutan</label>
-        <input type="number" min="1" name="urutan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('urutan', $jabatan->urutan ?? 1) }}" placeholder="1">
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Urutan</label>
+        <input type="number" min="1" name="urutan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500" value="{{ old('urutan', $jabatan->urutan ?? 1) }}" placeholder="1">
     </div>
 
 </div>
 
-<div class="mt-6 pt-6 border-t border-slate-100">
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {{-- Penandatangan --}}
-        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200">
-            <input type="checkbox" name="is_penandatangan" value="1" class="w-5 h-5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 focus:ring-2" @checked(old('is_penandatangan', $jabatan->is_penandatangan ?? false))>
-            <span class="text-sm font-bold text-slate-800">Jabatan Penandatangan</span>
+        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 dark:bg-slate-800/80 dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:border-emerald-500">
+            <input type="checkbox" name="is_penandatangan" value="1" class="w-5 h-5 rounded border-slate-300 dark:border-slate-600 dark:bg-slate-700 text-emerald-600 focus:ring-emerald-600 focus:ring-2" @checked(old('is_penandatangan', $jabatan->is_penandatangan ?? false))>
+            <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Jabatan Penandatangan</span>
         </label>
         
         {{-- Struktur Organisasi --}}
-        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200">
-            <input type="checkbox" name="is_struktur" value="1" class="w-5 h-5 rounded border-slate-300 text-sky-600 focus:ring-sky-600 focus:ring-2" @checked(old('is_struktur', $jabatan->is_struktur ?? false))>
-            <span class="text-sm font-bold text-slate-800">Struktur Organisasi Web</span>
+        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 dark:bg-slate-800/80 dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:border-sky-500">
+            <input type="checkbox" name="is_struktur" value="1" class="w-5 h-5 rounded border-slate-300 dark:border-slate-600 dark:bg-slate-700 text-sky-600 focus:ring-sky-600 focus:ring-2" @checked(old('is_struktur', $jabatan->is_struktur ?? false))>
+            <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Struktur Organisasi Web</span>
         </label>
         
         {{-- Aktif --}}
-        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200">
-            <input type="checkbox" name="aktif" value="1" class="w-5 h-5 rounded border-slate-300 text-primary-600 focus:ring-primary-600 focus:ring-2" @checked(old('aktif', $jabatan->aktif ?? true))>
-            <span class="text-sm font-bold text-slate-800">Jabatan Aktif</span>
+        <label class="flex items-center gap-3 cursor-pointer p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 dark:bg-slate-800/80 dark:border-slate-700 dark:hover:bg-slate-800 dark:hover:border-primary-500">
+            <input type="checkbox" name="aktif" value="1" class="w-5 h-5 rounded border-slate-300 dark:border-slate-600 dark:bg-slate-700 text-primary-600 focus:ring-primary-600 focus:ring-2" @checked(old('aktif', $jabatan->aktif ?? true))>
+            <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Jabatan Aktif</span>
         </label>
     </div>
 </div>

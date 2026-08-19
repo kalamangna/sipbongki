@@ -3,15 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Concerns\AuthorizesAdminRequest;
 use Illuminate\Validation\Rule;
 
 class UpdatePendudukRequest extends FormRequest
 {
-
-    public function authorize(): bool
-    {
-        return true;
-    }
+    use AuthorizesAdminRequest;
 
 
 

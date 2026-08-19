@@ -67,16 +67,16 @@
 
 @section('content')
 
-<section class="py-24 bg-slate-50 pt-32">
+<section class="py-24 bg-slate-50 dark:bg-slate-950 pt-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Breadcrumb --}}
-        <nav class="flex items-center gap-2 text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
-            <a href="{{ route('home') }}" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Beranda</a>
+        <nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-8" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}" class="hover:text-primary dark:hover:text-primary-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Beranda</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <a href="{{ route('home') }}#pengumuman" class="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Pengumuman</a>
+            <a href="{{ route('home') }}#pengumuman" class="hover:text-primary dark:hover:text-primary-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">Pengumuman</a>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            <span class="text-slate-400" aria-current="page">Detail Pengumuman</span>
+            <span class="text-slate-400 dark:text-slate-500" aria-current="page">Detail Pengumuman</span>
         </nav>
 
         <div class="grid lg:grid-cols-12 gap-10 items-start">
@@ -85,50 +85,50 @@
             <div class="lg:col-span-8">
                 
                 {{-- Header --}}
-                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 leading-tight mb-6">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-slate-100 leading-tight mb-6">
                     {{ $pengumuman->judul }}
                 </h1>
 
                 {{-- Meta --}}
-                <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 border-b border-slate-200 pb-6 mb-8">
-                    <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
-                        <i class="fa-solid fa-calendar-days text-primary"></i>
-                        <span class="font-medium">{{ optional($pengumuman->tanggal_publish)->translatedFormat('d F Y') ?? $pengumuman->created_at->translatedFormat('d F Y') }}</span>
+                <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-6 mb-8">
+                    <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <i class="fa-solid fa-calendar-days text-primary dark:text-primary-400"></i>
+                        <span class="font-medium text-slate-700 dark:text-slate-300">{{ optional($pengumuman->tanggal_publish)->translatedFormat('d F Y') ?? $pengumuman->created_at->translatedFormat('d F Y') }}</span>
                     </div>
-                    <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">
-                        <i class="fa-solid fa-circle-user text-primary"></i>
-                        <span class="font-medium">Admin Bongki</span>
+                    <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <i class="fa-solid fa-circle-user text-primary dark:text-primary-400"></i>
+                        <span class="font-medium text-slate-700 dark:text-slate-300">Admin Bongki</span>
                     </div>
                 </div>
 
                 {{-- Image & Body --}}
-                <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden mb-8">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden mb-8">
                     @if($pengumuman->gambar)
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden bg-slate-100 dark:bg-slate-800">
                             <img src="{{ asset('storage/'.$pengumuman->gambar) }}"
                                  alt="{{ $pengumuman->judul }}"
                                  class="w-full aspect-video object-cover hover:scale-105 transition-transform duration-700">
                         </div>
                     @endif
 
-                    <div class="p-6 md:p-10 prose prose-slate max-w-none prose-headings:font-bold prose-a:text-primary prose-img:rounded-2xl leading-relaxed">
+                    <div class="p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary dark:prose-a:text-primary-400 prose-img:rounded-2xl leading-relaxed">
                         {!! $pengumuman->isi !!}
                     </div>
 
                     {{-- Social Share Bottom --}}
-                    <div class="px-6 md:px-10 py-5 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <span class="text-sm font-bold text-slate-700">Bagikan pengumuman ini:</span>
+                    <div class="px-6 md:px-10 py-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Bagikan pengumuman ini:</span>
                         <div class="flex items-center gap-3">
                             <a href="https://api.whatsapp.com/send?text={{ urlencode(request()->url()) }}" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
+                               class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 flex items-center justify-center hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
                             </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" target="_blank" 
-                               class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
+                               class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400 flex items-center justify-center hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
                                 <i class="fa-brands fa-facebook-f text-lg"></i>
                             </a>
                             <button onclick="navigator.clipboard.writeText('{{ request()->url() }}'); alert('Tautan berhasil disalin!');" 
-                                    class="cursor-pointer w-10 h-10 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-600 hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" title="Salin Tautan" aria-label="Salin tautan pengumuman">
+                                    class="cursor-pointer w-10 h-10 rounded-full bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-300 flex items-center justify-center hover:bg-slate-600 hover:text-white dark:hover:bg-slate-700 dark:hover:text-white transition-all active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" title="Salin Tautan" aria-label="Salin tautan pengumuman">
                                 <i class="fa-solid fa-link text-lg"></i>
                             </button>
                         </div>
@@ -138,7 +138,7 @@
                 {{-- Back Button --}}
                 <div class="mt-4 mb-8 lg:mb-0">
                     <a href="{{ route('home') }}#pengumuman"
-                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary dark:border-primary-400 dark:text-primary-400 font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary-500 dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Pengumuman
                     </a>
@@ -150,34 +150,34 @@
             <aside class="lg:col-span-4 space-y-8 sticky top-28">
                 
                 {{-- Pengumuman Terbaru --}}
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                    <h3 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <i class="fa-solid fa-bullhorn text-primary"></i> Pengumuman Terbaru
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                        <i class="fa-solid fa-bullhorn text-primary dark:text-primary-400"></i> Pengumuman Terbaru
                     </h3>
                     
                     <div class="flex flex-col gap-4">
                         @forelse($pengumumanTerbaru ?? [] as $terbaru)
                             <a href="{{ route('pengumuman.detail', $terbaru->slug) }}" class="group flex gap-4 items-start focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
-                                <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 shadow-inner flex items-center justify-center">
+                                <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 shadow-inner flex items-center justify-center">
                                     @if($terbaru->gambar)
                                         <img src="{{ asset('storage/'.$terbaru->gambar) }}" 
                                              alt="{{ $terbaru->judul }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     @else
-                                        <i class="fa-solid fa-bullhorn text-2xl text-slate-300"></i>
+                                        <i class="fa-solid fa-bullhorn text-2xl text-slate-300 dark:text-slate-600"></i>
                                     @endif
                                 </div>
                                 <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-slate-800 group-hover:text-primary transition-colors line-clamp-2 leading-snug mb-1.5">
+                                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-primary-400 transition-colors line-clamp-2 leading-snug mb-1.5">
                                         {{ $terbaru->judul }}
                                     </h4>
-                                    <p class="text-xs text-slate-500 flex items-center gap-1.5">
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                                         <i class="fa-regular fa-calendar"></i>
                                         {{ optional($terbaru->tanggal_publish)->translatedFormat('d M Y') ?? $terbaru->created_at->translatedFormat('d M Y') }}
                                     </p>
                                 </div>
                             </a>
                         @empty
-                            <p class="text-sm text-slate-500 italic">Belum ada pengumuman lainnya.</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 italic">Belum ada pengumuman lainnya.</p>
                         @endforelse
                     </div>
                 </div>

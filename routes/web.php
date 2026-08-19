@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\PendudukController;
 use App\Http\Controllers\Admin\KartuKeluargaController;
 use App\Http\Controllers\Admin\PerangkatController;
 use App\Http\Controllers\Admin\PermohonanSuratController;
-use App\Http\Controllers\Admin\SuratController;
 use App\Http\Controllers\Admin\RiwayatPelayananController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\UserController;

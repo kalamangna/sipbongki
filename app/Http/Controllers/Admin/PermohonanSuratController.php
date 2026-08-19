@@ -11,6 +11,7 @@ use App\Models\PermohonanSuratHistory;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Services\Surat\TemplateSuratService;
 use App\Services\Surat\NomorSuratService;
 
@@ -35,8 +36,13 @@ class PermohonanSuratController extends Controller
                 $query->where(function ($q) use ($search) {
                     $q->where('nomor_permohonan', 'like', "%{$search}%")
                       ->orWhereHas('penduduk', function ($subq) use ($search) {
-                          $subq->where('nama_lengkap', 'like', "%{$search}%");
-                      });
+                          $subq->where('nama_lengkap', 'like', "%{$search}%")
+                               ->orWhere('nik', 'like', "%{$search}%");
+                      })
+                      ->orWhere('data_surat->manual_nama_lengkap', 'like', "%{$search}%")
+                      ->orWhere('data_surat->nama_lengkap', 'like', "%{$search}%")
+                      ->orWhere('data_surat->manual_nik', 'like', "%{$search}%")
+                      ->orWhere('data_surat->nik', 'like', "%{$search}%");
                 });
             })
             ->when($jenis_surat_id, function ($query) use ($jenis_surat_id) {
@@ -318,7 +324,7 @@ break;
     */
 
     $validated['nomor_permohonan'] =
-        'PMH-' . now()->format('YmdHis');
+        'PMH-' . now()->format('YmdHis') . '-' . Str::upper(Str::random(5));
 
     $validated['status'] = 'Menunggu';
 
@@ -333,7 +339,7 @@ break;
     foreach ($docs as $doc) {
         if ($request->hasFile($doc)) {
             $request->validate([$doc => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:2048']]);
-            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'public');
+            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'local');
         }
     }
     
@@ -690,13 +696,20 @@ public function update(
     foreach ($docs as $doc) {
         if ($request->hasFile($doc)) {
             $request->validate([$doc => ['file', 'mimes:jpg,jpeg,png,pdf', 'max:2048']]);
-            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'public');
-            
+            $uploadedFiles[$doc] = $request->file($doc)->store('permohonan-surat/dokumen', 'local');
+
             if (!empty($permohonanSurat->data_surat[$doc])) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($permohonanSurat->data_surat[$doc]);
+                // Coba hapus dari disk local dulu, fallback ke public (file lama)
+                $oldPath = $permohonanSurat->data_surat[$doc];
+                if (\Illuminate\Support\Facades\Storage::disk('local')->exists($oldPath)) {
+                    \Illuminate\Support\Facades\Storage::disk('local')->delete($oldPath);
+                } elseif (\Illuminate\Support\Facades\Storage::disk('public')->exists($oldPath)) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($oldPath);
+                }
             }
         }
     }
+
     
     // Merge existing data_surat so we don't lose them if they are omitted in request, then overlay new ones
     $validated['data_surat'] = array_merge($permohonanSurat->data_surat ?? [], $dataSurat, $manualFields, $uploadedFiles);

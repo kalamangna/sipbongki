@@ -47,20 +47,20 @@
 
 @section('content')
 
-<div class="min-h-screen py-24 bg-slate-50 pt-32 flex justify-center">
+<div class="min-h-screen py-24 bg-slate-50 dark:bg-slate-950 pt-32 flex justify-center">
     <div class="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800">
             <div class="p-5 sm:p-8 md:p-12">
 
                 @if(session('success'))
-                    <div class="mb-8 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                    <div class="mb-8 bg-green-50 dark:bg-emerald-950/60 border-l-4 border-green-500 dark:border-emerald-500 p-4 rounded-r-lg">
                         <div class="flex">
-                            <div class="flex-shrink-0">
+                            <div class="flex-shrink-0 text-emerald-600 dark:text-emerald-400">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm text-green-700">{{ session('success') }}</p>
+                                <p class="text-sm text-green-700 dark:text-emerald-300">{{ session('success') }}</p>
                             </div>
                         </div>
                     </div>
@@ -76,13 +76,13 @@
                     <div class="mb-10">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                             <div class="mb-2 sm:mb-0">
-                                <strong class="text-slate-800 text-lg">Langkah <span id="current-step" class="text-primary font-extrabold text-xl">1</span> dari <span id="total-steps" class="text-slate-500">5</span></strong>
+                                <strong class="text-slate-800 dark:text-slate-100 text-lg">Langkah <span id="current-step" class="text-primary font-extrabold text-xl">1</span> dari <span id="total-steps" class="text-slate-500 dark:text-slate-400">5</span></strong>
                             </div>
                             <div>
-                                <small class="text-slate-500 font-medium">Isi form bertahap untuk memudahkan pengajuan.</small>
+                                <small class="text-slate-500 dark:text-slate-400 font-medium">Isi form bertahap untuk memudahkan pengajuan.</small>
                             </div>
                         </div>
-                        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                        <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
                             <div class="bg-primary h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 20%" id="step-progress"></div>
                         </div>
                     </div>
@@ -92,30 +92,30 @@
                     @endphp
 
                         <div class="form-step" data-step="1">
-                            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 overflow-hidden">
-                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                                <h3 class="font-bold text-slate-800">Langkah 1: Identitas Pemohon</h3>
+                            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 mb-8 overflow-hidden">
+                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+                                <h3 class="font-bold text-slate-800 dark:text-slate-100">Langkah 1: Identitas Pemohon</h3>
                             </div>
                                 <div class="p-5 sm:p-6">
-                                    <div class="flex flex-wrap gap-4 mb-6 pb-6 border-b border-slate-100">
+                                    <div class="flex flex-wrap gap-4 mb-6 pb-6 border-b border-slate-100 dark:border-slate-800">
                                         <label class="inline-flex items-center cursor-pointer">
                                             <input type="radio" name="jenis_pemohon" value="bongki" class="text-primary-600 focus:ring-primary-500" checked onchange="togglePublicPemohon()">
-                                            <span class="ml-2 text-sm font-semibold text-slate-700">Penduduk Bongki</span>
+                                            <span class="ml-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Penduduk Bongki</span>
                                         </label>
                                         <label class="inline-flex items-center cursor-pointer">
                                             <input type="radio" name="jenis_pemohon" value="luar" class="text-primary-600 focus:ring-primary-500" onchange="togglePublicPemohon()">
-                                            <span class="ml-2 text-sm font-semibold text-slate-700">Penduduk Luar Bongki</span>
+                                            <span class="ml-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Penduduk Luar Bongki</span>
                                         </label>
                                     </div>
 
                                     <div id="step-1-lookup-fields">
-                                        <p class="text-sm text-slate-500 mb-4">Masukkan NIK Anda untuk kami periksa di database kependudukan.</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Masukkan NIK Anda untuk kami periksa di database kependudukan.</p>
                                         <div class="grid grid-cols-1 gap-6">
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">NIK <span class="text-red-500">*</span></label>
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">NIK <span class="text-red-500">*</span></label>
                                                 <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-start">
                                                     <div class="w-full flex-1">
-                                                        <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
+                                                        <input type="text" name="nik_lookup" required id="lookup-nik" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik_lookup') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik_lookup') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
                                                         @error('nik_lookup')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                                     </div>
                                                     <button type="button" id="btn-cari-nik" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shrink-0 cursor-pointer flex items-center justify-center gap-2"><i class="fa-solid fa-search"></i> Cari NIK</button>
@@ -123,14 +123,14 @@
                                             </div>
                                         </div>
                                         <div id="step-1-lookup-result" class="hidden mt-6">
-                                            <div id="step-1-lookup-message" class="bg-emerald-50 border-l-4 border-primary p-4 mb-4 text-sm text-emerald-800 font-medium rounded-r-xl">
+                                            <div id="step-1-lookup-message" class="bg-emerald-50 dark:bg-emerald-950/60 border-l-4 border-primary p-4 mb-4 text-sm text-emerald-800 dark:text-emerald-300 font-medium rounded-r-xl">
                                                 Data kependudukan berhasil ditemukan! Silakan klik Lanjutkan.
                                             </div>
                                             <!-- Existing summary will be moved here by JS -->
                                         </div>
                                     </div>
                                     <div id="step-1-manual-fields" style="display:none;">
-                                        <p class="text-sm text-slate-500">Anda memilih Penduduk Luar Bongki. Silakan klik Lanjutkan untuk mengisi data diri secara manual pada langkah berikutnya.</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">Anda memilih Penduduk Luar Bongki. Silakan klik Lanjutkan untuk mengisi data diri secara manual pada langkah berikutnya.</p>
                                     </div>
                                 </div>
                             </div>
@@ -140,54 +140,54 @@
                         </div>
 
                         <div class="form-step hidden" data-step="2" id="usaha-identity-step">
-                            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mb-8 overflow-hidden">
-                                <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                                    <h3 class="font-bold text-slate-800">Langkah 2: Isi Data Manual</h3>
+                            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 mb-8 overflow-hidden">
+                                <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+                                    <h3 class="font-bold text-slate-800 dark:text-slate-100">Langkah 2: Isi Data Manual</h3>
                                 </div>
                                 <div class="p-6">
-                                    <div id="usaha-verify-message" class="hidden mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-blue-700"></div>
+                                    <div id="usaha-verify-message" class="hidden mb-6 bg-blue-50 dark:bg-blue-950/60 border-l-4 border-blue-500 p-4 text-sm text-blue-700 dark:text-blue-300"></div>
 
                                     <div id="usaha-existing-summary" class="hidden mb-6">
-                                        <div class="p-4 sm:p-5 bg-slate-50 rounded-2xl border border-slate-200">
-                                            <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200 text-slate-800 font-bold text-sm">
-                                                <i class="fa-solid fa-id-card text-primary"></i> Data Kependudukan Terverifikasi
+                                        <div class="p-4 sm:p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
+                                            <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-sm">
+                                                <i class="fa-solid fa-id-card text-primary dark:text-primary-400"></i> Data Kependudukan Terverifikasi
                                             </div>
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">NIK</span>
-                                                    <span class="text-slate-900 font-semibold font-mono text-sm" id="summary-nik-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">NIK</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-semibold font-mono text-sm" id="summary-nik-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Nama Lengkap</span>
-                                                    <span class="text-slate-900 font-semibold" id="summary-nama-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Nama Lengkap</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-semibold" id="summary-nama-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Tempat, Tanggal Lahir</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-tempat-tanggal-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Tempat, Tanggal Lahir</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-tempat-tanggal-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Jenis Kelamin</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-jenis-kelamin-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Jenis Kelamin</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-jenis-kelamin-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Agama</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-agama-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Agama</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-agama-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Pekerjaan</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-pekerjaan-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Pekerjaan</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-pekerjaan-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs sm:col-span-2">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">Alamat</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-alamat-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs sm:col-span-2">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">Alamat</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-alamat-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">RT / RW</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-rt-rw-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">RT / RW</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-rt-rw-found">-</span>
                                                 </div>
-                                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-2xs">
-                                                    <span class="text-slate-500 block text-xs font-medium mb-0.5">No. Telepon / WhatsApp</span>
-                                                    <span class="text-slate-900 font-medium" id="summary-telepon-found">-</span>
+                                                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-2xs">
+                                                    <span class="text-slate-500 dark:text-slate-400 block text-xs font-medium mb-0.5">No. Telepon / WhatsApp</span>
+                                                    <span class="text-slate-900 dark:text-slate-100 font-medium" id="summary-telepon-found">-</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,21 +212,21 @@
                                     <div id="usaha-new-data" class="hidden">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">NIK <span class="text-red-500">*</span></label>
-                                                <input type="text" name="nik" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">NIK <span class="text-red-500">*</span></label>
+                                                <input type="text" name="nik" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nik') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nik') }}" placeholder="Masukkan NIK" minlength="16" maxlength="16" pattern="\d{16}" title="NIK harus 16 digit angka">
                                                 @error('nik')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
-                                                <input type="text" name="nama_lengkap" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nama_lengkap') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nama_lengkap') }}" placeholder="Masukkan Nama Lengkap">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
+                                                <input type="text" name="nama_lengkap" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('nama_lengkap') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('nama_lengkap') }}" placeholder="Masukkan Nama Lengkap">
                                                 @error('nama_lengkap')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Jenis Kelamin <span class="text-red-500">*</span></label>
-                                                <select name="jenis_kelamin" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('jenis_kelamin') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Jenis Kelamin <span class="text-red-500">*</span></label>
+                                                <select name="jenis_kelamin" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('jenis_kelamin') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih</option>
                                                     <option value="L" {{ old('jenis_kelamin')=='L'?'selected':'' }}>Laki-laki</option>
                                                     <option value="P" {{ old('jenis_kelamin')=='P'?'selected':'' }}>Perempuan</option>
@@ -235,8 +235,8 @@
                                             </div>
 
                                             <div id="field-lingkungan">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Lingkungan <span class="text-red-500">*</span></label>
-                                                <select required name="lingkungan_id" id="input-lingkungan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('lingkungan_id') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Lingkungan <span class="text-red-500">*</span></label>
+                                                <select required name="lingkungan_id" id="input-lingkungan" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('lingkungan_id') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Lingkungan</option>
                                                     @foreach($lingkungans as $lingkungan)
                                                         <option value="{{ $lingkungan->id }}" {{ old('lingkungan_id')==$lingkungan->id ? 'selected' : '' }}>{{ $lingkungan->nama }}</option>
@@ -247,20 +247,20 @@
 
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Tempat Lahir <span class="text-red-500">*</span></label>
-                                                <input type="text" name="tempat_lahir" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('tempat_lahir') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('tempat_lahir') }}" placeholder="Masukkan Tempat Lahir">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tempat Lahir <span class="text-red-500">*</span></label>
+                                                <input type="text" name="tempat_lahir" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('tempat_lahir') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('tempat_lahir') }}" placeholder="Masukkan Tempat Lahir">
                                                 @error('tempat_lahir')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Tanggal Lahir <span class="text-red-500">*</span></label>
-                                                <input type="date" name="tanggal_lahir" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('tanggal_lahir') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('tanggal_lahir') }}">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tanggal Lahir <span class="text-red-500">*</span></label>
+                                                <input type="date" name="tanggal_lahir" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('tanggal_lahir') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('tanggal_lahir') }}">
                                                 @error('tanggal_lahir')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div id="field-agama">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Agama <span class="text-red-500">*</span></label>
-                                                <select name="agama" id="input-agama" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('agama') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Agama <span class="text-red-500">*</span></label>
+                                                <select name="agama" id="input-agama" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('agama') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Agama</option>
                                                     @foreach(['Islam','Kristen','Katolik','Hindu','Buddha','Konghucu'] as $a)
                                                         <option value="{{ $a }}" {{ old('agama')==$a ? 'selected' : '' }}>{{ $a }}</option>
@@ -270,8 +270,8 @@
                                             </div>
 
                                             <div id="field-status-perkawinan">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Status Perkawinan <span class="text-red-500">*</span></label>
-                                                <select required name="status_perkawinan" id="input-status-perkawinan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('status_perkawinan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status Perkawinan <span class="text-red-500">*</span></label>
+                                                <select required name="status_perkawinan" id="input-status-perkawinan" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('status_perkawinan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Status</option>
                                                     @foreach(['Belum Kawin','Kawin','Cerai Hidup','Cerai Mati'] as $s)
                                                         <option value="{{ $s }}" {{ old('status_perkawinan')==$s ? 'selected' : '' }}>{{ $s }}</option>
@@ -281,8 +281,8 @@
                                             </div>
 
                                             <div id="field-pendidikan">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Pendidikan <span class="text-red-500">*</span></label>
-                                                <select required name="pendidikan" id="input-pendidikan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pendidikan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Pendidikan <span class="text-red-500">*</span></label>
+                                                <select required name="pendidikan" id="input-pendidikan" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pendidikan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     @php
                                                         $pendidikanList = ['Tidak/Belum Sekolah','Belum Tamat SD/Sederajat','SD/Sederajat','SMP/Sederajat','SMA/Sederajat','Diploma I','Diploma II','Diploma III','Diploma IV/S1','S2','S3'];
                                                     @endphp
@@ -295,8 +295,8 @@
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Pekerjaan <span class="text-red-500">*</span></label>
-                                                <select name="pekerjaan" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pekerjaan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Pekerjaan <span class="text-red-500">*</span></label>
+                                                <select name="pekerjaan" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('pekerjaan') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror">
                                                     <option value="">Pilih Pekerjaan</option>
                                                     @foreach(\App\Models\Penduduk::pekerjaanList() as $item)
                                                         <option value="{{ $item }}" {{ old('pekerjaan')==$item ? 'selected' : '' }}>{{ $item }}</option>
@@ -306,32 +306,32 @@
                                             </div>
 
                                             <div class="md:col-span-2">
-                                                <label id="label-alamat" class="block text-sm font-medium text-slate-700 mb-2">Alamat <span class="text-red-500">*</span></label>
-                                                <textarea name="alamat" required rows="3" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('alamat') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
+                                                <label id="label-alamat" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Alamat <span class="text-red-500">*</span></label>
+                                                <textarea name="alamat" required rows="3" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('alamat') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" placeholder="Masukkan Alamat">{{ old('alamat') }}</textarea>
                                                 @error('alamat')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div id="field-rt">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">RT <span class="text-red-500">*</span></label>
-                                                <input type="text" name="rt" id="input-rt" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rt') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rt') }}" placeholder="Contoh: 001">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">RT <span class="text-red-500">*</span></label>
+                                                <input type="text" name="rt" id="input-rt" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rt') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rt') }}" placeholder="Contoh: 001">
                                                 @error('rt')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div id="field-rw">
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">RW <span class="text-red-500">*</span></label>
-                                                <input type="text" name="rw" id="input-rw" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rw') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rw') }}" placeholder="Contoh: 001">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">RW <span class="text-red-500">*</span></label>
+                                                <input type="text" name="rw" id="input-rw" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('rw') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('rw') }}" placeholder="Contoh: 001">
                                                 @error('rw')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">No. Telepon <span class="text-red-500">*</span></label>
-                                                <input required type="text" name="telepon" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('telepon') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('telepon') }}" placeholder="Contoh: 08123456789">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">No. Telepon <span class="text-red-500">*</span></label>
+                                                <input required type="text" name="telepon" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('telepon') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('telepon') }}" placeholder="Contoh: 08123456789">
                                                 @error('telepon')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
                                             <div>
-                                                <label class="block text-sm font-medium text-slate-700 mb-2">Email <span class="text-slate-400 font-normal text-xs">(Opsional)</span></label>
-                                                <input type="email" name="email" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('email') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('email') }}" placeholder="Contoh: nama@email.com (opsional)">
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email <span class="text-slate-400 font-normal text-xs">(Opsional)</span></label>
+                                                <input type="email" name="email" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm @error('email') border-red-300 focus:border-red-500 focus:ring-red-500/20 @enderror" value="{{ old('email') }}" placeholder="Contoh: nama@email.com (opsional)">
                                                 @error('email')<div class="mt-1 text-sm text-red-500">{{ $message }}</div>@enderror
                                             </div>
 
@@ -341,7 +341,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-                                <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+                                <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
                                 <button type="button" class="next-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center" id="usaha-identity-next">Lanjut ke Langkah 3</button>
                             </div>
                         </div>
@@ -359,90 +359,90 @@
                     @endif
 
                     <div class="form-step hidden" data-step="5">
-                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 overflow-hidden">
-                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-                                <h3 class="font-bold text-slate-800">Langkah 5: Konfirmasi Permohonan</h3>
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 mb-8 overflow-hidden">
+                            <div class="px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+                                <h3 class="font-bold text-slate-800 dark:text-slate-100">Langkah 5: Konfirmasi Permohonan</h3>
                             </div>
                             
                             <div class="p-0">
-                                <dl class="divide-y divide-slate-100">
+                                <dl class="divide-y divide-slate-100 dark:divide-slate-800">
                                     <!-- Kelompok: Data Pemohon -->
-                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100">
-                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Data Pemohon</h4>
+                                    <div class="bg-slate-50/50 dark:bg-slate-800/50 px-5 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800">
+                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400">Data Pemohon</h4>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">NIK</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nik">-</dd>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">NIK</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nik">-</dd>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Nama Lengkap</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nama">-</dd>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Nama Lengkap</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 font-semibold" id="summary-nama">-</dd>
                                     </div>
 
                                     <!-- Kelompok: Detail Surat -->
-                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
-                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Detail Surat</h4>
+                                    <div class="bg-slate-50/50 dark:bg-slate-800/50 px-5 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800 mt-4 sm:mt-0">
+                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400">Detail Surat</h4>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Jenis Surat</dt>
-                                        <dd class="mt-1 text-sm text-primary-600 sm:col-span-2 sm:mt-0 font-bold" id="summary-jenis-surat">{{ optional($selectedJenisSurat)->nama ?? '-' }}</dd>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Jenis Surat</dt>
+                                        <dd class="mt-1 text-sm text-primary-600 dark:text-primary-400 sm:col-span-2 sm:mt-0 font-bold" id="summary-jenis-surat">{{ optional($selectedJenisSurat)->nama ?? '-' }}</dd>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Keperluan</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 italic" id="summary-keperluan">-</dd>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Keperluan</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 italic" id="summary-keperluan">-</dd>
                                     </div>
                                     
                                     @if($isUsaha)
-                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                            <dt class="text-sm font-medium text-slate-500">Nama Usaha</dt>
-                                            <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-nama-usaha">-</dd>
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Nama Usaha</dt>
+                                            <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0" id="summary-nama-usaha">-</dd>
                                         </div>
-                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                            <dt class="text-sm font-medium text-slate-500">Jenis Usaha</dt>
-                                            <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-jenis-usaha">-</dd>
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Jenis Usaha</dt>
+                                            <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0" id="summary-jenis-usaha">-</dd>
                                         </div>
-                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                            <dt class="text-sm font-medium text-slate-500">Alamat Usaha</dt>
-                                            <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-alamat-usaha">-</dd>
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Alamat Usaha</dt>
+                                            <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0" id="summary-alamat-usaha">-</dd>
                                         </div>
-                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                            <dt class="text-sm font-medium text-slate-500">Lama Usaha</dt>
-                                            <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-lama-usaha">-</dd>
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Lama Usaha</dt>
+                                            <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0" id="summary-lama-usaha">-</dd>
                                         </div>
                                     @else
-                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                            <dt class="text-sm font-medium text-slate-500">Alamat Domisili</dt>
-                                            <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0" id="summary-alamat">-</dd>
+                                        <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Alamat Domisili</dt>
+                                            <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0" id="summary-alamat">-</dd>
                                         </div>
                                     @endif
 
                                     <!-- Kelompok: Dokumen Pendukung -->
-                                    <div class="bg-slate-50/50 px-5 sm:px-6 py-3 border-b border-slate-100 mt-4 sm:mt-0">
-                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500">Dokumen Pendukung</h4>
+                                    <div class="bg-slate-50/50 dark:bg-slate-800/50 px-5 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800 mt-4 sm:mt-0">
+                                        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400">Dokumen Pendukung</h4>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Upload KTP</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                            <i class="fa-solid fa-id-card text-slate-400"></i> <span id="summary-dokumen-ktp" class="font-medium">Belum</span>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Upload KTP</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 flex items-center gap-2">
+                                            <i class="fa-solid fa-id-card text-slate-400 dark:text-slate-500"></i> <span id="summary-dokumen-ktp" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Upload KK</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                            <i class="fa-solid fa-users text-slate-400"></i> <span id="summary-dokumen-kk" class="font-medium">Belum</span>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Upload KK</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 flex items-center gap-2">
+                                            <i class="fa-solid fa-users text-slate-400 dark:text-slate-500"></i> <span id="summary-dokumen-kk" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Surat Pengantar RT/RW</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                            <i class="fa-solid fa-envelope-open-text text-slate-400"></i> <span id="summary-dokumen-surat-pengantar" class="font-medium">Belum</span>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Surat Pengantar RT/RW</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 flex items-center gap-2">
+                                            <i class="fa-solid fa-envelope-open-text text-slate-400 dark:text-slate-500"></i> <span id="summary-dokumen-surat-pengantar" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
                                     @if($isUsaha)
-                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 transition-colors">
-                                        <dt class="text-sm font-medium text-slate-500">Foto Tempat Usaha</dt>
-                                        <dd class="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                            <i class="fa-solid fa-image text-slate-400"></i> <span id="summary-dokumen-tempat-usaha" class="font-medium">Belum</span>
+                                    <div class="px-5 sm:px-6 py-3.5 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Foto Tempat Usaha</dt>
+                                        <dd class="mt-1 text-sm text-slate-900 dark:text-slate-100 sm:col-span-2 sm:mt-0 flex items-center gap-2">
+                                            <i class="fa-solid fa-image text-slate-400 dark:text-slate-500"></i> <span id="summary-dokumen-tempat-usaha" class="font-medium">Belum</span>
                                         </dd>
                                     </div>
                                     @endif
@@ -450,7 +450,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3">
-                            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
+                            <button type="button" class="prev-step cursor-pointer w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center">Sebelumnya</button>
                             <button type="submit" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold shadow-md shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-center"><i class="fa-solid fa-paper-plane text-xs"></i>Kirim Permohonan</button>
                         </div>
                     </div>

@@ -12,9 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
+    <!-- Anti-FOUC Dark Mode Init -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-full flex flex-col justify-center items-center p-4 sm:p-6 bg-slate-50 font-sans antialiased text-slate-800 relative">
+<body class="min-h-full flex flex-col justify-center items-center p-4 sm:p-6 bg-slate-50 font-sans antialiased text-slate-800 relative dark:bg-slate-950 dark:text-slate-100">
 
     <div class="w-full max-w-md relative z-10">
         @yield('content')

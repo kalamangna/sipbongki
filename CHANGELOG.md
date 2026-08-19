@@ -8,16 +8,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- **Integrasi Resmi Tailwind Typography (`@tailwindcss/typography`)**:
-  - Menginstal paket `@tailwindcss/typography` dan mendaftarkan `@plugin "@tailwindcss/typography"` pada `resources/css/app.css` dan `resources/css/frontend.css`.
-  - Menerapkan utilitas `prose prose-slate max-w-none` pada halaman detail berita dan detail pengumuman untuk rendering konten artikel yang rapi, adaptif, dan mendukung format paragraf/jeda baris editor secara otomatis.
-- **Interaktivitas Kartu Beranda (Full Clickable Cards)**:
-  - Mengubah elemen pembungkus kartu Berita (`sections/news.blade.php`), Pengumuman (`sections/pengumuman.blade.php`), dan Layanan (`sections/services.blade.php`) menjadi tautan interaktif penuh (*anchor card*) yang dapat diklik di seluruh area dengan fokus aksesibilitas keyboard (`focus:ring-2 focus:ring-primary`).
-- **Optimalisasi Aksesibilitas & Responsivitas Section Publik**:
-  - Menambahkan dukungan tampilan gambar/ilustrasi di perangkat seluler pada bagian Hero dan halaman Pengaduan.
-  - Menyesuaikan rasio aspek responsif kartu galeri (`aspect-[16/9] sm:aspect-[4/3]`) dan kartu fakta profil (`grid-cols-1 min-[360px]:grid-cols-2`).
-  - Memperbaiki kontainer iframe Google Maps pada bagian Lokasi (`h-[320px] lg:h-auto`) agar tidak kollaps di layar ponsel dan menyematkan atribut `title` aksesibilitas.
-  - Menambahkan pemotongan teks aman (`truncate`) pada brand navbar publik untuk layar sempit (<360px).
+- **Implementasi Mode Gelap Komprehensif (Full Application-Wide Dark Mode)**:
+  - Mengonfigurasi direktif Tailwind CSS v4 `@custom-variant dark (&:where(.dark, .dark *));` pada `resources/css/app.css` dan `resources/css/frontend.css`.
+  - Menambahkan script inline Anti-FOUC (*Flash of Unstyled Content*) di `<head>` seluruh layout master (`layouts/admin.blade.php`, `layouts/public.blade.php`, `layouts/auth.blade.php`) untuk transisi tema yang instan tanpa kedipan putih.
+  - Mengintegrasikan tombol sakelar tema (*Theme Switcher Toggle*) interaktif pada Navbar Admin dan Navbar Publik (Desktop & Mobile Drawer) yang tersinkronisasi otomatis dengan Alpine.js store dan `localStorage.theme`.
+  - Mengimplementasikan styling Mode Gelap (*Dark Mode Theme*) menyeluruh di seluruh halaman dan komponen aplikasi:
+    - **Panel Admin (43+ Halaman)**: Dasbor (dengan integrasi tema gelap dinamis pada grafik ApexCharts), Manajemen Kependudukan (Penduduk, Kartu Keluarga & modal tambah anggota, Perangkat/Aparatur), Pelayanan Persuratan (Daftar, Detail, Timeline, Action Modal, Preview), Riwayat Pelayanan, Pengaduan Masyarakat, CMS Website (Berita, Pengumuman, Agenda, Galeri, Pengaturan Profil Website), Master Data Referensi (Jabatan, Jenis Surat, Lingkungan), Manajemen Pengguna (User List, Create/Edit, Roles matrix), Profil Pengguna Admin (`/profile`), serta Modul Laporan & format web.
+    - **Modul Autentikasi**: Halaman Login (`/login`), Lupa Password (`/forgot-password`), Reset Password (`/reset-password`), Konfirmasi Password (`/confirm-password`), dan Verifikasi Email (`/verify-email`).
+    - **Portal Publik & Layanan Warga**: Seluruh seksi Beranda (Hero, Profil Kelurahan, Struktur Organisasi person cards, Statistik Demografi ApexCharts, Alur Layanan, Katalog Layanan, Pengumuman, Agenda, Berita Terkini, Galeri Lightbox Modal, dan Lokasi/Kontak), Halaman Detail Berita & Pengumuman (`prose-invert`), Modul Pengaduan Online (Formulir, Cek Status Tiket, Detail Progres Tindak Lanjut, Konfirmasi Sukses), serta Wizard Permohonan Surat Online 5-Langkah (Pencarian NIK, Verifikasi Data, Subform Domisili & Usaha, Dropzone Dokumen, Summary Table, dan Tracking Permohonan).
+    - **Komponen Global & UI**: Paginasi Tailwind (`vendor/pagination/tailwind.blade.php`), Dropdown Menu, Modal Popup, Form Inputs, Badges, dan Cards.
+- **Peningkatan Kontras Hover Tombol (Dark Mode)**:
+  - Menyematkan `dark:hover:text-white` pada 42 tombol sekunder dan tombol aksi di seluruh modul admin dan publik agar teks tombol tetap memiliki kontras tinggi saat disentuh kursor pada mode gelap.
+- **Sentralisasi Alert Validasi Form Admin**:
+  - Menambahkan blok penangkap otomatis `$errors->any()` pada komponen `components/admin/alert.blade.php` sehingga setiap kegagalan validasi formulir pada panel admin langsung memunculkan banner notifikasi kesalahan isian di bagian atas halaman.
+- **Penyempurnaan Penanganan Error Publik**:
+  - Menambahkan pesan kesalahan inline `@error('kode')` pada formulir pencarian tiket pengaduan publik (`public/pengaduan-status.blade.php`).
+
+### Removed
+- **Penghapusan Berkas Usang & Tidak Digunakan (Clean Code & Asset Pruning)**:
+  - Menghapus berkas view bawaan starter yang tidak terpakai: `resources/views/welcome.blade.php`, `resources/views/surat/partials/footer.blade.php`, dan direktori `resources/views/profile/partials/` (`delete-user-form.blade.php`, `update-password-form.blade.php`, `update-profile-information-form.blade.php`).
+  - Menghapus 13 berkas komponen legacy Bootstrap yang tidak terpakai pada direktori `resources/views/components/ui/` (`action`, `alert`, `badge`, `button`, `card`, `empty`, `modal`, `page-header`, `search`, `section`, `stat-card`, `table`, `workspace`).
+  - Menghapus 13 komponen default starter Breeze pada `resources/views/components/` (`application-logo`, `auth-session-status`, `danger-button`, `dropdown`, `dropdown-link`, `input-error`, `input-label`, `modal`, `nav-link`, `primary-button`, `responsive-nav-link`, `secondary-button`, `text-input`).
+  - Menghapus 7 berkas template paginasi framework non-Tailwind pada `resources/views/vendor/pagination/` (`bootstrap-4`, `bootstrap-5`, `default`, `semantic-ui`, `simple-bootstrap-4`, `simple-bootstrap-5`, `simple-default`).
+  - Menghapus kelas/controller usang: `app/Http/Controllers/Public/HomeController.php` & direktori `app/Http/Controllers/Public/`, `app/Http/Controllers/Admin/SuratController.php`, `app/Http/Controllers/Auth/AuthenticatedSessionController.php`, `app/Http/Requests/UpdatePermohonanSuratRequest.php`, dan `app/View/Components/GuestLayout.php`.
+  - Menghapus berkas skrip migrasi sementara pada direktori `scripts/`.
+- **Penghapusan Komponen Breadcrumb Admin**:
+  - Menghapus komponen `resources/views/components/admin/breadcrumb.blade.php` dan seluruh panggilannya di panel administrasi untuk menciptakan antarmuka kerja yang lebih bersih, fokus, dan lapang.
+
+### Changed
+- **Pencegahan Akses Registrasi Publik**:
+  - Mengarahkan rute `GET /register` (`RegisteredUserController::create`) secara aman ke `/login` untuk menegaskan bahwa pembuatan akun sepenuhnya dikelola secara terpusat oleh Administrator.
 
 ### Changed
 - **Penyelarasan Sistem Desain & Konsolidasi CSS (DESIGN.md)**:

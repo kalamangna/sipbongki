@@ -10,6 +10,7 @@ use App\Models\KartuKeluarga;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PublicPermohonanController extends Controller
 {
@@ -196,13 +197,13 @@ class PublicPermohonanController extends Controller
             ];
 
             if ($request->hasFile('dokumen_ktp')) {
-                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_kk')) {
-                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_surat_pengantar')) {
-                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'local');
             }
         } elseif ($isUsaha) {
                         $request->validate([
@@ -277,16 +278,16 @@ class PublicPermohonanController extends Controller
             }
 
             if ($request->hasFile('dokumen_ktp')) {
-                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_kk')) {
-                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_surat_pengantar')) {
-                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_tempat_usaha')) {
-                $dataSurat['dokumen_tempat_usaha'] = $request->file('dokumen_tempat_usaha')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_tempat_usaha'] = $request->file('dokumen_tempat_usaha')->store('permohonan-surat/dokumen', 'local');
             }
         } else {
             if (empty($validated['nik'])) {
@@ -348,13 +349,13 @@ class PublicPermohonanController extends Controller
             }
 
             if ($request->hasFile('dokumen_ktp')) {
-                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_ktp'] = $request->file('dokumen_ktp')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_kk')) {
-                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_kk'] = $request->file('dokumen_kk')->store('permohonan-surat/dokumen', 'local');
             }
             if ($request->hasFile('dokumen_surat_pengantar')) {
-                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'public');
+                $dataSurat['dokumen_surat_pengantar'] = $request->file('dokumen_surat_pengantar')->store('permohonan-surat/dokumen', 'local');
             }
         }
 
@@ -382,7 +383,7 @@ class PublicPermohonanController extends Controller
         }
 
         $permohonan = PermohonanSurat::create([
-            'nomor_permohonan' => 'PMH-' . now()->format('YmdHis'),
+            'nomor_permohonan' => 'PMH-' . now()->format('YmdHis') . '-' . Str::upper(Str::random(5)),
             'penduduk_id' => $penduduk?->id,
             'jenis_surat_id' => $validated['jenis_surat_id'],
             'keperluan' => $validated['keperluan'],

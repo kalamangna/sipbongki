@@ -167,17 +167,11 @@ class PermohonanSurat extends Model
     public function getStatusBadgeClassAttribute()
     {
         return match ($this->status) {
-
-            'Menunggu' => 'warning',
-
-            'Diproses' => 'info',
-
-            'Selesai' => 'success',
-
-            'Ditolak' => 'danger',
-
-            default => 'secondary',
-
+            'Menunggu' => 'amber',
+            'Diproses' => 'sky',
+            'Selesai' => 'emerald',
+            'Ditolak' => 'rose',
+            default => 'slate',
         };
     }
 

@@ -85,27 +85,29 @@ class DashboardController extends Controller
             '50+' => 0,
         ];
 
-        foreach (Penduduk::select('tanggal_lahir')->get() as $penduduk) {
-            $tanggalLahir = $penduduk->tanggal_lahir;
+        Penduduk::whereNotNull('tanggal_lahir')
+            ->select('tanggal_lahir')
+            ->toBase()
+            ->get()
+            ->each(function ($penduduk) use (&$usiaStat) {
+                if (empty($penduduk->tanggal_lahir)) {
+                    return;
+                }
 
-            if (!$tanggalLahir) {
-                continue;
-            }
+                $umur = \Carbon\Carbon::parse($penduduk->tanggal_lahir)->age;
 
-            $umur = $tanggalLahir->age;
-
-            if ($umur <= 17) {
-                $usiaStat['0-17']++;
-            } elseif ($umur <= 24) {
-                $usiaStat['18-24']++;
-            } elseif ($umur <= 34) {
-                $usiaStat['25-34']++;
-            } elseif ($umur <= 49) {
-                $usiaStat['35-49']++;
-            } else {
-                $usiaStat['50+']++;
-            }
-        }
+                if ($umur <= 17) {
+                    $usiaStat['0-17']++;
+                } elseif ($umur <= 24) {
+                    $usiaStat['18-24']++;
+                } elseif ($umur <= 34) {
+                    $usiaStat['25-34']++;
+                } elseif ($umur <= 49) {
+                    $usiaStat['35-49']++;
+                } else {
+                    $usiaStat['50+']++;
+                }
+            });
 
         $aktif = Penduduk::where('aktif', true)->count();
         $nonAktif = Penduduk::where('aktif', false)->count();
@@ -183,6 +185,10 @@ class DashboardController extends Controller
         |--------------------------------------------------------------------------
         */
 
+        $statusCounts = PermohonanSurat::selectRaw('status, COUNT(*) as total')
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
         $chartPelayanan = [
             'labels' => [
                 'Menunggu',
@@ -191,10 +197,10 @@ class DashboardController extends Controller
                 'Ditolak'
             ],
             'data' => [
-                PermohonanSurat::where('status','Menunggu')->count(),
-                PermohonanSurat::where('status','Diproses')->count(),
-                PermohonanSurat::where('status','Selesai')->count(),
-                PermohonanSurat::where('status','Ditolak')->count(),
+                (int) ($statusCounts['Menunggu'] ?? 0),
+                (int) ($statusCounts['Diproses'] ?? 0),
+                (int) ($statusCounts['Selesai'] ?? 0),
+                (int) ($statusCounts['Ditolak'] ?? 0),
             ]
         ];
 
@@ -204,28 +210,19 @@ class DashboardController extends Controller
         |--------------------------------------------------------------------------
         */
 
+        $bulananCounts = PermohonanSurat::whereYear('created_at', now()->year)
+            ->selectRaw('MONTH(created_at) as bulan, COUNT(*) as total')
+            ->groupBy('bulan')
+            ->pluck('total', 'bulan');
+
         $chartBulanan = [
             'labels' => [],
             'data'   => [],
         ];
 
         for ($i = 1; $i <= 12; $i++) {
-
-            $chartBulanan['labels'][] = date(
-                'M',
-                mktime(0,0,0,$i,1)
-            );
-
-            $chartBulanan['data'][] =
-                PermohonanSurat::whereYear(
-                    'created_at',
-                    now()->year
-                )
-                ->whereMonth(
-                    'created_at',
-                    $i
-                )
-                ->count();
+            $chartBulanan['labels'][] = date('M', mktime(0, 0, 0, $i, 1));
+            $chartBulanan['data'][] = (int) ($bulananCounts[$i] ?? 0);
         }
 
         /*

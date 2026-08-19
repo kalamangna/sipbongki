@@ -1,13 +1,13 @@
 {{-- ═══════════════════════════════════════════════
     AGENDA SECTION — Tailwind CSS
 ═══════════════════════════════════════════════ --}}
-<section id="agenda" class="py-24 bg-white">
+<section id="agenda" class="py-24 bg-white dark:bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Header --}}
         <div class="text-center mb-14">
-            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Agenda</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Agenda Kegiatan</h2>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary dark:bg-primary-950/60 dark:text-primary-300 mb-4">Agenda</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">Agenda Kegiatan</h2>
         </div>
 
         {{-- Cards --}}
@@ -15,7 +15,7 @@
 
             @forelse($agendas as $agenda)
 
-                <div class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                <div class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm dark:bg-slate-900 dark:border-slate-800">
 
                     {{-- Date box --}}
                     <div class="flex-shrink-0 w-14 h-16 rounded-xl bg-primary flex flex-col items-center justify-center text-white shadow-sm shadow-primary/20">
@@ -29,16 +29,16 @@
 
                     {{-- Content --}}
                     <div class="flex-1 min-w-0">
-                        <h3 class="text-sm font-bold text-slate-800 mb-2 line-clamp-2">
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 mb-2 line-clamp-2">
                             {{ $agenda->judul }}
                         </h3>
                         <div class="flex flex-col gap-1">
-                            <span class="inline-flex items-center gap-1.5 text-xs text-slate-500">
-                                <i class="fa-solid fa-map-pin text-primary text-xs shrink-0"></i>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                                <i class="fa-solid fa-map-pin text-primary dark:text-primary-400 text-xs shrink-0"></i>
                                 <span class="truncate">{{ $agenda->lokasi ?? 'Lokasi belum ditentukan' }}</span>
                             </span>
-                            <span class="inline-flex items-center gap-1.5 text-xs text-slate-500">
-                                <i class="fa-solid fa-clock text-primary text-xs shrink-0"></i>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                                <i class="fa-solid fa-clock text-primary dark:text-primary-400 text-xs shrink-0"></i>
                                 <span>{{ $agenda->waktu ?? '-' }} WITA</span>
                             </span>
                         </div>
@@ -49,11 +49,11 @@
             @empty
 
                 <div class="sm:col-span-2 lg:col-span-3 py-16 text-center text-slate-400">
-                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-400 text-2xl">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-3 text-slate-400 dark:text-slate-500 text-2xl">
                         <i class="fa-regular fa-calendar-xmark"></i>
                     </div>
-                    <h4 class="text-base font-semibold text-slate-700 mb-1">Belum Ada Agenda</h4>
-                    <p class="text-sm text-slate-500 max-w-sm mx-auto">Agenda kegiatan akan ditampilkan setelah dijadwalkan oleh pihak kelurahan.</p>
+                    <h4 class="text-base font-semibold text-slate-700 dark:text-slate-200 mb-1">Belum Ada Agenda</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">Agenda kegiatan akan ditampilkan setelah dijadwalkan oleh pihak kelurahan.</p>
                 </div>
 
             @endforelse

@@ -1,10 +1,10 @@
 {{-- ===========================
     DATA KARTU KELUARGA
-=========================== --}}
+========================== --}}
 
 <div>
-    <div class="pb-3 border-b border-slate-100 mb-6">
-        <h3 class="font-bold text-slate-800 text-base mb-0">Data Kartu Keluarga</h3>
+    <div class="pb-3 border-b border-slate-100 mb-6 dark:border-slate-800">
+        <h3 class="font-bold text-slate-800 text-base mb-0 dark:text-slate-100">Data Kartu Keluarga</h3>
     </div>
 
     <div>
@@ -13,15 +13,15 @@
 
             {{-- Nomor KK --}}
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nomor KK <span class="text-red-500">*</span></label>
-                <input type="text" name="no_kk" placeholder="Contoh: 7371110000000000" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('no_kk', $kartuKeluarga->no_kk ?? '') }}" required>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Nomor KK <span class="text-red-500">*</span></label>
+                <input type="text" name="no_kk" placeholder="Contoh: 7371110000000000" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500" value="{{ old('no_kk', $kartuKeluarga->no_kk ?? '') }}" required>
                 @error('no_kk')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
             {{-- Kepala Keluarga --}}
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Kepala Keluarga <span class="text-red-500">*</span></label>
-                <select id="kepala_keluarga_id" name="kepala_keluarga_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" required>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Kepala Keluarga <span class="text-red-500">*</span></label>
+                <select id="kepala_keluarga_id" name="kepala_keluarga_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100" required>
                     <option value="">-- Pilih Kepala Keluarga --</option>
                     @foreach($penduduks as $penduduk)
                         <option value="{{ $penduduk->id }}"
@@ -41,29 +41,29 @@
 
             {{-- Alamat --}}
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Alamat</label>
-                <textarea id="alamat" name="alamat" placeholder="Masukkan nama jalan, lorong, atau patokan rumah..." rows="3" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">{{ old('alamat', $kartuKeluarga->alamat ?? '') }}</textarea>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Alamat</label>
+                <textarea id="alamat" name="alamat" placeholder="Masukkan nama jalan, lorong, atau patokan rumah..." rows="3" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500">{{ old('alamat', $kartuKeluarga->alamat ?? '') }}</textarea>
                 @error('alamat')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
             {{-- RT --}}
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">RT</label>
-                <input type="text" id="rt" name="rt" placeholder="00" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('rt', $kartuKeluarga->rt ?? '') }}">
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">RT</label>
+                <input type="text" id="rt" name="rt" placeholder="00" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500" value="{{ old('rt', $kartuKeluarga->rt ?? '') }}">
                 @error('rt')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
             {{-- RW --}}
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">RW</label>
-                <input type="text" id="rw" name="rw" placeholder="00" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm" value="{{ old('rw', $kartuKeluarga->rw ?? '') }}">
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">RW</label>
+                <input type="text" id="rw" name="rw" placeholder="00" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500" value="{{ old('rw', $kartuKeluarga->rw ?? '') }}">
                 @error('rw')<div class="text-red-500 text-xs mt-1">{{ $message }}</div>@enderror
             </div>
 
             {{-- Lingkungan --}}
             <div class="md:col-span-2">
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Lingkungan</label>
-                <select id="lingkungan_id" name="lingkungan_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Lingkungan</label>
+                <select id="lingkungan_id" name="lingkungan_id" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100">
                     <option value="">-- Pilih Lingkungan --</option>
                     @foreach($lingkungans as $lingkungan)
                         <option value="{{ $lingkungan->id }}" @selected(old('lingkungan_id', $kartuKeluarga->lingkungan_id ?? '') == $lingkungan->id)>
@@ -82,21 +82,21 @@
 
 {{-- ===========================
     ANGGOTA KELUARGA
-=========================== --}}
+========================== --}}
 
 <div>
 
-    <div class="pb-3 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
-        <h3 class="font-bold text-slate-800 text-base mb-0">Anggota Keluarga</h3>
+    <div class="pb-3 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 dark:border-slate-800">
+        <h3 class="font-bold text-slate-800 text-base mb-0 dark:text-slate-100">Anggota Keluarga</h3>
         
-        <button type="button" data-modal-target="modalAnggota" data-modal-toggle="modalAnggota" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+        <button type="button" data-modal-target="modalAnggota" data-modal-toggle="modalAnggota" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500 dark:bg-sky-950/60 dark:text-sky-300 dark:hover:bg-sky-900/50">
             <i class="fa-solid fa-plus"></i> Tambah Anggota
         </button>
     </div>
 
     <div class="overflow-x-auto w-full">
-        <table class="w-full text-sm text-left text-slate-600">
-            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50 border-b border-slate-100">
+        <table class="w-full text-sm text-left text-slate-600 dark:text-slate-300">
+            <thead class="text-xs font-semibold text-slate-500 uppercase bg-slate-50/50 border-b border-slate-100 dark:bg-slate-800/80 dark:text-slate-400 dark:border-slate-800">
                 <tr>
                     <th width="60" class="px-6 py-4 text-center">No</th>
                     <th width="170" class="px-6 py-4">NIK</th>
@@ -105,7 +105,7 @@
                     <th width="80" class="px-6 py-4 text-center">Aksi</th>
                 </tr>
             </thead>
-            <tbody id="anggotaTableBody" class="divide-y divide-slate-100">
+            <tbody id="anggotaTableBody" class="divide-y divide-slate-100 dark:divide-slate-800">
                 {{-- Diisi melalui JavaScript --}}
             </tbody>
         </table>
@@ -121,10 +121,10 @@
 
 <div id="modalAnggota" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
-        <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 text-slate-800">
+        <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-slate-900 dark:border dark:border-slate-800">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 text-slate-800 dark:bg-slate-800/50 dark:border-slate-800 dark:text-slate-100">
                 <h5 class="font-bold text-lg mb-0">Tambah Anggota Keluarga</h5>
-                <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors" data-modal-hide="modalAnggota">
+                <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors dark:hover:text-slate-200" data-modal-hide="modalAnggota">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
@@ -132,8 +132,8 @@
             <div class="p-6">
                 <div class="grid grid-cols-1 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Penduduk</label>
-                        <select id="modalPenduduk" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Penduduk</label>
+                        <select id="modalPenduduk" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100">
                             <option value="">-- Pilih Penduduk --</option>
                             @foreach($penduduks as $penduduk)
                                 <option value="{{ $penduduk->id }}"
@@ -147,15 +147,15 @@
                         </select>
                         <div class="mt-2">
                             <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" id="force_reassign" class="w-4 h-4 rounded border-slate-300 text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                <span class="text-xs text-slate-500">Tampilkan penduduk yang sudah memiliki KK</span>
+                                <input type="checkbox" id="force_reassign" class="w-4 h-4 rounded border-slate-300 text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary dark:border-slate-700 dark:bg-slate-800">
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Tampilkan penduduk yang sudah memiliki KK</span>
                             </label>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Hubungan Keluarga</label>
-                        <select id="modalHubungan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 px-4 py-3 transition-colors shadow-sm">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 dark:text-slate-300">Hubungan Keluarga</label>
+                        <select id="modalHubungan" class="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-4 py-3 transition-colors shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100">
                             <option value="">-- Pilih Hubungan --</option>
                             @foreach([
                                 'Suami', 'Istri', 'Anak', 'Menantu', 'Cucu', 
@@ -168,8 +168,8 @@
                 </div>
             </div>
             
-            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50">
-                <button type="button" data-modal-hide="modalAnggota" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm transition-all focus:outline-none">
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50 dark:bg-slate-800/50 dark:border-slate-800">
+                <button type="button" data-modal-hide="modalAnggota" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm transition-all focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700">
                     Batal
                 </button>
                 <button type="button" id="btnTambahAnggotaModal" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer">
@@ -256,8 +256,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (anggota.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="5" class="px-6 py-8 text-center text-slate-400">
-                        <i class="fa-solid fa-users-slash text-3xl mb-3 text-slate-300"></i>
+                    <td colspan="5" class="px-6 py-8 text-center text-slate-400 dark:text-slate-500">
+                        <i class="fa-solid fa-users-slash text-3xl mb-3 text-slate-300 dark:text-slate-600"></i>
                         <p class="text-sm">Belum ada data anggota keluarga</p>
                     </td>
                 </tr>
@@ -269,18 +269,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Render Row
             const tr = document.createElement('tr');
-            tr.className = "hover:bg-slate-50/80 transition-colors";
+            tr.className = "hover:bg-slate-50/80 transition-colors dark:hover:bg-slate-800/50";
             tr.innerHTML = `
-                <td class="px-6 py-4 text-center text-slate-500">${index + 1}</td>
-                <td class="px-6 py-4 font-mono text-slate-700">${item.nik}</td>
-                <td class="px-6 py-4 font-bold text-slate-900">${item.nama}</td>
+                <td class="px-6 py-4 text-center text-slate-500 dark:text-slate-400">${index + 1}</td>
+                <td class="px-6 py-4 font-mono text-slate-700 dark:text-slate-300">${item.nik}</td>
+                <td class="px-6 py-4 font-bold text-slate-900 dark:text-slate-100">${item.nama}</td>
                 <td class="px-6 py-4">
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700 tracking-wide">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700 tracking-wide dark:bg-slate-800 dark:text-slate-300">
                         ${item.hubungan}
                     </span>
                 </td>
                 <td class="px-6 py-4 text-center">
-                    <button type="button" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors shadow-sm focus:outline-none" onclick="removeAnggota(${index})" ${item.hubungan === 'Kepala Keluarga' ? 'disabled title="Kepala keluarga tidak bisa dihapus dari sini"' : ''}>
+                    <button type="button" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors shadow-sm focus:outline-none dark:bg-rose-950/60 dark:text-rose-300 dark:hover:bg-rose-900/50" onclick="removeAnggota(${index})" ${item.hubungan === 'Kepala Keluarga' ? 'disabled title="Kepala keluarga tidak bisa dihapus dari sini"' : ''}>
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>

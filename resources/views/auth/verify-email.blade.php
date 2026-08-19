@@ -1,75 +1,52 @@
 @extends('layouts.auth')
 
-@section('title', 'Verifikasi Email')
+@section('title', 'Verifikasi Email - SIP Bongki')
 
 @section('content')
 
-<h4 class="text-center fw-bold mb-3">
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-10 dark:bg-slate-900 dark:border-slate-800">
 
-    Verifikasi Email
+    {{-- Header --}}
+    <div class="text-center mb-8">
+        <img src="{{ asset('images/logo.png') }}"
+             alt="Logo Kelurahan Bongki"
+             class="w-16 h-16 object-contain mx-auto mb-4">
+        <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Verifikasi Email</h1>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            Terima kasih telah mendaftar. Sebelum melanjutkan, silakan periksa email Anda dan klik tautan verifikasi yang telah dikirim.
+        </p>
+    </div>
 
-</h4>
+    @if (session('status') == 'verification-link-sent')
+        <div class="mb-6 p-3 rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 text-sm flex items-start gap-2">
+            <i class="fa-solid fa-circle-check mt-0.5"></i>
+            <span>Link verifikasi baru telah berhasil dikirim ke alamat email Anda.</span>
+        </div>
+    @endif
 
-@if (session('status') == 'verification-link-sent')
+    <div class="space-y-3">
+        <form method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <button type="submit"
+                    class="w-full py-2.5 px-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-xl transition-colors shadow-sm cursor-pointer active:scale-95 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-envelope-circle-check"></i> Kirim Ulang Email Verifikasi
+            </button>
+        </form>
 
-<div class="alert alert-success">
-
-    Link verifikasi baru telah berhasil dikirim ke alamat email Anda.
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit"
+                    class="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm rounded-xl transition-colors cursor-pointer active:scale-95 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar
+            </button>
+        </form>
+    </div>
 
 </div>
 
-@endif
-
-<p class="text-muted text-center mb-4">
-
-    Terima kasih telah mendaftar.
-
-    Sebelum melanjutkan, silakan periksa email Anda dan klik tautan verifikasi yang telah dikirim.
-
-    Jika belum menerima email, Anda dapat mengirim ulang melalui tombol di bawah.
-
-</p>
-
-<form method="POST"
-      action="{{ route('verification.send') }}">
-
-    @csrf
-
-    <div class="d-grid mb-3">
-
-        <button
-            type="submit"
-            class="btn btn-primary">
-
-            <i class="bi bi-envelope-check me-2"></i>
-
-            Kirim Ulang Email Verifikasi
-
-        </button>
-
-    </div>
-
-</form>
-
-<form method="POST"
-      action="{{ route('logout') }}">
-
-    @csrf
-
-    <div class="d-grid">
-
-        <button
-            type="submit"
-            class="btn btn-outline-secondary">
-
-            <i class="bi bi-box-arrow-right me-2"></i>
-
-            Keluar
-
-        </button>
-
-    </div>
-
-</form>
+{{-- Footer --}}
+<div class="text-center mt-8 text-xs text-slate-500 dark:text-slate-400">
+    <p>&copy; {{ date('Y') }} Kelurahan Bongki</p>
+</div>
 
 @endsection

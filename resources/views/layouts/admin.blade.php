@@ -25,10 +25,19 @@
     <!-- Flowbite CSS -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
+    <!-- Anti-FOUC Dark Mode Init -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-[100dvh] overflow-hidden">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased flex h-[100dvh] overflow-hidden dark:bg-slate-950 dark:text-slate-100">
 
     {{-- Sidebar --}}
     @include('components.admin.sidebar')
@@ -39,15 +48,9 @@
         @include('components.admin.navbar')
 
         {{-- Main Scrollable Content --}}
-        <main class="flex-1 overflow-y-auto bg-slate-50 flex flex-col justify-between min-h-0">
+        <main class="flex-1 overflow-y-auto bg-slate-50 flex flex-col justify-between min-h-0 dark:bg-slate-950">
             <div class="p-4 sm:p-6 md:p-8 pb-6 flex-1">
                 <div class="max-w-7xl mx-auto">
-                    {{-- Breadcrumb --}}
-                    @hasSection('breadcrumb')
-                        @yield('breadcrumb')
-                    @else
-                        @include('components.admin.breadcrumb')
-                    @endif
 
                     {{-- Flash Message --}}
                     @include('components.admin.alert')

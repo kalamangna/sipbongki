@@ -2,7 +2,7 @@
     GALLERY SECTION — Tailwind CSS
 ═══════════════════════════════════════════════ --}}
 <section id="galeri" 
-    class="py-24 bg-white border-b border-slate-100"
+    class="py-24 bg-white border-b border-slate-100 dark:bg-slate-950 dark:border-slate-800"
     x-data="{ 
         modalOpen: false, 
         currentImage: '', 
@@ -13,8 +13,8 @@
 
         {{-- Header --}}
         <div class="text-center mb-14">
-            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Galeri</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Dokumentasi Kegiatan</h2>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary dark:bg-primary-950/60 dark:text-primary-300 mb-4">Galeri</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 tracking-tight">Dokumentasi Kegiatan</h2>
         </div>
 
         {{-- Grid --}}
@@ -22,7 +22,7 @@
 
             @forelse($galeris as $galeri)
 
-                <div class="group relative overflow-hidden rounded-2xl aspect-[16/9] sm:aspect-[4/3] bg-slate-100 border border-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                <div class="group relative overflow-hidden rounded-2xl aspect-[16/9] sm:aspect-[4/3] bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:border-slate-800 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                      tabindex="0"
                      role="button"
                      aria-label="Lihat gambar: {{ $galeri->judul }}"
@@ -43,10 +43,10 @@
 
             @empty
 
-                <div class="col-span-1 sm:col-span-2 lg:col-span-3 py-20 text-center flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50">
-                    <i class="fa-solid fa-images text-4xl text-slate-300 mb-4"></i>
-                    <h5 class="text-lg font-semibold text-slate-700 mb-1">Galeri Belum Tersedia</h5>
-                    <p class="text-sm text-slate-500">Dokumentasi kegiatan akan ditampilkan setelah dipublikasikan oleh petugas.</p>
+                <div class="col-span-1 sm:col-span-2 lg:col-span-3 py-20 text-center flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
+                    <i class="fa-solid fa-images text-4xl text-slate-300 dark:text-slate-600 mb-4"></i>
+                    <h5 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-1">Galeri Belum Tersedia</h5>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Dokumentasi kegiatan akan ditampilkan setelah dipublikasikan oleh petugas.</p>
                 </div>
 
             @endforelse
@@ -69,7 +69,7 @@
              
             {{-- Close Button --}}
             <button @click="modalOpen = false" 
-                    class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-white/50 group"
+                    class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/70 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-white/50 group cursor-pointer"
                     aria-label="Tutup modal">
                 <i class="fa-solid fa-xmark text-xl transition-transform group-hover:rotate-90"></i>
             </button>

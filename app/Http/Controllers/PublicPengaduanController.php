@@ -21,7 +21,7 @@ class PublicPengaduanController extends Controller
     public function checkStatus(Request $request)
     {
         $request->validate([
-            'kode' => 'required|string',
+            'kode' => 'required|string|max:25',
         ]);
 
         $pengaduan = Pengaduan::where('kode', $request->kode)
@@ -44,13 +44,13 @@ class PublicPengaduanController extends Controller
 
         $request->validate([
 
-            'nama' => 'required',
-            'nik_pelapor' => 'required|string|max:30',
-            'telepon' => 'required',
-            'alamat' => 'required',
-            'kategori' => 'required',
-            'lokasi' => 'required',
-            'uraian' => 'required',
+            'nama'        => 'required|string|max:150',
+            'nik_pelapor' => 'required|digits:16',
+            'telepon'     => 'required|string|max:20',
+            'alamat'      => 'required|string|max:500',
+            'kategori'    => 'required|string|in:Jalan Rusak,Lampu Jalan Mati,Sampah,Drainase,Fasilitas Umum,Pelayanan,Saran & Masukan,Lainnya',
+            'lokasi'      => 'required|string|max:255',
+            'uraian'      => 'required|string|min:20|max:3000',
 
             'foto' => 'nullable|image|max:2048',
 

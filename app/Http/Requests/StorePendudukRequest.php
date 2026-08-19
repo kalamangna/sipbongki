@@ -3,13 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Concerns\AuthorizesAdminRequest;
 
 class StorePendudukRequest extends FormRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
+    use AuthorizesAdminRequest;
 
 
     public function rules(): array

@@ -55,6 +55,15 @@
     {{-- ApexCharts CDN --}}
     <script defer src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+    <!-- Anti-FOUC Dark Mode Init -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     {{-- VITE — Tailwind (Frontend & Backend) --}}
     @vite([
         'resources/css/frontend.css',
@@ -66,7 +75,7 @@
 
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 
     {{-- SCROLL PROGRESS --}}
     <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-primary z-[9998] transition-all duration-100" style="width:0%"></div>
@@ -79,10 +88,10 @@
     </button>
 
     {{-- PRELOADER --}}
-    <div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-500">
+    <div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-slate-950 transition-opacity duration-500">
         <div class="text-center">
             <div class="w-12 h-12 rounded-full border-4 border-primary-light border-t-primary mx-auto mb-3 animate-spin"></div>
-            <p class="text-sm text-slate-500">Memuat SIP Bongki...</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Memuat SIP Bongki...</p>
         </div>
     </div>
 

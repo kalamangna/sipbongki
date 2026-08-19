@@ -1,13 +1,13 @@
 {{-- ═══════════════════════════════════════════════
     LOCATION SECTION — Tailwind CSS
 ═══════════════════════════════════════════════ --}}
-<section id="kontak" class="py-24 bg-slate-50">
+<section id="kontak" class="py-24 bg-slate-50 dark:bg-slate-900/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Header --}}
         <div class="text-center mb-14">
-            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary mb-4">Lokasi & Kontak</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Temukan Kami</h2>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-primary-light text-primary dark:bg-primary-950/60 dark:text-primary-300 mb-4">Lokasi & Kontak</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">Temukan Kami</h2>
         </div>
 
         <div class="grid lg:grid-cols-5 gap-8 items-stretch">
@@ -25,13 +25,13 @@
                 @endphp
 
                 @foreach($contacts as $contact)
-                    <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center flex-shrink-0">
-                            <i class="{{ $contact['icon'] }} w-5 h-5 text-primary"></i>
+                    <div class="flex items-start gap-4 bg-white border border-slate-200 rounded-2xl p-4 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-primary-light dark:bg-primary-950/60 flex items-center justify-center flex-shrink-0">
+                            <i class="{{ $contact['icon'] }} w-5 h-5 text-primary dark:text-primary-400"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">{{ $contact['label'] }}</p>
-                            <p class="text-sm text-slate-700 font-medium">{{ $contact['value'] }}</p>
+                            <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">{{ $contact['label'] }}</p>
+                            <p class="text-sm text-slate-700 dark:text-slate-200 font-medium">{{ $contact['value'] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -46,7 +46,7 @@
             </div>
 
             {{-- ── MAP ──────────────────────────────────── --}}
-            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-sm border border-slate-200 h-[320px] lg:h-auto lg:min-h-[400px]">
+            <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 h-[320px] lg:h-auto lg:min-h-[400px]">
                 <iframe src="{{ $website?->google_maps }}"
                         title="Peta Lokasi Kelurahan Bongki"
                         width="100%"
