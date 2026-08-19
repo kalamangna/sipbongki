@@ -8,6 +8,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Optimasi Indeks Database Kependudukan, Pelayanan, & Pengaduan**:
+  - Menambahkan 10 indeks B-Tree pada kolom pencarian dan relasi utama (`permohonan_surats`: `status`, `nomor_surat`, `jenis_surat_id`, `penduduk_id`, `created_at`; `penduduks`: `nama_lengkap`, `aktif`, `lingkungan_id`; `pengaduans`: `status`, `created_at`) melalui migrasi `database/migrations/2026_08_19_171612_add_indexes_to_key_columns.php`.
+- **Fitur Rollback Status Permohonan Surat**:
+  - Menambahkan endpoint `PATCH admin/permohonan-surat/{id}/rollback-status` dan method `rollbackStatus()` pada `PermohonanSuratController` untuk mengembalikan status permohonan (`Diproses` $\rightarrow$ `Menunggu` dan `Ditolak` $\rightarrow$ `Menunggu`).
+  - Menyematkan kartu aksi modal konfirmasi interaktif dengan Alpine.js pada `admin/pelayanan/permohonan-surat/partials/action-card.blade.php` yang mewajibkan input alasan rollback dan mencatat jejak audit ke tabel `permohonan_surat_histories`.
+- **Artisan Command Pruning Berkas Lampiran Lama & Penjadwalan Otomatis**:
+  - Membuat Artisan command `permohonan:prune-documents {--days=180} {--dry-run}` (`app/Console/Commands/PrunePermohonanDocuments.php`) untuk membersihkan berkas fisik KTP, KK, dan surat pengantar dari permohonan yang telah berstatus `Selesai` atau `Ditolak` melampaui batas masa retensi.
+  - Mendaftarkan scheduler harian otomatis pada pukul 02:00 dini hari di `routes/console.php`.
+- **Sistem Cache Data Publik & Invalidation Otomatis**:
+  - Menerapkan `Cache::remember()` pada `HomeController` (Statistik & Demografi, Berita, Pengumuman, Agenda, Galeri, Jenis Surat, Struktur Organisasi, Profil Website, dan Riwayat Pelayanan Terbaru) serta View Composer di `AppServiceProvider` guna meminimalkan beban query database pada lalu lintas publik.
+  - Mengintegrasikan *event hook* Eloquent `booted()` (`saved` & `deleted`) pada model `Berita`, `Pengumuman`, `Agenda`, `Galeri`, `WebsiteSetting`, `JenisSurat`, `Jabatan`, `Perangkat`, `Penduduk`, `KartuKeluarga`, dan `PermohonanSurat` untuk invalidasi cache otomatis seketika data diperbarui oleh admin.
+- **Standarisasi Seluruh Tombol "Kembali", "Batal", & State Hover Dark Mode**:
+  - Mengaudit dan menstandarisasi kelas `cursor-pointer`, `hover:text-slate-900`, `dark:hover:text-white`, dan `active:scale-95` pada seluruh tombol "Kembali" dan "Batal" di seluruh modul (Admin, Laporan, Persuratan, Portal Publik, dan Autentikasi).
+  - Memperbaiki kelas warna dasar dan hover mode gelap pada tombol close modal tambah anggota keluarga, toggle mobile sidebar, dan tombol visibilitas password form login.
+
+### Changed
+- **Refaktorisasi Validasi Sentinel Alamat RT/RW "00"**:
+  - Memusatkan logika deteksi pengisian RT/RW bernilai kosong atau sentinel `'00'` ke helper method privat `resolveStatusValidasiAlamat()` pada `PendudukController` untuk kode yang lebih bersih dan mudah dikelola.
+
+### Removed
+- **Pembersihan Berkas Sementara**:
+  - Menghapus berkas cuplikan kode sementara `temp_usaha.txt` dari direktori utama proyek.
 - **Optimalisasi Mode Gelap & Formulir Autentikasi (`/login`)**:
   - Menambahkan tombol sakelar tema (*Theme Switcher Toggle*) melayang dan tombol kembali ke *Beranda* di bagian atas layout autentikasi (`layouts/auth.blade.php`).
   - Mengintegrasikan plugin `@tailwindcss/forms` pada `resources/css/app.css` dan menambahkan deklarasi standar W3C `color-scheme: light` & `color-scheme: dark` pada layer base untuk rendering formulir bawaan yang sempurna di mode gelap.

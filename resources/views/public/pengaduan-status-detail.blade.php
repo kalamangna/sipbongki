@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-center mt-10 pt-6 border-t border-slate-100 dark:border-slate-800">
-                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary dark:border-primary-400 dark:text-primary-400 font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary-500 dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 w-full sm:w-auto">
+                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-primary text-primary dark:border-primary-400 dark:text-primary-400 font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary-500 dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 w-full sm:w-auto cursor-pointer">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Form Pengaduan
                     </a>

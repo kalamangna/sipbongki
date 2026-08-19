@@ -67,7 +67,7 @@ View::composer([
 
     $view->with(
         'website',
-        WebsiteSetting::first()
+        \Illuminate\Support\Facades\Cache::remember('website_setting_profil', 3600, fn() => WebsiteSetting::first())
     );
 
 });

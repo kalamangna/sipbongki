@@ -11,7 +11,7 @@
             <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Detail Laporan Kartu Keluarga</h2>
             <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Informasi detail Kartu Keluarga khusus dari laporan.</p>
         </div>
-        <a href="{{ route('admin.laporan.kartu-keluarga') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-100">
+        <a href="{{ route('admin.laporan.kartu-keluarga') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition-all hover:-translate-y-0.5 focus:outline-none cursor-pointer dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white">
             <i class="fa-solid fa-arrow-left-long text-slate-400"></i> Kembali
         </a>
     </div>

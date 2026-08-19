@@ -25,10 +25,14 @@ class JenisSurat extends Model
 ];
 
     protected $casts = [
-
         'aktif' => 'boolean',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_jenis_surats'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_jenis_surats'));
+    }
 
     /*
     |--------------------------------------------------------------------------

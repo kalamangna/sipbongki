@@ -66,7 +66,7 @@
                        class="w-full pl-4 pr-10 py-2.5 bg-slate-50 border @error('password') border-rose-500 dark:border-rose-500 @else border-slate-200 dark:border-slate-700 @enderror rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors shadow-sm">
                 <button type="button"
                         onclick="togglePasswordVisibility()"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none cursor-pointer"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-200 focus:outline-none cursor-pointer"
                         aria-label="Lihat Password">
                     <i class="fa-solid fa-eye text-sm" id="password-toggle-icon"></i>
                 </button>

@@ -907,6 +907,55 @@ if (
     }
 
     /**
+     * Kembalikan status permohonan ke status sebelumnya (rollback).
+     * Hanya bisa dilakukan dari Diproses → Menunggu atau Ditolak → Menunggu.
+     * Status Selesai tidak dapat di-rollback karena sudah bernomor surat.
+     */
+    public function rollbackStatus(
+        Request $request,
+        PermohonanSurat $permohonanSurat
+    ) {
+        $statusSekarang = $permohonanSurat->status;
+
+        $rollbackTarget = match ($statusSekarang) {
+            'Diproses' => 'Menunggu',
+            'Ditolak'  => 'Menunggu',
+            default    => null,
+        };
+
+        if (is_null($rollbackTarget)) {
+            return back()->with(
+                'error',
+                'Status ini tidak dapat dikembalikan. Hanya status Diproses atau Ditolak yang dapat di-rollback ke Menunggu.'
+            );
+        }
+
+        $request->validate([
+            'alasan_rollback' => 'required|string|max:500',
+        ], [
+            'alasan_rollback.required' => 'Alasan rollback wajib diisi.',
+            'alasan_rollback.max'      => 'Alasan rollback maksimal 500 karakter.',
+        ]);
+
+        $permohonanSurat->update([
+            'status'          => $rollbackTarget,
+            'tanggal_selesai' => null,
+        ]);
+
+        PermohonanSuratHistory::create([
+            'permohonan_surat_id' => $permohonanSurat->id,
+            'status_lama'         => $statusSekarang,
+            'status_baru'         => $rollbackTarget,
+            'catatan'             => '[ROLLBACK] ' . $request->alasan_rollback,
+            'user_id'             => Auth::id(),
+        ]);
+
+        return redirect()
+            ->route('admin.permohonan-surat.show', $permohonanSurat)
+            ->with('success', "Status berhasil dikembalikan dari {$statusSekarang} ke {$rollbackTarget}.");
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(

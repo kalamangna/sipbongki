@@ -23,8 +23,12 @@ class Pengumuman extends Model
     ];
 
     protected $casts = [
-
         'tanggal_publish' => 'date',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_pengumumen'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_pengumumen'));
+    }
 }

@@ -148,7 +148,7 @@
                 {{-- Back Button --}}
                 <div class="mt-4 mb-8 lg:mb-0">
                     <a href="{{ route('home') }}#berita"
-                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary dark:border-primary-400 dark:text-primary-400 font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary-500 dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary dark:border-primary-400 dark:text-primary-400 font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary-500 dark:hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Beranda
                     </a>

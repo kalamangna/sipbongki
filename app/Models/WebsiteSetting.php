@@ -93,4 +93,10 @@ class WebsiteSetting extends Model
 'tampilkan_statistik',
 'tampilkan_layanan',
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('website_setting_profil'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('website_setting_profil'));
+    }
 }

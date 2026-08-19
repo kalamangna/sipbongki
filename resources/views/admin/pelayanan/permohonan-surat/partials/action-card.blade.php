@@ -98,6 +98,82 @@
         </div>
         @endif
 
+        {{-- ROLLBACK STATUS --}}
+        @if(in_array($permohonanSurat->status, ['Diproses', 'Ditolak']))
+        <div x-data="{ open: false }" class="mt-3">
+            <button
+                type="button"
+                @click="open = true"
+                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-xl bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700 shadow-sm transition-all focus:outline-none active:scale-95 cursor-pointer dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
+            >
+                <i class="fa-solid fa-rotate-left text-sm"></i>
+                Kembalikan ke Menunggu
+            </button>
+
+            {{-- Modal konfirmasi rollback --}}
+            <div
+                x-show="open"
+                x-transition.opacity
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+                @click.self="open = false"
+            >
+                <div
+                    x-show="open"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-md border border-slate-200 dark:border-slate-800"
+                >
+                    <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-950/40 flex items-center justify-center text-amber-500">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-slate-100">Kembalikan Status</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                {{ $permohonanSurat->status }} → Menunggu
+                            </p>
+                        </div>
+                    </div>
+                    <form action="{{ route('admin.permohonan-surat.rollback-status', $permohonanSurat) }}" method="POST" class="p-5">
+                        @csrf @method('PATCH')
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                            Pastikan ada alasan yang jelas untuk perubahan ini. Tindakan ini akan tercatat di riwayat permohonan.
+                        </p>
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                                Alasan rollback <span class="text-rose-500">*</span>
+                            </label>
+                            <textarea
+                                name="alasan_rollback"
+                                rows="3"
+                                required
+                                maxlength="500"
+                                placeholder="Contoh: Data pemohon perlu diverifikasi ulang..."
+                                class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors shadow-sm resize-none"
+                            ></textarea>
+                        </div>
+                        <div class="flex gap-2">
+                            <button
+                                type="button"
+                                @click="open = false"
+                                class="flex-1 px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition-all focus:outline-none cursor-pointer"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="submit"
+                                class="flex-1 px-4 py-2.5 text-sm font-semibold rounded-xl bg-amber-500 text-white hover:bg-amber-600 shadow-sm transition-all focus:outline-none cursor-pointer"
+                            >
+                                <i class="fa-solid fa-rotate-left mr-1"></i> Kembalikan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endif
+
         {{-- AKSI LAINNYA --}}
         <hr class="border-slate-100 my-5 dark:border-slate-800">
         <div class="flex flex-col gap-3">

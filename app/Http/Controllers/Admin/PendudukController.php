@@ -123,29 +123,10 @@ public function index(Request $request)
         |--------------------------------------------------------------------------
         */
 
-        if (
-
-            empty($data['rt']) ||
-
-            empty($data['rw']) ||
-
-            $data['rt'] === '00' ||
-
-            $data['rw'] === '00'
-
-        ) {
-
-            $data['status_validasi_alamat']
-                = 'Perlu Verifikasi';
-
-
-        } else {
-
-
-            $data['status_validasi_alamat']
-                = 'Valid';
-
-        }
+        $data['status_validasi_alamat'] = $this->resolveStatusValidasiAlamat(
+            $data['rt'] ?? null,
+            $data['rw'] ?? null
+        );
 
 
 
@@ -271,30 +252,11 @@ public function index(Request $request)
 
 
 
-        if (
+        $data['status_validasi_alamat'] = $this->resolveStatusValidasiAlamat(
+            $data['rt'] ?? null,
+            $data['rw'] ?? null
+        );
 
-            empty($data['rt']) ||
-
-            empty($data['rw']) ||
-
-            $data['rt'] === '00' ||
-
-            $data['rw'] === '00'
-
-        ) {
-
-
-            $data['status_validasi_alamat']
-                = 'Perlu Verifikasi';
-
-
-        } else {
-
-
-            $data['status_validasi_alamat']
-                = 'Valid';
-
-        }
 
 
 
@@ -407,6 +369,32 @@ public function index(Request $request)
                 'Data penduduk berhasil dihapus.'
             );
 
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Tentukan status validasi alamat berdasarkan nilai RT dan RW.
+     * RT/RW kosong atau bernilai '00' dianggap belum terisi dengan benar.
+     *
+     * Nilai sentinel '00' merupakan konvensi sistem administrasi kependudukan
+     * Indonesia untuk menandakan alamat yang belum memiliki pembagian RT/RW
+     * (misalnya: wilayah pedesaan atau data impor lama).
+     */
+    private function resolveStatusValidasiAlamat(?string $rt, ?string $rw): string
+    {
+        /** Nilai RT/RW yang dianggap belum terisi */
+        $nilaiKosong = ['', '00', null];
+
+        if (in_array($rt, $nilaiKosong, true) || in_array($rw, $nilaiKosong, true)) {
+            return 'Perlu Verifikasi';
+        }
+
+        return 'Valid';
     }
 
 }

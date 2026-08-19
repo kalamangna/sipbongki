@@ -76,8 +76,19 @@ class PermohonanSurat extends Model
         'updated_at' => 'datetime',
 
         'data_surat' => 'array',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_pelayanan_terbaru');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_pelayanan_terbaru');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------

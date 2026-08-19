@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Penduduk;
 use App\Models\KartuKeluarga;
 use App\Models\Perangkat;
@@ -10,287 +9,99 @@ use App\Models\PermohonanSurat;
 use App\Models\Lingkungan;
 use App\Models\JenisSurat;
 use App\Models\Jabatan;
-
 use App\Models\Agenda;
 use App\Models\Galeri;
 use App\Models\Berita;
 use App\Models\Pengumuman;
 use App\Models\WebsiteSetting;
-use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
-
-
     public function index()
     {
-
-
-
         /*
         |--------------------------------------------------------------------------
-        | STATISTIK KELURAHAN
+        | STATISTIK & DEMOGRAFI KELURAHAN (Cached 30 Menit)
         |--------------------------------------------------------------------------
         */
+        $stats = Cache::remember('home_demografi_stats', 1800, function () {
+            $jumlahPenduduk = Penduduk::count();
+            $jumlahKK = KartuKeluarga::count();
+            $jumlahPerangkat = Perangkat::where('aktif', true)->count();
+            $jumlahPelayanan = PermohonanSurat::count();
+            $jumlahLingkungan = Lingkungan::count();
+            $jumlahJenisSurat = JenisSurat::where('aktif', true)->count();
 
+            $lakiLaki = Penduduk::where('jenis_kelamin', 'L')->count();
+            $perempuan = Penduduk::where('jenis_kelamin', 'P')->count();
 
-        $jumlahPenduduk = Penduduk::count();
+            $pekerjaanStat = Penduduk::selectRaw('pekerjaan as nama, COUNT(*) as total')
+                ->whereNotNull('pekerjaan')
+                ->where('pekerjaan', '!=', '')
+                ->groupBy('pekerjaan')
+                ->orderByDesc('total')
+                ->limit(5)
+                ->get();
 
+            $agamaStat = Penduduk::selectRaw('agama as nama, COUNT(*) as total')
+                ->whereNotNull('agama')
+                ->where('agama', '!=', '')
+                ->groupBy('agama')
+                ->orderByDesc('total')
+                ->limit(5)
+                ->get();
 
-        $jumlahKK = KartuKeluarga::count();
+            $statusNikahStat = Penduduk::selectRaw('status_perkawinan as nama, COUNT(*) as total')
+                ->whereNotNull('status_perkawinan')
+                ->where('status_perkawinan', '!=', '')
+                ->groupBy('status_perkawinan')
+                ->orderByDesc('total')
+                ->limit(5)
+                ->get();
 
+            $usiaStat = [
+                '0-17' => 0,
+                '18-24' => 0,
+                '25-34' => 0,
+                '35-49' => 0,
+                '50+' => 0,
+            ];
 
-        $jumlahPerangkat = Perangkat::where('aktif', true)
-            ->count();
+            foreach (Penduduk::select('tanggal_lahir')->get() as $penduduk) {
+                if (!$penduduk->tanggal_lahir) {
+                    continue;
+                }
 
+                $umur = $penduduk->tanggal_lahir->age;
 
-        $jumlahPelayanan = PermohonanSurat::count();
-
-
-        $jumlahLingkungan = Lingkungan::count();
-
-
-        $jumlahJenisSurat = JenisSurat::where('aktif', true)
-            ->count();
-
-        $lakiLaki = Penduduk::where('jenis_kelamin', 'L')->count();
-        $perempuan = Penduduk::where('jenis_kelamin', 'P')->count();
-
-        $pekerjaanStat = Penduduk::selectRaw('pekerjaan as nama, COUNT(*) as total')
-            ->whereNotNull('pekerjaan')
-            ->where('pekerjaan', '!=', '')
-            ->groupBy('pekerjaan')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
-
-        $agamaStat = Penduduk::selectRaw('agama as nama, COUNT(*) as total')
-            ->whereNotNull('agama')
-            ->where('agama', '!=', '')
-            ->groupBy('agama')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
-
-        $statusNikahStat = Penduduk::selectRaw('status_perkawinan as nama, COUNT(*) as total')
-            ->whereNotNull('status_perkawinan')
-            ->where('status_perkawinan', '!=', '')
-            ->groupBy('status_perkawinan')
-            ->orderByDesc('total')
-            ->limit(5)
-            ->get();
-
-        $usiaStat = [
-            '0-17' => 0,
-            '18-24' => 0,
-            '25-34' => 0,
-            '35-49' => 0,
-            '50+' => 0,
-        ];
-
-        foreach (Penduduk::select('tanggal_lahir')->get() as $penduduk) {
-            if (!$penduduk->tanggal_lahir) {
-                continue;
+                if ($umur <= 17) {
+                    $usiaStat['0-17']++;
+                } elseif ($umur <= 24) {
+                    $usiaStat['18-24']++;
+                } elseif ($umur <= 34) {
+                    $usiaStat['25-34']++;
+                } elseif ($umur <= 49) {
+                    $usiaStat['35-49']++;
+                } else {
+                    $usiaStat['50+']++;
+                }
             }
 
-            $umur = $penduduk->tanggal_lahir->age;
-
-            if ($umur <= 17) {
-                $usiaStat['0-17']++;
-            } elseif ($umur <= 24) {
-                $usiaStat['18-24']++;
-            } elseif ($umur <= 34) {
-                $usiaStat['25-34']++;
-            } elseif ($umur <= 49) {
-                $usiaStat['35-49']++;
-            } else {
-                $usiaStat['50+']++;
-            }
-        }
-
-        $pendidikanStat = Penduduk::selectRaw('pendidikan as nama, COUNT(*) as total')
-            ->whereNotNull('pendidikan')
-            ->where('pendidikan', '!=', '')
-            ->groupBy('pendidikan')
-            ->orderByDesc('total')
-            ->limit(6)
-            ->get();
-
-/*
-|--------------------------------------------------------------------------
-| STATISTIK RT / RW PER LINGKUNGAN
-|--------------------------------------------------------------------------
-*/
-
-$statistikRtRw = collect([
-    [
-        'nama' => 'Benteng',
-        'rt'   => 10,
-        'rw'   => 3,
-    ],
-    [
-        'nama' => 'Paruntu',
-        'rt'   => 8,
-        'rw'   => 2,
-    ],
-    [
-        'nama' => 'Samaenre',
-        'rt'   => 6,
-        'rw'   => 3,
-    ],
-    [
-        'nama' => 'Popanda',
-        'rt'   => 4,
-        'rw'   => 2,
-    ],
-]);
-
-$jumlahRt = $statistikRtRw->sum('rt');
-$jumlahRw = $statistikRtRw->sum('rw');
-
-$statistikLingkungan = Lingkungan::withCount('penduduk')
-    ->orderBy('nama')
-    ->get();
-
-       
-
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | DATA WEBSITE
-        |--------------------------------------------------------------------------
-        */
-
-
-        $jenisSurats = JenisSurat::where('aktif', true)
-            ->orderBy('nama')
-            ->get();
-
-
-
-
-
-        $beritas = Berita::where('status','publish')
-            ->latest()
-            ->take(6)
-            ->get();
-
-        $pengumumen = Pengumuman::where('status', 'publish')
-        ->orderByDesc('tanggal_publish')
-        ->take(6)
-        ->get();
-
-
-
-        $agendas = Agenda::where('status','aktif')
-            ->orderBy('tanggal')
-            ->take(9)
-            ->get();
-
-
-
-
-
-        $galeris = Galeri::where('status','aktif')
-            ->latest()
-            ->take(6)
-            ->get();
-
-
-
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | WEBSITE SETTING
-        |--------------------------------------------------------------------------
-        */
-
-
-        $profil = WebsiteSetting::first();
-
-    
-
-     
-
-        /*
-        |--------------------------------------------------------------------------
-        | HALAMAN CMS
-        |--------------------------------------------------------------------------
-        */
-
-
-        $halamanProfil = [];
-
-
-
-
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| STRUKTUR ORGANISASI
-|--------------------------------------------------------------------------
-*/
-
-$struktur = Jabatan::query()
-
-    ->aktif()
-
-    ->where('is_struktur', true)
-
-    ->whereNull('parent_id')
-
-    ->with([
-        'perangkatStruktur',
-        'childrenRecursive'
-    ])
-
-    ->orderBy('urutan')
-
-    ->get();
-
-$lingkungans = Lingkungan::withCount('penduduk')
-    ->orderBy('nama')
-    ->get();
-    
-        /*
-        |--------------------------------------------------------------------------
-        | RIWAYAT PELAYANAN
-        |--------------------------------------------------------------------------
-        */
-
-
-        $pelayananTerbaru = PermohonanSurat::latest()
-
-            ->take(5)
-
-            ->get();
-
-
-
-
-
-
-
-
-        return view(
-            'public.home',
-            compact(
-
-
+            $pendidikanStat = Penduduk::selectRaw('pendidikan as nama, COUNT(*) as total')
+                ->whereNotNull('pendidikan')
+                ->where('pendidikan', '!=', '')
+                ->groupBy('pendidikan')
+                ->orderByDesc('total')
+                ->limit(6)
+                ->get();
+
+            return compact(
                 'jumlahPenduduk',
                 'jumlahKK',
                 'jumlahPerangkat',
                 'jumlahPelayanan',
                 'jumlahLingkungan',
-                'jumlahRt',
-                'jumlahRw',
                 'jumlahJenisSurat',
                 'lakiLaki',
                 'perempuan',
@@ -298,8 +109,97 @@ $lingkungans = Lingkungan::withCount('penduduk')
                 'agamaStat',
                 'statusNikahStat',
                 'usiaStat',
-                'pendidikanStat',
+                'pendidikanStat'
+            );
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | STATISTIK RT / RW PER LINGKUNGAN
+        |--------------------------------------------------------------------------
+        */
+        $statistikRtRw = collect([
+            ['nama' => 'Benteng', 'rt' => 10, 'rw' => 3],
+            ['nama' => 'Paruntu', 'rt' => 8, 'rw' => 2],
+            ['nama' => 'Samaenre', 'rt' => 6, 'rw' => 3],
+            ['nama' => 'Popanda', 'rt' => 4, 'rw' => 2],
+        ]);
+
+        $jumlahRt = $statistikRtRw->sum('rt');
+        $jumlahRw = $statistikRtRw->sum('rw');
+
+        $statistikLingkungan = Cache::remember('home_public_lingkungans', 1800, function () {
+            return Lingkungan::withCount('penduduk')->orderBy('nama')->get();
+        });
+
+        $lingkungans = $statistikLingkungan;
+
+        /*
+        |--------------------------------------------------------------------------
+        | DATA WEBSITE (Cached 30 Menit)
+        |--------------------------------------------------------------------------
+        */
+        $jenisSurats = Cache::remember('home_public_jenis_surats', 1800, function () {
+            return JenisSurat::where('aktif', true)->orderBy('nama')->get();
+        });
+
+        $beritas = Cache::remember('home_public_beritas', 1800, function () {
+            return Berita::where('status', 'publish')->latest('tanggal_publish')->take(6)->get();
+        });
+
+        $pengumumen = Cache::remember('home_public_pengumumen', 1800, function () {
+            return Pengumuman::where('status', 'publish')->orderByDesc('tanggal_publish')->take(6)->get();
+        });
+
+        $agendas = Cache::remember('home_public_agendas', 1800, function () {
+            return Agenda::where('status', 'aktif')->orderBy('tanggal')->take(9)->get();
+        });
+
+        $galeris = Cache::remember('home_public_galeris', 1800, function () {
+            return Galeri::where('status', 'aktif')->latest()->take(6)->get();
+        });
+
+        $profil = Cache::remember('website_setting_profil', 3600, function () {
+            return WebsiteSetting::first();
+        });
+
+        $halamanProfil = [];
+
+        /*
+        |--------------------------------------------------------------------------
+        | STRUKTUR ORGANISASI (Cached 1 Jam)
+        |--------------------------------------------------------------------------
+        */
+        $struktur = Cache::remember('home_public_struktur', 3600, function () {
+            return Jabatan::query()
+                ->aktif()
+                ->where('is_struktur', true)
+                ->whereNull('parent_id')
+                ->with([
+                    'perangkatStruktur',
+                    'childrenRecursive'
+                ])
+                ->orderBy('urutan')
+                ->get();
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | RIWAYAT PELAYANAN (Cached 5 Menit)
+        |--------------------------------------------------------------------------
+        */
+        $pelayananTerbaru = Cache::remember('home_public_pelayanan_terbaru', 300, function () {
+            return PermohonanSurat::latest()->take(5)->get();
+        });
+
+        return view('public.home', array_merge(
+            $stats,
+            compact(
                 'statistikRtRw',
+                'jumlahRt',
+                'jumlahRw',
+                'statistikLingkungan',
+                'lingkungans',
                 'jenisSurats',
                 'beritas',
                 'pengumumen',
@@ -307,84 +207,85 @@ $lingkungans = Lingkungan::withCount('penduduk')
                 'galeris',
                 'profil',
                 'halamanProfil',
-                'lingkungans',
-                'pelayananTerbaru',
                 'struktur',
-                'statistikLingkungan',
-               
-
+                'pelayananTerbaru'
             )
-        );
-
-
+        ));
     }
 
-public function showBerita($slug)
-{
-    $berita = Berita::where('slug', $slug)->first();
+    public function showBerita($slug)
+    {
+        $berita = Berita::where('slug', $slug)->first();
 
-    // Fallback kompatibilitas: jika diakses via ID lama, redirect 301 ke slug resmi
-    if (! $berita && is_numeric($slug)) {
-        $beritaById = Berita::find($slug);
-        if ($beritaById && $beritaById->status === 'publish') {
-            return redirect()->route('berita.show', $beritaById->slug, 301);
+        // Fallback kompatibilitas: jika diakses via ID lama, redirect 301 ke slug resmi
+        if (! $berita && is_numeric($slug)) {
+            $beritaById = Berita::find($slug);
+            if ($beritaById && $beritaById->status === 'publish') {
+                return redirect()->route('berita.show', $beritaById->slug, 301);
+            }
         }
+
+        if (! $berita || $berita->status !== 'publish') {
+            abort(404);
+        }
+
+        $profil = Cache::remember('website_setting_profil', 3600, function () {
+            return WebsiteSetting::first();
+        });
+
+        $beritaTerbaru = Berita::where('status', 'publish')
+            ->where('id', '!=', $berita->id)
+            ->latest('tanggal_publish')
+            ->take(5)
+            ->get();
+
+        return view('public.berita-detail', compact(
+            'profil',
+            'berita',
+            'beritaTerbaru'
+        ));
     }
 
-    if (! $berita || $berita->status !== 'publish') {
-        abort(404);
+    public function showPengumuman($slug)
+    {
+        $profil = Cache::remember('website_setting_profil', 3600, function () {
+            return WebsiteSetting::first();
+        });
+
+        $pengumuman = Pengumuman::where('slug', $slug)
+            ->where('status', 'publish')
+            ->firstOrFail();
+
+        $pengumumanTerbaru = Pengumuman::where('status', 'publish')
+            ->where('id', '!=', $pengumuman->id)
+            ->orderByDesc('tanggal_publish')
+            ->take(5)
+            ->get();
+
+        return view('public.pengumuman-detail', compact(
+            'profil',
+            'pengumuman',
+            'pengumumanTerbaru'
+        ));
     }
 
-    $profil = WebsiteSetting::first();
+    public function pengaduan()
+    {
+        $profil = Cache::remember('website_setting_profil', 3600, function () {
+            return WebsiteSetting::first();
+        });
 
-    $beritaTerbaru = Berita::where('status', 'publish')
-        ->where('id', '!=', $berita->id)
-        ->latest('tanggal_publish')
-        ->take(5)
-        ->get();
+        return view('public.pengaduan', compact('profil'));
+    }
 
-    return view('public.berita-detail', compact(
-        'profil',
-        'berita',
-        'beritaTerbaru'
-    ));
-}
-public function showPengumuman($slug)
-{
-    $profil = WebsiteSetting::first();
+    public function sitemap()
+    {
+        $beritas = Berita::where('status', 'publish')->latest('updated_at')->get();
+        $pengumumen = Pengumuman::where('status', 'publish')->latest('updated_at')->get();
 
-    $pengumuman = Pengumuman::where('slug', $slug)
-        ->where('status', 'publish')
-        ->firstOrFail();
+        $content = view('public.sitemap', compact('beritas', 'pengumumen'))->render();
 
-    $pengumumanTerbaru = Pengumuman::where('status', 'publish')
-        ->where('id', '!=', $pengumuman->id)
-        ->orderByDesc('tanggal_publish')
-        ->take(5)
-        ->get();
-
-    return view('public.pengumuman-detail', compact(
-        'profil',
-        'pengumuman',
-        'pengumumanTerbaru'
-    ));
-}
-public function pengaduan()
-{
-    $profil = WebsiteSetting::first();
-
-    return view('public.pengaduan', compact('profil'));
-}
-
-public function sitemap()
-{
-    $beritas = Berita::where('status', 'publish')->latest('updated_at')->get();
-    $pengumumen = Pengumuman::where('status', 'publish')->latest('updated_at')->get();
-
-    $content = view('public.sitemap', compact('beritas', 'pengumumen'))->render();
-
-    return response($content, 200)
-        ->header('Content-Type', 'text/xml');
-}
-
-}
+        return response($content, 200)
+            ->header('Content-Type', 'text/xml');
+    }
+}

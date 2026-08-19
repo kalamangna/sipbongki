@@ -162,6 +162,19 @@ Aplikasi siap diakses melalui peramban:
 - **Portal Publik**: `http://localhost:8000`
 - **Panel Admin / Login**: `http://localhost:8000/login`
 
+### 6. Pemeliharaan & Penjadwalan Tugas (Scheduler)
+Aplikasi dilengkapi perintah artisan dan penjadwalan otomatis untuk pemeliharaan sistem:
+```bash
+# Simulasi pembersihan berkas lampiran permohonan lama (default: 180 hari)
+php artisan permohonan:prune-documents --dry-run
+
+# Eksekusi pembersihan nyata
+php artisan permohonan:prune-documents --days=180
+
+# Jalankan scheduler tugas harian (otomatis berjalan pukul 02:00)
+php artisan schedule:run
+```
+
 ---
 
 ## 📂 Struktur Direktori Utama

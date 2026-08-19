@@ -27,9 +27,12 @@ class Agenda extends Model
 
 
     protected $casts = [
-
         'tanggal' => 'date',
-
     ];
 
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_agendas'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_agendas'));
+    }
 }

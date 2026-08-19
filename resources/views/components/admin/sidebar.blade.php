@@ -20,7 +20,7 @@
                 </div>
             </div>
         </a>
-        <button type="button" data-drawer-hide="logo-sidebar" aria-controls="logo-sidebar" class="lg:hidden text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl focus:outline-none transition-colors dark:hover:bg-slate-800 dark:hover:text-slate-200">
+        <button type="button" data-drawer-hide="logo-sidebar" aria-controls="logo-sidebar" class="lg:hidden text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl focus:outline-none transition-colors dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 cursor-pointer">
             <i class="fa-solid fa-xmark text-lg"></i>
         </button>
     </div>

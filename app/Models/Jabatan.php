@@ -30,6 +30,12 @@ class Jabatan extends Model
     'aktif' => 'boolean',
 ];
 
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_struktur'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('home_public_struktur'));
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relasi

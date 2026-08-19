@@ -124,7 +124,7 @@
         <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-slate-900 dark:border dark:border-slate-800">
             <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50 text-slate-800 dark:bg-slate-800/50 dark:border-slate-800 dark:text-slate-100">
                 <h5 class="font-bold text-lg mb-0">Tambah Anggota Keluarga</h5>
-                <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors dark:hover:text-slate-200" data-modal-hide="modalAnggota">
+                <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer" data-modal-hide="modalAnggota">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>

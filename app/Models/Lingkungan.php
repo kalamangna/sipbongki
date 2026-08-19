@@ -33,10 +33,20 @@ class Lingkungan extends Model
 
 
     protected $casts = [
-
         'status' => 'boolean',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_lingkungans');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_lingkungans');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+    }
 
 
 

@@ -232,6 +232,11 @@ Route::resource(
         )->name('permohonan-surat.update-status');
 
         Route::patch(
+            'permohonan-surat/{permohonanSurat}/rollback-status',
+            [PermohonanSuratController::class, 'rollbackStatus']
+        )->name('permohonan-surat.rollback-status');
+
+        Route::patch(
             'permohonan-surat/{permohonanSurat}/note',
             [PermohonanSuratController::class, 'updateNote']
         )->name('permohonan-surat.update-note');

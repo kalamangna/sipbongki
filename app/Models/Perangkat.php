@@ -62,6 +62,18 @@ class Perangkat extends Model
     'jabatan_struktur_id' => 'integer',
 
 ];
+
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_struktur');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_public_struktur');
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+        });
+    }
     /*
     |--------------------------------------------------------------------------
     | Relasi

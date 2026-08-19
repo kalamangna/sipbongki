@@ -69,7 +69,7 @@
         </button>
 
         <div class="text-center pt-2">
-            <a href="{{ route('login') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 inline-flex items-center gap-1.5 transition-colors">
+            <a href="{{ route('login') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-400 inline-flex items-center gap-1.5 transition-colors cursor-pointer">
                 <i class="fa-solid fa-arrow-left"></i> Kembali ke Login
             </a>
         </div>

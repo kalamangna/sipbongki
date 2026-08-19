@@ -31,10 +31,14 @@ class KartuKeluarga extends Model
 
 
     protected $casts = [
-
         'aktif' => 'boolean',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(fn () => \Illuminate\Support\Facades\Cache::forget('home_demografi_stats'));
+        static::deleted(fn () => \Illuminate\Support\Facades\Cache::forget('home_demografi_stats'));
+    }
 
 
 

@@ -59,7 +59,7 @@
                 </form>
 
                 <div class="text-center mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
-                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg">
+                    <a href="{{ route('pengaduan') }}" class="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-400 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg cursor-pointer">
                         <i class="fa-solid fa-arrow-left"></i>
                         Kembali ke Form Pengaduan
                     </a>

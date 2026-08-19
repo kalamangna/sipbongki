@@ -51,14 +51,22 @@ class Penduduk extends Model
 
 
     protected $casts = [
-
         'tanggal_lahir' => 'date',
-
         'aktif' => 'boolean',
-
         'is_public' => 'boolean',
-
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+            \Illuminate\Support\Facades\Cache::forget('home_public_lingkungans');
+        });
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('home_demografi_stats');
+            \Illuminate\Support\Facades\Cache::forget('home_public_lingkungans');
+        });
+    }
 
 
 
